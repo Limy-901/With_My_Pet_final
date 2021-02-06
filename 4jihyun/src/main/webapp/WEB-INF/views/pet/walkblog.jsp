@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
+
 <!doctype html>
 <html lang="en">
 
@@ -144,8 +145,27 @@
         <a class="avatar" style="background-image: url("https://secure.meetupstatic.com/photos/member/2/b/b/7/thumb_250991191.jpeg");"></a>
 	   <div class="img-circle img-circle-sm">
                   <img src="assets/images/f2.jpg" class="mr-3" alt="...">
-                </div> 	지혀닝님이 산책할 친구를 기다리고 있어요!
-    </div><!-- 사진넣고싶다..안뜬다.. -->
+       </div> 	
+       			<p class="name">지혀닝님이 산책할 친구를 기다리고 있어요!</p>
+    </div>
+    
+    
+ <div class="col-lg-3 col-sm-6 grids-feature">
+        <div class="area-box">          
+         <div class="col-md-4">
+            <img src="assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
+         </div>        
+       <div class="col-md-8 align-self">  
+        <p>2021년 2월 4일</p>
+        <p>뽀미, 4살, 경계심이 많아요</p>       
+          <p>대충 모집하는이의 내용입니다.</p>
+        </div>
+        </div>
+      </div>
+    
+    
+    
+    
     
     <div class="blog-summary">
       <p>
@@ -174,16 +194,9 @@
  <a class="modify" href="#popup1">수정</a>
   <a class="modify" href="#popup1">삭제</a>
 </div>
+ 
+ 
 
-
-
- <!-- 컨텐트 끝 -->
- 
- 
- 
- 
- 
- 
  
  
  
@@ -278,7 +291,102 @@
               </div>
           </div>
  
+ <!-- 신청자리스트 -->
  
+ 
+		<div class="apply">	 
+           <div class="applylabel">
+           <span>신청자(6)</span>
+           </div>
+           <div class="applyrow">
+ 		 <div class="col-lg-4 col-md-6 item">
+              <div class="card">
+                  <div class="card-header p-0 position-relative">
+                      <a href="blog-single.html">
+                          <img class="card-img-bottom d-block" src="assets/images/g1.jpg" alt="Card image cap">
+                      </a>
+                      
+                  </div>
+                  <div class="card-body blog-details">
+                      <p>차지현</p>
+                      <p>저도 공덕살아요^^ 같이산책해요!</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6 item">
+              <div class="card">
+                  <div class="card-header p-0 position-relative">
+                      <a href="blog-single.html">
+                          <img class="card-img-bottom d-block" src="assets/images/g2.jpg" alt="Card image cap">
+                      </a>
+                      
+                  </div>
+                  <div class="card-body blog-details">
+                      <p>차지현</p>
+                      <p>회원</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6 item">
+              <div class="card">
+                  <div class="card-header p-0 position-relative">
+                      <a href="blog-single.html">
+                          <img class="card-img-bottom d-block" src="assets/images/g3.jpg" alt="Card image cap">
+                      </a>
+                      
+                  </div>
+                  <div class="card-body blog-details">
+                      <p>차지현</p>
+                      <p>회원</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
+              <div class="card">
+                  <div class="card-header p-0 position-relative">
+                      <a href="blog-single.html">
+                          <img class="card-img-bottom d-block" src="assets/images/g4.jpg" alt="Card image cap">
+                      </a>
+                      
+      			  </div>
+                  <div class="card-body blog-details">
+                      <p>차지현</p>
+                      <p>회원</p>
+                  </div>
+              </div>
+          </div>
+
+ 		 <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
+              <div class="card">
+                  <div class="card-header p-0 position-relative">
+                      <a href="blog-single.html">
+                          <img class="card-img-bottom d-block" src="assets/images/g5.jpg" alt="Card image cap">
+                      </a>
+                      
+      			  </div>
+                  <div class="card-body blog-details">
+                      <p>차지현</p>
+                      <p>텍스트에 따라 카드크기 달라지는 아ㅣ슈</p>
+                  </div>
+              </div>
+          </div>
+                    <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
+              <div class="card">
+                  <div class="card-header p-0 position-relative">
+                      <a href="blog-single.html">
+                          <img class="card-img-bottom d-block" src="assets/images/g4.jpg" alt="Card image cap">
+                      </a>
+                      
+      			  </div>
+                  <div class="card-body blog-details">
+                      <p>차지현</p>
+                      <p>회원</p>
+                  </div>
+              </div>
+          </div>
+ 		</div>
+ 		</div>
+ 		 		</div>
  
  
  <!-- 참가팝업시작 -->
@@ -287,18 +395,35 @@
 		<h4>같이 산책할래요!</h4>
 		<br>
 		<a class="close" href="#">&times;</a>
-		<div class="content">
+		 <div class="col-lg-3 col-sm-6 grids-feature">
+        <div class="area-box">          
+         <div class="col-md-4">
+            <img src="assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
+         </div>        
+       <div class="col-md-8 align-self">  
+        <p>2021년 2월 4일</p>
+        <p>뽀미, 4살, 경계심이 많아요</p>       
+          <p>대충 파티지원자의 내용입니다.</p>
+        </div>
+        </div>
+      </div>
+		
+		
+		
       <form name="f" action="write.do" method="post">
           
           <label for="address">만나실 견주분께 인사를 보내보세요!</label><br>
-          <input type="text" id="address" name="ct_address">
+          <input type="text" id="address" name="ct_address" size=45><br>
+          <label for="address">같이 갈 강아지의 특징을 적어주세요<br>(ex// 애교가 많아 사람을 잘따라요!)</label><br>
+          <input type="text" id="address" name="ct_address" size=45>
           
-          <button type="submit">보내기</button>
+          <button type="submit" class="modify">보내기</button>
 	   </form>
 
 		</div>
 	</div>
 </div>
+ 
  
   <!-- 참가팝업끝 -->
 
