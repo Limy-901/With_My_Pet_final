@@ -210,6 +210,7 @@ body{
 	font-weight: 600;
 	margin-bottom: 30px;
 	margin-top: 50px;
+	margin-left: 60px;
 }
 .w3l-blog-single .w3l-blog-single4 .img-circle-sm {
     width: 65px;
@@ -466,6 +467,9 @@ margin-left: 280px;
 .content-text{
 margin-left: 280px;
 	
+}
+.apply{
+	margin-left: 150px;
 }
 .applyrow {
     display: flex;
