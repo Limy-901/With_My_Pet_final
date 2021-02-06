@@ -20,8 +20,6 @@
     <link rel="stylesheet" href="assets/css/blog.css">
   <!-- Template CSS -->
   
-  
-  
   <!--심볼시작  -->
   <svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
@@ -36,9 +34,7 @@
 </defs>
 </svg>
     <!--심볼끝  -->
-  
-  
-  
+ 
 </head>
 
 <body>
@@ -220,81 +216,12 @@
                   </div>
               </div>
           </div>
-          <div class="col-lg-4 col-md-6 item">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g2.jpg" alt="Card image cap">
-                      </a>
-                      
-                  </div>
-                  <div class="card-body blog-details">
-                      <p>차지현</p>
-                      <p>회원</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6 item">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g3.jpg" alt="Card image cap">
-                      </a>
-                      
-                  </div>
-                  <div class="card-body blog-details">
-                      <p>차지현</p>
-                      <p>회원</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g4.jpg" alt="Card image cap">
-                      </a>
-                      
-      			  </div>
-                  <div class="card-body blog-details">
-                      <p>차지현</p>
-                      <p>회원</p>
-                  </div>
-              </div>
-          </div>
-           <div class="col-lg-4 col-md-6 item">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g3.jpg" alt="Card image cap">
-                      </a>
-                      
-                  </div>
-                  <div class="card-body blog-details">
-                      <p>차지현</p>
-                      <p>회원</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g4.jpg" alt="Card image cap">
-                      </a>
-                      
-      			  </div>
-                  <div class="card-body blog-details">
-                      <p>차지현</p>
-                      <p>회원</p>
-                  </div>
-              </div>
-          </div>
+         
       </div>
  
  <!-- 신청자리스트 -->
  
- 
+
 		<div class="apply">	 
            <div class="applylabel">
            <span>신청자(6)</span>
@@ -310,83 +237,30 @@
                   </div>
                   <div class="card-body blog-details">
                       <p>차지현</p>
-                      <p>저도 공덕살아요^^ 같이산책해요!</p>
+                      <p>세션아이디가 작성자 아닐때(버튼안뜸)</p>
                   </div>
               </div>
           </div>
-          <div class="col-lg-4 col-md-6 item">
+   <div class="col-lg-4 col-md-6 item">
               <div class="card">
+             
                   <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g2.jpg" alt="Card image cap">
+                      <a href="#popup2"> <button class="detailbtn">자세히 보기</button>
+                          <img class="card-img-bottom d-block" src="assets/images/g1.jpg" alt="Card image cap">
                       </a>
-                      
-                  </div>
-                  <div class="card-body blog-details">
-                      <p>차지현</p>
-                      <p>회원</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6 item">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g3.jpg" alt="Card image cap">
-                      </a>
-                      
-                  </div>
-                  <div class="card-body blog-details">
-                      <p>차지현</p>
-                      <p>회원</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g4.jpg" alt="Card image cap">
-                      </a>
-                      
-      			  </div>
-                  <div class="card-body blog-details">
-                      <p>차지현</p>
-                      <p>회원</p>
-                  </div>
-              </div>
-          </div>
 
- 		 <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g5.jpg" alt="Card image cap">
-                      </a>
-                      
-      			  </div>
+                  </div>
                   <div class="card-body blog-details">
                       <p>차지현</p>
-                      <p>텍스트에 따라 카드크기 달라지는 아ㅣ슈</p>
+                      <p>세션아이디가 작성자일때(버튼뜸)</p>
                   </div>
               </div>
           </div>
-                    <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g4.jpg" alt="Card image cap">
-                      </a>
-                      
-      			  </div>
-                  <div class="card-body blog-details">
-                      <p>차지현</p>
-                      <p>회원</p>
-                  </div>
-              </div>
-          </div>
+          
+          
  		</div>
  		</div>
+
 
  
  
@@ -431,6 +305,34 @@
 </section>
 
 
+
+
+
+<!-- 자세히보기 시작-->
+<div id="popup2" class="overlay">
+	<div class="popup">
+	<a class="close" href="#">&times;</a>
+<h4>참가 신청자의 강아지 상세정보</h4>
+ <div class="col-lg-99 col-sm-6 grids-feature">
+        <div class="area-box">          
+         <div class="col-md-4">
+            <img src="assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
+         </div>        
+       <div class="col-md-8 align-self">  
+        <p>2021년 2월 4일</p>
+        <p>뽀미, 4살, 경계심이 많아요</p>       
+          <p>대충 파티지원자의 내용입니다.</p>
+        </div>
+        </div>
+      </div>
+      	<div class="yesorno">
+			<a href="" class="yesornobtn">수락</a>
+			<a href="" class="yesornobtn">거절</a>
+		</div>
+
+	</div>
+</div>
+<!-- 자세히보기 끝-->
 
 	 <!-- 언더바 -->
 			<div class="underbar">
@@ -484,6 +386,22 @@
         }
       });
     });
+
+
+    //자세히보기 hover효과
+    $ (function(){
+    	$(".detailbtn").css("display", "none");	
+    	
+    });
+
+      $('.card').mouseover(function () {
+    	  $(".detailbtn").css("display", "block");
+      });
+ 
+      $('.card').mouseout(function () {
+    	  $(".detailbtn").css("display", "none");
+      });
+
   </script>
   <!--//MENU-JS-->
 

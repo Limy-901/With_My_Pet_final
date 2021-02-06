@@ -372,7 +372,8 @@ h1 {
   position: relative;
   transition: all 5s ease-in-out;
   margin-top: 130px;
-  
+
+
 }
 
 .popup h2 {
@@ -481,5 +482,70 @@ margin-left: 280px;
 
 .card:hover {
 	width: 300px;
-	
+
 	}
+	
+.detailbtn{
+	font-size: 16px;
+	font-weight: 600;
+	padding-left: 12px;
+	color: #fff;
+	border-radius: 5px;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 0.3s ease-out;
+	margin-right: 5px;
+	background: #987054;
+	padding-right: 12px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	border: none;
+	
+
+	margin-top: 30%;
+	margin-left: 18%;
+	position: absolute;
+	width: 70%;
+	
+
+}
+
+
+.yesornobtn{
+	font-size: 16px;
+	font-weight: 600;
+	padding-left: 12px;
+	color: #fff;
+	border-radius: 5px;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 0.3s ease-out;
+	margin-right: 5px;
+	background: #987054;
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	border: none;
+}
+
+.detailbtn:hover {
+  background: #754929;
+}
+
+.col-lg-99 {
+    flex: 0 0 99.33333%;
+    max-width: 95%;
+    padding-top: 30px;
+	padding-left: 40px;
+	padding-bottom: 20px;
+}
+.yesorno{
+	margin-left:25%;
+	margin-bottom:5%;
+	margin-top: 3%;
+	
+	
+}
+
+
