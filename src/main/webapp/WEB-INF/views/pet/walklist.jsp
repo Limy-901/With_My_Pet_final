@@ -14,14 +14,15 @@
    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
    <!-- google fonts --> 
   <!-- Template CSS -->
-        <link rel="stylesheet" href="assets/css/host.css">
-        <link rel="stylesheet" href="assets/css/lists.css">
+    <link rel="stylesheet" href="assets/css/style-liberty.css">
+
+        <link rel="stylesheet" href="assets/css/list.css">
         <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
   
 </head>
-​
+
 <body>
-<!--header-->
+  <!--header-->
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
@@ -42,46 +43,31 @@
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active">
+                  <li class="nav-item">
                       <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                   </li>
-                  
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         	산 책 <span class="fa fa-angle-down"></span>
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="walklist.do">산책모집 </a>
-                          <a class="dropdown-item" href="walkboard.do">산책후기 </a>
-                      </div>
+                  <li class="nav-item active">
+                      <a class="nav-link" href="about.html">About</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="services.html">Services</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="gallery.html">Gallery</a>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         	쇼 핑 <span class="fa fa-angle-down"></span>
+                          Blog<span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="blog.html">쇼핑하기</a>
-                          <a class="dropdown-item" href="blog.html">구매후기</a>
-                      </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         	 커뮤니티 <span class="fa fa-angle-down"></span>
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                          <a class="dropdown-item" href="blog.html">공지사항</a>
-                          <a class="dropdown-item" href="blog-single.html">일상이야기</a>
+                          <a class="dropdown-item" href="blog.html">Blog Posts</a>
+                          <a class="dropdown-item" href="blog-single.html">Blog single</a>
+						   <a class="dropdown-item" href="landing-single.html">Landing Page</a>
                       </div>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="gallery.html">로그인 </a>
-                  </li>
-                 
-                  <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact </a>
+                      <a class="nav-link" href="contact.html">Contact</a>
                   </li>
               </ul>
           </div>
@@ -104,7 +90,7 @@
   </div>
 </header>
 <!-- //header -->
-​
+
 <!-- about breadcrumb -->
 <section class="w3l-about-breadcrumb text-center">
   <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
@@ -119,22 +105,22 @@
 </section>
 <!-- //about breadcrumb -->
 <!-- /content-6-->
-​
-​<p></p>
+
+
 <!-- 산책파티버튼 -->
 <div class="btnclass">
- <a class="button" href="#popup1">산책파티를 구하고싶어요🐕</a>
+ <a class="button" href="../walkpost.do">산책파티를 구하고싶어요🐕</a>
 </div>
-​
-​
-​
-​
+
+
+
+
 <!-- 리스트 시작-->
 <section class="w3l-features py-5" id="features">
-  <div class="container py-lg-5 py-md-4">
+  <div class="listwrap">
   <label class="list-date">2021년 2월 4일</label>
   
-    <div class="grids-area-hny main-cont-wthree-fea row">
+    <div class="grids-area-hny main-cont-wthree-fea">
     
       <div class="col-lg-4 col-sm-6 grids-feature">
         <div class="area-box">          
@@ -146,7 +132,7 @@
           <h4><a href="#feature" class="title-head">공덕동 산책하실분!</a></h4>
 		  <p style="font-size:16px;">by 차지현</p>
           <p>대충 내용입니다.</p>
-          <a href="#read" class="read">자세히 보기>></a>
+          <a href="../walkblog.do" class="read">자세히 보기>></a>
         </div>
         </div>
       </div>
@@ -161,7 +147,7 @@
           <h4><a href="#feature" class="title-head">공덕동 산책하실분!</a></h4>
 		  <p style="font-size:16px;">by 차지현</p>
           <p>대충 내용입니다.</p>
-          <a href="walkblog.do" class="read">자세히 보기>></a>
+          <a href="../walkblog.do" class="read">자세히 보기>></a>
         </div>
         </div>
       </div>
@@ -169,7 +155,7 @@
       <!-- 날짜땜에반복 -->
       <label class="list-date">2021년 2월5일</label>
   
-    <div class="grids-area-hny main-cont-wthree-fea row">
+    <div class="grids-area-hny main-cont-wthree-fea">
     
       <div class="col-lg-4 col-sm-6 grids-feature">
         <div class="area-box">          
@@ -181,7 +167,7 @@
           <h4><a href="#feature" class="title-head">공덕동 산책하실분!</a></h4>
 		  <p style="font-size:16px;">by 차지현</p>
           <p>대충 내용입니다.</p>
-          <a href="#read" class="read">자세히 보기>></a>
+          <a href="../walkblog.do" class="read">자세히 보기>></a>
         </div>
         </div>
       </div>
@@ -196,7 +182,7 @@
           <h4><a href="#feature" class="title-head">공덕동 산책하실분!</a></h4>
 		  <p style="font-size:16px;">by 차지현</p>
           <p>대충 내용입니다.</p>
-          <a href="#read" class="read">자세히 보기>></a>
+          <a href="../walkblog.do" class="read">자세히 보기>></a>
         </div>
         </div>
       </div>
@@ -204,10 +190,10 @@
      
      
   </section>
-​
+
   <!--//MENU-JS-->
-​
+
   <script src="assets/js/bootstrap.min.js"></script>
-​
+
 </body>
 </html>

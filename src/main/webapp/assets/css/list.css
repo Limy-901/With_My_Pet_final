@@ -16,7 +16,7 @@
     background-color: var(--bg-color);
     position: relative;
     margin-bottom: 30px;
-    
+    width:1000px;
      display: flex;
    
 }
@@ -87,11 +87,33 @@ p {
 .btnclass{
 	position: absolute;
 	left: 50%;
-	top: 50%;
+	top: 60%;
 	margin-left: -150px;
 }
 @media (min-width: 1028px)
 .col-lg-4 {
     max-width: 600;
     width: 1000px;
+}
+.row {
+	
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.list-date{
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 30px;
+	
+}
+
+.listwrap{
+	margin-top: 150px;
+	margin-left: 260px;
+	
+}
+@media (max-width: 700px) {
+  .listwrap {
+   margin-left: 10px;
 }
