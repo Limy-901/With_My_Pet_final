@@ -2760,20 +2760,19 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #189A46;
-  border-color: #189A46;
+  background-color: var(--secondary-color);
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color:#116E32;
-  border-color:#116E32;
+  background-color: var(--primary-color);
+  border-color:#fff;
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
   color: #fff;
-  background-color:#116E32;
+  background-color:var(--primary-color);
   border-color: #116E32;
   box-shadow: 0 0 0 0.2rem rgba(15, 162, 67, 0.65);
 }
@@ -2781,15 +2780,15 @@ fieldset:disabled a.btn {
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: #fff;
-  background-color:#116E32;
-  border-color:#116E32;
+  background-color:var(--secondary-color);
+  border-color:var(--primary-color);
 }
 
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show>.btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #189A46;
+  background-color: var(--primary-color);
   border-color: #189A46;
 }
 
@@ -2801,14 +2800,14 @@ fieldset:disabled a.btn {
 
 .btn-secondary {
   color: #fff;
-  background-color: #f53626;
-  border-color: #f53626;
+  background-color: var(--secondary-color);
+  border-color: var(--primary-color);
 }
 
 .btn-secondary:hover {
   color: #fff;
-  background-color: #F41F0B;
-  border-color: #F41F0B;
+  background-color: var(--primary-color);
+  border-color: var(--secondary-color);
 }
 
 .btn-secondary:focus,
@@ -3665,6 +3664,7 @@ input[type="button"].btn-block {
 }
 
 .dropdown-item {
+	font-family: 'Spoqa Han Sans Neo';
   display: block;
   width: 100%;
   padding: 0.25rem 1.5rem;
@@ -14014,14 +14014,14 @@ a.text-dark:focus {
 
 :root {
   --primary-color: #ffb446;
-  --secondary-color: #f53626;
+  --secondary-color: #6EC5CE;
   --font-color: #696969;
   --bg-color: #fff;
   --heading-color: #000c04;
   --border-radius: 10px;
   --border-color: #ddd;
   --border-light:#f0f3f0;
-  --nav-color: #292922;
+  --nav-color: #585849;
   --dropdown-color: #fff;
   --bg-light: rgba(147, 107, 232, 0.05);
   --iframe-filter: grayscale(0%);
@@ -14029,10 +14029,10 @@ a.text-dark:focus {
 }
 
 [data-theme="dark"] {
-  --primary-color: #189A46;
-  --secondary-color: #f53626;
+  --primary-color: #b96f13;
+  --secondary-color: #ffb446;
   --font-color: #afafaf;
-  --bg-color:#151515;
+  --bg-color:#4f3426;
   --heading-color: #ddd;
   --border-color: #333;
   --border-light: #444;
@@ -14056,7 +14056,7 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
   background: var(--bg-color);
   color: var(--font-color);
 }
@@ -14065,7 +14065,7 @@ body a,
 button,
 .btn {
   cursor: pointer !important;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
 }
 
 .clear {
@@ -14092,13 +14092,13 @@ label,
 li {
   -webkit-appearance: none;
   outline: none;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
 }
 
 a,
 a:hover {
   text-decoration: none;
-  color: #189A46;
+  color: var(--secondary-color);
 }
 
 iframe {
@@ -14128,7 +14128,7 @@ h6 {
   margin: 0;
   padding: 0;
   color: var(--heading-color);
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
   font-weight: 600;
 }
 
@@ -14138,7 +14138,7 @@ p {
   font-size: 1.2em;
   line-height: 28px;
   color: var(--font-color);
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
 }
 
 li {
@@ -14164,6 +14164,7 @@ p.white {
 
 /*-- container --*/
 .container {
+	font-family: 'Spoqa Han Sans Neo';
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
@@ -14264,7 +14265,7 @@ p.white {
   color: var(--primary-color);
 }
 .border-btn:hover{
-  color: var(--primary-color);
+  color: var(--secondary-color);
   background:#fff;
 }
 a.link-style {
@@ -14535,7 +14536,8 @@ a.nav-link:before,
 a.dropdown-item:before {
   position: absolute;
   content: '';
-  background: var(--primary-color);
+  color:var(--secondary-color);
+  background: var(--secondary-color);
   width: 0px;
   height: 1px;
   bottom: 13px;
@@ -14553,6 +14555,7 @@ a.dropdown-item:hover:before {
 }
 
 .navbar-expand-lg .navbar-nav .nav-item.active .nav-link {
+	
   color: var(--primary-color);
 }
 
@@ -14560,14 +14563,14 @@ a.dropdown-item:hover:before {
 .navbar-dark .navbar-nav .active>.nav-link,
 .navbar-dark .navbar-nav .nav-link.show,
 .navbar-dark .navbar-nav .nav-link.active {
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .navbar-light .navbar-nav .show>.nav-link,
 .navbar-light .navbar-nav .active>.nav-link,
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .nav-link.active {
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -14581,7 +14584,7 @@ a.dropdown-item:hover:before {
 }
 
 .navbar-expand-lg .navbar-nav .nav-link:hover {
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 a.dropdown-item {
@@ -14596,7 +14599,7 @@ a.dropdown-item {
 }
 
 a.dropdown-item:hover {
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 a.dropdown-item.active {
@@ -14880,20 +14883,20 @@ nav ul li a:hover {
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
-  color: var(--para-color);
+  color: var(--secondary-color);
 }
 
 .w3l-main-slider .banner-info-bg h6 {
   font-size: 36px;
   margin-bottom: 14px;
-  color: #fff;
+  color: #FFB446;
 }
 
 .w3l-main-slider .banner-info-bg h5 {
   font-size: 66px;
   line-height: 76px;
   font-weight: 700;
-  color: #fff;
+  color: #FFB446;
   text-transform: capitalize;
 }
 
@@ -14902,7 +14905,7 @@ nav ul li a:hover {
 }
 
 .w3l-main-slider .banner-info-bg p {
-  color: #fff;
+  color: #FFB446;
   font-weight: 400;
   text-transform: capitalize;
   line-height: 30px;
@@ -14926,7 +14929,7 @@ nav ul li a:hover {
 }
 
 .w3l-main-slider p.text-label {
-  color: #fff;
+  color: #FFB446;
   font-size: 20px;
   margin-bottom: 5px;
   text-transform: capitalize;
@@ -14950,7 +14953,7 @@ nav ul li a:hover {
 }
 
 .w3l-main-slider .banner-view {
-  background: url(../images/banner1.jpg) no-repeat center;
+  background: url(../images/main/banner1.jpg) no-repeat center;
   background-size: cover;
   min-height: calc(100vh - 120px);
   position: relative;
@@ -14962,17 +14965,18 @@ nav ul li a:hover {
 }
 
 .w3l-main-slider .banner-top1 {
-  background: url(../images/banner2.jpg) no-repeat center;
+  background: url(../images/main/banner2.jpg) no-repeat center;
   background-size: cover;
 }
 
 .w3l-main-slider .banner-top2 {
-  background: url(../images/banner3.jpg) no-repeat center;
+  background: url(../images/main/banner3.jpg) no-repeat center;
   background-size: cover;
+  color: #FFFFFF;
 }
 
 .w3l-main-slider .banner-top3 {
-  background: url(../images/banner4.jpg) no-repeat center;
+  background: url(../images/main/banner4.jpg) no-repeat center;
   background-size: cover;
 }
 
@@ -14984,7 +14988,6 @@ nav ul li a:hover {
   left: 0;
   right: 0;
   z-index: -1;
-  background-color: #0c0c0c;
   opacity: .6;
 }
 
@@ -15475,14 +15478,15 @@ button.owl-next {
   margin-top: 25px;
   margin-bottom: 15px;
   display: block;
-  color: var(--heading-color);
+  color: color:var(--secondary-color);
 }
 
 .w3l-features .area-box h4 a:hover {
-  color: var(--primary-color);
+  color:var(--secondary-color);
 }
 
 a.read {
+  color:var(--secondary-color);
   font-size: 17px;
   padding: 0;
   border-bottom: 2px solid var(--primary-color);
@@ -17240,7 +17244,7 @@ body:after {
   clear: left;
   padding-top: 1em;
   font-size: 1em;
-  color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .lb-data .lb-close {
@@ -17455,7 +17459,7 @@ li.meta-item:last-child {
 }
 
 .author a:hover {
-  color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .list-view .grids5-info {
@@ -17631,7 +17635,7 @@ li.design {
 
 .w3l-blog-single .w3l-blog-single2 .text-styles-top-33 q:before {
   font-size: 50px;
-  color: var(--secondary-color);
+  color: var(--primary-color);
   line-height: .8;
   padding-top: 8px;
   font-weight: 600;
@@ -18490,7 +18494,7 @@ li.design {
 }
 
 .w3l-footer .copy-footer-28 a {
-  color: var(--secondary-color);
+  color: var(--primary-color);
   opacity: 0.9;
 }
 

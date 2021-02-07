@@ -12,9 +12,10 @@
   <title>:: With My Pet :: 함께 산책해요 </title>
    <!-- google fonts -->  
    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+   <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
    <!-- google fonts --> 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="assets/css/style-liberty.css">
+  <link rel="stylesheet" href="assets/css/main.css">
   <!-- Template CSS -->
 </head>
 
@@ -24,9 +25,8 @@
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <h1><a class="navbar-brand" href="index.html">
-               Pooch Care
-          </a></h1>
+          <a href="#"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
+         
           <!-- if logo is image enable this   
       <a class="navbar-brand" href="#index.html">
           <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
@@ -47,36 +47,36 @@
                   
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="walklist.do">산책모집 </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
+                      	<a class="dropdown-item" href="walklist.do" >산책모집 </a>
                           <a class="dropdown-item" href="walkboard.do">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
                       	<a class="dropdown-item" href="blog.html">쇼핑하기</a>
                           <a class="dropdown-item" href="blog.html">구매후기</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
                           <a class="dropdown-item" href="blog.html">공지사항</a>
                           <a class="dropdown-item" href="blog-single.html">일상이야기</a>
                       </div>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="gallery.html">로그인 </a>
+                      <a class="nav-link" href="gallery.html" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
                   </li>
                  
                   <li class="nav-item">
@@ -111,12 +111,12 @@
           <li>
             <div class="slider-info banner-view bg bg2">
               <div class="banner-info">
-                <div class="container">
+                <div class="container" >
                   <div class="banner-info-bg text-left">
-                    <h5>Quality Things for Loving Pets</h5>
-                    <p>Keeps your Pet Smiling</p>
-                    <a class="btn btn-style btn-white mt-sm-5 mt-4 mr-2" href="about.html"> Read More</a>
-                    <a class="btn btn-style border-btn mt-sm-5 mt-4" href="contact.html"> Contact Us</a>
+                    <h5>산 책</h5 style="font-family: 'Spoqa Han Sans Neo'; color:white;"><br/>
+                    <p>함께하는 산책문화를 만들어요.</p>
+                    <a class="btn btn-style btn-white mt-sm-5 mt-4 mr-2" href="about.html">산책모집</a>
+                    <a class="btn btn-style border-btn mt-sm-5 mt-4" href="contact.html" style="color:#ffb446;">산책후기</a>
                   </div>
                 </div>
               </div>
@@ -129,10 +129,10 @@
               <div class="banner-info">
                 <div class="container">
                   <div class="banner-info-bg ml-lg-auto">
-                    <h5>Delivering happiness for Pets</h5>
-                    <p>For the love of pets </p>
-                    <a class="btn btn-style btn-white mt-sm-5 mt-4 mr-2" href="about.html"> Read More</a>
-                    <a class="btn btn-style border-btn mt-sm-5 mt-4" href="contact.html"> Contact Us</a>
+                    <h5>쇼 핑</h5><br/>
+                    <p>날개를 달아주세요!</p>
+                    <a class="btn btn-style btn-white mt-sm-5 mt-4 mr-2" href="about.html">상품구경</a>
+                    <a class="btn btn-style border-btn mt-sm-5 mt-4" href="contact.html" style="color:#ffb446;">후기구경</a>
                   </div>
                 </div>
               </div>
@@ -146,10 +146,9 @@
                 <div class="container">
                   <div class="banner-info-bg text-left">
                    
-                    <h5>Quality Things for Loving Pets</h5>
-                    <p>Keeps your Pet Smiling</p>
-                    <a class="btn btn-style btn-white mt-sm-5 mt-4 mr-2" href="about.html"> Read More</a>
-                    <a class="btn btn-style border-btn mt-sm-5 mt-4" href="contact.html"> Contact Us</a>
+                    <h5>커뮤니티</h5><br/>
+                    <p>함께 일상을 나눠요.</p>
+                    <a class="btn btn-style border-btn mt-sm-5 mt-4" href="contact.html" style="border-color:#ffb446; color:#ffb446;">일상이야기</a>
                   </div>
                 </div>
               </div>
@@ -162,10 +161,6 @@
               <div class="banner-info">
                 <div class="container">
                   <div class="banner-info-bg ml-lg-auto">
-                    <h5>Delivering happiness for Pets</h5>
-                    <p>We help your Projects</p>
-                    <a class="btn btn-style btn-white mt-sm-5 mt-4 mr-2" href="about.html">Read More</a>
-                    <a class="btn btn-style border-btn mt-sm-5 mt-4" href="contact.html"> Contact Us</a>
                   </div>
                 </div>
               </div>
@@ -181,13 +176,10 @@
     <div class="container py-md-5 py-3">
       <div class="bottom-ab-grids align-items-center">
         <div class="bottom-ab-left">
-          <h6 class="sub-title">About Us</h6>
-          <h3 class="hny-title">We love your pets like they are our own</h3>
-          <p class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur hic odio voluptatem
-            tenetur consequatur. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-            Nulla mollis dapibus nunc, ut rhoncus
-            turpis sodales quis. </p>
-            <a href="#read" class="read">Read more</a>
+          <h6 class="sub-title">산책 친구 서비스</h6>
+          <h2 class="hny-title">With My Pet</h2><br/>
+          <p class="my-3">'위드마이펫' 은,<br/>모든 강아지들에게 친구가 생기기를 바라는 서비스입니다. <br/>근처의 산책 친구를 찾아보고, 커뮤니티를 통해 함께 일상을 나눌 수 있습니다.<br/>위드마이펫을 통해, 즐겁고 신나는 반려동물 생활을 즐기세요!</p>
+            <a href="#read" class="read">Contact us</a>
         </div>
       </div>
     </div>
@@ -199,165 +191,106 @@
   <div class="container py-lg-5 py-md-4">
     <div class="grids-area-hny main-cont-wthree-fea row">
       <div class="col-lg-4 col-sm-6 grids-feature">
-        <div class="area-box">
+        <div class="area-box" style="text-align:center;">
           <div class="icon">
             <span class="fa fa-snowflake-o"></span>
-          </div>
-          <h4><a href="#feature" class="title-head">Dog Walking</a></h4>
-          <p>Vivamus a ligula quam. Ut blandit eu leo non. Duis sed doloramet laoreet. Lorem ipsum dolor sit amet Ut blandit eu leo.</p>
-          <a href="#read" class="read">Read more</a>
-                  </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 grids-feature mt-sm-0">
-        <div class="area-box mb-lg-0">
-          <div class="icon">
-            <span class="fa fa-cutlery"></span>
-          </div>
-          <h4><a href="#feature" class="title-head">Healthy Meals</a></h4>
-          <p>Vivamus a ligula quam. Ut blandit eu leo non. Duis sed doloramet laoreet. Lorem ipsum dolor sit amet Ut blandit eu leo.</p>
-          <a href="#read" class="read">Read more</a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 grids-feature mt-lg-0">
-        <div class="area-box mb-lg-0">
-          <div class="icon">
-            <span class="fa fa-sign-language"></span>
-          </div>
-          <h4><a href="#feature" class="title-head">Pet Sitting</a></h4>
-          <p>Vivamus a ligula quam. Ut blandit eu leo non. Duis sed doloramet laoreet. Lorem ipsum dolor sit amet Ut blandit eu leo.</p>
+          </div><br/>
+          <img src="assets/images/f4.jpg">
+          <h4><a href="#feature" class="title-head">같이 연트럴파크가요!</a></h4>
+          <p>같이 연트럴파크에서 산책하실 분 구합니다~ 저희강아지는 3kg 소형견이에요! 성격 엄청 활발함.</p>
           <a href="#read" class="read">Read more</a>
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 grids-feature">
-        <div class="area-box">
+        <div class="area-box" style="text-align:center;">
           <div class="icon">
-            <span class="fa fa-sitemap"></span>
-          </div>
-          <h4><a href="#feature" class="title-head">Dog Activities</a></h4>
-          <p>Vivamus a ligula quam. Ut blandit eu leo non. Duis sed doloramet laoreet. Lorem ipsum dolor sit amet Ut blandit eu leo.</p>
-          <a href="#read" class="read">Read more</a>
-                  </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 grids-feature mt-sm-0">
-        <div class="area-box mb-lg-0">
-          <div class="icon">
-            <span class="fa fa-shower"></span>
-          </div>
-          <h4><a href="#feature" class="title-head">Pet Daycare</a></h4>
-          <p>Vivamus a ligula quam. Ut blandit eu leo non. Duis sed doloramet laoreet. Lorem ipsum dolor sit amet Ut blandit eu leo.</p>
+            <span class="fa fa-snowflake-o"></span>
+          </div><br/>
+          <img src="assets/images/f3.jpg">
+          <h4><a href="#feature" class="title-head">마포 한강공원</a></h4>
+          <p>같이 강아지 러닝하실분 구해여~~</p>
           <a href="#read" class="read">Read more</a>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-6 grids-feature mt-lg-0">
-        <div class="area-box">
+      <div class="col-lg-4 col-sm-6 grids-feature">
+        <div class="area-box" style="text-align:center;">
           <div class="icon">
-            <span class="fa fa-user-md"></span>
-          </div>
-          <h4><a href="#feature" class="title-head">Pet Grooming</a></h4>
-          <p>Vivamus a ligula quam. Ut blandit eu leo non. Duis sed doloramet laoreet. Lorem ipsum dolor sit amet Ut blandit eu leo.</p>
+            <span class="fa fa-snowflake-o"></span>
+          </div><br/>
+          <img src="assets/images/f2.jpg">
+          <h4><a href="#feature" class="title-head">동네친구 찾고싶어요(홍대)</a></h4>
+          <p>친구도 한마리 없는 우리강아지 완전 불쌍 ㅠ</p>
           <a href="#read" class="read">Read more</a>
         </div>
       </div>
     </div>
+    <center><a href="#read" class="read">더 알아보기</a></center>
   </div>
 </section>
-<!-- //bottom-grids-->
-  <!--//features-->
-  <!--/services-->
-  <section class="w3l-services1">
-    <div id="content-with-photo4-block" class="py-5">
-      <div class="container py-md-5 py-3">
-        <div class="cwp4-two row">
-          <div class="cwp4-image col-lg-6 pl-lg-5 mb-lg-0 mb-5">
-            <img src="assets/images/ab.jpg" class="img-curve img-fluid" alt="" />
-          </div>
-          <div class="cwp4-text col-lg-6">
-            <h6 class="sub-title">Why Choose Us</h6>
-            <h3 class="hny-title">What We Offer for You</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicingelit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur adipisicingelit,
-            </p>
 
-            <ul class="cont-4">
-              <li><span class="fa fa-check"></span>Certified Groomer</li>
-              <li><span class="fa fa-check"></span>10 Years of Experience</li>
-              <li><span class="fa fa-check"></span>Pet Lover</li>
-              <li><span class="fa fa-check"></span>Customer Supports</li>
-              <li><span class="fa fa-check"></span>Veterinary Help</li>
-             
-            </ul>
-          </div>
-        
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--//services-->
-  <!-- stats -->
+<!-- stats -->
   <section class="w3l-stats py-5" id="stats">
     <div class="gallery-inner container py-lg-0 py-3">
       <div class="row stats-con pb-lg-3">
         <div class="col-lg-3 col-6 stats_info counter_grid">
           <p class="counter">730</p>
-          <h4>Happy Clients</h4>
+          <h4>총 산책 모집</h4>
         </div>
         <div class="col-lg-3 col-6 stats_info counter_grid1">
           <p class="counter">80</p>
-          <h4>Professionals</h4>
+          <h4>성사된 파티</h4>
         </div>
         <div class="col-lg-3 col-6 stats_info counter_grid mt-lg-0 mt-5">
           <p class="counter">812</p>
-          <h4>Adopted Pets</h4>
+          <h4>참여를 기다리는 파티</h4>
         </div>
         <div class="col-lg-3 col-6 stats_info counter_grid2 mt-lg-0 mt-5">
           <p class="counter">90</p>
-          <h4>Awards</h4>
+          <h4>오늘 행복해진 강아지</h4>
         </div>
       </div>
     </div>
   </section>
   <!-- //stats -->
+  
+<!-- //bottom-grids-->
+  <!--//features-->
+ 
   <!-- pricing plans -->
 <section class="w3l-pricing-7-main py-5" id="pricing">
   <div class="pricing-7-sec pt-lg-4 pt-md-3 pb-lg-5 pb-md-4">
       <div class="container pricing-grid">
           <div class="heading text-center mx-auto">
-            <h6 class="sub-title">Our Plans</h6>
-              <h3 class="hny-title mb-5">Affordable Packages</h3>
+            <h6 class="sub-title">신상품</h6>
+              <h3 class="hny-title mb-5">상품구경</h3>
           </div>
           <div class="pricing-sec-7">
               <!-- pricing grid 1 -->
               <div class="pricing-gd-left pric-7-1">
                   <div class="w3l-pricing-7">
                       <div class="w3l-pricing-7-top">
-                          <h6 class="one-light">Free Package</h6>
+                      	<img src="assets/images/f1.jpg"><br/><br/>
+                          <h6 class="one-light">상품명</h6>
                          
-                          <h4><label>$</label>0<span>/month</span></h4>
+                          <h4>13,000<span>  원</span></h4>
                       </div>
+                      <!-- 신상품순서 상품정렬 -->
                       <div class="w3l-pricing-7-bottom">
                           <div class="w3l-pricing-7-bottom-bottom">
                               <ul class="links">
                                   <li>
-                                      <p class="lists">5 Dog Walk </p>
+                                      <p class="lists">카테고리</p>
                                   </li>
                                   <li>
-                                      <p class="lists line-through">3 Vet Visit </p>
+                                      <p class="lists line-through">상푸</p>
                                   </li>
                                   <li>
-                                      <p class="lists line-through">3 Pet Spa</p>
+                                      <p class="lists line-through">설명할 것 있는지?</p>
                                   </li>
-                                  <li>
-                                      <p class="lists line-through">Free Supports</p>
-                                  </li>
-                                  <li>
-                                      <p class="lists line-through">Customer Support</p>
-                                  </li>
-                                
                               </ul>
                           </div>
                           <div class="buy-button">
-                              <a class="popup btn btn-style btn-primary" href="#buy">Buy Now</a>
+                              <a class="popup btn btn-style btn-primary" href="#buy">Go!</a>
                           </div>
                       </div>
                   </div>
@@ -367,244 +300,139 @@
               <div class="pricing-gd-left pric-7 active">
                   <div class="w3l-pricing-7">
                       <div class="w3l-pricing-7-top">
-                          <h5>Save 10% </h5>
-                          <h6>Standard Package</h6>
+                      <img src="assets/images/f1.jpg"><br/><br/>
+                          <h5>판매율 1위</h5>
+                          <h6>상품명</h6>
                         
-                          <h4><label>$</label>39<span>/month</span></h4>
+                          <h4>13,000<span>  원</span></h4>
                       </div>
                       <div class="w3l-pricing-7-bottom">
                           <div class="w3l-pricing-7-bottom-bottom">
                             <ul class="links">
                               <li>
-                                  <p class="lists">5 Dog Walk </p>
-                              </li>
-                              <li>
-                                  <p class="lists line-through">3 Vet Visit </p>
-                              </li>
-                              <li>
-                                  <p class="lists line-through">3 Pet Spa</p>
-                              </li>
-                              <li>
-                                  <p class="lists line-through">Free Supports</p>
-                              </li>
-                              <li>
-                                  <p class="lists line-through">Customer Support</p>
-                              </li>
+                                      <p class="lists">카테고리</p>
+                                  </li>
+                                  <li>
+                                      <p class="lists line-through">상푸</p>
+                                  </li>
+                                  <li>
+                                      <p class="lists line-through">설명할 것 있는지?</p>
+                                  </li>
                           </ul>
                           </div>
                           <div class="buy-button">
-                              <a class="popup btn btn-style btn-primary" href="#buy">Get Started</a>
+                              <a class="popup btn btn-style btn-primary" href="#buy">Go!</a>
                           </div>
                       </div>
                   </div>
               </div>
-              <!-- //pricing grid 2 -->
-              <!-- pricing grid 3 -->
-              <div class="pricing-gd-left pric-7-2">
+              <!-- pricing grid 1 -->
+              <div class="pricing-gd-left pric-7-1">
                   <div class="w3l-pricing-7">
                       <div class="w3l-pricing-7-top">
-                          <h6 class="one-light">Pro Package</h6>
-         
-                          <h4><label>$</label>89<span>/month</span></h4>
+                      	<img src="assets/images/f1.jpg"><br/><br/>
+                          <h6 class="one-light">상품명</h6>
+                         
+                          <h4>13,000<span>  원</span></h4>
                       </div>
+                      <!-- 신상품순서 상품정렬 -->
                       <div class="w3l-pricing-7-bottom">
                           <div class="w3l-pricing-7-bottom-bottom">
                               <ul class="links">
-                                <li>
-                                  <p class="lists">5 Dog Walk </p>
-                              </li>
-                              <li>
-                                  <p class="lists line-through">3 Vet Visit </p>
-                              </li>
-                              <li>
-                                  <p class="lists line-through">3 Pet Spa</p>
-                              </li>
-                              <li>
-                                  <p class="lists line-through">Free Supports</p>
-                              </li>
-                              <li>
-                                  <p class="lists line-through">Customer Support</p>
-                              </li>
+                                  <li>
+                                      <p class="lists">카테고리</p>
+                                  </li>
+                                  <li>
+                                      <p class="lists line-through">상푸</p>
+                                  </li>
+                                  <li>
+                                      <p class="lists line-through">설명할 것 있는지?</p>
+                                  </li>
                               </ul>
                           </div>
                           <div class="buy-button">
-                              <a class="popup btn-style btn-primary" href="#buy">Buy Now</a>
+                              <a class="popup btn btn-style btn-primary" href="#buy">Go!</a>
                           </div>
                       </div>
                   </div>
               </div>
-              <!-- pricing grid 3 -->
-          </div>
+          </div><br/><br/>
+          <center><a href="#read" class="read">전체 상품</a></center>
       </div>
   </div>
 </section>
-<!-- //pricing plans -->
-<!-- home page video popup section -->
-<section class="w3l-index5" id="about">
-  <div class="new-block py-5">
-      <div class="container py-lg-5">
-          <div class="middle-section text-center">
-              <div class="section-width">
-                <h6 class="sub-title text-center"> Better pet nutrition.</h6>
-                  <h3 class="hny-title"> The finest fresh food and all your pet needs.</h3>
-                  <p class="mt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet elit consec tetur adipisi elit.
 
-                    Lorem ipsum dolor sit amet elit consec tetur adipisi elit. Iure voluptatibus explicabo
-                      officia.</p>
-              </div>
-              <div class="history-info mt-5">
-                  <div class="position-relative">
-                      <img src="assets/images/banner2.jpg" class="img-fluid radius-image video-popup-image"
-                          alt="video-popup">
-
-                      <a href="#small-dialog" class="popup-with-zoom-anim play-view text-center position-absolute">
-                          <span class="video-play-icon">
-                              <span class="fa fa-play"></span>
-                          </span>
-                      </a>
-
-                      <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
-                      <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
-                        <iframe src="https://player.vimeo.com/video/101587706"  frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                        </div>
-                  </div>
-              </div>
-
-              <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
-              <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
-                <iframe src="https://player.vimeo.com/video/101587706"  frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-              </div>
-          </div>
-      </div>
-  </div>
-</section>
-<!-- //home page video popup section -->
 <!-- testimonials -->
 <section class="w3l-clients" id="clients">
   <!-- /grids -->
+  <!-- 이거는 페이징하면 될 듯 -->
   <div class="cusrtomer-layout py-5">
       <div class="container py-lg-4 py-md-3 pb-lg-0">
           <div class="heading text-center mx-auto">
-              <h6 class="sub-title text-center">Testimonials</h6>
-              <h3 class="hny-title mb-md-5 mb-4">Happy Clients & Feedbacks</h3>
+              <h6 class="sub-title text-center">산책 후기</h6>
+              <h3 class="hny-title mb-md-5 mb-4">산책 후기를 들려주세요!</h3>
           </div>
           <!-- /grids -->
           <div class="testimonial-width">
               <div id="owl-demo1" class="owl-two owl-carousel owl-theme">
+              
                   <div class="item">
                       <div class="testimonial-content">
                           <div class="testimonial">
                               <blockquote>
-                                  <q>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae laudantium
-                                      voluptate rem ullam dolore nisi voluptatibus esse quasi, doloribus tempora.
-                                      Dolores molestias adipisci dolor sit amet!.</q>
+                                  <q>최근 산책후기 내용 몇줄만 가져오기</q>
                               </blockquote>
                               <div class="testi-des">
                                   <div class="test-img"><img src="assets/images/f1.jpg" class="img-fluid" alt="client-img">
                                   </div>
                                   <div class="peopl align-self">
-                                      <h3>John wilson</h3>
-                                      <p class="indentity">Example City</p>
+                                      <h3>작성자 이름</h3>
+                                      <p class="indentity">산책 지역</p>
                                   </div>
                               </div>
                           </div>
                       </div>
                   </div>
+                  
                   <div class="item">
                       <div class="testimonial-content">
                           <div class="testimonial">
                               <blockquote>
-                                  <q>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae laudantium
-                                      voluptate rem ullam dolore nisi voluptatibus esse quasi, doloribus tempora.
-                                      Dolores molestias adipisci dolor sit amet!.</q>
+                                  <q>최근 산책후기 내용 몇줄만 가져오기</q>
                               </blockquote>
                               <div class="testi-des">
-                                  <div class="test-img"><img src="assets/images/f2.jpg" class="img-fluid" alt="client-img">
+                                  <div class="test-img"><img src="assets/images/f1.jpg" class="img-fluid" alt="client-img">
                                   </div>
                                   <div class="peopl align-self">
-                                      <h3>Julia sakura</h3>
-                                      <p class="indentity">Example City</p>
+                                      <h3>작성자 이름</h3>
+                                      <p class="indentity">산책 지역</p>
                                   </div>
                               </div>
                           </div>
                       </div>
                   </div>
+                  
                   <div class="item">
                       <div class="testimonial-content">
                           <div class="testimonial">
                               <blockquote>
-                                  <q>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae laudantium
-                                      voluptate rem ullam dolore nisi voluptatibus esse quasi, doloribus tempora.
-                                      Dolores molestias adipisci dolor sit amet!.</q>
+                                  <q>최근 산책후기 내용 몇줄만 가져오기</q>
                               </blockquote>
                               <div class="testi-des">
-                                  <div class="test-img"><img src="assets/images/f3.jpg" class="img-fluid" alt="client-img">
+                                  <div class="test-img"><img src="assets/images/f1.jpg" class="img-fluid" alt="client-img">
                                   </div>
                                   <div class="peopl align-self">
-                                      <h3>Roy Linderson</h3>
-                                      <p class="indentity">Example City</p>
+                                      <h3>작성자 이름</h3>
+                                      <p class="indentity">산책 지역</p>
                                   </div>
                               </div>
                           </div>
                       </div>
                   </div>
-                  <div class="item">
-                      <div class="testimonial-content">
-                          <div class="testimonial">
-                              <blockquote>
-                                  <q>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae laudantium
-                                      voluptate rem ullam dolore nisi voluptatibus esse quasi, doloribus tempora.
-                                      Dolores molestias adipisci dolor sit amet!.</q>
-                              </blockquote>
-                              <div class="testi-des">
-                                  <div class="test-img"><img src="assets/images/f4.jpg" class="img-fluid" alt="client-img">
-                                  </div>
-                                  <div class="peopl align-self">
-                                      <h3>Mike Thyson</h3>
-                                      <p class="indentity">Example City</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="item">
-                      <div class="testimonial-content">
-                          <div class="testimonial">
-                              <blockquote>
-                                  <q>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae laudantium
-                                      voluptate rem ullam dolore nisi voluptatibus esse quasi, doloribus tempora.
-                                      Dolores molestias adipisci dolor sit amet!.</q>
-                              </blockquote>
-                              <div class="testi-des">
-                                  <div class="test-img"><img src="assets/images/f2.jpg" class="img-fluid" alt="client-img">
-                                  </div>
-                                  <div class="peopl align-self">
-                                      <h3>Laura gill</h3>
-                                      <p class="indentity">Example City</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="item">
-                      <div class="testimonial-content">
-                          <div class="testimonial">
-                              <blockquote>
-                                  <q>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae laudantium
-                                      voluptate rem ullam dolore nisi voluptatibus esse quasi, doloribus tempora.
-                                      Dolores molestias adipisci dolor sit amet!.</q>
-                              </blockquote>
-                              <div class="testi-des">
-                                  <div class="test-img"><img src="assets/images/f3.jpg" class="img-fluid" alt="client-img">
-                                  </div>
-                                  <div class="peopl align-self">
-                                      <h3>Smith Johnson</h3>
-                                      <p class="indentity">Example City</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+                  
+                  
+                  
+                  
               </div>
           </div>
       </div>
@@ -612,31 +440,7 @@
   </div>
   <!-- //grids -->
 </section>
-<!-- //testimonials -->
-  <!--/w3l-bottom-->
-  <section class="w3l-bottom py-5">
-    <div class="container py-md-4 py-3 text-center">
-      <div class="row my-lg-4 mt-4">
-        <div class="col-lg-9 col-md-10 mx-auto">
-          <div class="subscribe mx-auto">
-            <div class="header-section text-center mx-auto">
-              <h3 class="hny-title">Stay Updated! </h3>
-              <p class="my-3"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                Nulla mollis dapibus nunc, ut rhoncus
-                turpis sodales quis. Integer sit amet mattis quam.</p>
-            </div>
-            <form action="#" method="post" class="subscribe-wthree pt-2 mt-5">
-              <div class="d-md-flex flex-wrap subscribe-wthree-field">
-                <input class="form-control" type="email" placeholder="Enter your email..." name="email" required="">
-                <button class="btn btn-style btn-primary" type="submit">Subscribe</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--//w3l-bottom-->
+
 <!-- footer-28 block -->
 <section class="w3l-footer">
   <footer class="footer-28">
@@ -647,13 +451,10 @@
             <h6 class="footer-title-28">Contact information</h6>
             <ul>
               <li>
-                <p><strong>Address</strong> : #135 block, Barnard St. Brooklyn, London 10036, UK</p>
+                <p><strong>Address</strong> : Seoul Mapo Baekbumro, South Korea</p>
               </li>
               <li>
-                <p><strong>Phone</strong> : <a href="tel:+(12)234-11-24">+(12)234-11-24</a></p>
-              </li>
-              <li>
-                <p><strong>Email</strong> : <a href="mailto:example@mail.com">example@mail.com</a></p>
+                <p><strong>Contact</strong> : <a href="tel:+(12)234-11-24">Click Here</a></p>
               </li>
             </ul>
 
@@ -685,30 +486,24 @@
           <div class="col-lg-6 col-md-7">
             <div class="row">
               <div class="col-sm-4 col-6 footer-list-28 mt-5">
-                <h6 class="footer-title-28">Company</h6>
+                <h6 class="footer-title-28">Walk Service</h6>
                 <ul>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="blog.html">Blog Posts</a></li>
-                  <li><a href="services.html">Services</a></li>
-                  <li><a href="#pricing">Pricing</a></li>
+                  <li><a href="about.html">Cha Ji Hyun</a></li>
+                  <li><a href="blog.html">Lim Yeon Ji</a></li>
                 </ul>
               </div>
               <div class="col-sm-4 col-6 footer-list-28 mt-5">
-                <h6 class="footer-title-28">Quick Links</h6>
+                <h6 class="footer-title-28">Shopping Service</h6>
                 <ul>
-                  <li><a href="contact.html">Contact Us</a></li>
-                  <li><a href="#signup">Create account</a></li>
-                  <li><a href="#learn">Care Center</a></li>
-                  <li><a href="#feedback">Site Feedack</a></li>
+                  <li><a href="contact.html">Lee Ok Seok</a></li>
+                  <li><a href="#signup">Sung Jin Hee</a></li>
                 </ul>
               </div>
               <div class="col-sm-4 footer-list-28 mt-5">
-                <h6 class="footer-title-28">Support</h6>
+                <h6 class="footer-title-28">Member Service</h6>
                 <ul>
-                  <li><a href="#URL">All Dogs</a></li>
-                  <li><a href="#URL">Care Advices</a></li>
-                  <li><a href="#URL">Care Support</a></li>
-                  <li><a href="#URL">Veterinary Help</a></li>
+                  <li><a href="#URL">Choi Woo Jae</a></li>
+                  <li><a href="#URL">Lee Su Jin</a></li>
                 </ul>
               </div>
             </div>
@@ -719,7 +514,7 @@
 
       <div class="midd-footer-28 align-center py-lg-4 py-3 mt-5">
         <div class="container">
-          <p class="copy-footer-28 text-center"> &copy; 2020 Pooch Care. All Rights Reserved.
+          <p class="copy-footer-28 text-center"> &copy; 2021 With My Pet. All Rights Reserved.
            </p>
         </div>
       </div>
