@@ -1,3 +1,4 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 @charset "UTF-8";
 
 /*!
@@ -13,7 +14,7 @@
   }
   ​
   body {
-    font: 20px "Malgun Gothic", Malgun Gothic, Malgun Gothic;
+      font-family: 'Spoqa Han Sans Neo';
     color: #384047;
   }
   ​
@@ -62,12 +63,14 @@
   }
   ​
   select {
+   font-family: 'Spoqa Han Sans Neo';
     padding: 6px;
     height: 32px;
     border-radius: 2px;
   }
   ​
   button {
+   font-family: 'Spoqa Han Sans Neo';
     padding: 19px 39px 18px 39px;
     color: #FFF;
     background-color: #585858;
@@ -81,7 +84,7 @@
     box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
     margin-bottom: 10px;
   }
-  .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
+  .map_wrap, .map_wrap * {margin:0;padding:0; font-family: 'Spoqa Han Sans Neo';font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;margin:0%;width:100%;height:500px;}
 #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
@@ -178,7 +181,7 @@
   --white: #fff;
   --gray: #6c757d;
   --gray-dark: #343a40;
-  --primary: #189A46;
+  --primary: #ffb446;
   --secondary: #f53626;
   --success: #28a745;
   --info: #17a2b8;
@@ -218,6 +221,7 @@ hgroup,
 main,
 nav,
 section {
+	 font-family: 'Spoqa Han Sans Neo';
   display: block;
 }
 
@@ -253,6 +257,7 @@ h6 {
 }
 
 p {
+	 font-family: 'Spoqa Han Sans Neo';
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -277,6 +282,7 @@ address {
 ol,
 ul,
 dl {
+	 font-family: 'Spoqa Han Sans Neo';
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -285,6 +291,7 @@ ol ol,
 ul ul,
 ol ul,
 ul ol {
+	 font-family: 'Spoqa Han Sans Neo';
   margin-bottom: 0;
 }
 
@@ -327,12 +334,14 @@ sup {
 }
 
 a {
+	 font-family: 'Spoqa Han Sans Neo';
   color: #189A46;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
+	 font-family: 'Spoqa Han Sans Neo';
   color: #189A46;
   text-decoration: underline;
 }
@@ -14201,8 +14210,8 @@ a.text-dark:focus {
 }
 
 :root {
-  --primary-color: #189A46;
-  --secondary-color: #f53626;
+  --primary-color: #ffb446;
+  --secondary-color: #6EC5CE;
   --font-color: #696969;
   --bg-color: #fff;
   --heading-color: #000c04;
@@ -14217,8 +14226,8 @@ a.text-dark:focus {
 }
 
 [data-theme="dark"] {
-  --primary-color: #189A46;
-  --secondary-color: #f53626;
+  --primary-color: #b96f13;
+  --secondary-color: #ffb446;
   --font-color: #afafaf;
   --bg-color:#151515;
   --heading-color: #ddd;

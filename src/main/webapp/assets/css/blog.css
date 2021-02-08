@@ -1,3 +1,5 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
 body{
 	background: #f1f1f1;
 }
@@ -6,7 +8,6 @@ body{
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.2) 0 4px 2px -2px;
   font-family: "adelle-sans", sans-serif;
-  font-weight: 100;
   margin: 48px auto;
   width: 20rem;
   margin-top: 100px;
@@ -91,7 +92,6 @@ body{
 
 .blog-title h1 a {
   color: #333;
-  font-weight: 100;
   margin-bottom:20px;
 }
 
@@ -233,7 +233,7 @@ body{
 	cursor: pointer;
 	transition: all 0.3s ease-out;
 	margin-right: 5px;
-	background: #754929C7;
+	background: var(--primary-color);
 	padding-right: 12px;
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -284,6 +284,7 @@ p {
 }
 
 p {
+	font-family: 'Spoqa Han Sans Neo';
     margin: 0;
     padding: 0;
     font-size: 16px;
@@ -298,7 +299,7 @@ p {
 }
 .align-self {
     align-self: center;
-    margin-left: 50px;
+    margin-left: 80px;
 }
 
 .col-lg-4 {
@@ -331,6 +332,7 @@ h1 {
   background-clip: padding-box;
   text-align: center;
 }
+
 
 .button {
   font-size: 1em;

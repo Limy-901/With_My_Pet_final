@@ -115,8 +115,8 @@
                   <div class="banner-info-bg text-left">
                     <h5>산 책</h5 style="font-family: 'Spoqa Han Sans Neo'; color:white;"><br/>
                     <p>함께하는 산책문화를 만들어요.</p>
-                    <a class="btn btn-style btn-white mt-sm-5 mt-4 mr-2" href="about.html">산책모집</a>
-                    <a class="btn btn-style border-btn mt-sm-5 mt-4" href="contact.html" style="color:#ffb446;">산책후기</a>
+                    <a class="btn btn-style btn-white mt-sm-5 mt-4 mr-2" href="walklist.do">산책모집</a>
+                    <a class="btn btn-style border-btn mt-sm-5 mt-4" href="walkboard.do" style="color:#ffb446;">산책후기</a>
                   </div>
                 </div>
               </div>
@@ -198,7 +198,7 @@
           <img src="assets/images/f4.jpg">
           <h4><a href="#feature" class="title-head">같이 연트럴파크가요!</a></h4>
           <p>같이 연트럴파크에서 산책하실 분 구합니다~ 저희강아지는 3kg 소형견이에요! 성격 엄청 활발함.</p>
-          <a href="#read" class="read">Read more</a>
+          <a href="#read" class="read">함께하기</a>
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 grids-feature">
@@ -209,7 +209,7 @@
           <img src="assets/images/f3.jpg">
           <h4><a href="#feature" class="title-head">마포 한강공원</a></h4>
           <p>같이 강아지 러닝하실분 구해여~~</p>
-          <a href="#read" class="read">Read more</a>
+          <a href="#read" class="read">함께하기</a>
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 grids-feature">
@@ -220,11 +220,11 @@
           <img src="assets/images/f2.jpg">
           <h4><a href="#feature" class="title-head">동네친구 찾고싶어요(홍대)</a></h4>
           <p>친구도 한마리 없는 우리강아지 완전 불쌍 ㅠ</p>
-          <a href="#read" class="read">Read more</a>
+          <a href="#read" class="read">함께하기</a>
         </div>
       </div>
     </div>
-    <center><a href="#read" class="read">더 알아보기</a></center>
+    <center><a href="#read" class="read">전체 모집글 보기</a></center>
   </div>
 </section>
 
@@ -520,6 +520,8 @@
       </div>
     </div>
   </footer>
+  </section>
+ 
 
   <!-- move top -->
   <button onclick="topFunction()" id="movetop" title="Go to top">

@@ -42,9 +42,8 @@
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <h1><a class="navbar-brand" href="index.html">
-               Pooch Care
-          </a></h1>
+          <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
+         
           <!-- if logo is image enable this   
       <a class="navbar-brand" href="#index.html">
           <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
@@ -65,36 +64,36 @@
                   
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="walklist.do">산책모집 </a>
-                          <a class="dropdown-item" href="walkboard.do">산책후기 </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
+                      	<a class="dropdown-item" href="walklist.do" style="font-family: 'Spoqa Han Sans Neo';">산책모집 </a>
+                          <a class="dropdown-item" href="walkboard.do" style="font-family: 'Spoqa Han Sans Neo';">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="blog.html">쇼핑하기</a>
-                          <a class="dropdown-item" href="blog.html">구매후기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                      	<a class="dropdown-item" href="blog.html" style="font-family: 'Spoqa Han Sans Neo';">쇼핑하기</a>
+                          <a class="dropdown-item" href="blog.html" style="font-family: 'Spoqa Han Sans Neo';">구매후기</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                          <a class="dropdown-item" href="blog.html">공지사항</a>
-                          <a class="dropdown-item" href="blog-single.html">일상이야기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                          <a class="dropdown-item" href="blog.html" style="font-family: 'Spoqa Han Sans Neo';">공지사항</a>
+                          <a class="dropdown-item" href="blog-single.html" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
                       </div>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="gallery.html">로그인 </a>
+                      <a class="nav-link" href="gallery.html" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
                   </li>
                  
                   <li class="nav-item">
@@ -127,10 +126,10 @@
   <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
       <div class="container py-2">
       
-          <h2 class="title">산책 모임 만들기</h2>
+          <h2 class="title" style="font-family: 'Spoqa Han Sans Neo';">산책 모임 만들기</h2>
           <ul class="breadcrumbs-custom-path mt-2">
-              <li><a href="#url">Home</a></li>
-              <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> About  </li>
+              <li><a href="#url" style="font-family: 'Spoqa Han Sans Neo';">Home</a></li>
+              <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true" style="font-family: 'Spoqa Han Sans Neo';"></span> About  </li>
           </ul>
       </div>
   </div>
@@ -141,15 +140,15 @@
 <br/><br/><br/>
 
 
-<section class="w3l-contact-1 pt-5"id="contact">
+<section class="w3l-contact-1 pt-5"id="contact" style="font-family: 'Spoqa Han Sans Neo';">
 <div class="map_wrap" style="margin:auto; left:25%;">
     <div id="map" style="width:50%;height:100%;position:relative;overflow:hidden;"></div>
     <div id="menu_wrap" class="bg_white">
         <div class="option">
             <div>
-                <form onsubmit="searchPlaces(); return false;">
+                <form onsubmit="searchPlaces(); return false;" style="font-family: 'Spoqa Han Sans Neo';">
                     산책지역 : <input type="text" value="뚝섬역" id="keyword" size="20"> 
-                    <button type="submit">검색하기</button> 
+                    <button type="submit" style="font-family: 'Spoqa Han Sans Neo';">검색하기</button> 
                 </form>
             </div>
         </div>
@@ -169,17 +168,17 @@
     <img src="assets/images/f2.jpg">
   </div>
   <div class="content">
-    <a class="header">강아지이름</a>
+    <a class="header"style="font-family: 'Spoqa Han Sans Neo';">강아지이름</a>
     <div class="meta">
-      <span class="date">몇살인지</span>
+      <span class="date"style="font-family: 'Spoqa Han Sans Neo';">몇살인지</span>
     </div>
-    <div class="description">
+    <div class="description"style="font-family: 'Spoqa Han Sans Neo';">
       강아지성격
     </div>
   </div>
   <div class="extra content">
     <a>
-      <i class="user icon"></i>
+      <i class="user icon"style="font-family: 'Spoqa Han Sans Neo';"></i>
       22 Friends
     </a>
   </div>
@@ -188,18 +187,17 @@
 <form class="ui form" style="width:40%; left:30%;"><br/><br/>
 
 
-
-  <h3 class="ui dividing header">산책 모임 개설</h3><br/><br/>
+  <h3 class="ui dividing header"style="font-family: 'Spoqa Han Sans Neo';">산책 모임 개설</h3><br/><br/>
   <div class="field">
     
     <div class="two fields">
       <div class="field">
-      <label>작성자</label>
+      <label style="font-family: 'Spoqa Han Sans Neo';">작성자</label>
         <input type="text" name="writer" placeholder="작성자">
       </div>
       
       <div class="field">
-      <label>반려동물</label>
+      <label style="font-family: 'Spoqa Han Sans Neo';">반려동물</label>
         <input type="text" name="pet" placeholder="반려동물">
       </div>
     </div>
@@ -207,22 +205,22 @@
   
   <div class="two fields">
     <div class="field">
-      <label>산책타입</label>
+      <label style="font-family: 'Spoqa Han Sans Neo';">산책타입</label>
       <select class="ui fluid dropdown" name="type">
-        <option value="">1 : 1</option>
-        <option value="AL">모임</option>
+        <option value="" style="font-family: 'Spoqa Han Sans Neo';">1 : 1</option>
+        <option value="AL" style="font-family: 'Spoqa Han Sans Neo';">모임</option>
       </select>
     </div>
     
     <div class="field">
-      <label>지역</label>
+      <label style="font-family: 'Spoqa Han Sans Neo';">지역</label>
        <input type="text" name="location" placeholder="지역">
   	</div>
   </div>
   	
   	
   <div class="field">
-    <label>제목</label>
+    <label style="font-family: 'Spoqa Han Sans Neo';">제목</label>
     <div class="field">
         <input type="text" name="subject" placeholder="제목">
     </div>
@@ -230,11 +228,11 @@
   
   
     <div class="field">
-    <label>내용</label>
+    <label style="font-family: 'Spoqa Han Sans Neo';">내용</label>
     <textarea name="content"></textarea>
   </div><br/><br/>
   <center>
-    <button class="button-set">모임 개설하기</button>
+    <button class="button-set" style="font-family: 'Spoqa Han Sans Neo';">모임 개설하기</button>
     </center>
 
 </form>
@@ -475,16 +473,13 @@ function removeAllChildNods(el) {
       <div class="container py-lg-3">
         <div class="row footer-top-28">
           <div class="col-lg-6 col-md-5 footer-list-28 mt-5">
-            <h6 class="footer-title-28">Contact information</h6>
+            <h6 class="footer-title-28" style="font-family: 'Spoqa Han Sans Neo';">Contact information</h6>
             <ul>
               <li>
-                <p><strong>Address</strong> : #135 block, Barnard St. Brooklyn, London 10036, UK</p>
+                <p style="font-family: 'Spoqa Han Sans Neo';"><strong>Address</strong> : Seoul Mapo Baekbumro, South Korea</p>
               </li>
               <li>
-                <p><strong>Phone</strong> : <a href="tel:+(12)234-11-24">+(12)234-11-24</a></p>
-              </li>
-              <li>
-                <p><strong>Email</strong> : <a href="mailto:example@mail.com">example@mail.com</a></p>
+                <p><strong>Contact</strong> : <a href="tel:+(12)234-11-24">Click Here</a></p>
               </li>
             </ul>
 
@@ -516,30 +511,24 @@ function removeAllChildNods(el) {
           <div class="col-lg-6 col-md-7">
             <div class="row">
               <div class="col-sm-4 col-6 footer-list-28 mt-5">
-                <h6 class="footer-title-28">Company</h6>
+                <h6 class="footer-title-28">Walk Service</h6>
                 <ul>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="blog.html">Blog Posts</a></li>
-                  <li><a href="services.html">Services</a></li>
-                  <li><a href="#pricing">Pricing</a></li>
+                  <li><a href="about.html">Cha Ji Hyun</a></li>
+                  <li><a href="blog.html">Lim Yeon Ji</a></li>
                 </ul>
               </div>
               <div class="col-sm-4 col-6 footer-list-28 mt-5">
-                <h6 class="footer-title-28">Quick Links</h6>
+                <h6 class="footer-title-28">Shopping Service</h6>
                 <ul>
-                  <li><a href="contact.html">Contact Us</a></li>
-                  <li><a href="#signup">Create account</a></li>
-                  <li><a href="#learn">Care Center</a></li>
-                  <li><a href="#feedback">Site Feedack</a></li>
+                  <li><a href="contact.html">Lee Ok Seok</a></li>
+                  <li><a href="#signup">Sung Jin Hee</a></li>
                 </ul>
               </div>
               <div class="col-sm-4 footer-list-28 mt-5">
-                <h6 class="footer-title-28">Support</h6>
+                <h6 class="footer-title-28">Member Service</h6>
                 <ul>
-                  <li><a href="#URL">All Dogs</a></li>
-                  <li><a href="#URL">Care Advices</a></li>
-                  <li><a href="#URL">Care Support</a></li>
-                  <li><a href="#URL">Veterinary Help</a></li>
+                  <li><a href="#URL">Choi Woo Jae</a></li>
+                  <li><a href="#URL">Lee Su Jin</a></li>
                 </ul>
               </div>
             </div>
@@ -550,12 +539,39 @@ function removeAllChildNods(el) {
 
       <div class="midd-footer-28 align-center py-lg-4 py-3 mt-5">
         <div class="container">
-          <p class="copy-footer-28 text-center"> &copy; 2021 With My pet from Us. All Rights Reserved.
+          <p class="copy-footer-28 text-center"> &copy; 2021 With My Pet. All Rights Reserved.
            </p>
         </div>
       </div>
     </div>
   </footer>
+ 
+
+  <!-- move top -->
+  <button onclick="topFunction()" id="movetop" title="Go to top">
+    &#10548;
+  </button>
+  <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction()
+    };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("movetop").style.display = "block";
+      } else {
+        document.getElementById("movetop").style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+  <!-- /move top -->
 </section>
 
 </body>

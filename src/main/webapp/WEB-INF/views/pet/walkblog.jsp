@@ -15,9 +15,11 @@
    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
    <!-- google fonts --> 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="assets/css/style-liberty.css">
-    <link rel="stylesheet" href="assets/css/popup.css">
-    <link rel="stylesheet" href="assets/css/blog.css">
+  <link rel="stylesheet" href="/assets/css/style-liberty.css">
+  <link rel="stylesheet" href="/assets/css/walkform.css">
+  <link rel="stylesheet" href="/assets/css/walkform.min.css">
+ 
+    <link rel="stylesheet" href="/assets/css/blog.css">
   <!-- Template CSS -->
   
   <!--심볼시작  -->
@@ -42,9 +44,8 @@
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <h1><a class="navbar-brand" href="index.html">
-               Pooch Care
-          </a></h1>
+          <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
+         
           <!-- if logo is image enable this   
       <a class="navbar-brand" href="#index.html">
           <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
@@ -65,40 +66,40 @@
                   
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="walklist.do">산책모집 </a>
-                          <a class="dropdown-item" href="walkboard.do">산책후기 </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
+                      	<a class="dropdown-item" href="walklist.do" style="font-family: 'Spoqa Han Sans Neo';">산책모집 </a>
+                          <a class="dropdown-item" href="walkboard.do" style="font-family: 'Spoqa Han Sans Neo';">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="blog.html">쇼핑하기</a>
-                          <a class="dropdown-item" href="blog.html">구매후기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                      	<a class="dropdown-item" href="blog.html" style="font-family: 'Spoqa Han Sans Neo';">쇼핑하기</a>
+                          <a class="dropdown-item" href="blog.html" style="font-family: 'Spoqa Han Sans Neo';">구매후기</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                          <a class="dropdown-item" href="blog.html">공지사항</a>
-                          <a class="dropdown-item" href="blog-single.html">일상이야기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                          <a class="dropdown-item" href="blog.html" style="font-family: 'Spoqa Han Sans Neo';">공지사항</a>
+                          <a class="dropdown-item" href="blog-single.html" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
                       </div>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="gallery.html">로그인 </a>
+                      <a class="nav-link" href="gallery.html" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
                   </li>
                  
                   <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact </a>
+                      <a class="nav-link" href="contact.html" style="font-family: 'Spoqa Han Sans Neo';">Contact </a>
                   </li>
               </ul>
           </div>
@@ -131,10 +132,10 @@
 <div class="blog-container">
   
 
-  <div class="blog-body">
-  <p>2021년 2월 4일 목요일</p>
+  <div class="blog-body" style="font-family: 'Spoqa Han Sans Neo';">
+  <p style="font-family: 'Spoqa Han Sans Neo';">2021년 2월 4일 목요일</p>
     <div class="blog-title">
-      <h1><a href="#">공덕동 1:1 산책 파티 구해요!</a></h1>
+      <h1 style="font-family: 'Spoqa Han Sans Neo';"><a href="#" style="font-family: 'Spoqa Han Sans Neo';" >공덕동 1:1 산책 파티 구해요!</a></h1>
     </div>
     
     <div class="blog-author--no-cover">
@@ -142,7 +143,7 @@
 	   <div class="img-circle img-circle-sm">
                   <img src="assets/images/f2.jpg" class="mr-3" alt="...">
        </div> 	
-       			<p class="name">지혀닝님이 산책할 친구를 기다리고 있어요!</p>
+       			<p class="name" style="font-family: 'Spoqa Han Sans Neo';">지혀닝님이 산책할 친구를 기다리고 있어요!</p>
     </div>
     
     
@@ -151,10 +152,10 @@
          <div class="col-md-4">
             <img src="assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
          </div>        
-       <div class="col-md-8 align-self">  
-        <p>2021년 2월 4일</p>
-        <p>뽀미, 4살, 경계심이 많아요</p>       
-          <p>대충 모집하는이의 내용입니다.</p>
+       <div class="col-md-8 align-self" style="font-family: 'Spoqa Han Sans Neo';">  
+        <p style="font-family: 'Spoqa Han Sans Neo';">2021년 2월 4일</p>
+        <p style="font-family: 'Spoqa Han Sans Neo';">뽀미, 4살, 경계심이 많아요</p>       
+          <p style="font-family: 'Spoqa Han Sans Neo';">대충 모집하는이의 내용입니다.</p>
         </div>
         </div>
       </div>
@@ -164,11 +165,11 @@
     
     
     <div class="blog-summary">
-      <p>
+      <p style="font-family: 'Spoqa Han Sans Neo';">
 		공덕동 근처 거주하시고 여성 분이었으면 좋겠네요! 강아지친구해요~~
 		</p>
     </div>
-    <div class="blog-tags">
+    <div class="blog-tags" style="font-family: 'Spoqa Han Sans Neo';">
       <ul>
         <li><a href="#">공덕동</a></li>
         <li><a href="#">포메라니안</a></li>
@@ -177,7 +178,7 @@
     </div>
   </div>
   
-  <div class="blog-footer">
+  <div class="blog-footer" style="font-family: 'Spoqa Han Sans Neo';">
     <ul>
       <li class="published-date">12분 전</li>
       <li class="comments"><a href="#"><svg class="icon-bubble"><use xlink:href="#icon-bubble"></use></svg><span class="numero">8</span></a></li>
@@ -186,18 +187,13 @@
   </div>
 
 </div>
-<div class="modifies">
- <a class="modify" href="#popup1">수정</a>
+<div class="modifies" style="font-family: 'Spoqa Han Sans Neo';">
+ <a class="modify" href="#popup1" >수정</a>
   <a class="modify" href="#popup1">삭제</a>
 </div>
- 
- 
 
- 
- 
- 
- <!-- 참가자리스트 -->
-          <div class="attendlabel">
+<!-- 참가자리스트 -->
+          <div class="attendlabel" style="font-family: 'Spoqa Han Sans Neo';">
            <span>참가자(5)</span>
          </div>
          <div class="row">
@@ -210,7 +206,7 @@
                       </a>
                       
                   </div>
-                  <div class="card-body blog-details">
+                  <div class="card-body blog-details" style="font-family: 'Spoqa Han Sans Neo';">
                       <p>차지현</p>
                       <p>저도 공덕살아요^^ 같이산책해요!</p>
                   </div>
@@ -222,7 +218,7 @@
  <!-- 신청자리스트 -->
  
 
-		<div class="apply">	 
+		<div class="apply" style="font-family: 'Spoqa Han Sans Neo';">	 
            <div class="applylabel">
            <span>신청자(6)</span>
            </div>
@@ -267,7 +263,7 @@
  <!-- 참가팝업시작 -->
 <div id="popup1" class="overlay">
 	<div class="popup">
-		<h4>같이 산책할래요!</h4>
+		<center><h4 style="font-family: 'Spoqa Han Sans Neo';">같이 산책할래요!</h4></center>
 		<br>
 		<a class="close" href="#">&times;</a>
 		 <div class="col-lg-3 col-sm-6 grids-feature">
@@ -275,30 +271,28 @@
          <div class="col-md-4">
             <img src="assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
          </div>        
-       <div class="col-md-8 align-self">  
-        <p>2021년 2월 4일</p>
-        <p>뽀미, 4살, 경계심이 많아요</p>       
-          <p>대충 파티지원자의 내용입니다.</p>
+       <div class="col-md-8 align-self" style="font-family: 'Spoqa Han Sans Neo';">  
+        <p style="font-family: 'Spoqa Han Sans Neo';">2021년 2월 4일</p>
+        <p style="font-family: 'Spoqa Han Sans Neo';">뽀미, 4살, 경계심이 많아요</p>       
+          <p style="font-family: 'Spoqa Han Sans Neo';">대충 파티지원자의 내용입니다.</p>
         </div>
         </div>
       </div>
 		
-		
-		
-      <form name="f" action="write.do" method="post">
-          
-          <label for="address">만나실 견주분께 인사를 보내보세요!</label><br>
-          <input type="text" id="address" name="ct_address" size=45><br>
-          <label for="address">같이 갈 강아지의 특징을 적어주세요<br>(ex// 애교가 많아 사람을 잘따라요!)</label><br>
-          <input type="text" id="address" name="ct_address" size=45>
-          
-          <button type="submit" class="modify">보내기</button>
-	   </form>
+	      <form class="ui form" style="text-align:center;">
+	          <div class="field">
+			    <label style="font-family: 'Spoqa Han Sans Neo';">참가메세지</label>
+			    <input type="text" name="first-name" placeholder="만나실 견주분께 인사를 보내보세요!" style="font-family: 'Spoqa Han Sans Neo';"><br/>
+			  </div>
+			  <div class="field">
+			    <label style="font-family: 'Spoqa Han Sans Neo';">우리 강아지의 특징</label>
+			    <input type="text" name="first-name" placeholder="같이 갈 강아지의 특징을 적어주세요. ex) 애교가 많아 사람을 잘따라요!" style="font-family: 'Spoqa Han Sans Neo';"><br/>
+			  </div>
+	          <button type="submit" class="modify" style="border-color:none;">보내기</button>
+		   </form>
 
 		</div>
 	</div>
-</div>
- 
  
   <!-- 참가팝업끝 -->
 
@@ -309,25 +303,25 @@
 
 
 <!-- 자세히보기 시작-->
-<div id="popup2" class="overlay">
+<div id="popup2" class="overlay" style="font-family: 'Spoqa Han Sans Neo';">
 	<div class="popup">
 	<a class="close" href="#">&times;</a>
-<h4>참가 신청자의 강아지 상세정보</h4>
- <div class="col-lg-99 col-sm-6 grids-feature">
+<h4 style="font-family: 'Spoqa Han Sans Neo';">참가 신청자의 강아지 상세정보</h4>
+ <div class="col-lg-99 col-sm-6 grids-feature" style="font-family: 'Spoqa Han Sans Neo';">
         <div class="area-box">          
          <div class="col-md-4">
             <img src="assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
          </div>        
        <div class="col-md-8 align-self">  
-        <p>2021년 2월 4일</p>
-        <p>뽀미, 4살, 경계심이 많아요</p>       
-          <p>대충 파티지원자의 내용입니다.</p>
+        <p style="font-family: 'Spoqa Han Sans Neo';">2021년 2월 4일</p>
+        <p style="font-family: 'Spoqa Han Sans Neo';">뽀미, 4살, 경계심이 많아요</p>       
+          <p style="font-family: 'Spoqa Han Sans Neo';">대충 파티지원자의 내용입니다.</p>
         </div>
         </div>
       </div>
       	<div class="yesorno">
-			<a href="" class="yesornobtn">수락</a>
-			<a href="" class="yesornobtn">거절</a>
+			<a href="" class="yesornobtn" style="font-family: 'Spoqa Han Sans Neo';">수락</a>
+			<a href="" class="yesornobtn" style="font-family: 'Spoqa Han Sans Neo';">거절</a>
 		</div>
 
 	</div>
@@ -335,11 +329,11 @@
 <!-- 자세히보기 끝-->
 
 	 <!-- 언더바 -->
-			<div class="underbar">
-			  <span class="undertext">2월 4일 (목) · 오후 7:00 GMT+9<br>
+			<div class="underbar" style="font-family: 'Spoqa Han Sans Neo';">
+			  <span class="undertext" style="font-family: 'Spoqa Han Sans Neo';">2월 4일 (목) · 오후 7:00 GMT+9<br>
 			    공덕동 1:1 산책 (2월 4일)</span>
 			  <nav>
-			   <a class="button" href="#popup1">참가할래요🐕</a>
+			   <a class="button" href="#popup1" style="font-family: 'Spoqa Han Sans Neo';">참가할래요🐕</a>
 			  </nav>
 			</div>
 	 <!-- 언더바 -->
