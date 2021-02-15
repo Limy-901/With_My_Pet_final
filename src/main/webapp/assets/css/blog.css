@@ -16,6 +16,7 @@ body{
   .blog-container {
     width: 28rem;
   }
+  
 }
 @media screen and (min-width: 767px) {
   .blog-container {

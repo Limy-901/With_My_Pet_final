@@ -16,10 +16,11 @@
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl"
 			value="jdbc:log4jdbc:oracle:thin:@localhost:1521:JAVA"></property>
-		<property name="username" value="spring"></property>
+		<property name="username" value="pet"></property>
 		<property name="password" value="java"></property>
 	</bean>
 	
+
 	
 	<!-- 트랜잭션 사용하기 위함. -->
 	<bean id="transactionManager"
@@ -43,5 +44,10 @@
 			 value="classpath:/mybatis-config.xml"/>
 	</bean>
 	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	
+	<context:component-scan base-package="pet.mvc.service" />
+	<context:component-scan base-package="pet.mvc.mapper"/>
+	<mybatis-spring:scan base-package="pet.mvc.mapper"/>
 		
 </beans>

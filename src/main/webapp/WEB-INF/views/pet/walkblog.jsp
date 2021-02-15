@@ -15,11 +15,20 @@
    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
    <!-- google fonts --> 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="/assets/css/style-liberty.css">
-  <link rel="stylesheet" href="/assets/css/walkform.css">
-  <link rel="stylesheet" href="/assets/css/walkform.min.css">
- 
-    <link rel="stylesheet" href="/assets/css/blog.css">
+  <link rel="stylesheet" href="../assets/css/style-liberty.css">
+  <link rel="stylesheet" href="../assets/css/walkform.css">
+  <link rel="stylesheet" href="../assets/css/walkform.min.css">
+  
+  <link rel="stylesheet" href="../assets/css/semantic-modal/modal.css">
+  <link rel="stylesheet" href="../assets/css/semantic-modal/modal.min.css">
+  
+  <link rel="stylesheet" href="../assets/js/semantic-modal/modal.js">
+  <link rel="stylesheet" href="../assets/js/semantic-modal/modal.min.js">
+  <link rel="stylesheet" href="../assets/js/semantic-modal/index.js">
+  <link rel="stylesheet" href="../assets/js/semantic-modal/package.js">
+  
+  
+    <link rel="stylesheet" href="../assets/css/blog.css">
   <!-- Template CSS -->
   
   <!--심볼시작  -->
@@ -44,7 +53,7 @@
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
+          <a href="../"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
          
           <!-- if logo is image enable this   
       <a class="navbar-brand" href="#index.html">
@@ -133,24 +142,73 @@
   
 
   <div class="blog-body" style="font-family: 'Spoqa Han Sans Neo';">
-  <p style="font-family: 'Spoqa Han Sans Neo';">2021년 2월 4일 목요일</p>
+  	<p style="font-family: 'Spoqa Han Sans Neo';">${content.walk_date}</p>
     <div class="blog-title">
-      <h1 style="font-family: 'Spoqa Han Sans Neo';"><a href="#" style="font-family: 'Spoqa Han Sans Neo';" >공덕동 1:1 산책 파티 구해요!</a></h1>
+      <h1 style="font-family: 'Spoqa Han Sans Neo';"><a href="#" style="font-family: 'Spoqa Han Sans Neo';" >${content.walk_subject}</a></h1>
     </div>
-    
     <div class="blog-author--no-cover">
-        <a class="avatar" style="background-image: url("https://secure.meetupstatic.com/photos/member/2/b/b/7/thumb_250991191.jpeg");"></a>
+       <a class="avatar" style="background-image: url("https://secure.meetupstatic.com/photos/member/2/b/b/7/thumb_250991191.jpeg");"></a>
 	   <div class="img-circle img-circle-sm">
-                  <img src="assets/images/f2.jpg" class="mr-3" alt="...">
-       </div> 	
-       			<p class="name" style="font-family: 'Spoqa Han Sans Neo';">지혀닝님이 산책할 친구를 기다리고 있어요!</p>
+          <img src="../assets/images/f2.jpg" class="mr-3" alt="...">
+       </div>
+       <p class="name" style="font-family: 'Spoqa Han Sans Neo';">${content.walk_writer}님이 <b>${content.walk_location}</b> 에서 산책할 친구를 기다리고 있어요!</p>
     </div>
     
-    
+
+
+<!-- 맵 표시 -->
+
+<div id="map" style="width:100%;height:350px;"></div><br/><br/>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63be5e5f8d770d2796e1e45e8fcfebbd&libraries=services"></script>
+<script>
+// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+// 장소 검색 객체를 생성합니다
+var ps = new kakao.maps.services.Places(); 
+// 키워드로 장소를 검색합니다
+ps.keywordSearch("${content.walk_location}", placesSearchCB); 
+// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+function placesSearchCB (data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+        // LatLngBounds 객체에 좌표를 추가합니다
+        var bounds = new kakao.maps.LatLngBounds();
+        for (var i=0; i<data.length; i++) {
+            displayMarker(data[i]);    
+            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+        }       
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+        map.setBounds(bounds);
+    } 
+}
+// 지도에 마커를 표시하는 함수입니다
+function displayMarker(place) {
+    // 마커를 생성하고 지도에 표시합니다
+    var marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(place.y, place.x) 
+    });
+    // 마커에 클릭이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'click', function() {
+        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+        infowindow.open(map, marker);
+    });
+}
+</script>
+
+
  <div class="col-lg-3 col-sm-6 grids-feature">
         <div class="area-box">          
          <div class="col-md-4">
-            <img src="assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
+            <img src="../assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
          </div>        
        <div class="col-md-8 align-self" style="font-family: 'Spoqa Han Sans Neo';">  
         <p style="font-family: 'Spoqa Han Sans Neo';">2021년 2월 4일</p>
@@ -161,19 +219,16 @@
       </div>
     
     
-    
-    
-    
     <div class="blog-summary">
       <p style="font-family: 'Spoqa Han Sans Neo';">
-		공덕동 근처 거주하시고 여성 분이었으면 좋겠네요! 강아지친구해요~~
+		${content.walk_content}
 		</p>
     </div>
     <div class="blog-tags" style="font-family: 'Spoqa Han Sans Neo';">
       <ul>
-        <li><a href="#">공덕동</a></li>
-        <li><a href="#">포메라니안</a></li>
-        <li><a href="#">1:1</a></li>
+        <li><a href="#">${content.walk_location}</a></li>
+        <li><a href="#">유저강아지정보</a></li>
+        <li><a href="#">${content.walk_type}</a></li>
       </ul>
     </div>
   </div>
@@ -188,155 +243,161 @@
 
 </div>
 <div class="modifies" style="font-family: 'Spoqa Han Sans Neo';">
- <a class="modify" href="#popup1" >수정</a>
-  <a class="modify" href="#popup1">삭제</a>
+ <a class="modify" href="update.do?idx=${content.walk_idx}">수정</a>
+  <a class="modify" href="delete.do?idx=${content.walk_idx}">삭제</a>
 </div>
 
 <!-- 참가자리스트 -->
-          <div class="attendlabel" style="font-family: 'Spoqa Han Sans Neo';">
-           <span>참가자(5)</span>
-         </div>
-         <div class="row">
 
-          <div class="col-lg-4 col-md-6 item">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g1.jpg" alt="Card image cap">
-                      </a>
-                      
-                  </div>
-                  <div class="card-body blog-details" style="font-family: 'Spoqa Han Sans Neo';">
-                      <p>차지현</p>
-                      <p>저도 공덕살아요^^ 같이산책해요!</p>
-                  </div>
-              </div>
-          </div>
-         
-      </div>
+
+	<!-- 리스트 출력 -->
+    <c:if test="${empty content.cmts}">
+		<p>데이터가 없습니다.</p>
+	</c:if>
+	<div class="attendlabel" style="font-family: 'Spoqa Han Sans Neo';">
+           <span>참가자 (5) </span>
+    </div>
+    <div class="row">
+    
+	    <c:forEach items="${content.cmts}" var="item" varStatus="status">
+	    
+	     
+	     <!-- 신청댓글, click시 ajax로 해당 댓글 Data 가져옴  -->
+		     <div class="col-lg-4 col-md-6 item">
+		         <div class="card">
+		             <div class="card-header p-0 position-relative">
+		             	<a href="blog-single.html">
+		                     <img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">
+		                 </a>
+		             	<input type="text" name=idx${item.walk_cmt_idx} value="${item.walk_cmt_idx}">
+		             	<input type="button" value="자세히보기" onclick="getWalkCmt(${item.walk_cmt_idx})">
+		             </div>
+		             <div class="card-body blog-details" style="font-family: 'Spoqa Han Sans Neo';">
+		                 <p>${item.walk_cmt_writer}</p>
+		                 <p>${item.walk_cmt_content}</p>
+		             </div>
+		         </div>
+		     </div>
+	    
+	     </c:forEach>
+	     <script>
+			function getWalkCmt(idx){
+				var idxNo = idx.value;
+				alert("자바스크립트로 넘어옴:"+idx)
+				  $.ajax({
+					  url: "getMemberData.do",
+					  type: 'GET',
+					  data: { idx:idxNo },
+					  success : function(data){
+						  alert("들어오긴함");
+						  window.location.href = "#popup2";
+					  }
+				  });
+			}
+			</script>
+      
+   </div>
  
  <!-- 신청자리스트 -->
- 
-
-		<div class="apply" style="font-family: 'Spoqa Han Sans Neo';">	 
-           <div class="applylabel">
-           <span>신청자(6)</span>
-           </div>
-           <div class="applyrow">
- 		 <div class="col-lg-4 col-md-6 item">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g1.jpg" alt="Card image cap">
-                      </a>
-                      
-                  </div>
-                  <div class="card-body blog-details">
-                      <p>차지현</p>
-                      <p>세션아이디가 작성자 아닐때(버튼안뜸)</p>
-                  </div>
-              </div>
-          </div>
-   <div class="col-lg-4 col-md-6 item">
-              <div class="card">
-             
-                  <div class="card-header p-0 position-relative">
-                      <a href="#popup2"> <button class="detailbtn">자세히 보기</button>
-                          <img class="card-img-bottom d-block" src="assets/images/g1.jpg" alt="Card image cap">
-                      </a>
-
-                  </div>
-                  <div class="card-body blog-details">
-                      <p>차지현</p>
-                      <p>세션아이디가 작성자일때(버튼뜸)</p>
-                  </div>
-              </div>
-          </div>
+<div class="apply" style="font-family: 'Spoqa Han Sans Neo';">	 
+    <div class="applylabel">
+      	 <span>신청자 (6) </span>
+    </div>
+    <div class="applyrow">
+    
+       
+   		<div class="col-lg-4 col-md-6 item">
+           <div class="card">
+                <div class="card-header p-0 position-relative">
+                    <a href="#popup2"> <button class="detailbtn">자세히 보기</button>
+                        <img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">
+                    </a>
+                    
+                </div>
+                <div class="card-body blog-details">
+                    <p>차지현</p>
+                    <p>세션아이디가 작성자일때(버튼뜸)</p>
+                </div>
+            </div>
+       </div>
           
-          
- 		</div>
- 		</div>
+ 	</div>
+</div>
+
+
 
 
  
  
- <!-- 참가팝업시작 -->
-<div id="popup1" class="overlay">
-	<div class="popup">
-		<center><h4 style="font-family: 'Spoqa Han Sans Neo';">같이 산책할래요!</h4></center>
-		<br>
-		<a class="close" href="#">&times;</a>
-		 <div class="col-lg-3 col-sm-6 grids-feature">
-        <div class="area-box">          
-         <div class="col-md-4">
-            <img src="assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
-         </div>        
-       <div class="col-md-8 align-self" style="font-family: 'Spoqa Han Sans Neo';">  
-        <p style="font-family: 'Spoqa Han Sans Neo';">2021년 2월 4일</p>
-        <p style="font-family: 'Spoqa Han Sans Neo';">뽀미, 4살, 경계심이 많아요</p>       
-          <p style="font-family: 'Spoqa Han Sans Neo';">대충 파티지원자의 내용입니다.</p>
-        </div>
-        </div>
-      </div>
-		
-	      <form class="ui form" style="text-align:center;">
+	 <!-- 참가팝업시작 -->
+	<div id="popup1" class="overlay">
+		<div class="popup">
+			<center><h4 style="font-family: 'Spoqa Han Sans Neo';">같이 산책할래요!</h4></center><br>
+			<a class="close" href="#">&times;</a>
+			
+			<div class="col-lg-3 col-sm-6 grids-feature">
+		        <div class="area-box">          
+		          <div class="col-md-4">
+		            <img src="../assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
+		          </div>        
+			       <div class="col-md-8 align-self" style="font-family: 'Spoqa Han Sans Neo';">  
+			          <p style="font-family: 'Spoqa Han Sans Neo';">2021년 2월 4일</p>
+			          <p style="font-family: 'Spoqa Han Sans Neo';">뽀미, 4살, 경계심이 많아요</p>       
+			          <p style="font-family: 'Spoqa Han Sans Neo';">대충 파티지원자의 내용입니다.</p>
+			       </div>
+		        </div>
+	        </div>
+			
+	      <form class="ui form" method="post" action="apply.do" style="text-align:center;">
 	          <div class="field">
 			    <label style="font-family: 'Spoqa Han Sans Neo';">참가메세지</label>
-			    <input type="text" name="first-name" placeholder="만나실 견주분께 인사를 보내보세요!" style="font-family: 'Spoqa Han Sans Neo';"><br/>
-			  </div>
-			  <div class="field">
-			    <label style="font-family: 'Spoqa Han Sans Neo';">우리 강아지의 특징</label>
-			    <input type="text" name="first-name" placeholder="같이 갈 강아지의 특징을 적어주세요. ex) 애교가 많아 사람을 잘따라요!" style="font-family: 'Spoqa Han Sans Neo';"><br/>
+			    <input type="hidden"  name="walk_idx" value="${content.walk_idx}">
+			    <input type="hidden"  name="walk_cmt_writer" value="세션로그인유저">
+			    <input type="text" name="walk_cmt_content" placeholder="만나실 견주분께 인사를 보내보세요!" style="font-family: 'Spoqa Han Sans Neo';"><br/>
 			  </div>
 	          <button type="submit" class="modify" style="border-color:none;">보내기</button>
 		   </form>
-
+	
 		</div>
 	</div>
- 
-  <!-- 참가팝업끝 -->
-
-</section>
-
-
-
+	<!-- 참가팝업끝 -->
 
 
 <!-- 자세히보기 시작-->
 <div id="popup2" class="overlay" style="font-family: 'Spoqa Han Sans Neo';">
 	<div class="popup">
-	<a class="close" href="#">&times;</a>
-<h4 style="font-family: 'Spoqa Han Sans Neo';">참가 신청자의 강아지 상세정보</h4>
- <div class="col-lg-99 col-sm-6 grids-feature" style="font-family: 'Spoqa Han Sans Neo';">
-        <div class="area-box">          
-         <div class="col-md-4">
-            <img src="assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
-         </div>        
-       <div class="col-md-8 align-self">  
-        <p style="font-family: 'Spoqa Han Sans Neo';">2021년 2월 4일</p>
-        <p style="font-family: 'Spoqa Han Sans Neo';">뽀미, 4살, 경계심이 많아요</p>       
-          <p style="font-family: 'Spoqa Han Sans Neo';">대충 파티지원자의 내용입니다.</p>
-        </div>
-        </div>
-      </div>
+		<a class="close" href="#">&times;</a>
+		<h4 style="font-family: 'Spoqa Han Sans Neo';">참가 신청자의 강아지 상세정보</h4>
+	 	<div class="col-lg-99 col-sm-6 grids-feature" style="font-family: 'Spoqa Han Sans Neo';">
+	        <div class="area-box">          
+		         <div class="col-md-4">
+		            <img src="../assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
+		         </div>        
+		        <div class="col-md-8 align-self">  
+			        <p style="font-family: 'Spoqa Han Sans Neo';">2021년 2월 4일</p>
+			        <p style="font-family: 'Spoqa Han Sans Neo';">뽀미, 4살, 경계심이 많아요</p>       
+			        <p style="font-family: 'Spoqa Han Sans Neo';">대충 파티지원자의 내용입니다.</p>
+		        </div>
+	        </div>
+	    </div>
       	<div class="yesorno">
 			<a href="" class="yesornobtn" style="font-family: 'Spoqa Han Sans Neo';">수락</a>
 			<a href="" class="yesornobtn" style="font-family: 'Spoqa Han Sans Neo';">거절</a>
 		</div>
-
 	</div>
 </div>
 <!-- 자세히보기 끝-->
 
-	 <!-- 언더바 -->
-			<div class="underbar" style="font-family: 'Spoqa Han Sans Neo';">
-			  <span class="undertext" style="font-family: 'Spoqa Han Sans Neo';">2월 4일 (목) · 오후 7:00 GMT+9<br>
-			    공덕동 1:1 산책 (2월 4일)</span>
-			  <nav>
-			   <a class="button" href="#popup1" style="font-family: 'Spoqa Han Sans Neo';">참가할래요🐕</a>
-			  </nav>
-			</div>
-	 <!-- 언더바 -->
+
+ <!-- 언더바 -->
+		<div class="underbar" style="font-family: 'Spoqa Han Sans Neo';">
+		  <span class="undertext" style="font-family: 'Spoqa Han Sans Neo';">일시 : ${content.walk_date}<br>
+		    장소 : ${content.walk_location} / 산책 타입 : ${content.walk_type}</span>
+		  <nav>
+		   <a class="button" href="#popup1" style="font-family: 'Spoqa Han Sans Neo';">참가할래요🐕</a>
+		  </nav>
+		</div>
+ <!-- 언더바 -->
 
 
 
@@ -351,8 +412,8 @@
 <!-- disable body scroll which navbar is in active -->
 
   <!-- Template JavaScript -->
-  <script src="assets/js/jquery-3.3.1.min.js"></script>
-  <script src="assets/js/theme-change.js"></script>
+  <script src="../assets/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+  <script src="../assets/js/theme-change.js"></script>
   <!-- js for portfolio lightbox -->
   <!--/MENU-JS-->
   <script>
@@ -381,42 +442,22 @@
       });
     });
 
-
-    //자세히보기 hover효과
-    $ (function(){
-    	$(".detailbtn").css("display", "none");	
-    	
-    });
-
-      $('.card').mouseover(function () {
-    	  $(".detailbtn").css("display", "block");
-      });
- 
-      $('.card').mouseout(function () {
-    	  $(".detailbtn").css("display", "none");
-      });
-
   </script>
-  <!--//MENU-JS-->
-
-  <script src="assets/js/bootstrap.min.js"></script>
-<!-- footer-28 block -->
+<!--//MENU-JS-->
+<script src="../assets/js/bootstrap.min.js"></script>
 <section class="w3l-footer">
   <footer class="footer-28">
     <div class="footer-bg-layer">
       <div class="container py-lg-3">
         <div class="row footer-top-28">
           <div class="col-lg-6 col-md-5 footer-list-28 mt-5">
-            <h6 class="footer-title-28">Contact information</h6>
+            <h6 class="footer-title-28" style="font-family: 'Spoqa Han Sans Neo';">Contact information</h6>
             <ul>
               <li>
-                <p><strong>Address</strong> : #135 block, Barnard St. Brooklyn, London 10036, UK</p>
+                <p style="font-family: 'Spoqa Han Sans Neo';"><strong>Address</strong> : Seoul Mapo Baekbumro, South Korea</p>
               </li>
               <li>
-                <p><strong>Phone</strong> : <a href="tel:+(12)234-11-24">+(12)234-11-24</a></p>
-              </li>
-              <li>
-                <p><strong>Email</strong> : <a href="mailto:example@mail.com">example@mail.com</a></p>
+                <p><strong>Contact</strong> : <a href="tel:+(12)234-11-24">Click Here</a></p>
               </li>
             </ul>
 
@@ -448,30 +489,24 @@
           <div class="col-lg-6 col-md-7">
             <div class="row">
               <div class="col-sm-4 col-6 footer-list-28 mt-5">
-                <h6 class="footer-title-28">Company</h6>
+                <h6 class="footer-title-28">Walk Service</h6>
                 <ul>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="blog.html">Blog Posts</a></li>
-                  <li><a href="services.html">Services</a></li>
-                  <li><a href="#pricing">Pricing</a></li>
+                  <li><a href="about.html">Cha Ji Hyun</a></li>
+                  <li><a href="blog.html">Lim Yeon Ji</a></li>
                 </ul>
               </div>
               <div class="col-sm-4 col-6 footer-list-28 mt-5">
-                <h6 class="footer-title-28">Quick Links</h6>
+                <h6 class="footer-title-28">Shopping Service</h6>
                 <ul>
-                  <li><a href="contact.html">Contact Us</a></li>
-                  <li><a href="#signup">Create account</a></li>
-                  <li><a href="#learn">Care Center</a></li>
-                  <li><a href="#feedback">Site Feedack</a></li>
+                  <li><a href="contact.html">Lee Ok Seok</a></li>
+                  <li><a href="#signup">Sung Jin Hee</a></li>
                 </ul>
               </div>
               <div class="col-sm-4 footer-list-28 mt-5">
-                <h6 class="footer-title-28">Support</h6>
+                <h6 class="footer-title-28">Member Service</h6>
                 <ul>
-                  <li><a href="#URL">All Dogs</a></li>
-                  <li><a href="#URL">Care Advices</a></li>
-                  <li><a href="#URL">Care Support</a></li>
-                  <li><a href="#URL">Veterinary Help</a></li>
+                  <li><a href="#URL">Choi Woo Jae</a></li>
+                  <li><a href="#URL">Lee Su Jin</a></li>
                 </ul>
               </div>
             </div>
@@ -482,12 +517,37 @@
 
       <div class="midd-footer-28 align-center py-lg-4 py-3 mt-5">
         <div class="container">
-          <p class="copy-footer-28 text-center"> &copy; 2021 With My pet from Us. All Rights Reserved.
+          <p class="copy-footer-28 text-center"> &copy; 2021 With My Pet. All Rights Reserved.
            </p>
         </div>
       </div>
     </div>
   </footer>
+ 
+
+  <!-- move top -->
+  <button onclick="topFunction()" id="movetop" title="Go to top">
+    &#10548;
+  </button>
+  <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction()
+    };
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("movetop").style.display = "block";
+      } else {
+        document.getElementById("movetop").style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+  <!-- /move top -->
 </section>
 </body>
 </html>

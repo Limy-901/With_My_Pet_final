@@ -6,18 +6,20 @@
 <html lang="en">
 ​
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Pooch Care an Animals Category Bootstrap Responsive Template | About </title>
-   <!-- google fonts -->  
-   <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
-   <!-- google fonts --> 
-  <!-- Template CSS -->
-
-        <link rel="stylesheet" href="assets/css/list.css">
-        <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
-  
+  <title>:: With My Pet :: 함께 산책해요</title>
+  <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/list.css">
+  <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../assets/css/walkform.css">
+  <link rel="stylesheet" href="../assets/css/walkform.min.css">
+  <link rel="stylesheet" href="../assets/css/button/input.css">
+  <link rel="stylesheet" href="../assets/css/button/input.min.css">
+  <link rel="stylesheet" href="../assets/css/button/button.css">
+  <link rel="stylesheet" href="../assets/css/button/button.min.css">
+  <link rel="stylesheet" href="../assets/css/button/dropdown.css">
+  <link rel="stylesheet" href="../assets/css/button/dropdown.min.css">
 </head>
 
 <body>
@@ -25,7 +27,7 @@
 <header id="site-header" class="fixed-top" >
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
+          <a href="../"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
          
           <!-- if logo is image enable this   
       <a class="navbar-brand" href="#index.html">
@@ -51,8 +53,8 @@
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
-                      	<a class="dropdown-item" href="walklist.do" >산책모집 </a>
-                          <a class="dropdown-item" href="walkboard.do">산책후기 </a>
+                      	<a class="dropdown-item" href="walk/list.do" >산책모집 </a>
+                          <a class="dropdown-item" href="walk/board.do">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown" style="font-family: 'Spoqa Han Sans Neo';">
@@ -108,108 +110,195 @@
 <section class="w3l-about-breadcrumb text-center">
   <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
       <div class="container py-2">
-          <h2 class="title" style="font-family: 'Spoqa Han Sans Neo';">산책 모임 만들기</h2>
+          <h2 class="title" style="font-family: 'Spoqa Han Sans Neo';">산책 모임</h2>
           <ul class="breadcrumbs-custom-path mt-2">
               <li><a href="#url" style="font-family: 'Spoqa Han Sans Neo';">Home</a></li>
               <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true" style="font-family: 'Spoqa Han Sans Neo';"></span> About  </li>
           </ul>
       </div>
   </div>
-</section>
-<!-- //about breadcrumb -->
-
-<!-- /content-6-->
-
+</section><br><br>
 <!-- 산책파티버튼 -->
 
+<div style="margin:auto; display:flex; ">
+	 <a class="button" href="../walk/post.do"style="font-size:30px;margin:auto; padding:1.5%;display:flex; position:relative;"><b>&nbsp;&nbsp;&nbsp;&nbsp;직접 만들기 🐕&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+</div>
+<br><br><br>
 
+<center>
+    <div class="ui action input" style="margin:auto; position:relative; width:40%;">
+	  <input type="text" placeholder="검색어를 입력하세요.">
+	  <select class="ui compact selection dropdown">
+	    <option selected="" value="all">전체</option>
+	    <option value="SearctLoc">지역</option>
+	    <option value="SearctSub">제목</option>
+	    <option value="SearctCon">내용</option>
+	  </select>
+	  <div class="ui teal button">검색</div>
+	</div>
+</center>
 
-<br/>
-<div style="margin:auto;">
-<div class="btnclass">
- <a class="button" href="../walkpost.do">산책파티를 구하고싶어요🐕</a>
-</div><br/>
-</div><br/>
 <!-- 리스트 시작-->
-<br/><br/><br/>
-<section class="w3l-features py-5" id="features" style="margin-top:10%;">
+<section class="w3l-features py-5" id="features">
   <div class="listwrap">
   <p><label class="list-date" style="color:#6EC5CE; display:flex;">2021년 2월 4일</label></p>
-  
     <div class="grids-area-hny main-cont-wthree-fea">
+    
+    <!-- 리스트 출력 -->
+    <c:if test="${empty list}">
+		<p>데이터가 없습니다.</p>
+	</c:if>
+	
+    <c:forEach items="${list.list}" var="item">
     
       <div class="col-lg-4 col-sm-6 grids-feature">
         <div class="area-box">          
          <div class="col-md-4">
-            <img src="assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
-         </div>        
-       <div class="col-md-8 align-self">  
-        <p>2021년 2월 4일에 만나요</p>       
-          <h4><a href="#feature" class="title-head">공덕동 산책하실분!</a></h4>
-		  <p style="font-size:16px;">by 차지현</p>
-          <p>대충 내용입니다.</p>
-          <a href="../walkblog.do" class="read">자세히 보기>></a>
-        </div>
-        </div>
-      </div>
-      
-            <div class="col-lg-4 col-sm-6 grids-feature">
-        <div class="area-box">          
-         <div class="col-md-4">
-            <img src="assets/images/g2.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
-         </div>        
-       <div class="col-md-8 align-self">  
-        <p>2021년 2월 4일에 만나요</p>       
-          <h4><a href="#feature" class="title-head">공덕동 산책하실분!</a></h4>
-		  <p style="font-size:16px;">by 차지현</p>
-          <p>대충 내용입니다.</p>
-          <a href="../walkblog.do" class="read">자세히 보기>></a>
-        </div>
+            <img src="../assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
+         </div> 
+	       <div class="col-md-8 align-self">  
+	        <p>${item.walk_date}</p>
+	        <p>${item.walk_location}</p>       
+	          <h4><a href="#feature" class="title-head">${item.walk_subject}</a></h4>
+			  <p style="font-size:16px;">${item.walk_writer}</p>
+	          <p>${item.walk_content}</p>
+	          <a href="../walk/blog.do?idx=${item.walk_idx}" class="read">자세히 보기>></a>
+	        </div>
         </div>
       </div>
       
-      <!-- 날짜땜에반복 -->
-      <label class="list-date" style="color:#6EC5CE;">2021년 2월5일</label>
-  
-    <div class="grids-area-hny main-cont-wthree-fea">
-    
-      <div class="col-lg-4 col-sm-6 grids-feature">
-        <div class="area-box">          
-         <div class="col-md-4">
-            <img src="assets/images/g3.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
-         </div>        
-       <div class="col-md-8 align-self">  
-        <p>2021년 2월 5일에 만나요</p>       
-          <h4><a href="#feature" class="title-head">공덕동 산책하실분!</a></h4>
-		  <p style="font-size:16px;">by 차지현</p>
-          <p>대충 내용입니다.</p>
-          <a href="../walkblog.do" class="read">자세히 보기>></a>
-        </div>
-        </div>
-      </div>
-      
-            <div class="col-lg-4 col-sm-6 grids-feature">
-        <div class="area-box">          
-         <div class="col-md-4">
-            <img src="assets/images/g4.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
-         </div>        
-       <div class="col-md-8 align-self">  
-        <p>2021년 2월 5일에 만나요</p>       
-          <h4><a href="#feature" class="title-head">공덕동 산책하실분!</a></h4>
-		  <p style="font-size:16px;">by 차지현</p>
-          <p>대충 내용입니다.</p>
-          <a href="../walkblog.do" class="read">자세히 보기>></a>
-        </div>
-        </div>
-      </div>
-      </div>
-     
-     
+     </c:forEach><br/><br/>
+      	
   </section>
+  <div style="text-align:center;"><br/><br/><br/>
+    <c:forEach begin="1" end="${list.totalPageCount}" var="i">
+		<a href="list.do?cp=${i}">
+			<c:choose>
+			   <c:when test="${i==list.cp}">
+			   		<strong>${i}</strong>
+			   </c:when>
+				<c:otherwise>
+					${i}
+				</c:otherwise>
+			</c:choose>
+		</a>&nbsp;
+	</c:forEach><br/><br/>
+	
+    <label>( TOTAL : ${list.totalCount} )</label><br/><br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div><br/><br/>
+    
 
   <!--//MENU-JS-->
+<script src="../assets/js/button/package.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/button/dropdown.min.js"></script>
+<script src="../assets/js/button/dropdown.js"></script>
+<script src="../assets/js/button/index.js"></script>
+<section class="w3l-footer">
+  <footer class="footer-28">
+    <div class="footer-bg-layer">
+      <div class="container py-lg-3">
+        <div class="row footer-top-28">
+          <div class="col-lg-6 col-md-5 footer-list-28 mt-5">
+            <h6 class="footer-title-28" style="font-family: 'Spoqa Han Sans Neo';">Contact information</h6>
+            <ul>
+              <li>
+                <p style="font-family: 'Spoqa Han Sans Neo';"><strong>Address</strong> : Seoul Mapo Baekbumro, South Korea</p>
+              </li>
+              <li>
+                <p><strong>Contact</strong> : <a href="tel:+(12)234-11-24">Click Here</a></p>
+              </li>
+            </ul>
 
-  <script src="assets/js/bootstrap.min.js"></script>
+            <div class="main-social-footer-28 mt-3">
+              <ul class="social-icons">
+                <li class="facebook">
+                  <a href="#link" title="Facebook">
+                    <span class="fa fa-facebook" aria-hidden="true"></span>
+                  </a>
+                </li>
+                <li class="twitter">
+                  <a href="#link" title="Twitter">
+                    <span class="fa fa-twitter" aria-hidden="true"></span>
+                  </a>
+                </li>
+                <li class="dribbble">
+                  <a href="#link" title="Dribbble">
+                    <span class="fa fa-dribbble" aria-hidden="true"></span>
+                  </a>
+                </li>
+                <li class="google">
+                  <a href="#link" title="Google">
+                    <span class="fa fa-google" aria-hidden="true"></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-7">
+            <div class="row">
+              <div class="col-sm-4 col-6 footer-list-28 mt-5">
+                <h6 class="footer-title-28">Walk Service</h6>
+                <ul>
+                  <li><a href="about.html">Cha Ji Hyun</a></li>
+                  <li><a href="blog.html">Lim Yeon Ji</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-4 col-6 footer-list-28 mt-5">
+                <h6 class="footer-title-28">Shopping Service</h6>
+                <ul>
+                  <li><a href="contact.html">Lee Ok Seok</a></li>
+                  <li><a href="#signup">Sung Jin Hee</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-4 footer-list-28 mt-5">
+                <h6 class="footer-title-28">Member Service</h6>
+                <ul>
+                  <li><a href="#URL">Choi Woo Jae</a></li>
+                  <li><a href="#URL">Lee Su Jin</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
+
+      <div class="midd-footer-28 align-center py-lg-4 py-3 mt-5">
+        <div class="container">
+          <p class="copy-footer-28 text-center"> &copy; 2021 With My Pet. All Rights Reserved.
+           </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+ 
+ 
+
+  <!-- move top -->
+  <button onclick="topFunction()" id="movetop" title="Go to top">
+    &#10548;
+  </button>
+  <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction()
+    };
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("movetop").style.display = "block";
+      } else {
+        document.getElementById("movetop").style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+  <!-- /move top -->
+</section>
 </body>
 </html>

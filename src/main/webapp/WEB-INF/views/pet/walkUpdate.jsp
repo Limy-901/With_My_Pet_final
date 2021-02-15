@@ -36,7 +36,6 @@
 </head>
 
 <body>
-
 	<!--header-->
 	<header id="site-header" class="fixed-top">
 	  <div class="container">
@@ -119,7 +118,6 @@
 	  </div>
 	</header>
 
-
 	<!-- 바디헤더 -->
 	<section class="w3l-about-breadcrumb text-center">
 	  <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
@@ -161,8 +159,8 @@
 	<!-- 장소 선택 -->
 	<form class="ui form" onsubmit="searchPlaces(); return false;" style="text-align:center; margin:auto;">
 		<div class="field" style="width:30%; margin:auto;">
-	      <label style="font-family: 'Spoqa Han Sans Neo';">산책 장소</label>
-	      <input autocomplete="off" name="locName" id="location" placeholder="산책할 장소 입력해주세요." style="text-align:center; margin:auto;" /><br/>
+	      <label style="font-family: 'Spoqa Han Sans Neo';">장소</label>
+	      <input autocomplete="off" name="locName" id="location" value="${content.walk_location}" placeholder="산책할 장소 입력해주세요." style="text-align:center; margin:auto;" /><br/>
 	      <input id="locForm" placeholder="선택한 장소입니다." style="background-color:#f7fdd5; text-align:center; margin:auto;" readonly/>
 	      <button class="ui button"type="submit" style="display:none;opacity:0;font-family: 'Spoqa Han Sans Neo';color:white;">검색하기</button>
 	    </div>
@@ -189,20 +187,29 @@
 
 	<!-- 입력폼 -->
 	<section class="w3l-contact-1 pt-5"id="contact">
-		<form name="makeWalk" method="post" action="make.do" class="ui form" style="width:40%; left:30%; "><br/><br/>
+		<form name="makeWalk" method="post" action="update.do" class="ui form" style="width:40%; left:30%; "><br/><br/>
 		  <h3 class="ui dividing header"style="text-align:center;font-family: 'Spoqa Han Sans Neo';">산책 모임 개설</h3><br/><br/>
 		  <div class="field">
 		    <div class="two fields">
 		      <div class="field">
 		      <label style="font-family: 'Spoqa Han Sans Neo';">작성자</label>
-		        <input type="text" name="walk_writer" placeholder="작성자" value="세션이름">
+		        <input type="text" name="walk_writer" placeholder="작성자" value="${content.walk_writer}" readonly/>
 		      </div>
 		      
 		      <div class="field">
 			      <label style="font-family: 'Spoqa Han Sans Neo';">산책타입 (선택)</label>
 			      <select class="ui fluid dropdown" name="walk_type">
-			        <option value="1:1" style="font-family: 'Spoqa Han Sans Neo';">1 : 1</option>
-			        <option value="여러명 모임" style="font-family: 'Spoqa Han Sans Neo';">모임</option>
+			      <c:choose>
+			      	<c:when test="${content.walk_type} eq '1:1">
+				      	<option value="1:1"style="font-family: 'Spoqa Han Sans Neo';"selected >1 : 1</option>
+				        <option value="여러명 모임" style="font-family: 'Spoqa Han Sans Neo';">모임</option>
+			      	</c:when>
+			      	<c:otherwise>
+			      		<option value="1:1" style="font-family: 'Spoqa Han Sans Neo';">1 : 1</option>
+				        <option value="여러명 모임"style="font-family: 'Spoqa Han Sans Neo';"selected >모임</option>
+			      	</c:otherwise>
+
+			        </c:choose>
 			      </select>
 			    </div>
 		    </div>
@@ -210,8 +217,9 @@
 		  
 		  <div class="two fields">
 		  	<div class="field">
-		      <label style="font-family: 'Spoqa Han Sans Neo';">산책 장소</label>
-		        <input type="text" onClick="offsetMove()" name="walk_location" id="hdnLocation" placeholder="장소를 먼저 선택하고 오세요!" readonly/>
+		      <label style="font-family: 'Spoqa Han Sans Neo';">장소</label>
+		      	<input type="hidden" name="walk_idx" value="${content.walk_idx}">
+		        <input type="text" onClick="offsetMove()" name="walk_location" value="${content.walk_location}" id="hdnLocation" placeholder="장소를 먼저 선택하고 오세요!" readonly/>
 		        <script>
 		        function offsetMove(){
 		        	document.getElementById('location').focus();
@@ -219,8 +227,8 @@
 		        </script>
 		      </div>
 			  <div class="field">
-			      <label style="font-family: 'Spoqa Han Sans Neo';">산책 일시</label>
-			      <input type="text" name="time" autocomplete="off" id="dp-7" placeholder="산책할 시간을 선택해주세요."/><br/>
+			      <label style="font-family: 'Spoqa Han Sans Neo';">일시</label>
+			      <input type="text" name="time" autocomplete="off" value="${content.walk_date}" id="dp-7" placeholder="산책할 시간을 선택해주세요."/><br/>
 			        <script>
 			        //날짜,시간 선택 (DatePicker)
 			        $(document).ready(function(){
@@ -243,14 +251,14 @@
 		  <div class="field">
 		    <label style="font-family: 'Spoqa Han Sans Neo';">제목</label>
 		    <div class="field">
-		        <input autocomplete="off" type="text" name="walk_subject" placeholder="제목">
+		        <input autocomplete="off" type="text" name="walk_subject" placeholder="제목" value="${content.walk_subject}">
 		    </div>
 		  </div>
 		  <div class="field">
 		    <label style="font-family: 'Spoqa Han Sans Neo';">내용</label>
-		    <textarea name="walk_content"></textarea>
+		    <textarea name="walk_content">${content.walk_content}</textarea>
 		  </div><br/><br/>
-		  <center><button id="btn_submit" type="submit" class="button-set" style="font-family: 'Spoqa Han Sans Neo';">모임 개설하기</button>
+		  <center><button id="btn_submit" type="submit" class="button-set" style="font-family: 'Spoqa Han Sans Neo';">수정하기</button>
 		  </center>
 		</form>
 	</section><br/><br/><br/><br/><br/><br/>

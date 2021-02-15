@@ -19,6 +19,13 @@
 	<resources mapping="/assets/images/**" location="/assets/images/" />
 	<resources mapping="/assets/fonts/**" location="/assets/fonts/" />
 	
+<beans:bean id='testMailer' class="pet.mvc.vo.TestMailer">
+		<beans:property name="host" value="smtp.naver.com" />
+		<beans:property name="password" value="usemailer" />
+		<beans:property name="tail" value='@naver.com'/>
+		<beans:property name="user" value='misty901'/>
+</beans:bean>
+	
 	<!-- 파일 업로드용 resolver -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="UTF-8" />

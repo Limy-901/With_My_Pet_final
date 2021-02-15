@@ -4,7 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
    <typeAliases>
+   	   <typeAlias alias="Walk" type="pet.mvc.walk.Walk"/>
+   	   <typeAlias alias="WalkListVo" type="pet.mvc.walk.WalkListVo"/>
+   	   <typeAlias alias="WalkComment" type="pet.mvc.walk.Comment"/>
    </typeAliases>
    <mappers>
+   		<mapper resource="pet/mvc/mapper/IndexMapper.xml"/>
+   		<mapper resource="pet/mvc/mapper/WalkMapper.xml"/>
    </mappers>
 </configuration>

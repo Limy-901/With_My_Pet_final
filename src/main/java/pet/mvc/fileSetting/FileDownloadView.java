@@ -16,6 +16,7 @@ public class FileDownloadView extends AbstractView {
 	public FileDownloadView() {
 		setContentType("application/download;charset=utf-8");
 	}
+	
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {

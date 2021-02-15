@@ -51,8 +51,8 @@
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
-                      	<a class="dropdown-item" href="walklist.do" >산책모집 </a>
-                          <a class="dropdown-item" href="walkboard.do">산책후기 </a>
+                      	<a class="dropdown-item" href="walk/list.do?cp=1" >산책모집 </a>
+                          <a class="dropdown-item" href="walk/board.do">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -80,7 +80,7 @@
                   </li>
                  
                   <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact </a>
+                      <a class="nav-link" href="sendmail.do">Contact </a>
                   </li>
               </ul>
           </div>
@@ -185,46 +185,34 @@
     </div>
   </section>
   <!--//grids-->
-  <!--/features-->
-<!-- /bottom-grids-->
+  
+<!-- 산책글 리스트 -->
 <section class="w3l-features py-5" id="features">
   <div class="container py-lg-5 py-md-4">
     <div class="grids-area-hny main-cont-wthree-fea row">
-      <div class="col-lg-4 col-sm-6 grids-feature">
-        <div class="area-box" style="text-align:center;">
-          <div class="icon">
-            <span class="fa fa-snowflake-o"></span>
-          </div><br/>
-          <img src="assets/images/f4.jpg">
-          <h4><a href="#feature" class="title-head">같이 연트럴파크가요!</a></h4>
-          <p>같이 연트럴파크에서 산책하실 분 구합니다~ 저희강아지는 3kg 소형견이에요! 성격 엄청 활발함.</p>
-          <a href="#read" class="read">함께하기</a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 grids-feature">
-        <div class="area-box" style="text-align:center;">
-          <div class="icon">
-            <span class="fa fa-snowflake-o"></span>
-          </div><br/>
-          <img src="assets/images/f3.jpg">
-          <h4><a href="#feature" class="title-head">마포 한강공원</a></h4>
-          <p>같이 강아지 러닝하실분 구해여~~</p>
-          <a href="#read" class="read">함께하기</a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 grids-feature">
-        <div class="area-box" style="text-align:center;">
-          <div class="icon">
-            <span class="fa fa-snowflake-o"></span>
-          </div><br/>
-          <img src="assets/images/f2.jpg">
-          <h4><a href="#feature" class="title-head">동네친구 찾고싶어요(홍대)</a></h4>
-          <p>친구도 한마리 없는 우리강아지 완전 불쌍 ㅠ</p>
-          <a href="#read" class="read">함께하기</a>
-        </div>
-      </div>
+    
+      <c:if test="${empty walks}">
+      	최근 산책글이 없습니다.
+      </c:if>
+      
+      <c:forEach items="${walks}" var="item">
+	      <div class="col-lg-4 col-sm-6 grids-feature">
+	        <div class="area-box" style="text-align:center;">
+	          <div class="icon">
+	            <span class="fa fa-snowflake-o"></span>
+	          </div><br/>
+	          <label>${item.walk_date}</label><br/>
+	          <img src="assets/images/f4.jpg">
+	          <h4><a href="#feature" class="title-head">${item.walk_subject}</a></h4>
+	          <p>${item.walk_content}</p>
+	          <a href="walk/blog.do?idx=${item.walk_idx}" class="read">함께하기</a>
+	        </div>
+	      </div>
+      </c:forEach>
+      
+      
     </div>
-    <center><a href="#read" class="read">전체 모집글 보기</a></center>
+    <center><a href="walk/list.do?cp=1" class="read">전체 모집글 보기</a></center>
   </div>
 </section>
 
