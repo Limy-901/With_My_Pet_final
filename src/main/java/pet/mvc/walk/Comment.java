@@ -14,4 +14,6 @@ public class Comment {
 	private String walk_cmt_writer;
 	private String walk_cmt_content;
 	private Date walk_cmt_date;
+	private long member_number;
+	private String join_status;
 }

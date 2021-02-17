@@ -540,16 +540,12 @@
 <!-- //footer-28 block -->
 <!-- disable body scroll which navbar is in active -->
 <script>
-  $(function () {
-    $('.navbar-toggler').click(function () {
-      $('body').toggleClass('noscroll');
-    })
-  });
+
 </script>
 <!-- disable body scroll which navbar is in active -->
 
   <!-- Template JavaScript -->
-  <script src="assets/js/jquery-3.3.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="assets/js/theme-change.js"></script>
   <script src="assets/js/owl.carousel.js"></script>
   <!-- script for banner slider-->

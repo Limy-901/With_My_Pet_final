@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Walk {
+	
 	private long walk_idx;
 	private long member_number;
 	private String walk_writer;
@@ -23,7 +24,9 @@ public class Walk {
 	private String walk_location;
 	private String time;
 	private Timestamp walk_date;
-	private ArrayList<Comment> cmts;
+	private ArrayList<Comment> normalCmts;
+	private ArrayList<Comment> joinCmts;
+	private int like;
 	private int apply;
 	private int join;
 }

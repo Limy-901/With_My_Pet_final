@@ -25,7 +25,6 @@
 		) where <![CDATA[ rnum>#{startRow} and rnum<=#{endRow} ]]>
 	</select>
 	
-	
 	<select id="totalWalk" resultType="Long" parameterType="map">
 	  select count(*) from
 	    <if test="keyword != null and !keyword.equals('')">
@@ -48,7 +47,11 @@
     </select>
     
     <select id="getWalkCmt" resultType="WalkComment" parameterType="Long">
-    	select * from WALK_CMT where WALK_IDX=#{idx}
+    	select * from WALK_CMT where WALK_IDX=#{idx} and JOIN_STATUS is null
+    </select>
+    
+    <select id="getWalkCmtData" resultType="WalkComment" parameterType="Long">
+    	select * from WALK_CMT where WALK_CMT_IDX=#{idx}
     </select>
     
     <delete id="walkDelete" parameterType="Long">
@@ -58,14 +61,37 @@
     <insert id="insertWalkCmt" parameterType="WalkComment">
     	insert into WALK_CMT values(
 	    WALK_CMT_SEQ.nextval, #{walk_idx}, #{walk_cmt_writer},
-	    #{walk_cmt_content}, SYSDATE)
+	    #{walk_cmt_content}, SYSDATE, #{member_number},null)
     </insert>
     
     <update id="walkUpdate" parameterType="Walk">
-	  update WALK set WALK_TYPE=#{walk_type}, WALK_SUBJECT=#{walk_subject}, WALK_CONTENT=#{walk_content},
-	  WALK_LOCATION=#{walk_location}, WALK_DATE=#{walk_date}
-	  where WALK_IDX=#{walk_idx}
+	   update WALK set WALK_TYPE=#{walk_type}, WALK_SUBJECT=#{walk_subject}, WALK_CONTENT=#{walk_content},
+	   WALK_LOCATION=#{walk_location}, WALK_DATE=#{walk_date}
+	   where WALK_IDX=#{walk_idx}
 	</update>
+	
+	<insert id="insertWalkJoin" parameterType="joinVo">
+    	insert into WALK_JOIN values(#{walk_idx}, #{member_number})
+    </insert>
     
+    <select id="selectByCmtIdx" parameterType="long" resultType="long">
+    	select MEMBER_NUMBER from WALK_CMT where WALK_CMT_IDX=#{cmtIdx}
+    </select>
+    
+    <update id="updateWalkCmt" parameterType="long">
+    	update WALK_CMT set JOIN_STATUS='y' where WALK_CMT_IDX=#{cmtIdx}
+    </update>
+    
+    <select id="getJoinCmt" parameterType="long" resultType="WalkComment">
+    	select * from WALK_CMT where WALK_IDX=#{idx} and JOIN_STATUS='y'
+    </select>
+    
+    <select id="getWalkLike" parameterType="long" resultType="int">
+    	select count(*) from walk_like where walk_idx=#{idx}
+    </select>
+    
+    <insert id="addHeart" parameterType="joinVo">
+    	insert into WALK_LIKE values( #{walk_idx}, #{member_number} )
+    </insert>
 
 </mapper>

@@ -140,8 +140,10 @@
 
 <!-- 리스트 시작-->
 <section class="w3l-features py-5" id="features">
+<center>
   <div class="listwrap">
-  <p><label class="list-date" style="color:#6EC5CE; display:flex;">2021년 2월 4일</label></p>
+  <p><label class="list-date" style="color:#6EC5CE;">2021년 2월 4일</label></p>
+    
     <div class="grids-area-hny main-cont-wthree-fea">
     
     <!-- 리스트 출력 -->
@@ -167,7 +169,9 @@
         </div>
       </div>
       
-     </c:forEach><br/><br/>
+     </c:forEach>
+     
+     </div></div></center>
       	
   </section>
   <div style="text-align:center;"><br/><br/><br/>

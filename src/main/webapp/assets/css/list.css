@@ -20212,7 +20212,6 @@ pre code {
 
   .col-lg-4 {
     flex: 0 0 33.33333%;
-    max-width: 33.33333%;
   }
 
   .col-lg-5 {
@@ -37357,10 +37356,9 @@ li.design {
 
 .listwrap{
 	position: relative;
-	margin-left:23%;
 }
+
 @media (max-width: 700px) {
   .listwrap {
   position: relative;
-   margin-left: 5%;
 }

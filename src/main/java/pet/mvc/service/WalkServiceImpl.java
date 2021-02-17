@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.log4j.Log4j;
 import pet.mvc.mapper.WalkMapper;
+import pet.mvc.walk.CmtVo;
 import pet.mvc.walk.Comment;
 import pet.mvc.walk.Walk;
 import pet.mvc.walk.WalkListResult;
 import pet.mvc.walk.WalkListVo;
+import pet.mvc.walk.joinVo;
 
 @Service
 @Log4j
@@ -34,9 +36,8 @@ public class WalkServiceImpl implements WalkService {
 		    dto.setMember_number(1L); //임의 데이터, 로그인 연동되면 멤버번호로 받아야 함.
 			dto.setWalk_date(timestamp);
 		} catch(Exception e) {
-			log.info("e:"+e);
+			log.info("#insertWalk Exception : "+e);
 		}
-		log.info("최종:"+dto);
 		walkMapper.insertWalk(dto);
 	}
 	@Override
@@ -52,19 +53,17 @@ public class WalkServiceImpl implements WalkService {
 		    dto.setMember_number(1L); //임의 데이터, 로그인 연동되면 멤버번호로 받아야 함.
 			dto.setWalk_date(timestamp);
 		} catch(Exception e) {
-			log.info("e:"+e);
+			log.info("#walkUpdate exception : "+e);
 		}
-		log.info("##서비스로 온 update값:"+dto);
 		walkMapper.walkUpdate(dto);
 	}
 
 	@Override
 	public WalkListResult getListS(int cp, int ps, String orderType, String keyword) {
 		// 임시로 넣은 값
-		ps=5;
-		orderType="soon";
-		keyword="";
-		log.info("## DB 뽑을 값 cp: "+cp+", orderType: "+orderType+", keyword: "+keyword);
+			ps=5;
+			orderType="soon";
+			keyword="";
 		WalkListVo listVo = new WalkListVo(cp, ps, orderType, keyword);
 		ArrayList<Walk> list = walkMapper.getList(listVo);
 		return new WalkListResult(cp, ps, walkMapper.totalWalk(orderType, keyword),list);
@@ -73,36 +72,63 @@ public class WalkServiceImpl implements WalkService {
 
 	@Override
 	public Walk getWalk(long idx) {
-		log.info("서비스로 넘어온 idx값"+idx);
 		Walk dto = walkMapper.getWalk(idx);
-		log.info("DB에서뽑은 dto:"+dto);
 		ArrayList<Comment> cmts = walkMapper.getWalkCmt(idx);
-		dto.setCmts(cmts);
-		log.info(dto.getCmts());
+		ArrayList<Comment> joinCmts = walkMapper.getJoinCmt(idx);
+		int apply = cmts.size();
+		int join = joinCmts.size();
+		int like = walkMapper.getWalkLike(idx);
+		dto.setApply(apply);
+		dto.setJoin(join);
+		dto.setLike(like);
+		dto.setNormalCmts(cmts);
+		dto.setJoinCmts(joinCmts);
+		log.info("###apply:"+apply+", join:"+join+", like:"+like);
 		return dto;
 	}
 
-
 	@Override
-	public ArrayList<Comment> getWalkCmt(long idx) {
-		log.info("서비스로 넘어온 cmt에 쓸 idx값"+idx);
-		ArrayList<Comment> cmts = walkMapper.getWalkCmt(idx);
-		log.info("DB에서뽑아온 CMT dto:"+cmts);
-		return cmts;
+	public CmtVo getWalkCmt(long idx) {
+		ArrayList<Comment> normal = walkMapper.getWalkCmt(idx);
+		ArrayList<Comment> join = walkMapper.getJoinCmt(idx);
+		int applyCount = normal.size();
+		int joinCount = join.size();
+		CmtVo vo = new CmtVo(normal, join, applyCount, joinCount);
+		return vo;
 	}
-
 
 	@Override
 	public void insertWalkCmt(Comment dto) {
-		log.info("#서비스로 넘어온 dto : "+dto);
+		dto.setMember_number(1L); //임의의 값
 		walkMapper.insertWalkCmt(dto);
 	}
 	@Override
 	public void walkDelete(long idx) {
-		log.info("##del.do로 넘어온 idx"+idx);
 		walkMapper.walkDelete(idx);
 	}
-
-
+	@Override
+	public Comment getWalkCmtData(long idx) {
+		Comment dto = walkMapper.getWalkCmtData(idx);
+		return dto;
+	}
+	@Override
+	public void insertWalkJoin(joinVo vo, long cmtIdx) {
+		walkMapper.insertWalkJoin(vo);
+		walkMapper.updateWalkCmt(cmtIdx);
+	}
+	@Override
+	public long selectByCmtIdx(long cmtIdx) {
+		Long memNo = walkMapper.selectByCmtIdx(cmtIdx);
+		return memNo;
+	}
+	@Override
+	public void addHeart(joinVo vo) {
+		walkMapper.addHeart(vo);
+	}
+	@Override
+	public int getWalkLike(long idx) {
+		int likeCount = walkMapper.getWalkLike(idx);
+		return likeCount;
+	}
 
 }

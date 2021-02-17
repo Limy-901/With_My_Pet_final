@@ -1,15 +1,11 @@
 package pet.mvc.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
-
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,9 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import pet.mvc.service.WalkService;
+import pet.mvc.walk.CmtVo;
 import pet.mvc.walk.Comment;
 import pet.mvc.walk.Walk;
 import pet.mvc.walk.WalkListResult;
+import pet.mvc.walk.joinVo;
 
 @Log4j
 @Controller
@@ -91,7 +89,6 @@ public class WalkController {
 	// 모임 개설
 	@RequestMapping(value="make.do")
 	public String make(Walk dto)  {
-		log.info("##파라미터로 넘어온거"+dto);
 		String from = (dto.getTime())+":00.000";
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 		Date parsedDate = null;
@@ -105,16 +102,15 @@ public class WalkController {
 		walkService.insertWalk(dto);
 		return "redirect:list.do";
 	}
+	
 	@PostMapping("apply.do")
 	public String apply(Comment dto) {
-		log.info("#apply.do : "+dto);
 		walkService.insertWalkCmt(dto);
 		return "redirect:blog.do?idx="+dto.getWalk_idx();
 	}
 	
 	@GetMapping("update.do")
 	public ModelAndView update(long idx) {
-		log.info("##update.do: "+idx);
 		Walk dto = walkService.getWalk(idx);
 		log.info(dto);
 		ModelAndView mv = new ModelAndView("pet/walkUpdate","content",dto);
@@ -123,39 +119,49 @@ public class WalkController {
 	
 	@PostMapping("update.do")
 	public String rewrite(Walk dto) {
-		log.info("##rewrite.do:"+dto);
 		walkService.walkUpdate(dto);
 		return "redirect:list.do";
 	}
 	
 	@GetMapping("delete.do")
 	public String delete(long idx) {
-		log.info("##delete.do:"+idx);
 		walkService.walkDelete(idx);
-		log.info(idx+"번 삭제완료");
 		return "redirect:list.do?cp=1";
 	}
 	
-	
-	@RequestMapping("getMemberData.do")
-	public @ResponseBody Comment getMemData(@RequestParam(value="idx")Long idx) {
-		log.info("##들어오긴했ㅇ습니당"+idx);
-		return null;
+	@GetMapping(value="getMemberData.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public @ResponseBody Comment getCmtMember(long idx, HttpServletResponse response) {
+		//임의로, 멤버 연동되면 멤버 정보 가져와야함.
+		Comment dto = walkService.getWalkCmtData(idx);
+		return dto;
 	}
-	
-
 	
 	@RequestMapping("blog.do")
 	public ModelAndView walkblog(HttpSession session, long idx) {
 		Walk dto = walkService.getWalk(idx);
-		
 		ModelAndView mv = new ModelAndView("pet/walkblog","content",dto);
 		return mv;
 	}
 	
+	@GetMapping(value="like.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public @ResponseBody int like(Long walk_idx,HttpServletResponse response) {
+		joinVo vo = new joinVo(walk_idx,1L);
+		walkService.addHeart(vo);
+		int likeCount = walkService.getWalkLike(walk_idx);
+		return likeCount;
+	}
+	
+	@GetMapping(value="join.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public @ResponseBody CmtVo join(Long joinIdx, Long joinWalkIdx, HttpServletResponse response) {
+		long memberNo = walkService.selectByCmtIdx(joinIdx); // cmtIdx로 memNo 뽑기
+		joinVo vo = new joinVo(joinWalkIdx,memberNo);
+		walkService.insertWalkJoin(vo,joinIdx);
+		CmtVo allCmts = walkService.getWalkCmt(joinWalkIdx);
+		return allCmts; 
+	}
+	
 	@RequestMapping("post.do")
 	public String walkpost() {
-		log.info("산책글작성");
-	return "/pet/walkpost";
+		return "/pet/walkpost";
 	}
 }

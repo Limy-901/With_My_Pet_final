@@ -7,6 +7,7 @@
    	   <typeAlias alias="Walk" type="pet.mvc.walk.Walk"/>
    	   <typeAlias alias="WalkListVo" type="pet.mvc.walk.WalkListVo"/>
    	   <typeAlias alias="WalkComment" type="pet.mvc.walk.Comment"/>
+   	   <typeAlias alias="joinVo" type="pet.mvc.walk.joinVo"/>
    </typeAliases>
    <mappers>
    		<mapper resource="pet/mvc/mapper/IndexMapper.xml"/>
