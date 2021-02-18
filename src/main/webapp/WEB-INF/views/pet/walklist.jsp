@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" import="java.util.Hashtable"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 ​
 ​
@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="../assets/css/button/button.min.css">
   <link rel="stylesheet" href="../assets/css/button/dropdown.css">
   <link rel="stylesheet" href="../assets/css/button/dropdown.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -118,31 +119,71 @@
       </div>
   </div>
 </section><br><br>
-<!-- 산책파티버튼 -->
 
+<!-- 산책개설버튼 -->
 <div style="margin:auto; display:flex; ">
 	 <a class="button" href="../walk/post.do"style="font-size:30px;margin:auto; padding:1.5%;display:flex; position:relative;"><b>&nbsp;&nbsp;&nbsp;&nbsp;직접 만들기 🐕&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
-</div>
-<br><br><br>
+</div><br><br><br>
 
+<!-- 검색창 -->
 <center>
     <div class="ui action input" style="margin:auto; position:relative; width:40%;">
-	  <input type="text" placeholder="검색어를 입력하세요.">
-	  <select class="ui compact selection dropdown">
+	  <input type="text" id="searchKeyword" placeholder="검색어를 입력하세요.">
+	  <select id="searchType" class="ui compact selection dropdown">
 	    <option selected="" value="all">전체</option>
-	    <option value="SearctLoc">지역</option>
-	    <option value="SearctSub">제목</option>
-	    <option value="SearctCon">내용</option>
+	    <option value="location">지역</option>
+	    <option value="subject">제목</option>
+	    <option value="content">내용</option>
 	  </select>
-	  <div class="ui teal button">검색</div>
+	  <div class="ui teal button" onclick="search()">검색</div>
 	</div>
 </center>
+<script>
+function search(){
+	var keyword = $("#searchKeyword").val();
+	var selected = $("#searchType").val();
+	alert(keyword+selected);
+	$.ajax({
+		   url: "search.do", 
+		   type: "GET",
+		   data: {
+			   keyword:keyword,
+			   searchType:selected
+		   },
+		   success: function(responseData){
+			   alert(responseData.list);
+			   if(!responseData) return false;
+			   var html = '';
+			   alert(responseData.list.length);
+			   for(var i=0; i<responseData.list.length;i++){
+				   html += "<center><section class='w3l-features py-5' id='features'>";
+				   html += "<div class='container py-lg-5 py-md-4'>";
+				   html += "<div class='grids-area-hny main-cont-wthree-fea row'>";
+				   html += "<div class='col-lg-4 col-sm-6 grids-feature'>";
+				   html += "<div class='area-box'>";
+				   html += "<div class='icon'>";
+				   html += "<span class='fa fa-snowflake-o'></span>";
+				   html += "</div>";
+				   html += "<h4><a class='title-head'>"+responseData.list[i].walk_subject+"</a></h4>";
+				   html += "<p>"+responseData.list[i].walk_content+"</p><p>"+responseData.list[i].walk_location+"</p>";
+				   html += "<a href='../walk/blog.do?idx="+responseData.list[i].walk_idx+"' class='read'>자세히 보기</a>";
+				   html += "</div></div></div></div></section></center>";
+			   }
+			   $('#searchHere').html(html);
+		   }
+	});
+}
+</script>
+
+
+<!-- /bottom-grids-->
+<div id="searchHere"></div>
+<!-- //bottom-grids-->
 
 <!-- 리스트 시작-->
 <section class="w3l-features py-5" id="features">
 <center>
   <div class="listwrap">
-  <p><label class="list-date" style="color:#6EC5CE;">2021년 2월 4일</label></p>
     
     <div class="grids-area-hny main-cont-wthree-fea">
     
@@ -150,27 +191,27 @@
     <c:if test="${empty list}">
 		<p>데이터가 없습니다.</p>
 	</c:if>
-	
-    <c:forEach items="${list.list}" var="item">
-    
-      <div class="col-lg-4 col-sm-6 grids-feature">
-        <div class="area-box">          
+	<center>
+	<c:forEach items="${list.list}" var="item">
+      <div class="col-lg-4 col-sm-6 grids-feature"style="margin-left:-5%; display:relative;">
+        <center>
+        <div class="area-box" >
          <div class="col-md-4">
-            <img src="../assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
+            <img style="margin:auto;"src="../assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
          </div> 
-	       <div class="col-md-8 align-self">  
-	        <p>${item.walk_date}</p>
-	        <p>${item.walk_location}</p>       
-	          <h4><a href="#feature" class="title-head">${item.walk_subject}</a></h4>
-			  <p style="font-size:16px;">${item.walk_writer}</p>
-	          <p>${item.walk_content}</p>
-	          <a href="../walk/blog.do?idx=${item.walk_idx}" class="read">자세히 보기>></a>
-	        </div>
+	       <div class="col-md-8 align-self">
+	       		<P style="font-size:1rem;">${item.day}, ${item.time}</P>
+		        <b><p>${item.walk_location}</p></b>   
+	            <h4><a href="#feature" class="title-head">${item.walk_subject}</a></h4>
+			    <p style="font-size:16px;">${item.walk_writer}</p>
+	            <p>${item.walk_content}</p>
+	            <a href="../walk/blog.do?idx=${item.walk_idx}" class="read">자세히 보기>></a>
+	       </div>
         </div>
+        </center>
       </div>
-      
      </c:forEach>
-     
+     </center>
      </div></div></center>
       	
   </section>

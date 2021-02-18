@@ -11,15 +11,15 @@
    	   <typeAlias alias="joinVo" type="pet.mvc.walk.joinVo"/>
    	   
    	   <typeAlias alias="Cart" type="pet.mvc.shopdomain.Cart"/>
-   <typeAlias alias="Review" type="pet.mvc.shopdomain.Review"/>
-   <typeAlias alias="Category" type="pet.mvc.shopdomain.Category"/>
-   <typeAlias alias="Product" type="pet.mvc.shopdomain.Product"/>
-   <typeAlias alias="ProductVo" type="pet.mvc.shopdomain.ProductVo"/>
+	   <typeAlias alias="Review" type="pet.mvc.shopdomain.Review"/>
+	   <typeAlias alias="Category" type="pet.mvc.shopdomain.Category"/>
+	   <typeAlias alias="Product" type="pet.mvc.shopdomain.Product"/>
+	   <typeAlias alias="ProductVo" type="pet.mvc.shopdomain.ProductVo"/>
    	   <typeAlias alias="ProductListResult" type="pet.mvc.shopdomain.ProductListResult"/>
    	   
 		   	   
-   	     <typeAlias type="pet.mvc.board.Board" alias="Board"/>
-		<typeAlias type="pet.mvc.board.BoardVo" alias="BoardVo"/>
+   	   <typeAlias type="pet.mvc.board.Board" alias="Board"/>
+	   <typeAlias type="pet.mvc.board.BoardVo" alias="BoardVo"/>
 		<typeAlias type="pet.mvc.board.BoardListResult" alias="BoardListResult"/>
 		<typeAlias type="pet.mvc.board.BoardCmt" alias="BoardCmt"/>
 		

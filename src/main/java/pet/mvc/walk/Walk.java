@@ -3,7 +3,6 @@ package pet.mvc.walk;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,11 +21,12 @@ public class Walk {
 	private Date walk_rdate;
 	private long walk_count;
 	private String walk_location;
-	private String time;
 	private Timestamp walk_date;
 	private ArrayList<Comment> normalCmts;
 	private ArrayList<Comment> joinCmts;
 	private int like;
 	private int apply;
 	private int join;
+	private String day;
+	private String time;
 }

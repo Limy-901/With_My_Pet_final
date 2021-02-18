@@ -1,9 +1,7 @@
 package pet.mvc.mapper;
 
 import java.util.ArrayList;
-
 import org.apache.ibatis.annotations.Param;
-
 import pet.mvc.walk.Comment;
 import pet.mvc.walk.Walk;
 import pet.mvc.walk.WalkListVo;

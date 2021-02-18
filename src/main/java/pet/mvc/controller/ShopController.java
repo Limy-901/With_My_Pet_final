@@ -43,7 +43,7 @@ public class ShopController {
 	}
 	
 	@RequestMapping("/category")
-	public ModelAndView category(HttpServletRequest request, HttpSession session) {
+	public ModelAndView category(HttpServletRequest request, HttpSession session) throws Exception {
 		String catgo = request.getParameter("catgo");
 		String keyword = request.getParameter("keyword");
 		String cpStr = request.getParameter("cp");
@@ -130,14 +130,14 @@ public class ShopController {
 	}
 	
 	@GetMapping("/product")
-	public ModelAndView product(@RequestParam long catgo_code) {
+	public ModelAndView product(@RequestParam long catgo_code) throws Exception {
 		List<Category> list = service.listCatgoS(catgo_code);
 		ModelAndView mv = new ModelAndView("/shop/product","product",list);
 		return mv;
 	}
  	
  	@GetMapping("/productDes")
-	public ModelAndView productDes(HttpSession session, @RequestParam long catgo_code,@RequestParam long review_number) {
+	public ModelAndView productDes(HttpSession session, @RequestParam long catgo_code,@RequestParam long review_number) throws Exception {
 		log.info("##"+review_number+catgo_code);
 		Product list = service.listS(catgo_code);
 		ArrayList<Review> reviewCon = service.listReviewS(review_number);
@@ -149,14 +149,14 @@ public class ShopController {
 	}
  	
  	@PostMapping("/productDes")
- 	public String productDes(Review review) {
+ 	public String productDes(Review review) throws Exception {
  		//log.info("#�솕�땲? review: "+ review);
  		service.insertReview(review);
 		return "redirect:productDes?catgo_code=9&review_number=6";
  	}
  	
 	@RequestMapping("/productDes21")
-	public ModelAndView productDes21(HttpSession session, @RequestParam long catgo_code,@RequestParam long review_number) {
+	public ModelAndView productDes21(HttpSession session, @RequestParam long catgo_code,@RequestParam long review_number) throws Exception {
 		log.info("@@"+review_number+catgo_code);
 		Product list = service.listS(catgo_code);
 		List<Review> reviewCon = service.listReviewS(review_number);

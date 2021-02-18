@@ -1,13 +1,12 @@
 package pet.mvc.service;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import lombok.extern.log4j.Log4j;
 import pet.mvc.mapper.WalkMapper;
 import pet.mvc.walk.CmtVo;
@@ -25,15 +24,15 @@ public class WalkServiceImpl implements WalkService {
 	
 	@Override
 	public void insertWalk(Walk dto) {
-		// ì‹œê°„ > TimeStamp ë³€í™˜
+		// ½Ã°£ > TimeStamp º¯È¯
 		String from = (dto.getTime())+":00.000";
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddhh:mm:ss.SSS");
 		Date parsedDate = null;
 		Timestamp timestamp = null;
 		try {
 		    parsedDate = dateFormat.parse(from);
 		    timestamp = new java.sql.Timestamp(parsedDate.getTime());
-		    dto.setMember_number(1L); //ì„ì˜ ë°ì´í„°, ë¡œê·¸ì¸ ì—°ë™ë˜ë©´ ë©¤ë²„ë²ˆí˜¸ë¡œ ë°›ì•„ì•¼ í•¨.
+		    dto.setMember_number(1L); //ÀÓÀÇ µ¥ÀÌÅÍ, ·Î±×ÀÎ ¿¬µ¿µÇ¸é ¸â¹ö¹øÈ£·Î ¹Ş¾Æ¾ß ÇÔ.
 			dto.setWalk_date(timestamp);
 		} catch(Exception e) {
 			log.info("#insertWalk Exception : "+e);
@@ -42,15 +41,15 @@ public class WalkServiceImpl implements WalkService {
 	}
 	@Override
 	public void walkUpdate(Walk dto) {
-		// ì‹œê°„ > TimeStamp ë³€í™˜
+		// ½Ã°£ > TimeStamp º¯È¯
 		String from = (dto.getTime())+":00.000";
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddhh:mm:ss.SSS");
 		Date parsedDate = null;
 		Timestamp timestamp = null;
 		try {
 		    parsedDate = dateFormat.parse(from);
 		    timestamp = new java.sql.Timestamp(parsedDate.getTime());
-		    dto.setMember_number(1L); //ì„ì˜ ë°ì´í„°, ë¡œê·¸ì¸ ì—°ë™ë˜ë©´ ë©¤ë²„ë²ˆí˜¸ë¡œ ë°›ì•„ì•¼ í•¨.
+		    dto.setMember_number(1L); //ÀÓÀÇ µ¥ÀÌÅÍ, ·Î±×ÀÎ ¿¬µ¿µÇ¸é ¸â¹ö¹øÈ£·Î ¹Ş¾Æ¾ß ÇÔ.
 			dto.setWalk_date(timestamp);
 		} catch(Exception e) {
 			log.info("#walkUpdate exception : "+e);
@@ -60,13 +59,35 @@ public class WalkServiceImpl implements WalkService {
 
 	@Override
 	public WalkListResult getListS(int cp, int ps, String orderType, String keyword) {
-		// ì„ì‹œë¡œ ë„£ì€ ê°’
+		// ÀÓ½Ã·Î ³ÖÀº °ª
 			ps=5;
-			orderType="soon";
-			keyword="";
+		log.info("ÀÌ°Åµé¾î°¡¿ä!"+cp+ps+orderType+keyword);
 		WalkListVo listVo = new WalkListVo(cp, ps, orderType, keyword);
-		ArrayList<Walk> list = walkMapper.getList(listVo);
-		return new WalkListResult(cp, ps, walkMapper.totalWalk(orderType, keyword),list);
+		ArrayList<Walk> lists = walkMapper.getList(listVo);
+		// Date °¡°ø (day/timeÀ¸·Î ºĞ±â)
+		for(Walk list:lists) {
+			Date origin = list.getWalk_date();
+			DateFormat dayForm = new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ");
+			DateFormat timeForm = new SimpleDateFormat("a hh½Ã mmºĞ");
+			String day = dayForm.format(origin);
+			String time = timeForm.format(origin);
+			list.setDay(day);
+			list.setTime(time);
+			log.info("½Ã°£³ª´©´ÂÁß~~~"+list.getTime());
+		}
+		/*
+		<if test="orderType != null and !orderType.equals('')">
+			<choose>
+				<when test="orderType.equals('new')">
+					order by WALK_RDATE desc) a
+				</when>
+				<otherwise>
+					order by WALK_DATE) a
+				</otherwise>
+			</choose>
+		</if>
+		 */
+		return new WalkListResult(cp, ps, walkMapper.totalWalk(orderType, keyword),lists);
 	}
 
 
@@ -99,7 +120,7 @@ public class WalkServiceImpl implements WalkService {
 
 	@Override
 	public void insertWalkCmt(Comment dto) {
-		dto.setMember_number(1L); //ì„ì˜ì˜ ê°’
+		dto.setMember_number(1L); //ÀÓÀÇÀÇ °ª
 		walkMapper.insertWalkCmt(dto);
 	}
 	@Override

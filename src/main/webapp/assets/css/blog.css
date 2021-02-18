@@ -202,7 +202,7 @@ body{
 .attendlabel{
 	font-size: 20px;
 	font-weight: 600;
-	margin-left: 220px;
+	margin-left: 12%;
 	margin-bottom: 30px;
 }
 .applylabel{
@@ -248,7 +248,7 @@ body{
     border-radius: 8px;
     max-height: 320px;
     min-height: 320px;
-    max-width: 300px;
+    max-width: 200px;
 	margin-bottom: 50px;
 }
 p {
@@ -275,6 +275,8 @@ p {
     transition: all 0.5s ease 0s;
     border-radius: var(--border-radius);
     background-color: #f1f0ec99;
+    border-color:#FFB446;
+    border-size:1px;
     position: relative;
     margin-bottom: 10px;
     
@@ -298,7 +300,7 @@ p {
 }
 .align-self {
     align-self: center;
-    margin-left: 80px;
+    margin-left: 10%;
 }
 
 .col-lg-4 {
@@ -474,10 +476,11 @@ margin-left: 280px;
 	margin-left: 150px;
 }
 .applyrow {
+	text-align:center;
+	margin:auto;
     display: flex;
+    width:80%;
     flex-wrap: wrap;
-    margin-right: -15px;
-
     position: relative;
 }
 
@@ -504,7 +507,7 @@ margin-left: 280px;
 	
 
 	margin-top: 30%;
-	margin-left: 18%;
+	margin-left: 15%;
 	position: absolute;
 	width: 70%;
 	

@@ -1,9 +1,12 @@
 package pet.mvc.controller;
 
 import java.util.Date;
+import java.util.Hashtable;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -30,15 +33,15 @@ import pet.mvc.walk.joinVo;
 public class WalkController {
 	private WalkService walkService;
 	
-	// Î¶¨Ïä§Ìä∏ Î∂àÎü¨Ïò§Í∏∞
+	// ∏ÆΩ∫∆Æ ∫“∑Øø¿±‚
 	@RequestMapping("list.do")
 	public ModelAndView list(HttpSession session, 
 			@RequestParam (defaultValue="0", required=false)int cp,
 			@RequestParam (defaultValue="0",required=false)int ps,
-			String orderType,String keyword) {
-		log.info("##ÌååÎùºÎØ∏ÌÑ∞ Í∞í cp: "+cp+", orderType: "+orderType+", keyword: "+keyword);
+			String searchType,String keyword) {
+		log.info("##∆ƒ∂ÛπÃ≈Õ ∞™ cp: "+cp+", searchType: "+searchType+", keyword: "+keyword);
 		
-		// ÌéòÏù¥Ïßï
+		// ∆‰¿Ã¬°
 		if(cp == 0) {
 			Object cpObj = session.getAttribute("cp");
 			if(cpObj != null) cp = (Integer)cpObj;
@@ -58,26 +61,27 @@ public class WalkController {
 			}
 		}
 		session.setAttribute("ps", ps);
-		// Ï†ïÎ†¨Î∞©Ïãù
-		if(orderType == null) {
+		// ¡§∑ƒπÊΩƒ
+		if(searchType == null) {
 			String orderSession = (String) session.getAttribute("orderType");
 			if(orderSession != null) orderSession = orderSession.trim();
-			orderType = orderSession;
+			searchType = orderSession;
 		}
-		session.setAttribute("orderType", orderType);
-		// Í≤ÄÏÉâÌÇ§ÏõåÎìú
+		session.setAttribute("searchType", searchType);
+		// ∞Àªˆ≈∞øˆµÂ
 		if(keyword == null) {
 			String keywordSession = (String) session.getAttribute("keyword");
 			if(keywordSession != null) keywordSession = keywordSession.trim();
 			keyword = keywordSession;
 		}
 		session.setAttribute("keyword", keyword);
-		// DBÏóêÏÑú ÏûÖÎ†•Ï†ïÎ≥¥Î°ú Î¶¨Ïä§Ìä∏ ÎΩëÏïÑÎÇ¥Í∏∞
-		log.info("##ÏÑúÎπÑÏä§ ÎÑòÏñ¥Í∞Ñ Í∞í cp: "+cp+", orderType: "+orderType+", keyword: "+keyword);
-		WalkListResult list = walkService.getListS(cp,ps,orderType,keyword);
-		log.info("##Í≤ÄÏÉâÌïú Î¶¨Ïä§Ìä∏:"+list);
+		// DBø°º≠ ¿‘∑¬¡§∫∏∑Œ ∏ÆΩ∫∆Æ ªÃæ∆≥ª±‚
+		log.info("##º≠∫ÒΩ∫ ≥—æÓ∞£ ∞™ cp: "+cp+", searchType: "+searchType+", keyword: "+keyword);
+		WalkListResult list = walkService.getListS(cp,ps,searchType,keyword);
+		log.info("##∞Àªˆ«— ∏ÆΩ∫∆Æ:"+list);
+		
 		ModelAndView mv = new ModelAndView("pet/walklist","list",list);
-		// Î¶¨Ïä§Ìä∏Í∞Ä ÎπÑÏñ¥ÏûàÏùÑ Í≤ΩÏö∞
+		// ∏ÆΩ∫∆Æ∞° ∫ÒæÓ¿÷¿ª ∞ÊøÏ
 		if(list.getList().size() == 0) {
 			if(cp>1) return new ModelAndView("redirect:list.do?cp="+(cp-1));
 			else return new ModelAndView("pet/walklist","list",null);
@@ -86,7 +90,7 @@ public class WalkController {
 		}
 	}
 	
-	// Î™®ÏûÑ Í∞úÏÑ§
+	// ∏¿” ∞≥º≥
 	@RequestMapping(value="make.do")
 	public String make(Walk dto)  {
 		String from = (dto.getTime())+":00.000";
@@ -131,15 +135,24 @@ public class WalkController {
 	
 	@GetMapping(value="getMemberData.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public @ResponseBody Comment getCmtMember(long idx, HttpServletResponse response) {
-		//ÏûÑÏùòÎ°ú, Î©§Î≤Ñ Ïó∞ÎèôÎêòÎ©¥ Î©§Î≤Ñ Ï†ïÎ≥¥ Í∞ÄÏ†∏ÏôÄÏïºÌï®.
+		//¿”¿«∑Œ, ∏‚πˆ ø¨µøµ«∏È ∏‚πˆ ¡§∫∏ ∞°¡ÆøÕæﬂ«‘.
 		Comment dto = walkService.getWalkCmtData(idx);
 		return dto;
 	}
 	
 	@RequestMapping("blog.do")
-	public ModelAndView walkblog(HttpSession session, long idx) {
+	public ModelAndView walkblog(HttpSession session, HttpServletRequest request, long idx) {
 		Walk dto = walkService.getWalk(idx);
-		ModelAndView mv = new ModelAndView("pet/walkblog","content",dto);
+		Date origin = dto.getWalk_date();
+		DateFormat dayForm = new SimpleDateFormat("yyyy≥‚ MMø˘ dd¿œ");
+		DateFormat timeForm = new SimpleDateFormat("a hhΩ√ mm∫–");
+		String day = dayForm.format(origin);
+		String time = timeForm.format(origin);
+		Hashtable<String,Object> map = new Hashtable<String,Object>();
+		map.put("day",day);
+		map.put("time",time);
+		map.put("dto",dto);
+		ModelAndView mv = new ModelAndView("pet/walkblog","content",map);
 		return mv;
 	}
 	
@@ -153,7 +166,7 @@ public class WalkController {
 	
 	@GetMapping(value="join.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public @ResponseBody CmtVo join(Long joinIdx, Long joinWalkIdx, HttpServletResponse response) {
-		long memberNo = walkService.selectByCmtIdx(joinIdx); // cmtIdxÎ°ú memNo ÎΩëÍ∏∞
+		long memberNo = walkService.selectByCmtIdx(joinIdx); // cmtIdx∑Œ memNo ªÃ±‚
 		joinVo vo = new joinVo(joinWalkIdx,memberNo);
 		walkService.insertWalkJoin(vo,joinIdx);
 		CmtVo allCmts = walkService.getWalkCmt(joinWalkIdx);
@@ -163,5 +176,13 @@ public class WalkController {
 	@RequestMapping("post.do")
 	public String walkpost() {
 		return "/pet/walkpost";
+	}
+	
+	@GetMapping(value="search.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public @ResponseBody WalkListResult search(String keyword, String searchType) {
+		log.info("##ø©±‚ø©±‚ "+searchType+keyword);
+		WalkListResult list = walkService.getListS(1,10,searchType,keyword);
+		log.info(list);
+		return list;
 	}
 }

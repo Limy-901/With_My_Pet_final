@@ -131,13 +131,13 @@ vertical-align: middle;
                   <!--<form action="https://sendmail.w3layouts.com/submitForm" method="post">-->
                   <form action="signup.do" method="post">
                       <div class="input-wrap">
-                          <input type="email" class="form-control" name="email" id="w3lName" placeholder="E-MAIL"
+                          <input type="email" class="form-control" name="member_email" id="w3lName" placeholder="E-MAIL"
                               required="">
-                          <input type="text" class="form-control" name="password" id="w3lSender" placeholder="PASSWORD"
+                          <input type="text" class="form-control" name="member_password" id="w3lSender" placeholder="PASSWORD"
                               required="">
-                          <input type="text" class="form-control" name="name" id="w3lSubject" placeholder="NAME"
+                          <input type="text" class="form-control" name="member_name" id="w3lSubject" placeholder="NAME"
                               required="">
-                          <input type="text" class="form-control" name="address" id="w3lMessage" placeholder="ADRESS"
+                          <input type="text" class="form-control" name="member_address" id="w3lMessage" placeholder="ADRESS"
                               required="">
                       </div>
                      
