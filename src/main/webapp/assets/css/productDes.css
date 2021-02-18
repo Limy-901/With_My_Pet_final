@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -44,7 +44,7 @@
 }
 
 html {
-  font-family: 'Jost', sans-serif;
+   font-family: 'Spoqa Han Sans Neo';
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -65,7 +65,7 @@ section {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Spoqa Han Sans Neo';
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -213,7 +213,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:'Spoqa Han Sans Neo';
   font-size: 1em;
 }
 
@@ -274,7 +274,7 @@ select,
 optgroup,
 textarea {
   margin: 0;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
   font-size: inherit;
   line-height: inherit;
 }
@@ -1887,7 +1887,7 @@ pre code {
 }
 
 .table {
-  width: 100%;
+  width: 50%;
   margin-bottom: 1rem;
   color: #212529;
 }
@@ -14034,15 +14034,15 @@ a.text-dark:focus {
 }
 
 :root {
-  --primary-color: #b87182;
-  --secondary-color: #f53626;
+  --primary-color: #ffb446;
+  --secondary-color: #6EC5CE;
   --font-color: #696969;
-  --bg-color: rgb(248, 244, 244);
+  --bg-color: #fff;
   --heading-color: #000c04;
   --border-radius: 10px;
   --border-color: #ddd;
   --border-light:#f0f3f0;
-  --nav-color: #292922;
+  --nav-color: #585849;
   --dropdown-color: #fff;
   --bg-light: rgba(147, 107, 232, 0.05);
   --iframe-filter: grayscale(0%);
@@ -14050,10 +14050,10 @@ a.text-dark:focus {
 }
 
 [data-theme="dark"] {
-  --primary-color: #189A46;
-  --secondary-color: #f53626;
+  --primary-color: #b96f13;
+  --secondary-color: #ffb446;
   --font-color: #afafaf;
-  --bg-color:#151515;
+  --bg-color:#4f3426;
   --heading-color: #ddd;
   --border-color: #333;
   --border-light: #444;
@@ -14063,7 +14063,6 @@ a.text-dark:focus {
   --iframe-filter: grayscale(100%);
   --widget-bg: #131617;
 }
-
 .noscroll {
   overflow: hidden;
   height: 100vh;
@@ -14077,7 +14076,7 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
   background: var(--bg-color);
   color: var(--font-color);
 }
@@ -14086,7 +14085,7 @@ body a,
 button,
 .btn {
   cursor: pointer !important;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
 }
 
 .clear {
@@ -14113,13 +14112,13 @@ label,
 li {
   -webkit-appearance: none;
   outline: none;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
 }
 
 a,
 a:hover {
   text-decoration: none;
-  color: #189A46;
+  color: #999999;
 }
 
 iframe {
@@ -14148,9 +14147,9 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
-  color: var(--heading-color);
-  font-family: 'Jost', sans-serif;
-  font-weight: 600;
+  color: #FFB446;
+  font-family: 'Spoqa Han Sans Neo';
+  font-weight: 400;
 }
 
 p {
@@ -14159,7 +14158,7 @@ p {
   font-size: 1.2em;
   line-height: 28px;
   color: var(--font-color);
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
 }
 
 li {
@@ -17541,7 +17540,7 @@ li.design {
   font-size: 14px;
   padding: 4px 10px;
   font-weight: 600;
-  background: var(--primary);
+  background: #6EC5CE;
 }
 
 .w3l-blog-single .w3l-blog-single1 .single-post-content-1 {
@@ -18630,6 +18629,7 @@ li.design {
     margin-top: 0;
     margin-bottom: 10px;
   }
+  
 }
 
 /*# sourceMappingURL=style-freedom.css.map */

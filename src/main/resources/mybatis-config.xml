@@ -3,14 +3,36 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+<settings> <setting name="jdbcTypeForNull" value="NULL" /> </settings>
    <typeAliases>
    	   <typeAlias alias="Walk" type="pet.mvc.walk.Walk"/>
    	   <typeAlias alias="WalkListVo" type="pet.mvc.walk.WalkListVo"/>
    	   <typeAlias alias="WalkComment" type="pet.mvc.walk.Comment"/>
    	   <typeAlias alias="joinVo" type="pet.mvc.walk.joinVo"/>
+   	   
+   	   <typeAlias alias="Cart" type="pet.mvc.shopdomain.Cart"/>
+   <typeAlias alias="Review" type="pet.mvc.shopdomain.Review"/>
+   <typeAlias alias="Category" type="pet.mvc.shopdomain.Category"/>
+   <typeAlias alias="Product" type="pet.mvc.shopdomain.Product"/>
+   <typeAlias alias="ProductVo" type="pet.mvc.shopdomain.ProductVo"/>
+   	   <typeAlias alias="ProductListResult" type="pet.mvc.shopdomain.ProductListResult"/>
+   	   
+		   	   
+   	     <typeAlias type="pet.mvc.board.Board" alias="Board"/>
+		<typeAlias type="pet.mvc.board.BoardVo" alias="BoardVo"/>
+		<typeAlias type="pet.mvc.board.BoardListResult" alias="BoardListResult"/>
+		<typeAlias type="pet.mvc.board.BoardCmt" alias="BoardCmt"/>
+		
+		<typeAlias alias="member" type="pet.member.vo.MemberVO"/>
+   	   
    </typeAliases>
+   
    <mappers>
    		<mapper resource="pet/mvc/mapper/IndexMapper.xml"/>
    		<mapper resource="pet/mvc/mapper/WalkMapper.xml"/>
+   		<mapper resource="pet/mvc/shopmapper/ProductMapper.xml"/>
+	<mapper resource="pet/mvc/shopmapper/CartMapper.xml"/>
+   		
+   		
    </mappers>
 </configuration>

@@ -61,8 +61,9 @@
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                      	<a class="dropdown-item" href="blog.html">쇼핑하기</a>
-                          <a class="dropdown-item" href="blog.html">구매후기</a>
+                      	<a class="dropdown-item" href="product?catgo_code=9">쇼핑하기</a>
+                          <a class="dropdown-item" href="cart">장바구니</a>
+                          <a class="dropdown-item" href="order">결제</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -71,12 +72,18 @@
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                          <a class="dropdown-item" href="blog.html">공지사항</a>
-                          <a class="dropdown-item" href="blog-single.html">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do">공지사항</a>
+                          <a class="dropdown-item" href="board/list.do">일상이야기</a>
                       </div>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="gallery.html" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
+                      <a class="nav-link" href="/member/agree.do" style="font-family: 'Spoqa Han Sans Neo';">회원가입 </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/member/mypage.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
                   </li>
                  
                   <li class="nav-item">

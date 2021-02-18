@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -44,7 +44,7 @@
 }
 
 html {
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -101,6 +101,17 @@ p {
 
 abbr[title],
 abbr[data-original-title] {
+  text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+  cursor: help;
+  border-bottom: 0;
+  -webkit-text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
+}
+
+abbr[title2],
+abbr[data-original-title2] {
   text-decoration: underline;
   -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
@@ -219,6 +230,7 @@ svg {
 
 table {
   border-collapse: collapse;
+  margin-left: 0%;
 }
 
 caption {
@@ -1501,7 +1513,7 @@ pre code {
 
   .col-lg-4 {
     flex: 0 0 33.33333%;
-    max-width: 33.33333%;
+    max-width: 23.33333%;
   }
 
   .col-lg-5 {
@@ -14013,15 +14025,15 @@ a.text-dark:focus {
 }
 
 :root {
-  --primary-color: #189A46;
-  --secondary-color: #f53626;
+  --primary-color: #ffb446;
+  --secondary-color: #6EC5CE;
   --font-color: #696969;
   --bg-color: #fff;
   --heading-color: #000c04;
   --border-radius: 10px;
   --border-color: #ddd;
   --border-light:#f0f3f0;
-  --nav-color: #292922;
+  --nav-color: #585849;
   --dropdown-color: #fff;
   --bg-light: rgba(147, 107, 232, 0.05);
   --iframe-filter: grayscale(0%);
@@ -14029,10 +14041,10 @@ a.text-dark:focus {
 }
 
 [data-theme="dark"] {
-  --primary-color: #189A46;
-  --secondary-color: #f53626;
+  --primary-color: #b96f13;
+  --secondary-color: #ffb446;
   --font-color: #afafaf;
-  --bg-color:#151515;
+  --bg-color:#4f3426;
   --heading-color: #ddd;
   --border-color: #333;
   --border-light: #444;
@@ -14056,7 +14068,7 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
   background: var(--bg-color);
   color: var(--font-color);
 }
@@ -14065,7 +14077,8 @@ body a,
 button,
 .btn {
   cursor: pointer !important;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
+  font-size: x-large;
 }
 
 .clear {
@@ -14092,13 +14105,13 @@ label,
 li {
   -webkit-appearance: none;
   outline: none;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
 }
 
 a,
 a:hover {
   text-decoration: none;
-  color: #189A46;
+  color: #999;
 }
 
 iframe {
@@ -14128,7 +14141,7 @@ h6 {
   margin: 0;
   padding: 0;
   color: var(--heading-color);
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
   font-weight: 600;
 }
 
@@ -14138,7 +14151,7 @@ p {
   font-size: 1.2em;
   line-height: 28px;
   color: var(--font-color);
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
 }
 
 li {
@@ -16726,7 +16739,7 @@ div#small-dialog iframe {
   content: "";
   position: absolute;
   top: 0;
-  min-height: 100%;
+  min-height: 300px;
   left: 0;
   right: 0;
   z-index: -1;
@@ -18608,6 +18621,10 @@ li.design {
   .w3l-footer ul.social-icons {
     margin-top: 0;
     margin-bottom: 10px;
+  }
+
+  .box {
+    border: 1px #555555 solid;
   }
 }
 

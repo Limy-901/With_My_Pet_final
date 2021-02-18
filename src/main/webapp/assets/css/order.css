@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -40,11 +40,12 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  box-sizing: 100;
+  margin: auto;
 }
 
 html {
-  font-family: 'Jost', sans-serif;
+   font-family: 'Spoqa Han Sans Neo';
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -73,19 +74,10 @@ body {
   text-align: left;
   background-color: #fff;
 }
-.dropdown {
-  position: relative;
-  display: inline-block;
+
+[tabindex="-1"]:focus:not(:focus-visible) {
+  outline: 0 !important;
 }
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #F9F9F9;
-  min-width: 160px;
-  padding: 8px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-.dropdown:hover .dropdown-content { display: block; }
 
 hr {
   box-sizing: content-box;
@@ -110,17 +102,6 @@ p {
 
 abbr[title],
 abbr[data-original-title] {
-  text-decoration: underline;
-  -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
-  cursor: help;
-  border-bottom: 0;
-  -webkit-text-decoration-skip-ink: none;
-  text-decoration-skip-ink: none;
-}
-
-abbr[title2],
-abbr[data-original-title2] {
   text-decoration: underline;
   -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
@@ -239,7 +220,6 @@ svg {
 
 table {
   border-collapse: collapse;
-  margin: auto;
 }
 
 caption {
@@ -1522,7 +1502,7 @@ pre code {
 
   .col-lg-4 {
     flex: 0 0 33.33333%;
-    max-width: 23.33333%;
+    max-width: 33.33333%;
   }
 
   .col-lg-5 {
@@ -14034,15 +14014,15 @@ a.text-dark:focus {
 }
 
 :root {
-  --primary-color: #b87182;
-  --secondary-color: #f53626;
+  --primary-color: #ffb446;
+  --secondary-color: #6EC5CE;
   --font-color: #696969;
-  --bg-color: rgb(248, 244, 244);
+  --bg-color: #fff;
   --heading-color: #000c04;
   --border-radius: 10px;
   --border-color: #ddd;
   --border-light:#f0f3f0;
-  --nav-color: #292922;
+  --nav-color: #585849;
   --dropdown-color: #fff;
   --bg-light: rgba(147, 107, 232, 0.05);
   --iframe-filter: grayscale(0%);
@@ -14050,10 +14030,10 @@ a.text-dark:focus {
 }
 
 [data-theme="dark"] {
-  --primary-color: #189A46;
-  --secondary-color: #f53626;
+  --primary-color: #b96f13;
+  --secondary-color: #ffb446;
   --font-color: #afafaf;
-  --bg-color:#151515;
+  --bg-color:#4f3426;
   --heading-color: #ddd;
   --border-color: #333;
   --border-light: #444;
@@ -14063,7 +14043,6 @@ a.text-dark:focus {
   --iframe-filter: grayscale(100%);
   --widget-bg: #131617;
 }
-
 .noscroll {
   overflow: hidden;
   height: 100vh;
@@ -17537,11 +17516,21 @@ ul.location-top {
 li.design {
   display: inline-block;
   border-radius: 6px;
-  color: #fff;
+  color: #2B6C73;
   font-size: 14px;
   padding: 4px 10px;
   font-weight: 600;
-  background: var(--primary);
+  
+}
+
+li.design1 {
+  display: inline-block;
+  border-radius: 6px;
+  color: #AFD4DD;
+  font-size: 14px;
+  padding: 4px 10px;
+  font-weight: 600;
+ 
 }
 
 .w3l-blog-single .w3l-blog-single1 .single-post-content-1 {
@@ -18631,5 +18620,169 @@ li.design {
     margin-bottom: 10px;
   }
 }
+
+.box {
+  border: 1px #555555 solid;
+}
+.order-box {
+  margin-top: 20px;
+  border-top: 2px #000000 solid;
+}
+.table-width {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.btn-center {
+  text-align: center;
+}
+
+.table--1aTBT9emfH {
+    width: 120%;
+    border-spacing: 0;
+    border-top: 2px solid #383d4a;
+    border-bottom: 1px solid #9ca0aa;
+}
+
+.table--1aTBT9emfH .col_1--5TSKjnuT7E {
+    width: 35px;
+}
+.table--1aTBT9emfH {
+    border-spacing: 0;
+}
+.table--1aTBT9emfH .col_2--YKLfiddUoQ {
+    width: 360px;
+}
+.table--1aTBT9emfH .col_2--YKLfiddUoQ {
+    width: 525px;
+}
+.table--1aTBT9emfH .col_3--3kO7FM0QDn {
+    width: 275px;
+}
+.table--1aTBT9emfH .col_3--3kO7FM0QDn {
+    width: 380px;
+}
+.table--1aTBT9emfH .col_4--2HuEbgLS2c {
+    width: 130px;
+}
+.table--1aTBT9emfH .col_4--2HuEbgLS2c, .table--1aTBT9emfH .col_5--1Q8JnXqems {
+    width: 170px;
+}
+.table--1aTBT9emfH .col_5--1Q8JnXqems {
+    width: 140px;
+}
+.table--1aTBT9emfH .col_4--2HuEbgLS2c, .table--1aTBT9emfH .col_5--1Q8JnXqems {
+    width: 170px;
+}
+.table--1aTBT9emfH .th--1G-vGQPU9O:first-child {
+    text-align: left;
+}
+.table--1aTBT9emfH .th--1G-vGQPU9O {
+    font-size: 13px;
+    line-height: 48px;
+    color: #222;
+}
+.table_cell--275JhdiLLN {
+    position: relative;
+    border-left: 1px solid #ececef;
+    border-top: 1px solid #cacbd4;
+    word-break: break-all;
+}
+.order_calculator--2zlH_jz09P {
+    display: table;
+    width: 100%;
+    padding: 32px 0;
+    border: 1px solid #9ca0aa;
+        border-top-width: 1px;
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+        border-left-width: 1px;
+    border-width: 1px 0;
+    table-layout: fixed;
+    text-align: center;
+    color: #222;
+}
+.order_calculator--2zlH_jz09P .product_price_detail--uc8kecGUYk {
+    display: table-cell;
+    width: 50%;
+    vertical-align: middle;
+}
+.order_calculator--2zlH_jz09P {
+    text-align: center;
+    color: #222;
+}
+body, input, textarea, select, button, table {
+    font-family:'Spoqa Han Sans Neo';
+    font-size: 12px;
+}
+body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select {
+    -webkit-text-size-adjust: none;
+}
+.order_calculator--2zlH_jz09P .product_price_total--3Qb27-JOGF {
+    display: table-cell;
+   
+    border-left: 1px solid #c0c2c7;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 19px;
+}
+.order_calculator--2zlH_jz09P .text_mart--2kMJYDiHte {
+    font-family: helvetica,"나눔고딕","Nanum Gothic"," 맑은고딕","Malgun Gothic","돋움",dotum,"Apple SD Gothic Neo",sans-serif;
+}
+.order_calculator--2zlH_jz09P .product_price_total--3Qb27-JOGF {
+    font-weight: bold;
+    font-size: 19px;
+}
+.order_calculator--2zlH_jz09P .text_point--1cHzZ5UYp1 {
+    color: #00c63a;
+}
+.order_calculator--2zlH_jz09P .product_price_total--3Qb27-JOGF {
+    font-weight: bold;
+    font-size: 19px;
+}
+.order_calculator--2zlH_jz09P {
+    text-align: center;
+    color: #222;
+}
+.order_calculator--2zlH_jz09P .product_price_total--3Qb27-JOGF .price--mkyVLxZMtX {
+    margin-left: 6px;
+    font-family: tahoma,"나눔고딕","Nanum Gothic","맑은고딕","Malgun Gothic","돋움",dotum,helvetica,"Apple SD Gothic Neo",sans-serif;
+    font-size: 24px;
+    vertical-align: -2px;
+}
+.order_calculator--2zlH_jz09P .text_point--1cHzZ5UYp1 {
+    color: #00c63a;
+}
+.order_calculator--2zlH_jz09P .product_price_total--3Qb27-JOGF {
+    font-weight: bold;
+    font-size: 19px;
+}
+.order_calculator--2zlH_jz09P {
+    text-align: center;
+    color: #222;
+}
+a.read {
+    color: var(--secondary-color);
+    font-size: 17px;
+    padding: 0;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--heading-color);
+    transition: 0.3s ease-in-out;
+    font-weight: 600;
+    border-radius: 0;
+    margin-top: 20px;
+    display: inline-block;
+    text-transform: capitalize;
+}
+body a, button, .btn {
+    cursor: pointer !important;
+    font-family: 'Spoqa Han Sans Neo';
+}
+a, a:hover {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+
+/*# sourceMappingURL=style-freedom.css.map */
 
 /*# sourceMappingURL=style-freedom.css.map */

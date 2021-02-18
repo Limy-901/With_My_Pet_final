@@ -43,11 +43,22 @@
 		<property name="configLocation"
 			 value="classpath:/mybatis-config.xml"/>
 	</bean>
+	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
+	<context:component-scan base-package="pet.mvc.shopservice" />
+	<context:component-scan base-package="pet.mvc.shopdomain" />
+	<context:component-scan base-package="pet.mvc.shopmapper"/>
+	<mybatis-spring:scan base-package="pet.mvc.shopmapper"/>	
+	
+	<context:component-scan base-package="pet.mvc. board"/>
 	
 	<context:component-scan base-package="pet.mvc.service" />
 	<context:component-scan base-package="pet.mvc.mapper"/>
 	<mybatis-spring:scan base-package="pet.mvc.mapper"/>
+	
+	<context:component-scan base-package="pet.member.service" />
+	<context:component-scan base-package="pet.member.dao" />
+	<mybatis-spring:scan base-package="pet.member.mapper"/>
 		
 </beans>
