@@ -11,4 +11,5 @@ public interface memberMapper {
 	MemberVO emailFind(MemberVO member);
 	MemberVO pwFind(MemberVO member);
 	MemberVO pwModify(MemberVO member);
+	void memberModify(MemberVO member);
 }

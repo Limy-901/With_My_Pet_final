@@ -184,13 +184,12 @@ function search(){
 <section class="w3l-features py-5" id="features">
 <center>
   <div class="listwrap">
-    
     <div class="grids-area-hny main-cont-wthree-fea">
-    
-    <!-- 리스트 출력 -->
+   
     <c:if test="${empty list}">
 		<p>데이터가 없습니다.</p>
 	</c:if>
+	
 	<center>
 	<c:forEach items="${list.list}" var="item">
       <div class="col-lg-4 col-sm-6 grids-feature"style="margin-left:-5%; display:relative;">
@@ -211,9 +210,9 @@ function search(){
         </center>
       </div>
      </c:forEach>
-     </center>
-     </div></div></center>
-      	
+     </center></div></div></center>
+  
+  <!-- 페이지 -->
   </section>
   <div style="text-align:center;"><br/><br/><br/>
     <c:forEach begin="1" end="${list.totalPageCount}" var="i">

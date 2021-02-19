@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,17 +23,20 @@ import lombok.extern.log4j.Log4j;
 import pet.mvc.service.WalkService;
 import pet.mvc.walk.CmtVo;
 import pet.mvc.walk.Comment;
+import pet.mvc.walk.Mailer;
 import pet.mvc.walk.Walk;
 import pet.mvc.walk.WalkListResult;
 import pet.mvc.walk.joinVo;
 
 @Log4j
 @Controller
-@AllArgsConstructor
 @RequestMapping("walk")
 
 public class WalkController {
+	@Autowired
 	private WalkService walkService;
+	@Autowired(required=false)
+	private Mailer mailer;
 	
 	// 리스트 불러오기
 	@RequestMapping("list.do")
@@ -95,23 +100,39 @@ public class WalkController {
 	public String make(Walk dto)  {
 		String from = (dto.getTime())+":00.000";
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-		Date parsedDate = null;
-		Timestamp timestamp = null;
-		try {
-		    parsedDate = dateFormat.parse(from);
-		    timestamp = new java.sql.Timestamp(parsedDate.getTime());
-		} catch(Exception e) {
-			log.info("e:"+e);
-		}
 		walkService.insertWalk(dto);
 		return "redirect:list.do";
 	}
 	
-	@PostMapping("apply.do")
-	public String apply(Comment dto) {
-		walkService.insertWalkCmt(dto);
-		return "redirect:blog.do?idx="+dto.getWalk_idx();
+	
+	@GetMapping(value="apply.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public @ResponseBody CmtVo apply(String walk_cmt_writer, String walk_cmt_content, Long walk_idx) {
+		Comment dto = new Comment();
+		dto.setWalk_idx(walk_idx);
+		dto.setWalk_cmt_writer(walk_cmt_writer);
+		dto.setWalk_cmt_content(walk_cmt_content);
+		boolean flag = walkService.insertWalkCmt(dto);
+		log.info("여기용"+flag);
+		log.info("dto"+dto.getMember_number());
+		if(flag) {
+			try {
+				String receiver = "misty901@naver.com";  //임시
+				String subject = dto.getWalk_cmt_writer()+"님이 함께 산책하고 싶어합니다!";
+				String content = dto.getWalk_cmt_writer()+"님이 보낸 메세지입니다. : "+dto.getWalk_cmt_content()
+				+" /  자세한 내용 보기 : http://localhost:8080/walk/blog.do?idx="+dto.getWalk_idx();
+				mailer.sendMail(receiver,subject,content);
+				CmtVo allCmts = walkService.getWalkCmt(walk_idx);
+				return allCmts;
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+		}else {
+			return null;
+		}
 	}
+	
+	
 	
 	@GetMapping("update.do")
 	public ModelAndView update(long idx) {
@@ -166,11 +187,14 @@ public class WalkController {
 	
 	@GetMapping(value="join.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public @ResponseBody CmtVo join(Long joinIdx, Long joinWalkIdx, HttpServletResponse response) {
+		log.info(joinIdx+"이거랑, "+joinWalkIdx);
 		long memberNo = walkService.selectByCmtIdx(joinIdx); // cmtIdx로 memNo 뽑기
 		joinVo vo = new joinVo(joinWalkIdx,memberNo);
-		walkService.insertWalkJoin(vo,joinIdx);
-		CmtVo allCmts = walkService.getWalkCmt(joinWalkIdx);
-		return allCmts; 
+		boolean flag = walkService.insertWalkJoin(vo,joinIdx);
+		if(flag) {
+			CmtVo allCmts = walkService.getWalkCmt(joinWalkIdx);
+			return allCmts; 
+		}else return null;
 	}
 	
 	@RequestMapping("post.do")
@@ -180,9 +204,7 @@ public class WalkController {
 	
 	@GetMapping(value="search.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public @ResponseBody WalkListResult search(String keyword, String searchType) {
-		log.info("##여기여기 "+searchType+keyword);
 		WalkListResult list = walkService.getListS(1,10,searchType,keyword);
-		log.info(list);
 		return list;
 	}
 }

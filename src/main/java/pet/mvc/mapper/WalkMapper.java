@@ -23,4 +23,6 @@ public interface WalkMapper {
 	void updateWalkCmt(long cmtIdx);
 	void addHeart(joinVo vo);
 	int getWalkLike(long idx);
+	int checkJoin(joinVo vo);
+	int checkCmt(joinVo vo);
 }

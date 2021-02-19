@@ -165,21 +165,22 @@
          <h1>회원정보 수정</h1>
         
          <br>
- 	<form action="https://sendmail.w3layouts.com/submitForm" method="post">
+ 	<form action="mypage.do" method="post">
       <div class="text">
-          <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="E-mail" required="">
-          <br><br>
-          <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="password" required="">
-          <br><br>
-          <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="password 확인" required="">
-          <br><br>
-          <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="adress" required="">
-          <br>
-      </div>
+		<h1>그 회원 이메일</h1>
+		          <br><br>
+		          <input type="text" class="form-control" name="member_password" id="w3lName" placeholder="password 변경" required="">
+		          <br><br>
+		          <input type="text" class="form-control" name="member_name" id="w3lName" placeholder="name 변경" required="">
+		          <br><br>
+		          <input type="text" class="form-control" name="member_address" id="w3lName" placeholder="address 변경" required="">
+		          <br>
+		      </div>
+		       <p>
+		  	<button type="submit" class="btn btn-primary mt-4">정보수정하기</button >
+		  	</p>
   </form>
-  <p>
-  	<button onclick="location.href='mypage.jsp'"class="btn btn-style border-btn mt-sm-5 mt-4">정보수정하기</button >
-  	</p>
+
   	 </center>
  </div>
  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

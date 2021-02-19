@@ -14,67 +14,67 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import pet.member.service.MemberService;
 import pet.member.vo.MemberVO;
 
+
 @Controller
 @RequestMapping(value = "/member")
 public class MemberController {
+	
    private Logger logger = LoggerFactory.getLogger(MemberController.class);
    
    
    @Inject
    private MemberService service;
    
-   @Autowired(required=false)
+   @Inject
    private BCryptPasswordEncoder pwencoder;
    
    
-   //ÀÌ¿ë¾à°ü
+   //ì´ìš©ì•½ê´€
    @RequestMapping(value = "/agree.do", method = RequestMethod.GET)
-   
    public String getClause() throws Exception {
-      logger.info("agree.do È£Ãâ ¼º°ø");
+      logger.info("agree.do í˜¸ì¶œ ì„±ê³µ");
       return "/member/agree";
    }
    
-   //È¸¿ø°¡ÀÔ
-   @RequestMapping(value = "/signup.do", method = RequestMethod.GET)
    
+   //íšŒì›ê°€ì…
+   @RequestMapping(value = "/signup.do", method = RequestMethod.GET)
    public String getJoin() throws Exception {
-      logger.info("signup.do È£Ãâ ¼º°ø");
+      logger.info("signup.do í˜¸ì¶œ ì„±ê³µ");
       return "/member/signup";
    }
    
    
-   //È¸¿ø°¡ÀÔ Ã³¸®
+      //íšŒì›ê°€ì… ì²˜ë¦¬
       @RequestMapping(value = "/signup.do", method = RequestMethod.POST)
       public String postJoin(@ModelAttribute MemberVO vo ,  HttpServletRequest request) throws Exception {
-         logger.info("È¸¿ø°¡ÀÔ Ã³¸® ¼º°ø");
+         logger.info("íšŒì›ê°€ì… ì²˜ë¦¬ ì„±ê³µ");
          int result = service.mailChk(vo);
-         
          try {
             if(result == 1) {
                return "signup";
             }else if(result == 0) {
-               //  ºê¶ó¿ìÀú¿¡¼­ ÀÔ·ÂÇÑ ÆĞ½º¿öµå¸¦ ¾ÏÈ£È­ÇÑ´Ù.
+               //  ë¸Œë¼ìš°ì €ì—ì„œ ì…ë ¥í•œ íŒ¨ìŠ¤ì›Œë“œë¥¼ ì•”í˜¸í™”í•œë‹¤.
                String secPwd = pwencoder.encode(vo.getMember_password());
-               logger.info("È¸¿ø°¡ÀÔ ¿Ô¾î¿° : " + vo.getMember_email() + ", "+vo.getMember_password() + ", "+vo.getMember_name() + ", " + vo.getMember_address());
-               //¾ÏÈ£È­µÈ ºñ¹Ğ¹øÈ£¸¦ VO¿¡ SETÇÑ´Ù.
+               logger.info("íšŒì›ê°€ì… ì •ë³´î¿° : " + vo.getMember_email() + ", "+vo.getMember_password() + ", "+vo.getMember_name() + ", " + vo.getMember_address());
+               //  ì•”í˜¸í™”ëœ ë¹„ë°€ë²ˆí˜¸ë¥¼ VOì— SETí•œë‹¤.
                vo.setMember_password(secPwd);
-               //DB¿¡ È¸¿ø°¡ÀÔÃ³¸®
+               //  DBì— íšŒì›ê°€ì… ì²˜ë¦¬ ì„±ê³µ
                service.join(vo);
             }
-            //ÀÔ·ÂµÈ ¾ÆÀÌµğ°¡ Á¸ÀçÇÑ´Ù¸é ´Ù½Ã È¸¿ø°¡ÀÔ ÆäÀÌÁö·Î µ¹¾Æ°£´Ù
+            //ì…ë ¥ëœ ì•„ì´ë””ê°€ ì¡´ì¬í•œë‹¤ë©´ ë‹¤ì‹œ íšŒì›ê°€ì… í˜ì´ì§€ë¡œ ëŒì•„ê°„ë‹¤
          } catch(Exception e) {
             throw new RuntimeException();
          }
-         return "member/join/joinSuccess";
+         return "member/join/login";
       }
       
       
-   //ÀÌ¸ŞÀÏ Áßº¹Ã¼Å©
+   //ì´ë©”ì¼ ì¤‘ë³µì²´í¬
    @RequestMapping(value = "/mailChk.do", method = RequestMethod.POST)
    @ResponseBody
    public int mailChk(MemberVO vo) throws Exception {
-      logger.info("ÀÌ¸ŞÀÏ Áßº¹Ã¼Å© ¼º°ø");
+      logger.info("ì´ë©”ì¼ ì¤‘ë³µì²´í¬ ì„±ê³µ");
       int result = service.mailChk(vo);
       return result;
    }
@@ -82,32 +82,32 @@ public class MemberController {
    
    @RequestMapping("/mypage.do")
    public String mypage() {
-		//log.info("È¸¿ø°¡ÀÔ ¿Ô¾î¿° : " + vo.getEmail() + ", "+vo.getPassword() + ", "+vo.getName() + ", " + vo.getAddress());
+		//log.info("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¾î¿° : " + vo.getEmail() + ", "+vo.getPassword() + ", "+vo.getName() + ", " + vo.getAddress());
 		return "/pet/mypage";
 	}
 	
 	@RequestMapping("/mypost.do")
 	public String mypost() {
-		//log.info("È¸¿ø°¡ÀÔ ¿Ô¾î¿° : " + vo.getEmail() + ", "+vo.getPassword() + ", "+vo.getName() + ", " + vo.getAddress());
+		//log.info("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¾î¿° : " + vo.getEmail() + ", "+vo.getPassword() + ", "+vo.getName() + ", " + vo.getAddress());
 		return "/pet/mypost";
 	}
 	
 	
 	@RequestMapping("/post_blog.do")
 	public String post_blog() {
-		//log.info("È¸¿ø°¡ÀÔ ¿Ô¾î¿° : " + vo.getEmail() + ", "+vo.getPassword() + ", "+vo.getName() + ", " + vo.getAddress());
+		//log.info("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¾î¿° : " + vo.getEmail() + ", "+vo.getPassword() + ", "+vo.getName() + ", " + vo.getAddress());
 		return "/pet/post_blog";
 	}
 	
 	@RequestMapping("/follower.do")
 	public String follower() {
-		//log.info("follower µé¾î¿È ");
+		//log.info("follower ï¿½ï¿½ï¿½ï¿½ ");
 		return "/pet/follower";
 	}
 	
 	@RequestMapping("/follower2.do")
 	public String follower2() {
-		//log.info("follower µé¾î¿È ");
+		//log.info("follower ï¿½ï¿½ï¿½ï¿½ ");
 		return "/pet/follower2";
 	}
 }

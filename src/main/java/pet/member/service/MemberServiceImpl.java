@@ -61,5 +61,10 @@ public class MemberServiceImpl implements MemberService {
    public void pwModify(MemberVO vo) throws Exception {
 	   mapper.pwModify(vo);
    }
+   
+   @Override
+   public void memberModify(MemberVO vo) {
+	   mapper.memberModify(vo);
+   }
 
 }

@@ -173,7 +173,7 @@
           <br><br>
           <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="password 확인" required="">
           <br><br>
-          <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="adress" required="">
+          <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="address" required="">
           <br>
       </div>
   </form>

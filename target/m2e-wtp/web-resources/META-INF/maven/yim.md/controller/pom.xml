@@ -259,7 +259,7 @@
           <version>1.16</version>
         </dependency>
         
-           <!-- 스프링 시큐리티적용 구간 -->
+			<!-- 스프링 시큐리티적용 구간 -->
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -277,7 +277,7 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>${org.springframework-version}</version>
-        </dependency>        
+        </dependency>   
         
 		
 	</dependencies>

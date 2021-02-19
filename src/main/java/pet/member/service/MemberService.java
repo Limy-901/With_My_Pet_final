@@ -5,29 +5,32 @@ import pet.member.vo.MemberVO;
 
 public interface MemberService {
 
-   //íšŒì› ê°€ì…
+   //È¸¿ø °¡ÀÔ
    public void join(MemberVO vo) throws Exception;
    
-   //ì´ë©”ì¼ ì¤‘ë³µì²´í¬
+   //ÀÌ¸ŞÀÏ Áßº¹Ã¼Å©
    public int mailChk(MemberVO vo) throws Exception;
    
-   //ë¡œê·¸ì¸
+   //·Î±×ÀÎ
    public MemberVO login(MemberVO lvo);
    
-   //ë§ˆì´í˜ì´ì§€ ë³¸ì¸í™•ì¸
+   //¸¶ÀÌÆäÀÌÁö º»ÀÎÈ®ÀÎ
    public MemberVO mypage(MemberVO lvo);
    
-   //íšŒì›ì •ë³´ ìˆ˜ì •
+   //È¸¿øÁ¤º¸ ¼öÁ¤
    public void memberUpdateDo(MemberVO vo) throws Exception;
    
-   //ì•„ì´ë”” ì°¾ê¸°
+   //¾ÆÀÌµğ Ã£±â
    public MemberVO emailFind(MemberVO vo) throws Exception;
 
-   //íŒ¨ìŠ¤ì›Œë“œ ì°¾ê¸°
+   //ÆĞ½º¿öµå Ã£±â
    public MemberVO pwFind(MemberVO pvo);
    
-   //íŒ¨ìŠ¤ì›Œë“œ ìˆ˜ì •
+   //ÆĞ½º¿öµå º¯°æ
    public void pwModify(MemberVO vo) throws Exception;
+   
+   //È¸¿øÁ¤º¸ ÀüÃ¼ ¼öÁ¤
+   public void memberModify(MemberVO vo) throws Exception;
       
    
 }

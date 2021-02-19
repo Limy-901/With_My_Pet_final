@@ -11,11 +11,11 @@ public interface WalkService {
 	Walk getWalk(long idx);
 	WalkListResult getListS(int cp, int ps, String orderType, String keyword);
 	CmtVo getWalkCmt(long idx);
-	void insertWalkCmt(Comment dto);
+	boolean insertWalkCmt(Comment dto);
 	void walkUpdate(Walk dto);
 	void walkDelete(long idx);
 	Comment getWalkCmtData(long idx);
-	void insertWalkJoin(joinVo vo, long cmtIdx);
+	boolean insertWalkJoin(joinVo vo, long cmtIdx);
 	long selectByCmtIdx(long cmtIdx);
 	void addHeart(joinVo vo);
 	int getWalkLike(long idx);

@@ -136,47 +136,28 @@
 <div id="map" style="width:100%;height:350px;"></div><br/><br/>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63be5e5f8d770d2796e1e45e8fcfebbd&libraries=services"></script>
 <script>
-// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+var mapContainer = document.getElementById('map'),
     mapOption = {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
-// 지도를 생성합니다    
+        center: new kakao.maps.LatLng(37.566826, 126.9786567),
+        level: 100 };  
 var map = new kakao.maps.Map(mapContainer, mapOption); 
-// 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places(); 
-// 키워드로 장소를 검색합니다
-ps.keywordSearch("${content.walk_location}", placesSearchCB); 
-// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+ps.keywordSearch("${content.dto.walk_location}", placesSearchCB); 
 function placesSearchCB (data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
-        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-        // LatLngBounds 객체에 좌표를 추가합니다
         var bounds = new kakao.maps.LatLngBounds();
         for (var i=0; i<data.length; i++) {
             displayMarker(data[i]);    
-            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-        }       
-        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-        map.setBounds(bounds);
-    } 
-}
-// 지도에 마커를 표시하는 함수입니다
+            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x)); }       
+        map.setBounds(bounds); } }
 function displayMarker(place) {
-    // 마커를 생성하고 지도에 표시합니다
     var marker = new kakao.maps.Marker({
         map: map,
-        position: new kakao.maps.LatLng(place.y, place.x) 
-    });
-    // 마커에 클릭이벤트를 등록합니다
+        position: new kakao.maps.LatLng(place.y, place.x) });
     kakao.maps.event.addListener(marker, 'click', function() {
-        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
         infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-        infowindow.open(map, marker);
-    });
-}
+        infowindow.open(map, marker); }); }
 </script>
 
  <!-- 작성자 강아지 정보 -->
@@ -268,7 +249,7 @@ function updateHeart(){
    
    <script>
    $ (function(){
-   	$(".detailbtn").css("display", "none");	
+   	  $(".detailbtn").css("display", "none");	
    });
    $('#card'+${item.walk_cmt_idx}).mouseover(function () {
  	  $('#detailbtn'+${item.walk_cmt_idx}).css("display", "block");
@@ -354,7 +335,6 @@ function updateHeart(){
    }
    </script>
   
-  
 <!-- 자세히보기버튼 > 해당 CMT 글쓴이 정보 추출 --> 
   <script>
    	function setting(data){
@@ -409,18 +389,83 @@ function updateHeart(){
 	        </div>
         </div>
 		
-      <form class="ui form" method="post" action="apply.do" style="text-align:center;">
+      <form id="cmtInsert" class="ui form" method="post" style="text-align:center;">
           <div class="field">
 		    <label style="font-family: 'Spoqa Han Sans Neo';">참가메세지</label>
 		    <input type="hidden"  name="walk_idx" value="${content.dto.walk_idx}">
-		    <input type="hidden"  name="walk_cmt_writer" value="세션로그인유저">
-		    <input type="text" name="walk_cmt_content" placeholder="만나실 견주분께 인사를 보내보세요!" style="font-family: 'Spoqa Han Sans Neo';"><br/>
+		    <input type="hidden"  id="cmt_walk_cmt_writer" value="세션로그인유저">
+		    <input type="text" id="cmt_walk_cmt_content" placeholder="만나실 견주분께 인사를 보내보세요!" style="font-family: 'Spoqa Han Sans Neo';"><br/>
 		  </div>
-          <button type="submit" class="modify" style="border-color:none;">보내기</button>
+          <button class="modify" onclick="insertCheck(${content.dto.walk_idx})" style="border-color:none;">보내기</button>
 	   </form>
-
 	</div>
 </div>
+<script>
+function insertCheck(walk_idx){
+	alert("작동은 됩니당.");
+	var writer = document.getElementById("cmt_walk_cmt_writer").value;
+	var content = document.getElementById("cmt_walk_cmt_content").value;
+	$.ajax({
+		url: "apply.do",
+	    type: 'GET',
+	    async: false,
+	    data: { 
+	    	walk_cmt_writer: writer,
+	    	walk_cmt_content: content,
+		    walk_idx: walk_idx
+		    
+		},
+	  success : function(data){
+		if(data == ''){
+			alert("이미 신청했습니다!");
+			window.location.href = "#applyCount";
+		}else{
+			  $('#joinList').empty();
+			  $('#applyList').empty();
+			  $('#joinCount').empty();
+			  $('#applyCount').empty();
+			  alert(data.joinCount+", "+applyCount);
+			  var html1='';
+			  var html2='';
+			  var html3='신청자   :  '+data.joinCount+' 명';
+			  var html4='신청자   :  '+data.applyCount+' 명';
+			  for(var i=0;i<data.normal.length;i++) {
+				  html1 += '<div class="col-lg-4 col-md-6 item">';
+				  html1 += '<div class="card" id="card'+data.normal[i].walk_cmt_idx+'" onmouseover="btnOn('+data.normal[i].walk_cmt_idx+')" onmouseout="btnOut('+data.normal[i].walk_cmt_idx+')">';
+				  html1 += '<div class="card-header p-0 position-relative">';
+				  html1 += '<input type="hidden" class="test1"  name=idx'+data.normal[i].walk_cmt_idx+' value="'+data.normal[i].walk_cmt_idx+'">';
+				  html1 += '<button id="detailbtn'+data.normal[i].walk_cmt_idx+'" class="detailbtn" onclick="getWalkCmt('+data.normal[i].walk_cmt_idx+','+data.normal[i].walk_idx+')">자세히 보기</button>';
+				  html1 += '<img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">';
+				  html1 += '</div>';
+				  html1 += '<div class="card-body blog-details" style="font-family: "Spoqa Han Sans Neo"; flex:0 0 auto;">';
+				  html1 += '<p>'+data.normal[i].walk_cmt_writer+'</p><p>'+data.normal[i].walk_cmt_content+'</p></div></div></div>';
+			  }
+			  for(var i=0;i<data.join.length;i++) {
+				  html2 += '<div class="col-lg-4 col-md-6 item">';
+				  html2 += '<div class="card" id="card'+data.join[i].walk_cmt_idx+'" onmouseover="btnOn('+data.join[i].walk_cmt_idx+')" onmouseout="btnOut('+data.join[i].walk_cmt_idx+')">';
+				  html2 += '<div class="card-header p-0 position-relative">';
+				  html2 += '<input type="hidden" class="test1"  name=idx'+data.join[i].walk_cmt_idx+' value="'+data.join[i].walk_cmt_idx+'">';
+				  html2 += '<button id="detailbtn'+data.join[i].walk_cmt_idx+'" class="detailbtn" onclick="getWalkCmt('+data.join[i].walk_cmt_idx+','+data.join[i].walk_idx+')">자세히 보기</button>';
+				  html2 += '<img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">';
+				  html2 += '</div>';
+				  html2 += '<div class="card-body blog-details" style="font-family: "Spoqa Han Sans Neo"; flex:0 0 auto;">';
+				  html2 += '<p>'+data.join[i].walk_cmt_writer+'</p><p>'+data.join[i].walk_cmt_content+'</p></div></div></div>';
+			  }
+			  if(data.normal.length == 0) html1 += '<p style="text-align:center; font-family: "Spoqa Han Sans Neo";">산책 참가자가 없습니다.</p>';
+			  if(data.join.length == 0) html2 += '<p style="text-align:center; font-family: "Spoqa Han Sans Neo";">산책 신청자가 없습니다.</p>';
+			  
+			  $('#applyList').html(html1);
+			  $('#joinList').html(html2);
+			  $('#applyCount').html(html3);
+			  $('#joinCount').html(html4);
+			  alert("신청을 완료했습니다!");
+			  $(".detailbtn").css("display", "none");
+			  window.location.href = "#joinCount";
+		}
+	  }
+	});
+}
+</script>
 <!-- 참가팝업끝 -->
 
 
@@ -458,61 +503,66 @@ function walkJoinOk(){
 	$.ajax({
 		  url: "join.do",
 		  type: 'GET',
+		  async: false,
 		  data: { 
 				  joinIdx: joinIdx,
 				  joinWalkIdx: joinWalkIdx
 			  },
 		  success : function(data){
 			  alert("성공!"+data);
-			  $('#joinList').empty();
-			  $('#applyList').empty();
-			  $('#joinCount').empty();
-			  $('#applyCount').empty();
-			  alert(data.joinCount+", "+applyCount);
-			  var html1='';
-			  var html2='';
-			  var html3='신청자   :  '+data.joinCount+' 명';
-			  var html4='신청자   :  '+data.applyCount+' 명';
-			  for(var i=0;i<data.normal.length;i++) {
-				  html1 += '<div class="col-lg-4 col-md-6 item">';
-				  html1 += '<div class="card" id="card'+data.normal[i].walk_cmt_idx+'" onmouseover="btnOn('+data.normal[i].walk_cmt_idx+')" onmouseout="btnOut('+data.normal[i].walk_cmt_idx+')">';
-				  html1 += '<div class="card-header p-0 position-relative">';
-				  
-				  html1 += '<input type="hidden" class="test1"  name=idx'+data.normal[i].walk_cmt_idx+' value="'+data.normal[i].walk_cmt_idx+'">';
-				  html1 += '<button id="detailbtn'+data.normal[i].walk_cmt_idx+'" class="detailbtn" onclick="getWalkCmt('+data.normal[i].walk_cmt_idx+','+data.normal[i].walk_idx+')">자세히 보기</button>';
-				  html1 += '<img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">';
-				  html1 += '</div>';
-				  
-				  html1 += '<div class="card-body blog-details" style="font-family: "Spoqa Han Sans Neo"; flex:0 0 auto;">';
-				  html1 += '<p>'+data.normal[i].walk_cmt_writer+'</p><p>'+data.normal[i].walk_cmt_content+'</p></div></div></div>';
-			   
+			  if(data == ''){
+				  alert("이미 수락했습니다!");
+				  window.location.href = "#joinCount";
+			  }else{
+				  $('#joinList').empty();
+				  $('#applyList').empty();
+				  $('#joinCount').empty();
+				  $('#applyCount').empty();
+				  alert(data.joinCount+", "+applyCount);
+				  var html1='';
+				  var html2='';
+				  var html3='신청자   :  '+data.joinCount+' 명';
+				  var html4='신청자   :  '+data.applyCount+' 명';
+				  for(var i=0;i<data.normal.length;i++) {
+					  html1 += '<div class="col-lg-4 col-md-6 item">';
+					  html1 += '<div class="card" id="card'+data.normal[i].walk_cmt_idx+'" onmouseover="btnOn('+data.normal[i].walk_cmt_idx+')" onmouseout="btnOut('+data.normal[i].walk_cmt_idx+')">';
+					  html1 += '<div class="card-header p-0 position-relative">';
+					  html1 += '<input type="hidden" class="test1"  name=idx'+data.normal[i].walk_cmt_idx+' value="'+data.normal[i].walk_cmt_idx+'">';
+					  html1 += '<button id="detailbtn'+data.normal[i].walk_cmt_idx+'" class="detailbtn" onclick="getWalkCmt('+data.normal[i].walk_cmt_idx+','+data.normal[i].walk_idx+')">자세히 보기</button>';
+					  html1 += '<img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">';
+					  html1 += '</div>';
+					  html1 += '<div class="card-body blog-details" style="font-family: "Spoqa Han Sans Neo"; flex:0 0 auto;">';
+					  html1 += '<p>'+data.normal[i].walk_cmt_writer+'</p><p>'+data.normal[i].walk_cmt_content+'</p></div></div></div>';
+				  }
+				  for(var i=0;i<data.join.length;i++) {
+					  html2 += '<div class="col-lg-4 col-md-6 item">';
+					  html2 += '<div class="card" id="card'+data.join[i].walk_cmt_idx+'" onmouseover="btnOn('+data.join[i].walk_cmt_idx+')" onmouseout="btnOut('+data.join[i].walk_cmt_idx+')">';
+					  html2 += '<div class="card-header p-0 position-relative">';
+					  html2 += '<input type="hidden" class="test1"  name=idx'+data.join[i].walk_cmt_idx+' value="'+data.join[i].walk_cmt_idx+'">';
+					  html2 += '<button id="detailbtn'+data.join[i].walk_cmt_idx+'" class="detailbtn" onclick="getWalkCmt('+data.join[i].walk_cmt_idx+','+data.join[i].walk_idx+')">자세히 보기</button>';
+					  html2 += '<img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">';
+					  html2 += '</div>';
+					  html2 += '<div class="card-body blog-details" style="font-family: "Spoqa Han Sans Neo"; flex:0 0 auto;">';
+					  html2 += '<p>'+data.join[i].walk_cmt_writer+'</p><p>'+data.join[i].walk_cmt_content+'</p></div></div></div>';
+				  }
+				  if(data.normal.length == 0) html1 += '<p style="text-align:center; font-family: "Spoqa Han Sans Neo";">산책 참가자가 없습니다.</p>';
+				  if(data.join.length == 0) html2 += '<p style="text-align:center; font-family: "Spoqa Han Sans Neo";">산책 신청자가 없습니다.</p>';
+				  $('#applyList').html(html1);
+				  $('#joinList').html(html2);
+				  $('#applyCount').html(html3);
+				  $('#joinCount').html(html4);
+				  alert("수락을 완료했습니다!");
+				  $(".detailbtn").css("display", "none");
+				  window.location.href = "#joinCount";
 			  }
-			  for(var i=0;i<data.join.length;i++) {
-				  html2 += '<div class="col-lg-4 col-md-6 item">';
-				  html2 += '<div class="card" id="card'+data.join[i].walk_cmt_idx+'" onmouseover="btnOn('+data.join[i].walk_cmt_idx+')" onmouseout="btnOut('+data.join[i].walk_cmt_idx+')">';
-				  html2 += '<div class="card-header p-0 position-relative">';
-				  
-				  html2 += '<input type="hidden" class="test1"  name=idx'+data.join[i].walk_cmt_idx+' value="'+data.join[i].walk_cmt_idx+'">';
-				  html2 += '<button id="detailbtn'+data.join[i].walk_cmt_idx+'" class="detailbtn" onclick="getWalkCmt('+data.join[i].walk_cmt_idx+','+data.join[i].walk_idx+')">자세히 보기</button>';
-				  html2 += '<img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">';
-				  html2 += '</div>';
-				  
-				  html2 += '<div class="card-body blog-details" style="font-family: "Spoqa Han Sans Neo"; flex:0 0 auto;">';
-				  html2 += '<p>'+data.join[i].walk_cmt_writer+'</p><p>'+data.join[i].walk_cmt_content+'</p></div></div></div>';
-			  }
-			  $('#applyList').html(html1);
-			  $('#joinList').html(html2);
-			  $('#applyCount').html(html3);
-			  $('#joinCount').html(html4);
-			  $(".detailbtn").css("display", "none");	
 		  }
-	});
+	 });
 }
 </script>
 
  <!-- 언더바 -->
 		<div class="underbar" style="font-family: 'Spoqa Han Sans Neo'; z-index:1; background-color:#FFB446">
-		  <span class="undertext" style="font-family: 'Spoqa Han Sans Neo';">일시 : ${content.dto.walk_date}<br>
+		  <span class="undertext" style="font-family: 'Spoqa Han Sans Neo';">일시 : ${content.day} / ${content.time}<br>
 		    장소 : ${content.dto.walk_location} / 산책 타입 : ${content.dto.walk_type}</span>
 		  <nav>
 		   <a class="button" onclick="memberCheck()" style="border-color:white; font-family: 'Spoqa Han Sans Neo'; margin-left: -150%; color:white;">참가할래요🐕</a>

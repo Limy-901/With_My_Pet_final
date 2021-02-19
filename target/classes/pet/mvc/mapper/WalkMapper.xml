@@ -91,11 +91,19 @@
     </select>
     
     <select id="getWalkLike" parameterType="long" resultType="int">
-    	select count(*) from walk_like where walk_idx=#{idx}
+    	select count(*) from walk_like where WALK_IDX=#{idx}
     </select>
     
     <insert id="addHeart" parameterType="joinVo">
     	insert into WALK_LIKE values( #{walk_idx}, #{member_number} )
     </insert>
+    
+    <select id="checkJoin" parameterType="joinVo" resultType="int">
+    	select count(*) from WALK_JOIN where WALK_IDX=#{walk_idx} and MEMBER_NUMBER=#{member_number}
+    </select>
+    
+    <select id="checkCmt" parameterType="joinVo" resultType="int">
+    	select count(*) from WALK_CMT where WALK_IDX=#{walk_idx} and MEMBER_NUMBER=#{member_number}
+    </select>
 
 </mapper>

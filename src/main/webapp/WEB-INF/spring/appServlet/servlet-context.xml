@@ -19,6 +19,13 @@
 	<resources mapping="/assets/images/**" location="/assets/images/" />
 	<resources mapping="/assets/fonts/**" location="/assets/fonts/" />
 	
+	<!-- 메일 전송 -->
+	<beans:bean id='Mailer' class="pet.mvc.walk.Mailer">
+		<beans:property name="host" value="smtp.naver.com" />
+		<beans:property name="password" value="usemailer" />
+		<beans:property name="tail" value='@naver.com'/>
+		<beans:property name="user" value='misty901'/>
+	</beans:bean>
 	
 	<!-- 파일 업로드용 resolver -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -28,13 +35,11 @@
 		<beans:property name="maxInMemorySize" value="10485756"/>
 	</beans:bean>
 	
-		<!-- 파일 다운로드 -->
+	<!-- 파일 다운로드 -->
 	<beans:bean id="fileDownloadView" class="pet.mvc.fileSetting.FileDownloadView" />
 	<beans:bean id="fileViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
-	    <beans:property name="order" value="0" />
-	    
+		<beans:property name="order" value="0" />
 	</beans:bean>
-	
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -75,18 +75,6 @@ public class WalkServiceImpl implements WalkService {
 			list.setTime(time);
 			log.info("시간나누는중~~~"+list.getTime());
 		}
-		/*
-		<if test="orderType != null and !orderType.equals('')">
-			<choose>
-				<when test="orderType.equals('new')">
-					order by WALK_RDATE desc) a
-				</when>
-				<otherwise>
-					order by WALK_DATE) a
-				</otherwise>
-			</choose>
-		</if>
-		 */
 		return new WalkListResult(cp, ps, walkMapper.totalWalk(orderType, keyword),lists);
 	}
 
@@ -119,9 +107,15 @@ public class WalkServiceImpl implements WalkService {
 	}
 
 	@Override
-	public void insertWalkCmt(Comment dto) {
-		dto.setMember_number(1L); //임의의 값
-		walkMapper.insertWalkCmt(dto);
+	public boolean insertWalkCmt(Comment dto) {
+		dto.setMember_number(1L); //임의의 값, 추후 변경 필요
+		joinVo vo = new joinVo(dto.getWalk_idx(),dto.getMember_number());
+		int i =walkMapper.checkCmt(vo);
+		if(i==1) return false;
+		else {
+			walkMapper.insertWalkCmt(dto);
+			return true;
+		}
 	}
 	@Override
 	public void walkDelete(long idx) {
@@ -133,9 +127,15 @@ public class WalkServiceImpl implements WalkService {
 		return dto;
 	}
 	@Override
-	public void insertWalkJoin(joinVo vo, long cmtIdx) {
-		walkMapper.insertWalkJoin(vo);
-		walkMapper.updateWalkCmt(cmtIdx);
+	public boolean insertWalkJoin(joinVo vo, long walk_idx) {
+		int flag = walkMapper.checkJoin(vo);
+		if(flag == 1) {
+			return false;
+		}else {
+			walkMapper.insertWalkJoin(vo);
+			walkMapper.updateWalkCmt(walk_idx);
+			return true;
+		}
 	}
 	@Override
 	public long selectByCmtIdx(long cmtIdx) {
