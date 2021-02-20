@@ -5,6 +5,7 @@ import java.util.List;
 
 import pet.mvc.shopdomain.Cart;
 import pet.mvc.shopdomain.Category;
+import pet.mvc.shopdomain.Option;
 import pet.mvc.shopdomain.Product;
 import pet.mvc.shopdomain.ProductVo;
 import pet.mvc.shopdomain.Review;
@@ -24,6 +25,8 @@ public interface ProductMapper {
 	List<Product> listProduct2(long catgo_code);
 	ArrayList<Review> listReview2(long review_number); 
 	void insertReview(Review review);
-	
+	List<Product> selectCountInCart(long catgo_code);
+	ArrayList<Option> listOption(long product_code);
+	void insertOption(Option option);
 }
 

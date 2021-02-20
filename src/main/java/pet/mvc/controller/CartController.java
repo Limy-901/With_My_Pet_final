@@ -1,5 +1,7 @@
 package pet.mvc.controller;
 
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,15 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.log4j.Log4j;
 import pet.mvc.shopdomain.Cart;
 import pet.mvc.shopdomain.Product;
 import pet.mvc.shopservice.CartService;
+import pet.mvc.shopservice.ProductService;
 
 
 @Log4j
@@ -29,25 +29,60 @@ public class CartController {
 	private Cart cart;
 	@Resource(name="CartServiceImpl")
 	private CartService service;
+	@Resource(name="ProductServiceImpl")
+	private ProductService service2;
 	
 	
-	//ë¦¬ìŠ¤íŠ¸ ë¶ˆëŸ¬ì˜¤ê¸°
+	//¸®½ºÆ® ºÒ·¯¿À±â
 	@GetMapping("/cart")
 	public String cart(Cart cart) {
-		log.info("cartController ì¥ë°”êµ¬ë‹ˆ");
+		log.info("cartController Àå¹Ù±¸´Ï");
 		return "/shop/cart";
 	}
 	
-	@PostMapping("/cart")//ì „ì†¡ëœ ìƒí’ˆ ë²ˆí˜¸ë¥¼ ë°›ëŠ”ë‹¤.
-	public @ResponseBody ModelAndView addProductsInCart(@RequestParam("product_code") long product_code, 
-			HttpServletRequest request, HttpServletResponse response, Cart cart, Product product) throws Exception{
-		log.info("cartController ì¥ë°”êµ¬ë‹ˆ ê°–ê³ ì™”ë‹¤");
+	@PostMapping("/cart")//Àü¼ÛµÈ »óÇ° ¹øÈ£¸¦ ¹Ş´Â´Ù.
+	public ModelAndView addProductsInCart(HttpServletRequest request, Cart cart,
+	HttpServletResponse response) throws Exception{
+		log.info("cartController Àå¹Ù±¸´Ï °®°í¿Ô´Ù");
+		log.info("##°¡Á®¿Â Ä«Æ®°ª"+cart);
 		HttpSession session =request.getSession();
-		String isAlreadyExisted= service.findCartProducts(cart);//ìƒí’ˆ ë²ˆí˜¸ê°€ ì¥ë°”êµ¬ë‹ˆ í…Œì´ë¸”ì— ìˆëŠ”ì§€ ì¡°íšŒí•œë‹¤.
-		Product list = (Product) session.getAttribute("productDes");
-		session.setAttribute("cart", cart);
-		log.info("@@@"+product+cart+list);
-		ModelAndView mvvv = new ModelAndView("/shop/cart","productDes",product);
-		return mvvv;
+		ArrayList<Cart> cartLists = new ArrayList<Cart>();
+		//¸®½ºÆ® ¼±¾ğ
+		if(cart == null) return new ModelAndView("../","viewlists",null);
+		//¸¸¾à¿¡ cart¿¡ °ªÀÌ ³ÎÀÌ¸é ±×³É ÀÎµ¦½º·Î µ¹¾Æ°¡¶ó!
+		else {
+			ArrayList<Cart> cartSession = (ArrayList)session.getAttribute("cartLists");
+			//ArrayListÅ¸ÀÔÀÇ cartSession¿¡ cartLists¸¦ ºÒ·¯¿À±â.
+			if(cartSession != null) {
+				//¸¸¾à cartSession¿¡ °ªÀÌ ÀÖÀ¸¸é
+				cartSession.add(cart);
+				//¼¼¼Ç¿¡ cart¶ó´Â ArrayList<Cart>ÇüÅÂÀÇ ³»¿ë°ªÀ» addÇØÁà¶ó.
+				log.info("¼¼¼ÇÄ«Æ®¾È¿¡ÀÖÀ½"+cartSession);
+				session.setAttribute("cartLists", cartSession);
+				//±×¸®°í ¼¼¼Ç¿¡ ÀúÀåµÉ ¼ö ÀÖµµ·Ï cartSessionÀ» setAttributeÇØÁà¶ó.
+			}else {
+				cartLists.add(cart);
+				log.info("¼¼¼Ç »õ·Î ¸¸µê"+cartSession);
+				session.setAttribute("cartLists", cartLists);
+			}
+			//list¿¡  product³»¿ëÀ» ´ã¾Æ³»´Â °÷
+			ArrayList<Product> viewlists = new ArrayList<Product>();
+			//±×ÈÄ¿¡ productÅ¸ÀÔÀÇ Arraylist¸¦ ¼±¾ğÇØÁØ´ÙÀ½
+			for(Cart list : cartLists) {
+				//À§¿¡¼­ ¸¸µç cartListsÀÇ ³»¿ë¹°ÀÌ µç  cartLists¸¦ for¹®¿¡ µ¹·ÁÁØ´Ù.
+				long cart_product_code = list.getProduct_code();
+				//±× ¸¸µç list¿¡ product_code°¡ long Å¸ÀÔÀÇ cart_product_code¿Í °°´Ù¸é
+				Product product = service2.listS(cart_product_code);
+				//À§¿¡¼­ ¼±¾ğÇÑ service2ÀÇ listS¸Ş¼Òµå¿¡ product_code¸¦ ³Ö¾î productÀÇ ÀüÃ¼ ³»¿ë¹°À» ºÒ·¯¿Ã ¼ö ÀÖµµ·Ï ÇÑ´Ù.
+				viewlists.add(product);
+				//±×ÈÄ¿¡ ±× ³»¿ëÀÌ ÀÖ´Â product¸¦ viewlists¿¡ Ãß°¡ÇØÁØ´Ù.(³Ö¾îÁØ´Ù)
+			}
+			session.setAttribute("viewlists", viewlists);
+			//Ãß°¡µÈ viewlists¸¦ ÀÌÁ¦ session¿¡ ³Ö¾îÁØ´Ù.
+			log.info("$$$$viewlists:"+viewlists);
+			ModelAndView mvvv = new ModelAndView("/shop/cart","viewlists",viewlists);
+			return mvvv;
 		}
 	}
+}
+	

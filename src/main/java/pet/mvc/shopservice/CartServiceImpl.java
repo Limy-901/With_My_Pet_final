@@ -23,16 +23,18 @@ public class CartServiceImpl implements CartService {
 	private CartMapper cartMapper;
 	@Autowired
 	private ProductMapper productMapper;
+	@Autowired
+	private Cart cart;
 	@Override
-	public String findCartProducts(Cart cart) throws Exception {
-		//í…Œì´ë¸”ì— ì¶”ê°€í•˜ê¸° ì „ì— ë™ì¼í•œ ìƒí’ˆ ë²ˆí˜¸ì˜ ê°œìˆ˜ë¥¼ ì¡°íšŒ
-		return cartMapper.selectCountInCart(cart);
+	public List<Cart> findCartProducts(long product_code) throws Exception {
+		//Å×ÀÌºí¿¡ Ãß°¡ÇÏ±â Àü¿¡ µ¿ÀÏÇÑ »óÇ° ¹øÈ£ÀÇ °³¼ö¸¦ Á¶È¸
+		log.info("listCart Àß³ª¿È: "+product_code);
+		List<Cart> c = cartMapper.selectCountInCart(product_code);
+		if(c !=null) log.info("cart ³Î¾Æ´Ô:" +c);
+		return cartMapper.selectCountInCart(product_code);
 	}
 	@Override
-	public void addProductsInCart(Cart cart) throws Exception {//ì¥ë°”êµ¬ë‹ˆì— ì¶”ê°€í•œë‹¤.
-		cart.setCart_code(1L);
-		cart.setMember_number(3);
-		cart.setProduct_code(3);
+	public void addProductsInCart(Cart cart) throws Exception {//Àå¹Ù±¸´Ï¿¡ Ãß°¡ÇÑ´Ù.
 		cartMapper.insertProductsInCart(cart);
 	}
 }

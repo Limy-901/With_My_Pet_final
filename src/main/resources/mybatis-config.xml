@@ -10,6 +10,7 @@
    	   <typeAlias alias="WalkComment" type="pet.mvc.walk.Comment"/>
    	   <typeAlias alias="joinVo" type="pet.mvc.walk.joinVo"/>
    	   
+   	   <typeAlias alias="Option" type="pet.mvc.shopdomain.Option"/>
    	   <typeAlias alias="Cart" type="pet.mvc.shopdomain.Cart"/>
 	   <typeAlias alias="Review" type="pet.mvc.shopdomain.Review"/>
 	   <typeAlias alias="Category" type="pet.mvc.shopdomain.Category"/>

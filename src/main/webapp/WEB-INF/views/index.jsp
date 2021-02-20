@@ -77,7 +77,7 @@
                       </div>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="/member/agree.do" style="font-family: 'Spoqa Han Sans Neo';">회원가입 </a>
+                      <a class="nav-link" href="/member/agree.do" style="font-family: 'Spoqa Han Sans Neo';">회원가입</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
@@ -85,10 +85,11 @@
                   <li class="nav-item">
                       <a class="nav-link" href="/member/mypage.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
                   </li>
-                 
+                  <c:if test="${login.member_name eq 'admin'}">
                   <li class="nav-item">
-                      <a class="nav-link" href="sendmail.do">Contact </a>
+                      <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
                   </li>
+                  </c:if>
               </ul>
           </div>
           <!-- toggle switch for light and dark theme -->

@@ -13,26 +13,8 @@
       <!-- Template CSS -->
       <link rel="stylesheet" href="assets/css/productDes.css">
       <!-- Template CSS -->
-      <style>
-      .btn-like {
-  		color: transparent;
-  		text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 #000;
-		}
-	.btn-like:hover {
-  		text-shadow: 0 0 0 #ea0;
-		}
-	.btn-like.done {
-  		color: inherit;
-  		text-shadow: 0;
-		}
-	.btn-like.done:hover {
-  		color: transparent;
-  		text-shadow: 0 0 0 #777;
-		}
-     </style>
    </head>
    <body>
-   	 
       <!--header-->
       <header id="site-header" class="fixed-top">
          <div class="container">
@@ -128,7 +110,7 @@
                   <li class="design">${productDes.product_tag}</li>
                </ul>
                <h3 class="hny-title mt-3">겨울 포근 조끼  </h3>
-               <tr>
+               
                   <h4>&nbsp;</h4>
                   <table>
                      <tr>
@@ -153,103 +135,52 @@
                            </div>
                   </table>
                   <!--img src="assets/images/g10-1.jpg" width="350" height="450"-->
-                  </td>
+                  
                   <td align="center">
-                     <table border="3" >
-                     <form name="addProductsInCart" id="addProductsInCart" method="post" action="cart?product_code=${productDes.product_code}">
-                     <!--  form id="reviewform" name="insertReview" action="productDes" method="post"-->
-                        <table class="table" >
-                           <colgroup>
-                              <col style="width: 50%">
-                           <tr>
-                           <tr>
-                           </br>
-                           <td>상품명</td>
-                           <td>${productDes.product_name}</td>
-                           </tr>
-                           <tr>
-                           <td>가격</td>
-                           <td>${productDes.product_price}</td>
-                           </td>
-                           </tr>
-                           <%-- <td>
-                           &nbsp;color 선택 &nbsp;</br> 
-                           </td>
-                           <td>
-                           <input type="hidden" name="productName" value="${productDes.product_name}">
-                           &nbsp;<select name="productAmount" >==$0
-                           <option value="핑크">핑크</option>
-                           <option value="아이보리">아이보리</option>
-                           <option value="민트">민트</option>
-                           <option value="퍼플">퍼플</option>
-                           </select>
-                           </td> --%>
-                           </tr>
-                           <td>
-                           	수량 선택 &nbsp;</br></td>
-                           <td>
-                           <input type="hidden" name="productAmount" value="${productDes.product_name}">
-                           &nbsp;<select name="selectBox" id="selectBox">==$0
-                           <option value="1">1</option>
-                           <option value="2">2</option>
-                           <option value="3">3</option>
-                           <option value="4">4</option>
-                           <option value="5">5</option>
-                           <option value="6">6</option>
-                           <option value="7">7</option>
-                           <option value="8">8</option>
-                           <option value="9">9</option>
-                           <option value="10">10</option>
-                           </select>  &nbsp;개
-                           
-                           </br>
-                           </td>
-                           <tr>
-                           <td> 
-                           &nbsp;Size 선택 &nbsp;</br> 
-                           </td>
-                           <td>
-                           <input type="hidden" name="productAmount" value="${productDes}">
-                           &nbsp;<select name="name" align="center" >==$0
-                           <option value="1">S 핑크</option>
-                           <option value="2">M 핑크</option>
-                           <option value="3">S 아이보리</option>
-                           <option value="4">M 아이보리</option>
-                           <option value="5">S 민트</option>
-                           <option value="6">M 민트</option>
-                           <option value="7">S 퍼플</option>
-                           <option value="8">M 퍼플</option>
-                           </select>&nbsp;
-                           </td>
-                           </br>
-                           </tr></br>
-                           <td colspan="4">
-                              &nbsp;
-                              <input type="submit" style="text-align:left;" value="장바구니에 담기" 
-                              onclick="href='order'">
-                              <!--input type="submit" value="리뷰 올리기" class="btn btn-style btn-primary"-->                             
-                              &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-                           <button onclick="location='likelist'">찜 한 목록 보기</button>                         
-							<input type="checkbox" name="" id="btn" />
-							<label class="container" for="btn"></label>
-								<a href="gallay.html" target="_blank"></a>
-								<td>
-								<!--  <img src="../assets/images/heart123.svg" 
-								width="40" height="30" border="0" 
-								class="container"></a>
-								<img src="../assets/images/heart12345.svg" width="40" 
-								height="30" border="0" class="container"> -->
-								<a class="btn-like">💛</a>
-							</td>
-                              </br>
-                              </br><a href="likelist">상품목록</a>
-                           </td>
-                        </table>
+                     <form name="addProductsInCart" id="addProductsInCart" method="post" action="cart">
+                     	<input name="product_name" type="hidden" value="${productDes.product_name}">
+                     	<input name="product_code" type="hidden" value="${productDes.product_code}">
+                     	<input name="product_price" type="hidden" value="${productDes.product_price}">
+	                        <table class="table" >
+	                           <tr>
+		                           <td>상품명</td>
+		                           <td>${productDes.product_name}</td>
+	                           </tr>
+	                           <tr>
+		                           <td>가격</td>
+		                           <td>${productDes.product_price}</td>
+	                           </tr>
+	                           <td>수량 선택 &nbsp;</br></td>
+	                           <td>
+	                           	<input type="number" id="product_amount" name="product_amount"
+	                          	value="${productDes.product_amount}" step="1" min="1" max="10">
+	                           	&nbsp;</br>
+	                           </td>
+	                           <tr>
+	                           	<td>&nbsp;Size 선택 &nbsp;</br></td>
+	                           	<td>&nbsp;<select name="product_size" align="center" >==$0
+			                           <option value="S 핑크">S 핑크</option>
+			                           <option value="M 핑크">M 핑크</option>
+			                           <option value="S 아이보리">S 아이보리</option>
+			                           <option value="M 아이보리">M 아이보리</option>
+			                           <option value="S 민트">S 민트</option>
+			                           <option value="M 민트">M 민트</option>
+			                           <option value="S 퍼플">S 퍼플</option>
+			                           <option value="M 퍼플">M 퍼플</option>
+		                           	</select>&nbsp;
+	                           	</td> &nbsp;
+	                           </tr></br></br>
+	                           <td colspan="4">
+	                              &nbsp;
+	                              <input type="submit" style="text-align:left;" value="장바구니에 담기">
+	                              <!--input type="submit" value="리뷰 올리기" class="btn btn-style btn-primary"-->
+	                              </br>
+	                              </br>
+	                              <a href="product?catgo_code=9">상품목록</a>
+	                           </td>
+	                        </table>
                         </form>
                         </td>
-                        </tr>
-                     </table>
-               </tr>
             </div>
          </div>
          <div class="text-bg-image">
@@ -338,10 +269,10 @@
       <div class="d-grid grid-text-9">
       <div class="right-text-9">
       <h4 class="text-head-text-9" align="center"><a href="#text">사이즈 소개</a></h4>
-      <img src="assets/images/g10-10.jpg" width="800" height="650" align="center">
+      <img src="assets/images/g10-10.jpg" width="650" height="500" align="center">
       <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
       <h4 class="text-head-text-9" align="center"><a href="#text">모델</a></h4>
-      <img src="assets/images/g10-11.jpg" width="700" height="300" align="center">
+      <img src="assets/images/g10-11.jpg" width="700" height="500" style="text-align:center;" align="center">
       <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;빼로(포메라니안) 3kg/ M 착용      이오(포메라니안) 2.5kg/ M 착용</p>
       <div class="social-share-blog mt-4">
       <ul class="column3 social m-0 p-0">
@@ -383,7 +314,7 @@
             <div class="container py-lg-3">
                <div class="text-styles-top-30">
                   <h3 class="title-blog mb-4">최근 상품 리뷰 </h3>
-                  <div class="media">
+                  <div>
                      <div class="img-circle">
                         <img src="assets/images/g10-12.jpg" class="mr-3" alt="리뷰 상품 사진">
                      </div>
@@ -516,9 +447,9 @@
                         <div class="text-right mt-4">
                            <input type="submit" value="리뷰 올리기" class="btn btn-style btn-primary">
                         </div>
-                        <input type="hidden" name="member_number" value="${reviewCon.get(0).member_number}">
-                        <input type="hidden" name="review_number" value="-1">
-                        <input type="hidden" name="catgo_code" value="${reviewCon.get(0).catgo_code}">
+                        <input type="hidden" name="member_number" value="${reviewCon.get(1).member_number}">
+                        <input type="hidden" name="review_number" value="6">
+                        <input type="hidden" name="catgo_code" value="${reviewCon.get(1).catgo_code}">
                      </form>
                      <div id="inputData"></div>
                   </div>
@@ -643,12 +574,6 @@
       <script src="assets/js/theme-change.js"></script>
       
       <!--/MENU-JS-->
-      <script>
-      	$(".btn-like").click(function() {
-    		$(this).toggleClass("done");
-    	})
-      </script>
-    
       <script language="javascript">
     
          $(window).on("scroll", function () {
@@ -675,9 +600,8 @@
              }
            });
          });
-         </script>
-         <script>
-         function check()
+         
+         /* function check()
          {
           /* for(var i=0; i<document.input.elements.length; i++)
          {
@@ -701,7 +625,14 @@
          }
          } */
          document.getElementById("productOrderList").submit();
-         }
+           } */
+           
+          function getItem(){
+        	   $("#selectBox option:seleted").text();
+           }
+         	
+         
+         
       </script>
       <!--//MENU-JS-->
       <script src="assets/js/bootstrap.min.js"></script>

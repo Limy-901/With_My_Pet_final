@@ -51,7 +51,7 @@
 	<context:component-scan base-package="pet.mvc.shopmapper"/>
 	<mybatis-spring:scan base-package="pet.mvc.shopmapper"/>	
 	
-	<context:component-scan base-package="pet.mvc. board"/>
+	<context:component-scan base-package="pet.mvc.board"/>
 	
 	<context:component-scan base-package="pet.mvc.service" />
 	<context:component-scan base-package="pet.mvc.mapper"/>

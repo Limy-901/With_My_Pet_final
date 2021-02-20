@@ -16,7 +16,7 @@
 	]]>
 	</select>
 	<select id="selectBySeq" parameterType="long" resultType="Product">
-	select * from PRODUCT where SEQ=#{product_code}
+	select * from PRODUCT where product_code=#{product_code}
 	</select>
 	<select id="selectCount" resultType="long">
 	select count(product_code) from product
@@ -29,7 +29,7 @@
 	</insert>
 	<select id="listProduct" resultType="Product" parameterType="long">
 	   <!--  select * from PRODUCT where CATGO_CODE= #{catgo_code}-->
-	   select * from REVIEW natural join PRODUCT where catgo_code=#{catgo_code}
+	   select * from product where catgo_code=#{catgo_code}
 	</select>
 	<select id="listCatgo" resultType="Category" parameterType="long">
 		select * from CATGO where CATGO_CODE= #{catgo_code}
@@ -50,10 +50,15 @@
 		#{catgo_code}
 		)
 	</insert>
+	<select id="listOption" parameterType="long" resultType="Option">
+		select * from product_option natural join product where product_code=#{product_code}
+	</select>
+	<insert id="insertOption" parameterType="Option">
+		insert into product_option values(
+		#{product_code},
+		#{product_amount},
+		#{product_size}
+		)
+	</insert>
 	
-	<!--select id="selectCartList" parameterType="Cart" resultMap="cartResult">
-	<![CDATA[
-	select * from CART where member_number=#{member_number}
-	]]>
-	</select-->
 </mapper>

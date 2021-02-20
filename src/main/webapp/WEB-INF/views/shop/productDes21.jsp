@@ -19,8 +19,8 @@
       <header id="site-header" class="fixed-top">
          <div class="container">
             <nav class="navbar navbar-expand-lg stroke">
-              <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
-                  </a>
+               <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
+               </a>
                </h1>
                <!-- if logo is image enable this   
                   <a class="navbar-brand" href="#index.html">
@@ -31,52 +31,50 @@
                   aria-label="Toggle navigation">
                <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
                <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-               
                </button>
                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                   <ul class="navbar-nav ml-auto">
-                  <li class="nav-item">
-                      <a class="nav-link" href="../">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         	산 책 <span class="fa fa-angle-down"></span>
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="walklist.do">산책모집 </a>
-                          <a class="dropdown-item" href="walkboard.do">산책후기 </a>
-                      </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="product" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         	쇼 핑 <span class="fa fa-angle-down"></span>
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="product">쇼핑하기</a>
-                          <a class="dropdown-item" href="cart">장바구니</a>
-                          <a class="dropdown-item" href="order">결제</a>
-                      </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         	 커뮤니티 <span class="fa fa-angle-down"></span>
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                          <a class="dropdown-item" href="blog.html">공지사항</a>
-                          <a class="dropdown-item" href="blog-single.html">일상이야기</a>
-                      </div>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="gallery.html">로그인 </a>
-                  </li>
-                 
-                  <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact </a>
-                  </li>
-              </ul>
+                     <li class="nav-item">
+                        <a class="nav-link" href="../">Home <span class="sr-only">(current)</span></a>
+                     </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        산 책 <span class="fa fa-angle-down"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                           <a class="dropdown-item" href="walklist.do">산책모집 </a>
+                           <a class="dropdown-item" href="walkboard.do">산책후기 </a>
+                        </div>
+                     </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="product" id="navbarDropdown1" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        쇼 핑 <span class="fa fa-angle-down"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                           <a class="dropdown-item" href="product">쇼핑하기</a>
+                           <a class="dropdown-item" href="cart">장바구니</a>
+                           <a class="dropdown-item" href="order">결제</a>
+                        </div>
+                     </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        커뮤니티 <span class="fa fa-angle-down"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                           <a class="dropdown-item" href="blog.html">공지사항</a>
+                           <a class="dropdown-item" href="blog-single.html">일상이야기</a>
+                        </div>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">로그인 </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact </a>
+                     </li>
+                  </ul>
                </div>
                <!-- toggle switch for light and dark theme -->
                <div class="mobile-position">
@@ -98,8 +96,7 @@
       </header>
       <!-- //header -->
       <!-- about breadcrumb -->
-
-<!-- //about breadcrumb -->
+      <!-- //about breadcrumb -->
       <section class="w3l-blog-single" id="blog">
       <section class="w3l-blog-single1 py-5">
          <div class="container py-lg-5">
@@ -134,83 +131,66 @@
                            </div>
                   </table>
                   <!--img src="assets/images/g10-1.jpg" width="350" height="450"-->
-                  </td>
-                  <td align="center">
-                     <table border="3" >
+                 <td align="center">
+                     <form name="addProductsInCart" id="addProductsInCart" method="post" action="cart">
+                     <input name="product_name" type="hidden" value="${productDes21.product_name}">
+                     	<input name="product_code" type="hidden" value="${productDes21.product_code}">
+                     	<input name="product_price" type="hidden" value="${productDes21.product_price}">
+                     	<input name="product_content" type="hidden" value="${productDes21.product_content}">
                         <table class="table" >
-                           <colgroup>
-                              <col style="width: 50%">
                            <tr>
+                     		
+                     		</tr>
                            <tr>
-                              </br>
-                              <td>상품명</td>
-                              <td>${productDes21.product_name}</td>
-                           </tr>
-                           <tr>
-                              <td>가격</td>
-                              
-                                  <td>${productDes21.product_price}</td>
-                             
-                           </tr>
                            
-                           </td>
-                           <td>
-                              <form name="form1" method="post" action="경로">
-                                 &nbsp;color 선택 &nbsp;</br> 
-                           </td>
-                           <td>
-                           <input type="hidden" name="productName" value="${productDes21.product_name}">
-                           &nbsp;<select name="productAmount" >==$0
-                           <option value="핑크">베이지</option>
-                           <option value="아이보리">모카</option>
-                           
-                           </select>
+                           <td>상품명</td>
+                           <td name="product_name" type="hidden" value="${productDes21.product_name}">${productDes21.product_name}</td>
+                           </tr>
+                           <tr>
+                           <td>가격</td>
+                           <td name="product_price" type="hidden" value="${productDes21.product_price}">${productDes21.product_price}</td>
                            </td>
                            </tr>
+                           </tr>
                            <td>
-                           <form name="form1" method="post" action="경로">수량 선택 &nbsp;</br></td>
+                           	수량 선택 &nbsp;</br></td>
                            <td>
-                           <input type="hidden" name="productName" value="${productDes21.product_name}">
-                           &nbsp;<select name="name">==$0
-                           <option value="1">1</option>
-                           <option value="2">2</option>
-                           <option value="3">3</option>
-                           <option value="4">4</option>
-                           <option value="5">5</option>
-                           <option value="6">6</option>
-                           <option value="7">7</option>
-                           <option value="8">8</option>
-                           <option value="9">9</option>
-                           <option value="10">10</option>
-                           </select>  &nbsp;개
+                          
+                          	<input type="number" id="product_amount" name="product_amount"
+                          	value="${productDes21.product_amount}" step="1" min="1" max="10">
+                           &nbsp;
+                           
                            </br>
                            </td>
                            <tr>
-                           <td>
-                           <form name="form1" method="post" action="경로">
+                           <td> 
                            &nbsp;Size 선택 &nbsp;</br> 
                            </td>
                            <td>
-                           <input type="hidden" name="productAmount" value="${productDes21.product_name}">
-                           &nbsp;<select name="name" align="center" >==$0
-                           <option value="1">M 모카</option>
-                           <option value="2">M 베이지</option>
-                           <option value="1">L 모카</option>
-                           <option value="2">L 베이지</option>
-                           </select>&nbsp;사이즈
+                           &nbsp;<select name="product_size" align="center" id="product_size" value="${productDes21.product_size}">==$0
+                           <option value="S 베이지">S 베이지</option>
+                           <option value="M 베이지">M 베이지</option>
+                           <option value="S 모카">S 모카</option>
+                           <option value="M 모카">M 모카</option>
+                           </select>&nbsp;
                            </td> &nbsp;
                            </tr>
-                           </form>
                            </td>
                            </tr></br></br>
-                           <td colspan="4">&nbsp;<input type="submit" style="text-align:left;" value="장바구니에 담기" onclick="href='order'">
+                           <td colspan="4">
+                              &nbsp;
+                              <input type="submit" style="text-align:left;" value="장바구니에 담기">
+                              <!--input type="submit" value="리뷰 올리기" class="btn btn-style btn-primary"-->
                               </br>
+                              
                               </br><a href="product?catgo_code=9">상품목록</a>
                            </td>
                         </table>
+                        </form>
                         </td>
                         </tr>
                      </table>
+                   
                </tr>
             </div>
          </div>
@@ -339,42 +319,43 @@
       <!-- text-styles-30 -->
       <section class="w3l-blog-single4">
          <div class="text-styles-30_sur py-5">
-            <div class="container py-lg-3">
-               <div class="text-styles-top-30">
-                  <h3 class="title-blog mb-4">리뷰</h3>
-                  <div class="media">
-                     <div class="img-circle">
-                        <img src="assets/images/yumin.jpg" class="mr-3" alt="...">
-                     </div>
-                      <c:if test="${empty reviewCon}">
-                    		reviewCon 없음
-                     </c:if>
-                     <c:forEach items="reivewCon" var="reivewCon">
-                     <div class="media-body">
-                        <h5 class="mt-0">${reivewCon.review_email}</h5>
-                        <span class="time">${reivewCon.review_subject}</span>
-                        <p>${reivewCon.review_message}</p>
-                        <a href="#reply-form" class="reply">Reply</a>
+         <div class="container py-lg-3">
+            <div class="text-styles-top-30">
+               <h3 class="title-blog mb-4">리뷰</h3>
+               <c:forEach items="${reviewCon}" var="reviewCon" varStatus="status">
+               <div>
+                  <div class="img-circle">
+                     <img src="assets/images/yumin.jpg" class="mr-3" alt="...">
+                  </div>
+                  <div class="media-body">
+                           <input type="hidden" name="member_number" value="member_number">
+                           <h5 class="mt-0">${reviewCon.review_subject}</h5>
+                           <span class="time">${reviewCon.review_message}</span>
+                           <p>${reviewCon.review_email}</p>
+                           <input type="hidden" name="review_number" value="review_number">
+                           <input type="hidden" name="catgo_code" value="catgo_code">
+                           <a href="#reply-form" class="reply">Reply</a>
+                           <!-- status.index: ${status.index}  -->
                         </c:forEach>
-                     <div class="media-body">
-                        <h5 class="mt-0">러블리유민</h5>
-                        <span class="time">210205</span>
-                        <p>아이가 너무 좋아해요</p>
-                        <a href="#reply-form" class="reply">Reply</a>
-                        <div class="media mt-4">
-                           <a class="" href="#">
-                              <div class="img-circle img-circle-sm">
-                                 <img src="assets/images/jong.jpg" class="mr-3" alt="...">
-                              </div>
-                           </a>
-                           <div class="media-body">
-                              <h5 class="mt-0">쫑범</h5>
-                              <span class="time">210102</span>
-                              <p>너무 푹신하고 좋아요</p>
-                              <a href="#reply-form" class="reply">Reply</a>
-                           </div>
-                        </div>
-                     </div>
+                  <div class="media-body">
+                  <h5 class="mt-0">러블리유민</h5>
+                  <span class="time">210205</span>
+                  <p>아이가 너무 좋아해요</p>
+                  <a href="#reply-form" class="reply">Reply</a>
+                  <div class="media mt-4">
+                  <a class="" href="#">
+                  <div class="img-circle img-circle-sm">
+                  <img src="assets/images/jong.jpg" class="mr-3" alt="...">
+                  </div>
+                  </a>
+                  <div class="media-body">
+                  <h5 class="mt-0">쫑범</h5>
+                  <span class="time">210102</span>
+                  <p>너무 푹신하고 좋아요</p>
+                  <a href="#reply-form" class="reply">Reply</a>
+                  </div>
+                  </div>
+                  </div>
                   </div>
                </div>
             </div>

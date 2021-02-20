@@ -10,6 +10,7 @@ import pet.mvc.shopdomain.Cart;
 
 
 public interface CartService {
-	public String findCartProducts(Cart cart) throws Exception;
+	
 	public void addProductsInCart(Cart cart) throws Exception;
+	public List<Cart> findCartProducts(long product_code) throws Exception;
 }

@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=utf-8" import="java.util.Hashtable"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" import="java.util.Hashtable"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 ​
 ​
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 ​
 <head>
   <meta charset="utf-8">
@@ -39,7 +39,6 @@
               aria-label="Toggle navigation">
               <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
               <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-              </span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -154,43 +153,42 @@ function search(){
 			   alert(responseData.list);
 			   if(!responseData) return false;
 			   var html = '';
+			   $('#searchReset').empty();
 			   alert(responseData.list.length);
 			   for(var i=0; i<responseData.list.length;i++){
-				   html += "<center><section class='w3l-features py-5' id='features'>";
-				   html += "<div class='container py-lg-5 py-md-4'>";
-				   html += "<div class='grids-area-hny main-cont-wthree-fea row'>";
-				   html += "<div class='col-lg-4 col-sm-6 grids-feature'>";
-				   html += "<div class='area-box'>";
-				   html += "<div class='icon'>";
-				   html += "<span class='fa fa-snowflake-o'></span>";
-				   html += "</div>";
-				   html += "<h4><a class='title-head'>"+responseData.list[i].walk_subject+"</a></h4>";
-				   html += "<p>"+responseData.list[i].walk_content+"</p><p>"+responseData.list[i].walk_location+"</p>";
-				   html += "<a href='../walk/blog.do?idx="+responseData.list[i].walk_idx+"' class='read'>자세히 보기</a>";
-				   html += "</div></div></div></div></section></center>";
+		    	   html += "<div class='col-lg-4 col-sm-6 grids-feature'style='margin-left:-5%; display:relative;'>";
+		    	   html += "<center><div class='area-box'><div class='col-md-4'>";
+	    		   html += "<img style='margin:auto;'src='../assets/images/g1.jpg' class='img-fluid radius-image mt-1' alt='blog-post-image'>";
+	    		   html += "</div>";
+    			   html += "<div class='col-md-8 align-self'>";
+    			   html += "<P style='font-size:1rem;'>${item.day}, ${item.time}</P>";
+    			   html += "<b><p>"+responseData.list[i].walk_location+"</p></b>";
+   				   html += "<h4><a href='#feature' class='title-head'>"+responseData.list[i].walk_subject+"</a></h4>";
+   				   html += "<p style='font-size:16px;'>"+responseData.list[i].walk_writer+"</p>";
+   				   html += "<p>"+responseData.list[i].walk_content+"</p>";
+				   html += "<a href='../walk/blog.do?idx="+responseData.list[i].walk_idx+"' class='read'>자세히 보기>></a>";
+				   html += "</div></div></center></div>";
+			        
 			   }
-			   $('#searchHere').html(html);
+			   $('#searchReset').html(html);
 		   }
 	});
 }
 </script>
-
-
-<!-- /bottom-grids-->
-<div id="searchHere"></div>
-<!-- //bottom-grids-->
 
 <!-- 리스트 시작-->
 <section class="w3l-features py-5" id="features">
 <center>
   <div class="listwrap">
     <div class="grids-area-hny main-cont-wthree-fea">
-   
+    
     <c:if test="${empty list}">
 		<p>데이터가 없습니다.</p>
 	</c:if>
 	
 	<center>
+	
+	<div id="searchReset">
 	<c:forEach items="${list.list}" var="item">
       <div class="col-lg-4 col-sm-6 grids-feature"style="margin-left:-5%; display:relative;">
         <center>
@@ -207,9 +205,12 @@ function search(){
 	            <a href="../walk/blog.do?idx=${item.walk_idx}" class="read">자세히 보기>></a>
 	       </div>
         </div>
+        
         </center>
       </div>
      </c:forEach>
+     </div>
+     
      </center></div></div></center>
   
   <!-- 페이지 -->

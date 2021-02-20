@@ -150,10 +150,15 @@
       </div>
       </br>
        <td align="center">
+        
        <table border="3" >
       <table class="table--1aTBT9emfH" >
       <cation>
       <span class="blind">장바구니 내역</span>
+       <c:if test="${empty viewlists}">
+                  없음
+               </c:if>
+          
       </cation>
       <colgroup>
       <col class="col_1--5TSKjnuT7E">
@@ -174,27 +179,32 @@
          <tr>
          </thread>
          <tbody>
-         <tr class="table_row--2U-tpJvyb0">
-            <td class="table_cell--275JhdiLLN">${productDes.product_code}</td>
-            <td class="table_cell--275JhdiLLN">${productDes.product_code}</td>
-            <td class="table_cell--275JhdiLLN"><img src="assets/images/g10-6.jpg" width=70 height=70 align="center"/></td>
-            <td class="table_cell--275JhdiLLN">${productDes.product_code}</td>
-            <td class="table_cell--275JhdiLLN">${productDes.product_code}</td>
-            <td class="table_cell--275JhdiLLN">${productDes.product_code}</td>
-         </tr>
+         <c:forEach items="${cartLists}" var="cartList" varStatus="status">     
+	         <tr class="table_row--2U-tpJvyb0">
+	            <td name="product_code" id="product_code" type="text" value="${cartList.product_code}" class="table_cell--275JhdiLLN">${cartList.product_code}</td>
+	            <td name="product_content" id="product_content" type="text" value="${cartList.product_content}" class="table_cell--275JhdiLLN">${cartList.product_content}</td>
+	            <td class="table_cell--275JhdiLLN"><img src="assets/images/g10-6.jpg" width=70 height=70 align="center"/></td>
+	            <td name="product_amount" id="product_amount" type="text" value="${cartList.product_amount}" class="table_cell--275JhdiLLN">${cartList.product_amount}</td>
+	            <td name="product_color" id="product_size" type="text" value="${cartList.product_size}" class="table_cell--275JhdiLLN">${cartList.product_size}</td>
+	            <td name="product_price" id="product_price" type="text" value="${cartList.product_price}" class="table_cell--275JhdiLLN">${cartList.product_price}</td>
+	         </tr>
          
-          <tr>
-            <th class="table_cell--275JhdiLLN"> </th>
-            <th class="table_cell--275JhdiLLN"> </th>
-            <th class="table_cell--275JhdiLLN"> </th>
-            <th class="table_cell--275JhdiLLN"> </th>
-            <th class="table_cell--275JhdiLLN"> </th>
-            <th class="table_cell--275JhdiLLN"></br>주문 총 금액 </br>
-            <input type="text" name="orderRec" id="orderRec" required="required" /></th>
-         </tr>
+	          <tr>
+	            <th class="table_cell--275JhdiLLN"> </th>
+	            <th class="table_cell--275JhdiLLN"> </th>
+	            <th class="table_cell--275JhdiLLN"> </th>
+	            <th class="table_cell--275JhdiLLN"> </th>
+	            <th class="table_cell--275JhdiLLN"> </th>
+	            <th class="table_cell--275JhdiLLN"></br>주문 총 금액 </br>
+	            <input type="text" name="product_price" id="product_price" value="${cartList.product_price}" /></th>
+	         </tr>
+	         </c:forEach>
          </tbody>
+        
+         </table>
+        
       </table>
-      </table>  
+       </form>
       </td>
       </div>
       </br>
@@ -218,6 +228,7 @@
       <span class="text_mart--2kMJYDiHte">총 주문금액
       <span class="price--mkyVLxZMtX"> 12400
       </span>원
+      
       </span>
       </div>
         

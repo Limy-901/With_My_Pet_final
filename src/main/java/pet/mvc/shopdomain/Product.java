@@ -25,7 +25,6 @@ public class Product {
 	private String review_subject;
 	private String review_message;
 	private String review_email;
-	
-
-
+	private long product_amount;
+	private long product_size;
 }

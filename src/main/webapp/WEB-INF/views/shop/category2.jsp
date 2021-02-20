@@ -146,7 +146,7 @@
           <div class="col-lg-4 col-md-6 item">
               <div class="card">
                   <div class="card-header p-0 position-relative">
-                      <a href="productDes21?catgo_code=6&review_number=11">
+                      <a href="productDes21?catgo_code=6&review_number=11&product_code=9">
                           <img class="card-img-bottom d-block" src="assets/images/g3-1.jpg" alt="Card image cap">
                       </a>
                       

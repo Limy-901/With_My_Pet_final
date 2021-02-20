@@ -3,10 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pet.mvc.shopmapper.CartMapper">
-	<select id="selectCountInCart" resultType="String" parameterType="Cart">
+	<select id="selectCountInCart" resultType="Cart" parameterType="long">
 	<![CDATA[
-	select decode(count(*), 0, 'false', 'true') from Cart where cart_code=#{cart_code} 
-	and product_code=#{product_code}
+	select * from CART where product_code=#{product_code}
 	]]>
 	</select>
 	<insert id="insertProductsInCart" parameterType="Cart">
