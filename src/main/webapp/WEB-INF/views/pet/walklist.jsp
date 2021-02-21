@@ -123,9 +123,8 @@
 <div style="margin:auto; display:flex; ">
 	 <a class="button" href="../walk/post.do"style="font-size:30px;margin:auto; padding:1.5%;display:flex; position:relative;"><b>&nbsp;&nbsp;&nbsp;&nbsp;직접 만들기 🐕&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
 </div><br><br><br>
-
-<!-- 검색창 -->
 <center>
+<!-- 검색창 -->
     <div class="ui action input" style="margin:auto; position:relative; width:40%;">
 	  <input type="text" id="searchKeyword" placeholder="검색어를 입력하세요.">
 	  <select id="searchType" class="ui compact selection dropdown">
@@ -136,7 +135,6 @@
 	  </select>
 	  <div class="ui teal button" onclick="search()">검색</div>
 	</div>
-</center>
 <script>
 function search(){
 	var keyword = $("#searchKeyword").val();
@@ -178,42 +176,37 @@ function search(){
 
 <!-- 리스트 시작-->
 <section class="w3l-features py-5" id="features">
-<center>
-  <div class="listwrap">
+  <div class="listwrap" style="align:center';">
     <div class="grids-area-hny main-cont-wthree-fea">
-    
+    <!-- 리스트 비었을 경우 -->
     <c:if test="${empty list}">
 		<p>데이터가 없습니다.</p>
 	</c:if>
 	
-	<center>
-	
-	<div id="searchReset">
-	<c:forEach items="${list.list}" var="item">
-      <div class="col-lg-4 col-sm-6 grids-feature"style="margin-left:-5%; display:relative;">
-        <center>
-        <div class="area-box" >
-         <div class="col-md-4">
-            <img style="margin:auto;"src="../assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
-         </div> 
-	       <div class="col-md-8 align-self">
-	       		<P style="font-size:1rem;">${item.day}, ${item.time}</P>
-		        <b><p>${item.walk_location}</p></b>   
-	            <h4><a href="#feature" class="title-head">${item.walk_subject}</a></h4>
-			    <p style="font-size:16px;">${item.walk_writer}</p>
-	            <p>${item.walk_content}</p>
-	            <a href="../walk/blog.do?idx=${item.walk_idx}" class="read">자세히 보기>></a>
-	       </div>
-        </div>
-        
-        </center>
-      </div>
-     </c:forEach>
+	<div id="searchReset" style="align:center;">
+		<!-- 리스트 존재할 경우 -->
+		<c:forEach items="${list.list}" var="item">
+	      <div class="col-lg-4 col-sm-6 grids-feature"style="margin-left:-5%; display:relative;">
+	        <div class="area-box" style="align:center;">
+	         <div class="col-md-4">
+	            <img style="margin:auto;"src="../assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
+	         </div> 
+		       <div class="col-md-8 align-self">
+		       		<P style="font-size:1rem;">${item.day}, ${item.time}</P>
+			        <b><p>${item.walk_location}</p></b>   
+		            <h4><a href="#feature" class="title-head">${item.walk_subject}</a></h4>
+				    <p style="font-size:16px;">${item.walk_writer}</p>
+		            <p>${item.walk_content}</p>
+		            <a href="../walk/blog.do?idx=${item.walk_idx}" class="read">자세히 보기>></a>
+		       </div>
+	        </div> 
+	      </div>
+	     </c:forEach>
      </div>
      
-     </center></div></div></center>
+   </div></div>
   
-  <!-- 페이지 -->
+  <!-- 페이지네이션 -->
   </section>
   <div style="text-align:center;"><br/><br/><br/>
     <c:forEach begin="1" end="${list.totalPageCount}" var="i">
@@ -229,12 +222,11 @@ function search(){
 		</a>&nbsp;
 	</c:forEach><br/><br/>
 	
-    <label>( TOTAL : ${list.totalCount} )</label><br/><br/>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </div><br/><br/>
+    <label>( TOTAL : ${list.totalCount} )</label><br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div><br/><br/></center>
     
 
-  <!--//MENU-JS-->
+  <!-- 최하단 footer -->
 <script src="../assets/js/button/package.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
 <script src="../assets/js/button/dropdown.min.js"></script>

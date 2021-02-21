@@ -85,11 +85,11 @@
                   <li class="nav-item">
                       <a class="nav-link" href="/member/mypage.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
                   </li>
-                  <c:if test="${login.member_name eq 'admin'}">
+                  <!--<c:if test="${login.member_name eq 'admin'}"> </c:if>-->
                   <li class="nav-item">
                       <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
                   </li>
-                  </c:if>
+                 
               </ul>
           </div>
           <!-- toggle switch for light and dark theme -->
@@ -544,7 +544,6 @@
     }
   </script>
   <!-- /move top -->
-</section>
 <!-- //footer-28 block -->
 <!-- disable body scroll which navbar is in active -->
 <script>
