@@ -5,32 +5,37 @@
 <mapper namespace="pet.mvc.mapper.BoardMapper">
 	<select id="selectPerPage" resultType="Board" parameterType="BoardVo">
 	    <![CDATA[ 
-	    select * from (select ROWNUM rnum, aa.* from (select * from BOARD order by POST_IDX desc) aa) 
-	  where rnum>#{startRow} and rnum<=#{endRow}]]>
+	     select B.* from (select rownum as rnum, A.* from (select * from board order by post_no desc, post_order asc) A
+	  where board_idx=#{board_idx} and rownum<=#{endRow}) B where B.rnum>#{startRow}]]>
 	  
 	  
 	</select>
 		
 	<select id="selectByCatgo" resultType="Board" parameterType="BoardVo" >
 	<![CDATA[ 
-	select * from (select ROWNUM rnum, aa.* 
+	select * from (select rownum rnum, aa.* 
 	from (select * from BOARD where ${catgo} like '%'||#{keyword}||'%' order by ${catgo}) aa) 
 	  where rnum>#{startRow} and rnum<=#{endRow}
 	]]>
 	</select>
 	
 	<select id="selectBySeq" parameterType="long" resultType="Board">
-	    select * from board where board.post_idx=#{post_idx}
+	    select * from board where post_idx=#{post_idx}
 	</select>   
 	
 	
 	<select id="selectPostTime" parameterType="long" resultType="String">
-		SELECT ROUND((#{post_date}-sysdate)*24*60) FROM board where post_idx=#{post_idx}
+		select round((#{post_date}-sysdate)*24*60) FROM board where post_idx=#{post_idx}
 	</select>	
 		
 	<select id="selectCmtBySeq" parameterType="long" resultType="BoardCmt">
 		select * from board_cmt where post_idx=#{post_idx} order by cmt_date desc
 	</select>
+		
+	<select id="selectCmtData" parameterType="long" resultType="BoardCmt">
+		select * from board_cmt where comment_idx=#{comment_idx} order by cmt_date desc
+	</select>
+		
 		
 	<select id="selectCount" resultType="long">
 		select count(POST_IDX) from BOARD
@@ -43,9 +48,10 @@
 		
 	<insert id="insert" parameterType="Board">
 
-		insert into BOARD(post_idx, board_idx, post_writer, post_subject, content, post_date)
+		insert into BOARD(post_idx, board_idx, post_writer, post_subject, content, post_date, post_no, post_order, post_depth)
 		 values(board_seq.nextval, #{board_idx}, 
-		 #{post_writer, jdbcType=VARCHAR}, #{post_subject, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, sysdate)
+		 #{post_writer, jdbcType=VARCHAR}, #{post_subject, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, sysdate,
+		 board_seq.nextval, 0, 1)
 		
 	</insert>
 	
@@ -59,6 +65,56 @@
     	where post_idx=#{post_idx}
     </update>
     
+    <select id = "getBoardReplyInfo" parameterType="long">
+    	select post_idx, post_order, post_depth, post_no FROM board where post_idx=#{post_idx};
+    </select>
+   
+   <insert id="insertReply" parameterType="Board">
+
+		insert into BOARD(post_idx, board_idx, post_writer, post_subject, content, post_date, post_no, post_order, post_depth)
+		 values(board_seq.nextval, #{board_idx}, 
+		 #{post_writer, jdbcType=VARCHAR}, #{post_subject, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, sysdate,
+		 #{post_no}, 0, 1)
+		
+	</insert>
+   
+ 
+   
+   <select id ="selectReplyElement" parameterType="long" resultType="Board">
+   		select post_order, post_no, post_depth from board where post_idx=#{post_idx}
+   </select>
+   
+    <update id="updateOrder" parameterType="long">	
+    	<![CDATA[update board set post_order=post_order+1 where post_idx>#{post_no} and post_no=#{post_no}]]>
+    </update>
+    
+    <insert id="rewriteBoard" parameterType="Board">
+    	<selectKey keyProperty="post_idx" keyColumn="post_idx" order="BEFORE" resultType="long">
+    		select board_seq.nextval from dual
+    	</selectKey>
+    	
+    	insert into BOARD(post_idx, board_idx, post_writer, post_subject, content, post_date, post_no, post_order, post_depth)
+		 values(#{post_idx}, #{board_idx}, 
+		 #{post_writer, jdbcType=VARCHAR}, #{post_subject, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, sysdate,
+		 #{post_no},#{post_order},#{post_depth})
+		
+    </insert>
+
+
+
+    <insert id="reRewriteBoard" parameterType="Board">
+    	<selectKey keyProperty="post_idx" keyColumn="post_idx" order="BEFORE" resultType="long">
+    		select board_seq.nextval from dual
+    	</selectKey>
+    	
+    	insert into BOARD(post_idx, board_idx, post_writer, post_subject, content, post_date, post_no, post_order, post_depth)
+		 values(#{post_idx}, #{board_idx}, 
+		 #{post_writer, jdbcType=VARCHAR}, #{post_subject, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, sysdate,
+		 #{post_idx},#{post_order},#{post_depth})
+		
+    </insert>
+    
+    
     <update id="updateCount" parameterType="long">
     	UPDATE BOARD SET post_count=post_count+1 WHERE post_idx=#{post_idx}
     </update>
@@ -66,6 +122,7 @@
     <insert id="insertCmt" parameterType="BoardCmt">
     INSERT INTO board_cmt(comment_idx, cmt_writer, post_idx, board_idx, cmt_content, cmt_date) 
     VALUES(BOARD_CMT_SEQ.NEXTVAL, #{cmt_writer}, #{post_idx, jdbcType=INTEGER}, #{board_idx}, #{cmt_content}, sysdate)
+
 	</insert>
 	
 	
@@ -74,7 +131,7 @@
 	</delete>
 	
 	<update id="updateCmt" parameterType="BoardCmt">
-		update board_cmt set cmt_content=#{cmt_content}
+		update board_cmt set cmt_content=#{cmt_content} where comment_idx=#{comment_idx}
 	</update>
 	
 

@@ -1,16 +1,13 @@
 package pet.mvc.controller;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import pet.mvc.service.IndexService;
-import pet.mvc.walk.Walk;
+import pet.walk.vo.Walk;
 
 
 @Log4j
@@ -21,9 +18,8 @@ public class IndexController {
 	
 	@RequestMapping("/")
 	public ModelAndView home() {
-		log.info("안녕");
+		log.info("�ȳ�");
 		ArrayList<Walk> dtos = indexService.getWalkList();
-		//쇼핑 추가되면, 쇼핑이랑 walk함께담는 껍데기 만들어서 해야함.
 		ModelAndView mv = new ModelAndView("index","walks",dtos);
 		return mv;
 	}

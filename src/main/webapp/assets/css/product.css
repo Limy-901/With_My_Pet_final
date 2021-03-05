@@ -33,8 +33,8 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-sans-serif: 'Spoqa Han Sans Neo';
+  --font-family-monospace: 'Spoqa Han Sans Neo';
 }
 
 *,
@@ -44,7 +44,7 @@
 }
 
 html {
- font-family: 'Spoqa Han Sans Neo';
+  font-family: 'Spoqa Han Sans Neo';
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -64,29 +64,25 @@ section {
 }
 
 body {
-  margin: 0;
+  padding: 19px 39px 18px 39px;
   font-family: 'Spoqa Han Sans Neo';
   font-size: 1rem;
   font-weight: 400;
+  font-style: normal;
   line-height: 1.5;
-  color: #212529;
-  text-align: left;
-  background-color: #fff;
+  color: #FFF;
+  border-radius: 5px;
   text-align: center;
+  width: 100%;
+  background-color: #fff;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+  margin-bottom: 10px;
 }
-.dropdown {
-  position: relative;
-  display: inline-block;
+
+[tabindex="-1"]:focus:not(:focus-visible) {
+  outline: 0 !important;
 }
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #F9F9F9;
-  min-width: 160px;
-  padding: 8px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-.dropdown:hover .dropdown-content { display: block; }
 
 hr {
   box-sizing: content-box;
@@ -240,7 +236,7 @@ svg {
 
 table {
   border-collapse: collapse;
-  margin: auto;
+  margin-left: 0%;
 }
 
 caption {
@@ -6470,7 +6466,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Spoqa Han Sans Neo';
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -6595,7 +6591,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Spoqa Han Sans Neo';
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -10650,7 +10646,7 @@ button.bg-dark:focus {
 }
 
 .text-monospace {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  font-family: 'Spoqa Han Sans Neo';
 }
 
 .text-justify {
@@ -11002,7 +10998,7 @@ a.text-dark:focus {
 /* FONT PATH
  * -------------------------- */
 @font-face {
-  font-family: 'FontAwesome';
+  font-family: 'Spoqa Han Sans Neo';
   src: url("../fonts/fontawesome-webfont.eot?v=4.7.0");
   src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
   font-weight: normal;
@@ -14035,15 +14031,15 @@ a.text-dark:focus {
 }
 
 :root {
-  --primary-color: #b87182;
-  --secondary-color: #f53626;
+  --primary-color: #ffb446;
+  --secondary-color: #6EC5CE;
   --font-color: #696969;
-  --bg-color: rgb(248, 244, 244);
+  --bg-color: #fff;
   --heading-color: #000c04;
   --border-radius: 10px;
   --border-color: #ddd;
   --border-light:#f0f3f0;
-  --nav-color: #292922;
+  --nav-color: #585849;
   --dropdown-color: #fff;
   --bg-light: rgba(147, 107, 232, 0.05);
   --iframe-filter: grayscale(0%);
@@ -14051,10 +14047,10 @@ a.text-dark:focus {
 }
 
 [data-theme="dark"] {
-  --primary-color: #189A46;
-  --secondary-color: #f53626;
+  --primary-color: #b96f13;
+  --secondary-color: #ffb446;
   --font-color: #afafaf;
-  --bg-color:#151515;
+  --bg-color:#4f3426;
   --heading-color: #ddd;
   --border-color: #333;
   --border-light: #444;
@@ -14088,6 +14084,7 @@ button,
 .btn {
   cursor: pointer !important;
   font-family: 'Spoqa Han Sans Neo';
+  font-size: x-large;
 }
 
 .clear {
@@ -14120,7 +14117,7 @@ li {
 a,
 a:hover {
   text-decoration: none;
-  color: #030303;
+  color: #999;
 }
 
 iframe {
@@ -14149,7 +14146,7 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
-  color: #030303;
+  color: var(--heading-color);
   font-family: 'Spoqa Han Sans Neo';
   font-weight: 600;
 }
@@ -14159,8 +14156,9 @@ p {
   padding: 0;
   font-size: 1.2em;
   line-height: 28px;
-  color: #6EC5CE;
+  color: var(--font-color);
   font-family: 'Spoqa Han Sans Neo';
+}
 
 li {
   list-style-type: none;
@@ -14282,7 +14280,7 @@ p.white {
   transition: 0.3s ease-in;
   border-radius: var(--border-radius);
   background-color: #fff;
-  color: #6EC5CE;;
+  color: var(--primary-color);
 }
 .border-btn:hover{
   color: var(--primary-color);
@@ -14300,7 +14298,7 @@ a.link-style {
 a.link-style:before {
   position: absolute;
   content: '';
-  background: #6EC5CE;
+  background: var(--primary-color);
   width: 0px;
   height: 1px;
   bottom: 13px;
@@ -14328,12 +14326,23 @@ a.link-style:hover:before {
 }
 
 .sub-title {
-  font-size: 18px;
+  font-size: 40px;
   font-weight: 400;
+  font-family: 'Spoqa Han Sans Neo';
   text-transform: uppercase;
   line-height: 2em;
   letter-spacing: 1px;
-  color: var(--secondary);
+  color: var(--heading-color);
+}
+
+.sub-title2 {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: 'Spoqa Han Sans Neo';
+  text-transform: uppercase;
+  line-height: 2em;
+  letter-spacing: 1px;
+  color: var(--heading-color);
 }
 
 .sub-title span {
@@ -16125,7 +16134,7 @@ a.read:hover {
   padding-top: 8px;
   font-weight: 600;
   display: inline-block;
-  font-family: "Merriweather", serif;
+  font-family: 'Spoqa Han Sans Neo';
 }
 
 .w3l-clients .test-img {
@@ -16340,7 +16349,7 @@ button::-moz-focus-inner {
   color: #FFF;
   font-style: normal;
   font-size: 28px;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Spoqa Han Sans Neo';
   background: transparent;
 }
 
@@ -16747,7 +16756,7 @@ div#small-dialog iframe {
   content: "";
   position: absolute;
   top: 0;
-  min-height: 100%;
+  min-height: 300px;
   left: 0;
   right: 0;
   z-index: -1;
@@ -17657,7 +17666,7 @@ li.design {
   padding-top: 8px;
   font-weight: 600;
   display: inline-block;
-  font-family: "Merriweather", serif;
+  font-family: 'Spoqa Han Sans Neo';
 }
 
 .w3l-blog-single .w3l-blog-single2 .w3l-text-styles-33_sur p {
@@ -18629,6 +18638,10 @@ li.design {
   .w3l-footer ul.social-icons {
     margin-top: 0;
     margin-bottom: 10px;
+  }
+
+  .box {
+    border: 1px #555555 solid;
   }
 }
 

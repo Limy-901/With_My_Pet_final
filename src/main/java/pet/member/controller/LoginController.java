@@ -1,11 +1,12 @@
 package pet.member.controller;
 
 import javax.inject.Inject;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,26 +15,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import lombok.extern.log4j.Log4j;
 import pet.member.service.MemberService;
+import pet.member.service.MypagePetService;
 import pet.member.vo.MemberVO;
+import pet.member.vo.MypagePetVO;
 
+@Log4j
 @Controller
 @RequestMapping(value = "/member")
 public class LoginController {
 	
    private Logger logger = LoggerFactory.getLogger(LoginController.class);
    
-   @Inject()
+   @Inject
    private MemberService service;
    
-   @Inject()
-   private BCryptPasswordEncoder pwencoder;
+   @Inject
+   private MypagePetService petservice;
    
+   @Inject
+   private BCryptPasswordEncoder pwencoder;
    
    //로그인
    @RequestMapping(value = "/login.do", method = RequestMethod.GET)
    public String getLogin() throws Exception {
       logger.info("login.do 호출성공");
+      
       return "member/login";
    }
    
@@ -46,6 +54,7 @@ public class LoginController {
          
          MemberVO vo = service.login(lvo);
          
+         
          if(vo == null) {
             mav.addObject("msg", "아이디를 정확히 입력해 주세요.");
             mav.setViewName("member/signup");
@@ -53,30 +62,45 @@ public class LoginController {
          }
          
          boolean passMatch = pwencoder.matches(lvo.getMember_password(), vo.getMember_password());
+        
          
+         //로그인 성공
          if (passMatch) {
         	 session.setAttribute("login", vo);
         	 mav.setViewName("member/mypage");
+        	 
+        	 int member_number = vo.getMember_number();
+        	 MypagePetVO mpvo = petservice.petMypage(member_number);
+  		   	 log.info("이거되니?"+mpvo);
+  		     
+  		   	 mav.addObject("mpvo", mpvo);
+  		   	 session.setAttribute("petMypage", mpvo);
+        	 
+        	 
         	 return mav;
-        	
+        	 
+        	 
+        	 
+        	 
          }else {
             mav.addObject("msg", "패스워드를 정확히 입력해주세요.");
             mav.setViewName("member/agree");
             return mav;
          }
+
       }
-      
       
    //로그아웃 처리
    @RequestMapping(value = "/logout.do")
    public String logout(HttpSession session, HttpServletRequest request) {
       logger.info("logout.do 호출 성공");
+      
       request.getSession().removeAttribute("login");
       session.removeAttribute("login");
       session.invalidate();
+      
       return "index";
    }
-   
    
    //아이디 찾기 창
    @RequestMapping(value = "/idFind.do", method = RequestMethod.GET)
@@ -90,24 +114,18 @@ public class LoginController {
       logger.info("get pwFind");
       return "member/pwFind";
    }
-   
-   
    //패스워드 수정
    @RequestMapping(value = "/pwModify.do", method = RequestMethod.GET)
    public String getPwModify() throws Exception {
       logger.info("get pwModify");
       return "member/pwModify";
    }
-   
-   
    //회원 패스워드 수정
       @RequestMapping(value = "/memberPwdModify.do", method = RequestMethod.GET)
       public String getMemberPwModify() throws Exception {
          logger.info("get getMemberPwModify");
          return "member/memberPwdModify";
       }
-      
-      
    //아이디 찾기
    @RequestMapping(value = "/idFind.do", method = RequestMethod.POST)
    public String idFind(MemberVO vo, Model model) throws Exception {
@@ -121,8 +139,6 @@ public class LoginController {
          return "member/emailFind";
       }
    }
-   
-   
    // 패스워드 찾기
       @RequestMapping(value = "/pwFind.do", method = RequestMethod.POST)
       public ModelAndView pwFind(@ModelAttribute("MemberVO") MemberVO pvo, HttpSession session, HttpServletRequest request) {
@@ -139,16 +155,19 @@ public class LoginController {
             return mav;
          }
       }
-      
-      
    //패스워드 수정
       @RequestMapping(value = "/pwModify.do", method = RequestMethod.POST)
       public String memberUpdate(@ModelAttribute MemberVO vo, HttpSession session) throws Exception {
          logger.info("패스워드 변경 성공");
+         
          String secPwd = pwencoder.encode(vo.getMember_password());
+         
          vo.setMember_password(secPwd);
+         
          service.pwModify(vo);
+         
          session.invalidate();
+        
          return "member/login";
       }
 }

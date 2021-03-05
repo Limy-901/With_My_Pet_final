@@ -165,7 +165,9 @@ vertical-align: middle;
                               required="">
                           <input type="text" class="form-control" name="member_password" id="w3lSender" placeholder="PASSWORD"
                               required="">
-                      </div>
+                      
+		</div>
+                     
                       <button type="submit" class="btn btn-primary mt-4">Log in</button>
                   </form>
      

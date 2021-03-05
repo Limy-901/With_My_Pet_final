@@ -153,9 +153,9 @@
                   </div>
                   <div class="card-body blog-details">
                       <a href="blog-single2.html" class="blog-desc">마약 방석</a>
-                      <p>고양이 숨숨집 캣방석 </p>
+                      <p>위마펫 베스트 제품 마약방석 </p>
                       <div class="author align-items-center mt-3 mb-1">
-                          <a href="#author">50000</a> - <span class="meta-value">태그자리#폭신</span>
+                          <a href="#author">15000</a> - <span class="meta-value">#폭신</span>
                       </div>
                       <ul class="blog-meta">
                           <li class="meta-item blog-students">

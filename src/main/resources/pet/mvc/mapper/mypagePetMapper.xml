@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pet.mvc.mapper.mypagePetMapper">
+ 
+   <!-- 강아지 정보 기입-->  
+   <insert id="petUpdateDo" parameterType="pet_mypage">
+      <!-- 회원 가입 Insert -->
+         INSERT INTO PET_MYPAGE
+         VALUES(#{member_number},#{pet_name},#{pet_sex},#{pet_age},#{pet_walkarea},0,#{pet_fname},#{pet_ofname},#{pet_fsize})
+	</insert>
+	
+	<!-- 강아지 정보 select -->
+   <select id="petMypage" resultType="pet.member.vo.MypagePetVO" parameterType="int">
+      <![CDATA[
+      SELECT 
+	  pet_name,
+	  pet_sex,
+	  CASE WHEN TRUNC(SYSDATE) - pet_age <= 30 THEN
+                 TRUNC(SYSDATE) - pet_age + 1 || '일'
+            WHEN MONTHS_BETWEEN(TRUNC(SYSDATE), pet_age) < 12 THEN
+                 TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), pet_age)) || '개월'
+            ELSE
+                 TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), pet_age) / 12 ) || '세'
+       END pet_age,
+      pet_walkarea,
+      pet_walkpoint,
+      pet_fname,
+      pet_ofname,
+      pet_fsize
+      FROM PET_MYPAGE
+      WHERE member_number= #{member_number}
+      ]]>
+   </select>
+   <!--
+   	  SELECT 
+	  pet_name,
+	  pet_sex,
+	  TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), pet_age) / 12),
+      pet_walkarea,
+      pet_walkpoint,
+      pet_fname,
+      pet_ofname,
+      pet_fsize
+      FROM PET_MYPAGE
+      WHERE member_number = #{member_number}
+	  TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), TO_DATE('19890326','YYYYMMDD')) / 12)
+  FROM DUAL
+  -->
+</mapper>

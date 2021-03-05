@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" import="java.util.Hashtable"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 ​
 ​
 <!doctype html>
@@ -9,6 +10,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>:: With My Pet :: 함께 산책해요</title>
+   <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/icon/footprint16.png">
   <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/list.css">
   <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
@@ -20,10 +22,22 @@
   <link rel="stylesheet" href="../assets/css/button/button.min.css">
   <link rel="stylesheet" href="../assets/css/button/dropdown.css">
   <link rel="stylesheet" href="../assets/css/button/dropdown.min.css">
+  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../assets/js/button/package.js"></script>
+	<script src="../assets/js/bootstrap.min.js"></script>
+	<script src="../assets/js/button/dropdown.min.js"></script>
+	<script src="../assets/js/button/dropdown.js"></script>
+	<script src="../assets/js/button/index.js"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 
 <body>
+
+
+
+  
+  
 <!--header-->
 <header id="site-header" class="fixed-top" >
   <div class="container">
@@ -123,9 +137,10 @@
 <div style="margin:auto; display:flex; ">
 	 <a class="button" href="../walk/post.do"style="font-size:30px;margin:auto; padding:1.5%;display:flex; position:relative;"><b>&nbsp;&nbsp;&nbsp;&nbsp;직접 만들기 🐕&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
 </div><br><br><br>
-<center>
+
 <!-- 검색창 -->
-    <div class="ui action input" style="margin:auto; position:relative; width:40%;">
+<center>
+    <div class="ui action input" style="width:40%;">
 	  <input type="text" id="searchKeyword" placeholder="검색어를 입력하세요.">
 	  <select id="searchType" class="ui compact selection dropdown">
 	    <option selected="" value="all">전체</option>
@@ -135,6 +150,8 @@
 	  </select>
 	  <div class="ui teal button" onclick="search()">검색</div>
 	</div>
+</center><br><br><br>
+
 <script>
 function search(){
 	var keyword = $("#searchKeyword").val();
@@ -173,41 +190,76 @@ function search(){
 	});
 }
 </script>
-
-<!-- 리스트 시작-->
-<section class="w3l-features py-5" id="features">
-  <div class="listwrap" style="align:center';">
-    <div class="grids-area-hny main-cont-wthree-fea">
-    <!-- 리스트 비었을 경우 -->
-    <c:if test="${empty list}">
-		<p>데이터가 없습니다.</p>
-	</c:if>
+<c:if test="${empty list}">
+	<p>데이터가 없습니다.</p>
+</c:if>
 	
-	<div id="searchReset" style="align:center;">
-		<!-- 리스트 존재할 경우 -->
-		<c:forEach items="${list.list}" var="item">
-	      <div class="col-lg-4 col-sm-6 grids-feature"style="margin-left:-5%; display:relative;">
-	        <div class="area-box" style="align:center;">
-	         <div class="col-md-4">
-	            <img style="margin:auto;"src="../assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
-	         </div> 
-		       <div class="col-md-8 align-self">
-		       		<P style="font-size:1rem;">${item.day}, ${item.time}</P>
-			        <b><p>${item.walk_location}</p></b>   
-		            <h4><a href="#feature" class="title-head">${item.walk_subject}</a></h4>
-				    <p style="font-size:16px;">${item.walk_writer}</p>
-		            <p>${item.walk_content}</p>
-		            <a href="../walk/blog.do?idx=${item.walk_idx}" class="read">자세히 보기>></a>
-		       </div>
-	        </div> 
+<div id="searchReset" style="align:center;">
+	<c:forEach items="${list.list}" var="item" varStatus="status">
+	<div class="acard-media">
+	<!-- 마우스 오버시 등장하는 댓글회원 -->
+	    <div class="acard-media-object-container">
+	      <div class="acard-media-object" style="background-image: url(../assets/images/g1.jpg);"></div>
+	      <c:if test="${empty list.cmtList[status.index]}"> 
+	      	<span class="acard-media-object-tag subtle">기다리고 있어요!</span>
+	      </c:if>
+	      <ul class="acard-media-object-social-list">
+	        <li><!-- 댓글 회원 사진 -->
+	          <img src="https://s10.postimg.cc/3rjjbzcvd/profile_f.jpg" class="">
+	        </li>
+	        <li><!-- 댓글 회원 사진 -->
+	          <img src="https://s16.postimg.cc/b0j0djh79/profile_0_f.jpg" class="">
+	        </li>
+	      </ul>
+	    </div>
+	    <!-- 산책 정보 -->
+	    <div class="acard-media-body" id="acard${item.walk_idx}">
+	      <div class="acard-media-body-top">
+	        <span class="asubtle">${item.day}, ${item.time} &nbsp;&nbsp;/&nbsp;&nbsp; ${item.walk_writer}</span>
+	        <div class="acard-media-body-top-icons au-float-right">
+	          <a href="javascript:sendLink()"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" /></a>
+	          &nbsp;&nbsp;&nbsp;
+	          <button onclick="location.href='blog.do?idx=${item.walk_idx}'" class="massive yellow ui button" 
+		      style="position:relative;margin-top:38%;font-size:0.95rem;font-family: 'Spoqa Han Sans Neo';">더 알아보기</button>
+	        </div>
 	      </div>
-	     </c:forEach>
-     </div>
-     
-   </div></div>
+	      <span class="acard-media-body-heading" style="font-size:1.3rem; color:#FFB446;" >${item.walk_subject}</span>
+	      <p style="margin-top:3%;">${item.walk_content}</p>
+	      <div class="acard-media-body-supporting-bottom">
+	        <span class="acard-media-body-supporting-bottom-text asubtle au-float-right"></span>
+	        <div>
+		        <span class="acard-media-body-supporting-bottom-text asubtle" style="margin-bottom:16px;">
+			        <a class="ui teal label"># ${item.walk_location}</a>
+			        <a class="ui yellow label"># ${item.walk_type}</a>
+		        </span>
+	      	</div>
+	      </div>
+	      <div class="acard-media-body-supporting-bottom acard-media-body-supporting-bottom-reveal">
+	      </div>
+	    </div>
+  </div>
+<script type="text/javascript">
+// 카카오 공유하기
+  Kakao.init('63be5e5f8d770d2796e1e45e8fcfebbd');
+  function sendLink() {
+    Kakao.Link.sendDefault({
+      objectType: 'feed',
+      content: {
+	        title: '함께 산책해요 :: With My Pet',
+	        description: '우리 강아지의 산책 친구',
+	        imageUrl: 'https://postfiles.pstatic.net/MjAyMTAzMDJfMTY1/MDAxNjE0NjgxMzk0MjY2.iMWrCceWl_Bat-8WehW_MPBWhiGWa_Zt3wpLYBrYrPgg.XAMxlGBwAYIdppCdX2H5CxObPeC-aYmLTvcYNXDLGAog.JPEG.misty901/Corg.jpg?type=w773',
+	        link: {
+	    	  mobileWebUrl: 'http://localhost:8080/walk/blog.do?idx='+${item.walk_idx},
+	          webUrl: 'http://localhost:8080/walk/blog.do?idx='+${item.walk_idx}
+	        }
+      },
+    })
+  }
+</script>
+	</c:forEach>
+</div>
   
   <!-- 페이지네이션 -->
-  </section>
   <div style="text-align:center;"><br/><br/><br/>
     <c:forEach begin="1" end="${list.totalPageCount}" var="i">
 		<a href="list.do?cp=${i}">
@@ -221,17 +273,11 @@ function search(){
 			</c:choose>
 		</a>&nbsp;
 	</c:forEach><br/><br/>
-	
     <label>( TOTAL : ${list.totalCount} )</label><br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </div><br/><br/></center>
+  </div><br/><br/>
     
 
-  <!-- 최하단 footer -->
-<script src="../assets/js/button/package.js"></script>
-<script src="../assets/js/bootstrap.min.js"></script>
-<script src="../assets/js/button/dropdown.min.js"></script>
-<script src="../assets/js/button/dropdown.js"></script>
-<script src="../assets/js/button/index.js"></script>
+<!-- 최하단 footer -->
 <section class="w3l-footer">
   <footer class="footer-28">
     <div class="footer-bg-layer">

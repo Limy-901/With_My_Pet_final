@@ -12,10 +12,11 @@
 	letter-spacing: 1px;
     width: 800px;
     align:center;
-    margin-top: 130px;
+
     font-size: 12px;
     margin-left:10%;
     background: fff;
+    margin-top: 5%;
     
 }
 .bbs-table th {
@@ -118,28 +119,30 @@ a {
   
 }
 .boardtitle{
-	margin-left: 50px;
-	margin-top: 130px;
+	margin-left: 25%;
+	margin-top: 7%;
 }
 .menubar{
 	 list-style-type: none;
-	 top: 0px;
-	 bottom: 0px;
-	 position: fixed;
+	 top: -180px;
+	 left: 0px;
+	 right: 0px;
+	 position: relative;
      margin: 0;
      padding: 0;
-     width: 17%;
      background-color: #f1f1f1;
- 	display: block;
+  	 display: block;
+ 	 height:50%;
 }
 .sidemenu {
     margin: 0;
     padding: 0;
-    margin-top: 40px;
-    font-size: 16px;
+    margin-top: 6%;
+    font-size: 13px;
 	font-weight: lighter;
-	margin-left: 40px;
-
+	margin-left: 25%;
+	margin-bottom:-10%;
+	padding-bottom: 1%;
 }
 .title{
 	margin-top: 150px;
@@ -190,7 +193,6 @@ body{
 	background-color: var(--bg-color);
 	position: relative;
 	border: 1px solid #dedede;
-	height: 400px;
 	width: 55%;
 }
 .user{
@@ -223,7 +225,6 @@ body{
 	background-color: var(--bg-color);
 	position: relative;
 	border: 1px solid #dedede;
-	height: 200px;
 	width: 55%;
 }
 .replyfirstsec{
@@ -251,15 +252,15 @@ body{
 }
 .modify{
 	font-size: 12px;
-	margin-left: 90%;
+	margin-left: 88.5%;
 	margin-top:-15px;
 }
 .delete{
 	font-size: 12px;
-	margin-left: 95%;
-	margin-top: -16px;
+	margin-left: 94%;
+	margin-top: -17.8px;
 	border-left: 1px solid #d2d2d2;
-	padding-left: 10px;
+
 }
 .search{
 	margin-left:42%;
@@ -278,14 +279,42 @@ body{
 }
 .modi{
 	margin-left: 88%;
-	margin-top: 27%;
+
 }
 .del{
 	font-size: 12px;
 	margin-left: 94%;
-	margin-top: -16px;
+	margin-top: -18px;
 	border-left: 1px solid #d2d2d2;
-	padding-left: 10px;
+
 	
 	
 }
+.replyEmptyZone{
+	font-size:14px;
+	margin-top:10px;
+	margin-left:25%;
+	padding: 40px 30px;
+	transition: all 0.5s ease 0s;
+	border-radius: var(--border-radius);
+	background-color: var(--bg-color);
+	position: relative;
+	border: 1px solid #dedede;
+	width: 55%;
+}
+body img {
+    max-width: -webkit-fill-available;
+    max-width: -moz-available;
+}
+.menuList{
+	margin-top: 150px;
+	margin-left: 25%;
+	border: 1px solid rgb(192, 192, 192);
+	width: 50%;
+	padding: 20px;
+	border-radius: var(--border-radius);
+	font-size: 14px;
+	font-weight: 500;
+	text-align: center;
+}
+

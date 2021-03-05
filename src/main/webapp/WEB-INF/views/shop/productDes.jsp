@@ -13,8 +13,26 @@
       <!-- Template CSS -->
       <link rel="stylesheet" href="assets/css/productDes.css">
       <!-- Template CSS -->
+   
    </head>
    <body>
+   		<style>
+      .btn-like {
+        color: transparent;
+        text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 #000;
+      }
+      .btn-like:hover {
+           text-shadow: 0 0 0 #ea0;
+         }
+      .btn-like.done {
+           color: inherit;
+           text-shadow: 0;
+         }
+      .btn-like.done:hover {
+           color: transparent;
+           text-shadow: 0 0 0 #777;
+         }
+      </style>
       <!--header-->
       <header id="site-header" class="fixed-top">
          <div class="container">
@@ -141,6 +159,9 @@
                      	<input name="product_name" type="hidden" value="${productDes.product_name}">
                      	<input name="product_code" type="hidden" value="${productDes.product_code}">
                      	<input name="product_price" type="hidden" value="${productDes.product_price}">
+                     	<input name="product_content" type="hidden" value="${productDes.product_content}">
+                     	<input name="product_image" type="hidden" value="${productDes.product_image}">
+                     	<input name="member_number" type="hidden" value="${productDes.member_number}">
 	                        <table class="table" >
 	                           <tr>
 		                           <td>상품명</td>
@@ -159,6 +180,7 @@
 	                           <tr>
 	                           	<td>&nbsp;Size 선택 &nbsp;</br></td>
 	                           	<td>&nbsp;<select name="product_size" align="center" >==$0
+	                           		   <option value="선택해주세요" selected="selected">Size를 선택해주세요</option>
 			                           <option value="S 핑크">S 핑크</option>
 			                           <option value="M 핑크">M 핑크</option>
 			                           <option value="S 아이보리">S 아이보리</option>
@@ -177,6 +199,12 @@
 	                              </br>
 	                              </br>
 	                              <a href="product?catgo_code=9">상품목록</a>
+	                              <input type="checkbox" name="" id="btn" />
+			                     <label class="container" for="btn"></label>
+			                        <a href="gallay.html" target="_blank"></a>
+			                        <td>
+			                        <a href="javascript:void(0);" class="btn-like">💛</a>
+			                     </td>
 	                           </td>
 	                        </table>
                         </form>
@@ -315,45 +343,21 @@
                <div class="text-styles-top-30">
                   <h3 class="title-blog mb-4">최근 상품 리뷰 </h3>
                   <div>
-                     <div class="img-circle">
-                        <img src="assets/images/g10-12.jpg" class="mr-3" alt="리뷰 상품 사진">
-                     </div>
+                     
                      <div class="media-body">
                         <c:forEach items="${reviewCon}" var="reviewCon" varStatus="status">
+                        <div class="img-circle">
+                        <img src="assets/images/g10-12.jpg" class="mr-3" alt="리뷰 상품 사진">
+                     		</div>
                            <input type="hidden" name="member_number" value="member_number">
                            <h5 class="mt-0">${reviewCon.review_subject}</h5>
                            <span class="time">${reviewCon.review_message}</span>
                            <p>${reviewCon.review_email}</p>
                            <input type="hidden" name="review_number" value="review_number">
                            <input type="hidden" name="catgo_code" value="catgo_code">
-                           <a href="#reply-form" class="reply">Reply</a>
+                           <a href="#reply-form" class="reply">Reply</a></br>
                            <!-- status.index: ${status.index}  -->
                         </c:forEach>
-                        <div class="media mt-4">
-                           <a class="" href="#">
-                              <div class="img-circle img-circle-sm">
-                                 <img src="assets/images/g10-13.jpg" class="mr-3" alt="...">
-                              </div>
-                           </a>
-                           <div class="media-body">
-                              <h5 class="mt-0">지훈93</h5>
-                              <span class="time">210204</span>
-                              <p>옷예뻐요</p>
-                              <a href="#reply-form" class="reply">Reply</a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="media mt-5">
-                     <div class="img-circle">
-                        <img src="assets/images/g10-14.jpg" class="mr-3" alt="...">
-                     </div>
-                     <div class="media-body">
-                        <h5 class="mt-0">Yunjipretty</h5>
-                        <span class="time">210204</span>
-                        <p>저희 애기한테는 M도 조금 작네요 ㅠㅠ
-                        </p>
-                        <a href="#reply-form" class="reply">Reply</a>
                      </div>
                   </div>
                </div>
@@ -447,9 +451,9 @@
                         <div class="text-right mt-4">
                            <input type="submit" value="리뷰 올리기" class="btn btn-style btn-primary">
                         </div>
-                        <input type="hidden" name="member_number" value="${reviewCon.get(1).member_number}">
+                        <input type="hidden" name="member_number" value="${reviewCon.get(0).member_number}">
                         <input type="hidden" name="review_number" value="6">
-                        <input type="hidden" name="catgo_code" value="${reviewCon.get(1).catgo_code}">
+                        <input type="hidden" name="catgo_code" value="${reviewCon.get(0).catgo_code}">
                      </form>
                      <div id="inputData"></div>
                   </div>
@@ -587,7 +591,7 @@
          });
          
          //Main navigation Active Class Add Remove
-         $(".navbar-toggler").on("click", function () {
+         $('.navbar-toggler').on("click", function () {
            $("header").toggleClass("active");
          });
          $(document).on("ready", function () {

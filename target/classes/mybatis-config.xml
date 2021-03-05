@@ -5,35 +5,45 @@
 <configuration>
 <settings> <setting name="jdbcTypeForNull" value="NULL" /> </settings>
    <typeAliases>
-   	   <typeAlias alias="Walk" type="pet.mvc.walk.Walk"/>
-   	   <typeAlias alias="WalkListVo" type="pet.mvc.walk.WalkListVo"/>
-   	   <typeAlias alias="WalkComment" type="pet.mvc.walk.Comment"/>
-   	   <typeAlias alias="joinVo" type="pet.mvc.walk.joinVo"/>
-   	   
-   	   <typeAlias alias="Option" type="pet.mvc.shopdomain.Option"/>
-   	   <typeAlias alias="Cart" type="pet.mvc.shopdomain.Cart"/>
-	   <typeAlias alias="Review" type="pet.mvc.shopdomain.Review"/>
-	   <typeAlias alias="Category" type="pet.mvc.shopdomain.Category"/>
-	   <typeAlias alias="Product" type="pet.mvc.shopdomain.Product"/>
-	   <typeAlias alias="ProductVo" type="pet.mvc.shopdomain.ProductVo"/>
-   	   <typeAlias alias="ProductListResult" type="pet.mvc.shopdomain.ProductListResult"/>
-   	   
-		   	   
-   	   <typeAlias type="pet.mvc.board.Board" alias="Board"/>
-	   <typeAlias type="pet.mvc.board.BoardVo" alias="BoardVo"/>
+   		<!-- 산책 -->
+   	    <typeAlias alias="Walk" type="pet.walk.vo.Walk"/>
+    	<typeAlias alias="WalkListVo" type="pet.walk.vo.WalkListVo"/>
+   	    <typeAlias alias="WalkComment" type="pet.walk.vo.Comment"/>
+   	    <typeAlias alias="joinVo" type="pet.walk.vo.joinVo"/>
+   	    <!-- 쇼핑 -->
+   	    <typeAlias alias="Product_pic" type="pet.shop.domain.Product_pic"/>
+   		<typeAlias alias="Pay" type="pet.shop.domain.Pay"/>
+   		<typeAlias alias="Option" type="pet.shop.domain.Option"/>
+  	    <typeAlias alias="Cart" type="pet.shop.domain.Cart"/>
+   		<typeAlias alias="Review" type="pet.shop.domain.Review"/>
+   		<typeAlias alias="Category" type="pet.shop.domain.Category"/>
+   		<typeAlias alias="Product" type="pet.shop.domain.Product"/>
+   		<typeAlias alias="ProductVo" type="pet.shop.domain.ProductVo"/>
+   		<typeAlias alias="Register" type="pet.shop.domain.Register"/>
+   	   	<typeAlias alias="ProductListResult" type="pet.shop.domain.ProductListResult"/>
+		<!-- 회원 -->
+   	    <typeAlias type="pet.mvc.board.Board" alias="Board"/>
+	    <typeAlias type="pet.mvc.board.BoardVo" alias="BoardVo"/>
 		<typeAlias type="pet.mvc.board.BoardListResult" alias="BoardListResult"/>
 		<typeAlias type="pet.mvc.board.BoardCmt" alias="BoardCmt"/>
-		
+		<!-- 멤버 -->
 		<typeAlias alias="member" type="pet.member.vo.MemberVO"/>
+		<typeAlias alias="pet_mypage" type="pet.member.vo.MypagePetVO"/>
+		<!-- 어드민 -->
+		<typeAlias alias="WeeklyData" type="pet.admin.vo.WeeklyData"/>
+		<typeAlias alias="memberListResult" type="pet.admin.vo.MemListResult"/>
+		<typeAlias alias="memberOption" type="pet.admin.vo.MemberOption"/>
+		<typeAlias alias="Qna" type="pet.admin.vo.Qna"/>
+		<typeAlias alias="memberWalkChart" type="pet.admin.vo.MemberWalkChart"/>
    	   
    </typeAliases>
    
    <mappers>
    		<mapper resource="pet/mvc/mapper/IndexMapper.xml"/>
    		<mapper resource="pet/mvc/mapper/WalkMapper.xml"/>
-   		<mapper resource="pet/mvc/shopmapper/ProductMapper.xml"/>
-	<mapper resource="pet/mvc/shopmapper/CartMapper.xml"/>
-   		
+   		<mapper resource="pet/mvc/mapper/AdminMapper.xml"/>
+   		<mapper resource="pet/shop/mapper/ProductMapper.xml"/>
+		<mapper resource="pet/shop/mapper/CartMapper.xml"/>
    		
    </mappers>
 </configuration>

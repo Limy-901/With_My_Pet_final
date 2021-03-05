@@ -14313,6 +14313,7 @@ a.link-style:hover:before {
   font-weight: 600;
   line-height: 48px;
   text-transform: capitalize;
+  font-family: initial;
 }
 
 .hny-title span {

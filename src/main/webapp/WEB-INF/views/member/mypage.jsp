@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
+
 <!doctype html>
 <html>
 
@@ -15,6 +17,8 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="../assets/css/login.css">
   <!-- Template CSS -->
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 	<style>
@@ -132,16 +136,17 @@
  <center>
 	<div style="float:left; margin-left:360px;">
 		<div class="column position-relative">
-              <img src="../assets/images/team1.jpg" alt="" class="img-fluid team-image"></a>
+			 <img src="<c:url value="/img/${mpvo.pet_fname}"/>" class="img-fluid img-thumbnail"/></a>
             </div>
             <div class="column">
               
               <br>
                
-              <h3 class="name-pos"><a href="#url">name</a></h3>
+              <h3 class="name-pos"><a href="#url">${login.member_name}</a></h3>
               <p>
-				<button onclick="location.href='mypage.jsp'"class="btn btn-style border-btn mt-sm-5 mt-4">수정</button >
-				<button onclick="location.href='messge.jsp'"class="btn btn-style border-btn mt-sm-5 mt-4">메세지</button >
+				<a href="mypageupdate.do" class="btn btn-primary mt-4">수정</a>
+				&nbsp;&nbsp;
+				<button onclick="location.href='messge.jsp'"class="btn btn-primary mt-4">메세지</button >
 				
 			 </p>
 			 
@@ -162,54 +167,46 @@
          <br><br><br> 
      <div style="width:400px; float:right; margin-right:440px; margin-top:-40px">
 		<center>
-         <h1>회원정보 수정</h1>
+         <h1>회원정보</h1>
         
          <br>
- 	<form action="mypage.do" method="post">
-      <div class="text">
-		<h1>그 회원 이메일</h1>
-		          <br><br>
-		          <input type="text" class="form-control" name="member_password" id="w3lName" placeholder="password 변경" required="">
-		          <br><br>
-		          <input type="text" class="form-control" name="member_name" id="w3lName" placeholder="name 변경" required="">
-		          <br><br>
-		          <input type="text" class="form-control" name="member_address" id="w3lName" placeholder="address 변경" required="">
-		          <br>
-		      </div>
-		       <p>
-		  	<button type="submit" class="btn btn-primary mt-4">정보수정하기</button >
-		  	</p>
-  </form>
 
+         
+          <br><br>
+          ${login.member_email}
+          <br><br>
+          ${login.member_name}
+          <br><br>
+          ${login.member_address}
+          <br><br>
+
+ 
   	 </center>
  </div>
- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+ <br><br><br><br><br><br><br><br><br><br><br><br><br>
  <div style="width:400px; hight:400px; margin-right:440px; float:right;">
  	<center>
-         <h1>강아지정보 입력</h1>
-        
-				<br>
-			<div class="column position-relative">
-              <img src="../assets/images/g8.jpg" alt="" class="img-fluid team-image"></a>
-            </div>
-			 	
-                 <form action="https://sendmail.w3layouts.com/submitForm" method="post">
-			      <div class="text">
-			      <br>
-			          <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="name" required="">
-			          <br><br>
-			          <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="age" required="">
-			          <br><br>
-			          <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="sex" required="">
-			          <br><br>
-			          <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="dog breed" required="">
-			          <br>
-			      </div>
+         <h1>강아지정보</h1> 
+		<br>	 	
+         <form action="mypet.do" method="post" enctype="multipart/form-data">
+		      <div class="text">
+		      <br>
+		      <br>
+		         ${mpvo.pet_name}
+		         <br><br>
+		         ${mpvo.pet_sex}
+		         <br><br>
+		         ${mpvo.pet_age}
+		         <br><br>
+		         ${mpvo.pet_walkarea}
+		         <br><br>
+		         ${mpvo.pet_fname}			
+		         <br><br><br><br><br><br><br><br><br><br><br><br><br>	
+			</script>
+		</form>
+			     
 			  </form>
-			  <p>
-			  	<button onclick="location.href='mypage.jsp'"class="btn btn-style border-btn mt-sm-5 mt-4">확인</button >
-			  	<br><br>
-			  	</p>
+			 
 			  	 </center>
 		  </div>
 

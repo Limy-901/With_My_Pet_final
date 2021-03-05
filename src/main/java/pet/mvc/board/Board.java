@@ -26,8 +26,10 @@ public class Board {
 	private int post_like;
 	private long rnum;
 	private String content;
+	private long post_no;
+	private long post_order;
+	private long post_depth;
 	
-
 	
 
 	private String board_name;

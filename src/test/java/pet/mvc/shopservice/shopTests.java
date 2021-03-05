@@ -8,11 +8,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.bind.annotation.RequestParam;
 import lombok.extern.log4j.Log4j;
 import pet.member.vo.MemberVO;
-import pet.mvc.shopdomain.Category;
-import pet.mvc.shopdomain.Product;
-import pet.mvc.shopdomain.ProductVo;
-import pet.mvc.shopdomain.Review;
-import pet.mvc.shopmapper.ProductMapper;
 import pet.mvc.mapper.*;
 
 @Log4j

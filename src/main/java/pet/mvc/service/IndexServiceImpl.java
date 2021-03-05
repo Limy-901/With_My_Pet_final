@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import lombok.extern.log4j.Log4j;
 import pet.mvc.mapper.IndexMapper;
-import pet.mvc.walk.Walk;
+import pet.walk.vo.Walk;
 
 @Service
 @Log4j

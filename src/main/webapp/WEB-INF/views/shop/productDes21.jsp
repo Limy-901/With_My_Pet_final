@@ -137,6 +137,7 @@
                      	<input name="product_code" type="hidden" value="${productDes21.product_code}">
                      	<input name="product_price" type="hidden" value="${productDes21.product_price}">
                      	<input name="product_content" type="hidden" value="${productDes21.product_content}">
+                     	<input name="product_image" type="hidden" value="${productDes21.product_image}">
                         <table class="table" >
                            <tr>
                      		
@@ -431,31 +432,28 @@
             <div class="container pb-lg-3">
                <div class="form-main-cont-29">
                   <div class="content-29-form align-center">
-                     <h3 class="title-blog mb-4">코멘트를 남겨주세요</h3>
-                     <form action="#" method="post">
+                     <h3 class="title-blog mb-4">상품리뷰를 남겨주세요</h3>
+                     <form id="reviewform" name="insertReview" action="productDes" method="post">
                         <div class="w3l-forms-29-form">
                            <div class="">
-                              <input type="text" class="form-control" name="name" placeholder="Your Name*" required>
-                           </div>
-                           <div class="">
-                              <input type="email" class="form-control" name="email" placeholder="Email Address*"
-                                 required>
-                           </div>
-                           <div class="">
-                              <input type="text" class="form-control" name="subject" placeholder="Subject">
-                           </div>
-                           <div class="">
-                              <input type="phone" class="form-control" name="subject" placeholder="Phone">
+                              <input type="text" class="form-control" name="review_subject" placeholder="Subject*"  required>
                            </div>
                         </div>
                         <div class="mt-4">
-                           <textarea class="contact-textarea form-control" placeholder="Your Message*"
+                           <textarea class="contact-textarea form-control" placeholder="Your Message*" name="review_message" 
                               required></textarea>
                         </div>
-                        <div class="text-right mt-4">
-                           <button class="btn btn-style btn-primary">Add Comment</button>
+                        <div class="">
+                           <input type="email" class="form-control" name="review_email" placeholder="Email Address*"  required>
                         </div>
+                        <div class="text-right mt-4">
+                           <input type="submit" value="리뷰 올리기" class="btn btn-style btn-primary">
+                        </div>
+                        <input type="hidden" name="member_number" value="${reviewCon.get(0).member_number}">
+                        <input type="hidden" name="review_number" value="6">
+                        <input type="hidden" name="catgo_code" value="${reviewCon.get(0).catgo_code}">
                      </form>
+                     <div id="inputData"></div>
                   </div>
                </div>
             </div>

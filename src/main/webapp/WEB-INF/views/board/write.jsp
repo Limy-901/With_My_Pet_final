@@ -71,7 +71,7 @@ $(document).ready(function() {
         $('#summernote').summernote(setting);
         });
         
-        function uploadSummernoteImageFile(file, el) {
+         function uploadSummernoteImageFile(file, el) {
 			data = new FormData();
 			data.append("file", file);
 			$.ajax({
@@ -82,15 +82,16 @@ $(document).ready(function() {
 				enctype : 'multipart/form-data',
 				processData : false,
 				success : function(data) {
-					alert('data load'+data);
-					$(el).summernote('editor.insertImage', data.url);
+					alert('data load'+data.url);
+					$(el).summernote('editor.insertImage()', data.url);
 				}
 			});
-		}
+		} 
 function goWrite(f) {
         	var title = f.post_subject.value;
         	var writer = f.post_writer.value;
         	var content = f.content.value;
+        	var boardname = f.board_idx.value;
         	
         	if (title.trim() == ''){
         		alert("제목을 입력해주세요");
@@ -104,6 +105,11 @@ function goWrite(f) {
         		alert("내용을 입력해주세요");
         		return false;
         	}	
+        	if (boardname == ''){
+        		alert("게시판을 선택해주세요");
+        		return false;
+        	}	
+        	f.action='modify.do';
         	f.submit();
         	return true;
         }
@@ -112,6 +118,8 @@ function goWrite2(f) {
 	var title = f.post_subject.value;
 	var writer = f.post_writer.value;
 	var content = f.content.value;
+	var boardname = f.board_idx.value;
+	
 	
 	if (title.trim() == ''){
 		alert("제목을 입력해주세요");
@@ -125,6 +133,11 @@ function goWrite2(f) {
 		alert("내용을 입력해주세요");
 		return false;
 	}	
+	if (boardname == ''){
+		alert("게시판을 선택해주세요");
+		return false;
+	}	
+	
 	f.action='write.do';
 	f.submit();
 	return true;
@@ -138,19 +151,16 @@ function goWrite2(f) {
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <h1><a class="navbar-brand" href="index.html">
-               Pooch Care
-          </a></h1>
+          <a href="#"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt=""></a>
+         
           <!-- if logo is image enable this   
       <a class="navbar-brand" href="#index.html">
           <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
       </a> -->
-          <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
-              data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-              aria-label="Toggle navigation">
+          <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
               <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-              </span>
+              
           </button>
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -160,41 +170,41 @@ function goWrite2(f) {
                   </li>
                   
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="walklist.do">산책모집 </a>
-                          <a class="dropdown-item" href="walkboard.do">산책후기 </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                      	<a class="dropdown-item" href="walk/list.do?cp=1">산책모집 </a>
+                          <a class="dropdown-item" href="walk/board.do">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="blog.html">쇼핑하기</a>
-                          <a class="dropdown-item" href="blog.html">구매후기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                      	<a class="dropdown-item" href="product?catgo_code=9">쇼핑하기</a>
+                          <a class="dropdown-item" href="cart">장바구니</a>
+                          <a class="dropdown-item" href="order">결제</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                          <a class="dropdown-item" href="blog.html">공지사항</a>
-                          <a class="dropdown-item" href="blog-single.html">일상이야기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                          <a class="dropdown-item" href="board/list.do?board_idx=1&amp;cp=1">공지사항</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=2&amp;cp=1">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=3&amp;cp=1">산책후기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=4&amp;cp=1">쇼핑후기</a>
                       </div>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="gallery.html">로그인 </a>
+                      <a class="nav-link" href="gallery.html" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
                   </li>
                  
                   <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact </a>
+                      <a class="nav-link" href="sendmail.do">Contact </a>
                   </li>
               </ul>
           </div>
@@ -270,13 +280,14 @@ function goWrite2(f) {
         
 		<input type="text" name="post_writer" class="form-control" value="${board.post_writer}"/><br>
 		<input type="text" name="post_subject"  class="form-control" value="${board.post_subject}"/><br>
-		
+		<input type="hidden" name="post_idx" class="form-control" value="${board.post_idx}"/><br>
+		<input type="hidden" name="post_no" class="form-control" value="${board.post_idx}"/><br>
 		<!-- <input type="text" name="tagString" placeholder="입력후 스페이스바를 눌러보세요"><br> -->
 		<br> 
 		<textarea id="summernote" name="content" >${board.content}</textarea>
 		${board.board_name}
 		<c:choose>
-		<c:when test="${!empty board.post_subject}">
+		<c:when test="${!empty board.post_subject}">x`
 		<input id="subBtn" type="button" value="수정" style="float: right;" onclick="goWrite(this.form)"/>
 		</c:when>
 		<c:otherwise>

@@ -1,8 +1,7 @@
 package pet.mvc.mapper;
 
 import java.util.ArrayList;
-
-import pet.mvc.walk.Walk;
+import pet.walk.vo.Walk;
 
 public interface IndexMapper {
 	ArrayList<Walk> getWalkList();

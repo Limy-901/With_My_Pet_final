@@ -14,10 +14,10 @@ public interface MemberService {
    //로그인
    public MemberVO login(MemberVO lvo);
    
-   //마이페이지 본인확인
+   //마이페이지 본인정보 확인
    public MemberVO mypage(MemberVO lvo);
    
-   //회원정보 수정
+   //회원정보 수정(아님)
    public void memberUpdateDo(MemberVO vo) throws Exception;
    
    //아이디 찾기
@@ -26,11 +26,10 @@ public interface MemberService {
    //패스워드 찾기
    public MemberVO pwFind(MemberVO pvo);
    
-   //패스워드 변경
+   //패스워드 수정
    public void pwModify(MemberVO vo) throws Exception;
    
-   //회원정보 전체 수정
+   // 회원정보 전체 수정
    public void memberModify(MemberVO vo) throws Exception;
-      
    
 }

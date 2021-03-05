@@ -16,16 +16,20 @@
    <!-- google fonts --> 
   <!-- Template CSS -->
   <link rel="stylesheet" href="../assets/css/style-liberty.css">
-    <link rel="stylesheet" href="../assets/css/board.css">
+  <link rel="stylesheet" href="../assets/css/board.css">
+  <!-- 제이쿼리 -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+  
+    
+    
 </head>
 
 <body>
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <h1><a class="navbar-brand" href="index.html">
-               Pooch Care
-          </a></h1>
+          <a href="#"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt=""></a>
+         
           <!-- if logo is image enable this   
       <a class="navbar-brand" href="#index.html">
           <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
@@ -43,38 +47,41 @@
                   </li>
                   
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="walklist.do">산책모집 </a>
-                          <a class="dropdown-item" href="walkboard.do">산책후기 </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                      	<a class="dropdown-item" href="walk/list.do?cp=1">산책모집 </a>
+                          <a class="dropdown-item" href="walk/board.do">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="blog.html">쇼핑하기</a>
-                          <a class="dropdown-item" href="blog.html">구매후기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                      	<a class="dropdown-item" href="product?catgo_code=9">쇼핑하기</a>
+                          <a class="dropdown-item" href="cart">장바구니</a>
+                          <a class="dropdown-item" href="order">결제</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                          <a class="dropdown-item" href="blog.html">공지사항</a>
-                          <a class="dropdown-item" href="blog-single.html">일상이야기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                          <a class="dropdown-item" href="board/list.do?board_idx=1&amp;cp=1">공지사항</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=2&amp;cp=1">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=3&amp;cp=1">산책후기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=4&amp;cp=1">쇼핑후기</a>
                       </div>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="gallery.html">로그인 </a>
+                      <a class="nav-link" href="gallery.html" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
                   </li>
                  
                   <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact </a>
+                      <a class="nav-link" href="sendmail.do">Contact </a>
                   </li>
               </ul>
           </div>
@@ -106,22 +113,21 @@
 <div class="menubar">
 <br><br>
 <div class="boardtitle">
-<h3>게시판 </h3>
-   <c:choose>
-      <c:when test="${empty loginPassUser.ct_id}">
-         회원만 글쓰기가 가능합니다.
-      </c:when>
-   <c:otherwise>
-      <a href='../qna/qna.do?m=write&ct_id=${loginPassUser.ct_id}'>전체문의 게시판</a><br/>
-   </c:otherwise>
-  </c:choose>
+
+<c:choose>
+<c:when test="${board.board_idx eq '1'}"><h3>공지사항 </h3></c:when>
+<c:when test="${board.board_idx eq '2'}"><h3>일상이야기 </h3></c:when>
+<c:when test="${board.board_idx eq '3'}"><h3>산책후기 </h3></c:when>
+<c:when test="${board.board_idx eq '4'}"><h3>쇼핑후기 </h3></c:when>
+</c:choose>
+
  </div> 
-		<ul class="sidemenu">
-	  <li><a href="#산책게시판">공지사항</a></li>
-	  <li><a href="#쇼핑게시판">일상이야기</a></li>
-	  <li><a href="#contact">어쩌구</a></li>
-	  <li><a href="#about">저쩌구</a></li>
-	</ul>
+		<div class="sidemenu">
+	 <a href="list.do?board_idx=1">공지사항</a>
+	 <a href="list.do?board_idx=2">일상이야기</a>
+  	 <a href="list.do?board_idx=3">산책후기</a>
+	 <a href=list.do?board_idx=4>쇼핑후기</a>
+	</div>
 	</div>
 <!-- 메뉴바 끝-->
 
@@ -134,28 +140,132 @@
 </div>
 
 <div class="cont">${board.content}
-
+<div class="modi"><a href='rewrite.do?post_idx=${board.post_idx}&post_order=${board.post_order}'>답글작성</a></div>
 <div class="modi"><a href='modify.do?post_idx=${board.post_idx}'>수정</a></div>
 <div class="del"><a href='delete.do?post_idx=${board.post_idx}'>삭제</a></div>
 </div>
 
-<!-- 댓글 -->
+
+<script>
+function replyDelete(comment_idx, index){
+var sIndex = index;
+confirm("삭제하시겠습니까?");
+	
+ 	$.ajax({
+		url: "deleteCmt.do",
+		type: 'get',
+		data:{comment_idx:comment_idx},	
+		success: function(result){
+			
+			
+		   if(result=="success")
+			  {
+			   alert("삭제완료");
+			 	$('#replyZone'+sIndex).remove();
+			  } 
+	  },
+	  error: function(request, status, error){
+		  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+ error);
+	  }
+	  
+  });
+}
+ 	
 
 
-<c:forEach items="${board.comment}" var="cmt">
-<div class="reply">
+/* function showReplyList() {
+	
+	alert("냥");
+	var htmls="";
+	
+ 	htmls += '<div class="replyfirstsec">';
+	htmls += '<div class="replywriter" id="writerId">'+this.cmt_writer+' 님의 댓글</div><br>';
+	htmls += '<div style="font-size:12px;" id="dateId">'+this.cmt_date+'</div></div>';
+	htmls += '<div class="replysecondsec" id="contentId">'+this.cmt_content+'</div>';
+	htmls += '<div class="contbtns"><div class="writecomment">댓글쓰기</div>';
+	htmls += '<div class="delete"><a class ="modify"onclick="replyButton()">수정&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>';
+	htmls += '<a onclick="replyDelete()">삭제</a></div></div></div>';
+	
+	$("#replyZone").html(htmls);
+
+}	
+ 	 */
+function replyButton(comment_idx, cmt_writer, index){
+	var cmtIdx = comment_idx;
+	var cmtWriter = cmt_writer;
+	var htmls = "";
+	var sIndex = index;
+
+
+	
+	htmls += '<form id="editReply">';
+ 	htmls += '<div class="replyfirstsec" id="editId">';
+	htmls += '<div class="replywriter" id="writerId">'+cmtWriter+' 님 댓글 수정중</div><input type="hidden" value='+cmtIdx+' name="comment_idx"/><br></div>';
+	htmls += '<div class="replysecondsec" id="editcontentId"><input type="text" name="cmt_content" size="95px" id="contentInput"></div>';	
+	htmls += '<div class="save"><a onclick="replyUpdate('+cmtIdx+',\''+cmtWriter+'\','+sIndex+')">입력</a><a onClick="showReplyList()">취소</a></div></div></div></form>';
+	
+	
+	$('#replyZone'+sIndex).html(htmls);
+	
+	$('#writeReple').empty();
+
+}
+
+function replyUpdate(comment_idx, cmt_writer, index){
+	confirm("수정하시겠습니까?");
+	var writer = cmt_writer
+	var htmls = "";	
+	var sIndex = index;
+	var inputId = $('#contentInput').val();
+
+	
+	
+
+
+	
+	$.ajax({
+		url: "updateReply.do",
+		type: 'post',
+		data: $("#editReply").serialize(),
+		success: function(result){
+			htmls += '<div class="replyfirstsec" id="comment_idx'+comment_idx+'">';
+			htmls += '<div class="replywriter" id="writerId">'+writer+' 님의 답변 </div><br>';
+			htmls += '<div style="font-size:12px;" id="dateId">날짜</div></div>';
+			htmls += '<div class="replysecondsec" id="contentId">'+inputId+'</div>';
+			htmls += '<div class="contbtns"><div class="writecomment">댓글쓰기</div>';
+			htmls += '<div class="modify"><a onclick="replyButton('+comment_idx+','+writer+','+sIndex+')">수정&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>';
+			htmls += '<div class="delete"><a onclick="replyDelete('+comment_idx+','+sIndex+')">삭제</a></div>';
+
+			 
+			alert("수정완료");	
+			$('#replyZone'+sIndex).html(htmls);
+
+		},
+	  error: function(request, status, error){
+		  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+ error);
+	  }
+	});
+}
+		
+	</script>
+
+<c:forEach items="${board.comment}" var="cmt" varStatus="status">
+<div class="reply" id="replyZone${status.index}">
 	<div class="replyfirstsec">
-	<div class="replywriter">${cmt.cmt_writer}님의 답변</div><br>
+	<div class="replywriter" id="writerId">${cmt.cmt_writer}님의 답변</div><br>
 	${cmt.cmt_date}
 	</div>
-	<div class="replysecondsec">${cmt.cmt_content}</div>
+	<div class="replysecondsec" id="contentId">${cmt.cmt_content}</div>
 	<div class="writecomment">댓글쓰기</div>
-	<div class="modify"><a href='modifyCmt.do?comment_idx=${cmt.comment_idx}'>${cmt.comment_idx}수정</a></div>
-	<div class="delete"><a href='deleteCmt.do?comment_idx=${cmt.comment_idx}'>삭제</a></div>
+	<div class="modify"><a onclick="replyButton(${cmt.comment_idx},'${cmt.cmt_writer}',${status.index})">수정</a></div>
+	<div class="delete"><a onclick="replyDelete(${cmt.comment_idx}, ${status.index})">삭제</a></div>
+	
+	
 </div>
-${cmt.cmt_content}
-${cmt.cmt_writer}
+
+
 </c:forEach>
+
 
 <!-- 댓글 -->
 <!-- 댓글작성 -->
@@ -171,9 +281,22 @@ ${cmt.cmt_writer}
 	<input type="hidden" value="${board.board_idx}" name="board_idx"/>
 	<input type="text" name="cmt_content" size=100px> <input type="button" value="등록" onclick="check()">
 	</div>
+</div>
 </form>
 
-</div>
+<script language="javascript">
+
+  function check(){
+              	if(f1.cmt_content.value == "")
+	                  {
+	                      alert("리플 내용과 비밀번호를 모두 입력하셔야 합니다.");
+	                      return;
+	                  }
+                  	  f1.submit();
+                  }
+
+
+</script>
 
 
 <!-- 댓글작성 -->
@@ -182,23 +305,8 @@ ${cmt.cmt_writer}
 로그인 후에 댓글 작성이 가능합니다.
 </div>
 
-<!-- 컨텐츠끝 -->
 
-  <script language="javascript">
 
-  function check()
-              {
-              	if(f1.cmt_content.value == "")
-	                  {
-	                      alert("리플 내용과 비밀번호를 모두 입력하셔야 합니다.");
-	                      return;
-	                  }
-                  	  f1.submit();
-                  }
-  
-  
-  
-	</script>
 
 </body>
 

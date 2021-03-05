@@ -11,6 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>:: With My Pet :: 함께 산책해요 </title>
    <!-- google fonts -->  
+   <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/icon/footprint16.png">
    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
    <!-- google fonts --> 
@@ -27,10 +28,8 @@
       <nav class="navbar navbar-expand-lg stroke">
           <a href="#"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
          
-          <!-- if logo is image enable this   
-      <a class="navbar-brand" href="#index.html">
-          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-      </a> -->
+      
+      
           <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
               data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
               aria-label="Toggle navigation">
@@ -252,7 +251,7 @@
 <!-- //bottom-grids-->
   <!--//features-->
  
-  <!-- pricing plans -->
+ <!-- pricing plans -->
 <section class="w3l-pricing-7-main py-5" id="pricing">
   <div class="pricing-7-sec pt-lg-4 pt-md-3 pb-lg-5 pb-md-4">
       <div class="container pricing-grid">
@@ -265,8 +264,11 @@
               <div class="pricing-gd-left pric-7-1">
                   <div class="w3l-pricing-7">
                       <div class="w3l-pricing-7-top">
-                      	<img src="assets/images/f1.jpg"><br/><br/>
-                          <h6 class="one-light">상품명</h6>
+                      	<img src="assets/images/g11.jpg"
+                      	onmouseover="this.src='assets/images/g11.jpg'"
+                      	onmouseout="this.src='assets/images/g11-1.jpg'"
+                      	><br/><br/>
+                          <h6 class="one-light">네오프렌 한복</h6>
                          
                           <h4>13,000<span>  원</span></h4>
                       </div>
@@ -275,18 +277,18 @@
                           <div class="w3l-pricing-7-bottom-bottom">
                               <ul class="links">
                                   <li>
-                                      <p class="lists">카테고리</p>
+                                      <p class="lists">부드러운 소재 ! 아이들이 좋아해요</p>
                                   </li>
                                   <li>
-                                      <p class="lists line-through">상푸</p>
+                                      <p class="lists line-through">쫀쫀하고 신축성으로 편안하게 한복을 착용 할 수 있답니다!</p>
                                   </li>
                                   <li>
-                                      <p class="lists line-through">설명할 것 있는지?</p>
+                                      <p class="lists line-through">이번 새해에는 위마펫 네오프렌 한복과 함께하세요</p>
                                   </li>
                               </ul>
                           </div>
                           <div class="buy-button">
-                              <a class="popup btn btn-style btn-primary" href="#buy">Go!</a>
+                              <a class="popup btn btn-style btn-primary" href="#buy">쇼핑하러 Go!</a>
                           </div>
                       </div>
                   </div>
@@ -296,9 +298,12 @@
               <div class="pricing-gd-left pric-7 active">
                   <div class="w3l-pricing-7">
                       <div class="w3l-pricing-7-top">
-                      <img src="assets/images/f1.jpg"><br/><br/>
-                          <h5>판매율 1위</h5>
-                          <h6>상품명</h6>
+                      <img src="assets/images/g11.jpg"
+                      	onmouseover="this.src='assets/images/g16.jpg'"
+                      	onmouseout="this.src='assets/images/g16-1.jpg'"
+                      	><br/><br/>
+                          <h5>조회수 1위</h5>
+                          <h6>멜빵치마</h6>
                         
                           <h4>13,000<span>  원</span></h4>
                       </div>
@@ -306,18 +311,18 @@
                           <div class="w3l-pricing-7-bottom-bottom">
                             <ul class="links">
                               <li>
-                                      <p class="lists">카테고리</p>
+                                      <p class="lists">적당한 신축성 ++ </p>
                                   </li>
                                   <li>
-                                      <p class="lists line-through">상푸</p>
+                                      <p class="lists line-through">편하고 멋스럽게 입히기 좋아요</p>
                                   </li>
                                   <li>
-                                      <p class="lists line-through">설명할 것 있는지?</p>
+                                      <p class="lists line-through">다양한 이너티와 매치가능! 사계절 내내 꺼내 입힐 수 있답니다.</p>
                                   </li>
                           </ul>
                           </div>
                           <div class="buy-button">
-                              <a class="popup btn btn-style btn-primary" href="#buy">Go!</a>
+                              <a class="popup btn btn-style btn-primary" href="#buy">쇼핑하러 Go!</a>
                           </div>
                       </div>
                   </div>
@@ -326,8 +331,11 @@
               <div class="pricing-gd-left pric-7-1">
                   <div class="w3l-pricing-7">
                       <div class="w3l-pricing-7-top">
-                      	<img src="assets/images/f1.jpg"><br/><br/>
-                          <h6 class="one-light">상품명</h6>
+                      	<img src="assets/images/g11.jpg"
+                      	onmouseover="this.src='assets/images/g14-1.jpg'"
+                      	onmouseout="this.src='assets/images/g14.jpg'"
+                      	><br/><br/>
+                          <h6 class="one-light">와플 실내티</h6>
                          
                           <h4>13,000<span>  원</span></h4>
                       </div>
@@ -336,18 +344,18 @@
                           <div class="w3l-pricing-7-bottom-bottom">
                               <ul class="links">
                                   <li>
-                                      <p class="lists">카테고리</p>
+                                      <p class="lists">와플 패턴에 밴딩 포인트</p>
                                   </li>
                                   <li>
-                                      <p class="lists line-through">상푸</p>
+                                      <p class="lists line-through">도톰한 후라이스 원단의 소매와 허리 부분 밴딩 마감</p>
                                   </li>
                                   <li>
-                                      <p class="lists line-through">설명할 것 있는지?</p>
+                                      <p class="lists line-through">적당한 신축성으로 실내복으로도 제격인 제품이에요!</p>
                                   </li>
                               </ul>
                           </div>
                           <div class="buy-button">
-                              <a class="popup btn btn-style btn-primary" href="#buy">Go!</a>
+                              <a class="popup btn btn-style btn-primary" href="#buy">쇼핑하러 Go!</a>
                           </div>
                       </div>
                   </div>
@@ -357,7 +365,6 @@
       </div>
   </div>
 </section>
-
 <!-- testimonials -->
 <section class="w3l-clients" id="clients">
   <!-- /grids -->

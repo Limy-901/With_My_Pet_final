@@ -2,10 +2,11 @@ package pet.mvc.mapper;
 
 import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
-import pet.mvc.walk.Comment;
-import pet.mvc.walk.Walk;
-import pet.mvc.walk.WalkListVo;
-import pet.mvc.walk.joinVo;
+import pet.walk.vo.Comment;
+import pet.walk.vo.Walk;
+import pet.walk.vo.WalkListVo;
+import pet.walk.vo.joinVo;
+
 
 public interface WalkMapper {
 	void insertWalk(Walk dto);

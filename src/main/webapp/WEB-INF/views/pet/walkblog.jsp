@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" import="javax.servlet.http.HttpServletRequest"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" import="javax.servlet.http.HttpServletRequest"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!doctype html>
@@ -47,7 +47,7 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul class="navbar-nav ml-auto">
                   <li class="nav-item active">
-                      <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="index.html" style="font-family: 'Spoqa Han Sans Neo';">Home <span class="sr-only">(current)</span></a>
                   </li>
                   
                   <li class="nav-item dropdown">
@@ -253,6 +253,7 @@ function updateHeart(){
    });
    $('#card'+${item.walk_cmt_idx}).mouseover(function () {
  	  $('#detailbtn'+${item.walk_cmt_idx}).css("display", "block");
+   
    });
 
    $('.card').mouseout(function () {
@@ -413,7 +414,6 @@ function insertCheck(walk_idx){
 	    	walk_cmt_writer: writer,
 	    	walk_cmt_content: content,
 		    walk_idx: walk_idx
-		    
 		},
 	  success : function(data){
 		if(data == ''){
@@ -491,7 +491,8 @@ function insertCheck(walk_idx){
 	    <center>
       	<div class="yesorno">
 			<button id="yesBtn" class="yesornobtn" onclick="walkJoinOk()" style="font-family: 'Spoqa Han Sans Neo';">수락</button>
-		</div></center>
+		</div>
+		</center>
 	</div>
 </div>
 
@@ -559,7 +560,6 @@ function walkJoinOk(){
 	 });
 }
 </script>
-
  <!-- 언더바 -->
 		<div class="underbar" style="font-family: 'Spoqa Han Sans Neo'; z-index:1; background-color:#FFB446">
 		  <span class="undertext" style="font-family: 'Spoqa Han Sans Neo';">일시 : ${content.day} / ${content.time}<br>
@@ -568,7 +568,6 @@ function walkJoinOk(){
 		   <a class="button" onclick="memberCheck()" style="border-color:white; font-family: 'Spoqa Han Sans Neo'; margin-left: -150%; color:white;">참가할래요🐕</a>
 		  </nav>
 		</div>
-		
  <script>
  function memberCheck(){
 	 window.location.href = "#popup1";

@@ -22,17 +22,11 @@
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
           <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
-                  </a>
-          <!-- if logo is image enable this   
-      <a class="navbar-brand" href="#index.html">
-          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-      </a> -->
-          <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+           <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
               data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
               aria-label="Toggle navigation">
               <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
               <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-              </span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -59,6 +53,7 @@
                       	<a class="dropdown-item" href="product">쇼핑하기</a>
                           <a class="dropdown-item" href="cart">장바구니</a>
                           <a class="dropdown-item" href="order">결제</a>
+                          <a class="dropdown-item" href="register?catgo_code=8">상품등록하기</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -99,9 +94,6 @@
   </div>
 </header>
 <!-- //header -->
-
-'''
-
 
 <!-- about breadcrumb -->
 <section >
@@ -149,16 +141,16 @@
         </div>
       <div class="row galler-top mt-lg-5 mt-4">
         <div class="col-md-4 protfolio-item hover14">
-          <a href="category" data-lightbox="example-set" class="mb-4"
+          <a href="category?catgo_code=8" data-lightbox="example-set" class="mb-4"
             data-title="lorem ipsum dolor sit amet">
             <figure>
-              <img src="assets/images/g1.jpg" alt="product" class="img-fluid" onclick="location.href='category'" >
+              <img src="assets/images/g1.jpg" alt="product" class="img-fluid" onclick="location.href='category?catgo_code=8'" >
             </figure>
             <c:if test="${empty product}">
             	없음.
             </c:if>
            <c:forEach items="${product}" var="list">
-            <span class="sub-title text-center mb-2" >${list.catgo_name}</span>
+            <span class="sub-title2 text-center mb-2" >${list.catgo_name}</span>
             </c:forEach>
           </a>
           <a href="category2" data-lightbox="example-set" class="mb-4" data-title="lorem ipsum dolor sit amet">
@@ -166,7 +158,7 @@
               <img src="assets/images/g2.jpg" alt="product" class="img-fluid" onclick="location.href='category2'">
             </figure>
             
-            <span class="sub-title text-center mb-2">가방</span>
+            <span class="sub-title2 text-center mb-2">가방</span>
             
           </a>
             </figure>
@@ -178,13 +170,13 @@
             <figure>
               <img src="assets/images/g3-1.jpg" alt="product" class="img-fluid" onclick="location.href='category2'">
             </figure>
-            <span class="sub-title text-center mb-2">애견방석</span>
+            <span class="sub-title2 text-center mb-2">애견방석</span>
           </a>
           <a href="assets/images/g4.jpg" data-lightbox="example-set" class="mb-4" data-title="lorem ipsum dolor sit amet">
             <figure>
               <img src="assets/images/g4.jpg" alt="product" class="img-fluid">
             </figure>
-            <span class="sub-title text-center mb-2">사료</span>
+            <span class="sub-title2 text-center mb-2">사료</span>
           </a>  
         </div>
         <div class="col-md-4 protfolio-item hover14">
@@ -193,18 +185,13 @@
             <figure>
               <img src="assets/images/g5.jpg" alt="product" class="img-fluid">
             </figure>
-            <span class="sub-title text-center mb-2">계단</span>
+            <span class="sub-title2 text-center mb-2">계단</span>
           </a>
           <a href="assets/images/g6.jpg" data-lightbox="example-set" class="mb-4" data-title="lorem ipsum dolor sit amet">
             <figure>
               <img src="assets/images/g6.jpg" alt="product" class="img-fluid">
             </figure>
-            <span class="sub-title text-center mb-2">산책줄 & 하네스</span>
-          </a>
-          <!--a href="assets/images/g9.jpg" data-lightbox="example-set" class="mb-4" data-title="lorem ipsum dolor sit amet">
-            <figure>
-              <img src="assets/images/g9.jpg" alt="product" class="img-fluid"-->
-            </figure>
+            <span class="sub-title2 text-center mb-2">산책줄 & 하네스</span>
           </a>
         </div>
 

@@ -18,9 +18,10 @@
 	<resources mapping="/assets/css/**" location="/assets/css/" />
 	<resources mapping="/assets/images/**" location="/assets/images/" />
 	<resources mapping="/assets/fonts/**" location="/assets/fonts/" />
+	<resources mapping="/img/**" location="C:\Users\bit\Desktop\WithMyPet_Member_ImgUpload" />
 	
 	<!-- 메일 전송 -->
-	<beans:bean id='Mailer' class="pet.mvc.walk.Mailer">
+	<beans:bean id='Mailer' class="pet.walk.vo.Mailer">
 		<beans:property name="host" value="smtp.naver.com" />
 		<beans:property name="password" value="usemailer" />
 		<beans:property name="tail" value='@naver.com'/>
@@ -50,7 +51,8 @@
 	<context:component-scan base-package="pet.mvc.controller" />
 	<context:component-scan base-package="pet.member.controller" />
 	<context:component-scan base-package="pet.admin.controller" />
-	
+	<context:component-scan base-package="pet.walk.controller" />
+	<context:component-scan base-package="pet.shop.controller" />
 	
 	
 </beans:beans>

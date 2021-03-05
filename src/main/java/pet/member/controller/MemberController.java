@@ -14,11 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import pet.member.service.MemberService;
 import pet.member.vo.MemberVO;
 
-
 @Controller
 @RequestMapping(value = "/member")
 public class MemberController {
-	
    private Logger logger = LoggerFactory.getLogger(MemberController.class);
    
    
@@ -31,14 +29,15 @@ public class MemberController {
    
    //이용약관
    @RequestMapping(value = "/agree.do", method = RequestMethod.GET)
+   
    public String getClause() throws Exception {
       logger.info("agree.do 호출 성공");
       return "/member/agree";
    }
    
-   
    //회원가입
    @RequestMapping(value = "/signup.do", method = RequestMethod.GET)
+   
    public String getJoin() throws Exception {
       logger.info("signup.do 호출 성공");
       return "/member/signup";
@@ -50,6 +49,7 @@ public class MemberController {
       public String postJoin(@ModelAttribute MemberVO vo ,  HttpServletRequest request) throws Exception {
          logger.info("회원가입 처리 성공");
          int result = service.mailChk(vo);
+         
          try {
             if(result == 1) {
                return "signup";
@@ -66,11 +66,11 @@ public class MemberController {
          } catch(Exception e) {
             throw new RuntimeException();
          }
-         return "member/join/login";
+         return "member/login";
       }
       
       
-   //이메일 중복체크
+   //이메일 중복 체크
    @RequestMapping(value = "/mailChk.do", method = RequestMethod.POST)
    @ResponseBody
    public int mailChk(MemberVO vo) throws Exception {
@@ -79,12 +79,13 @@ public class MemberController {
       return result;
    }
    
-   
+   /*
    @RequestMapping("/mypage.do")
    public String mypage() {
 		//log.info("ȸ������ �Ծ : " + vo.getEmail() + ", "+vo.getPassword() + ", "+vo.getName() + ", " + vo.getAddress());
 		return "/pet/mypage";
 	}
+	*/
 	
 	@RequestMapping("/mypost.do")
 	public String mypost() {

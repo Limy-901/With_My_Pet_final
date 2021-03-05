@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pet.shop.mapper.CartMapper">
+	<select id="selectCountInCart" resultType="Cart" parameterType="long">
+	<![CDATA[
+	select * from CART where product_code=#{product_code}
+	]]>
+	</select>
+	<insert id="insertProductsInCart" parameterType="Cart">
+	<![CDATA[
+	insert into CART(CART_CODE,PRODUCT_CODE,MEMBER_NUMBER)
+	values(#{cart_code},#{product_code},#{member_number})
+	]]>
+	</insert>
+	<select id="selectPay" resultType="Pay" parameterType="int">
+	select * from PAY natural join MEMBER where member_number=#{member_number}
+	</select>
+	<select id="selectPayOne" resultType="Pay" parameterType="int">
+	<![CDATA[
+	select * from PAY natural join MEMBER where member_number=#{member_number} and rownum <=1 order by rownum desc
+	]]>
+	</select>
+	<insert id="insertFile" parameterType="Product_pic">
+	<![CDATA[
+	insert into PRODUCT_PIC values(product_pic_seq.nextval,
+	#{product_code},#{product_pic_ofname},#{product_pic_fname},
+	#{product_pic_fsize})
+	]]>
+	</insert> 
+</mapper>

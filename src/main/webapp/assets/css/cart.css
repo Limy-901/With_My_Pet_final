@@ -1867,7 +1867,7 @@ pre code {
 }
 
 .table {
-  width: 140%;
+  width: 100%;
   margin-bottom: 1rem;
   color: #212529;
 }
@@ -10652,6 +10652,9 @@ button.bg-dark:focus {
 .text-left {
   text-align: left !important;
 }
+.text-left2 {
+  text-align: center;
+}
 
 .text-right {
   text-align: right !important;
@@ -18637,7 +18640,7 @@ li.design1 {
 }
 
 .table--1aTBT9emfH {
-    width: 120%;
+    width: 100%;
     border-spacing: 0;
     border-top: 2px solid #383d4a;
     border-bottom: 1px solid #9ca0aa;
@@ -18678,14 +18681,14 @@ li.design1 {
 }
 .table--1aTBT9emfH .th--1G-vGQPU9O {
     font-size: 13px;
-    line-height: 48px;
+    line-height: 20px;
     color: #222;
 }
 .table_cell--275JhdiLLN {
     position: relative;
     border-left: 1px solid #ececef;
     border-top: 1px solid #cacbd4;
-    word-break: break-all;
+    border-bottom: 1px solid #cacbd4;
 }
 .order_calculator--2zlH_jz09P {
     display: table;
@@ -18712,7 +18715,7 @@ li.design1 {
 }
 body, input, textarea, select, button, table {
     font-family:'Spoqa Han Sans Neo';
-    font-size: 12px;
+    font-size: 16px;
 }
 body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select {
     -webkit-text-size-adjust: none;
@@ -18782,5 +18785,6 @@ a, a:hover {
     color: var(--secondary-color);
 }
 
+.select_img img {margin:20px 0;}
 
 /*# sourceMappingURL=style-freedom.css.map */

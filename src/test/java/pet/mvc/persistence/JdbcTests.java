@@ -17,18 +17,19 @@ public class JdbcTests {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		}catch(ClassNotFoundException cnfe) {
-			log.info("#오라클 드라이버 인식 실패");
+			log.info("ClassNotFoundException"+cnfe);
 		}
 	}
 	
 	@Test
 	public void testConnectionJdbc() {
-		String url = "jdbc:oracle:thin:@127.0.0.1:1521:JAVA";
+		String url = "jdbc:oracle:thin:@106.240.16.165:15230:JAVA";
 		try {
-			Connection con = DriverManager.getConnection(url, "spring", "java");
+			Connection con = DriverManager.getConnection(url, "pet", "java");
 			log.info("#con from Jdbc: " + con);
 		}catch(SQLException se) {
 			log.info("#testConnectionJdbc() exception: " + se);
 		}
 	}
+	
 }

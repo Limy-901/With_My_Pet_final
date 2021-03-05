@@ -27,21 +27,18 @@
 <body>
 <!--header-->
 <header id="site-header" class="fixed-top">
-  <div class="container">
+ <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <h1><a class="navbar-brand" href="index.html">
-               Pooch Care
-          </a></h1>
+          <a href="#"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt=""></a>
+         
           <!-- if logo is image enable this   
       <a class="navbar-brand" href="#index.html">
           <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
       </a> -->
-          <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
-              data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-              aria-label="Toggle navigation">
+          <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
               <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-              </span>
+              
           </button>
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -51,41 +48,41 @@
                   </li>
                   
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="walklist.do">산책모집 </a>
-                          <a class="dropdown-item" href="walkboard.do">산책후기 </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                      	<a class="dropdown-item" href="walk/list.do?cp=1">산책모집 </a>
+                          <a class="dropdown-item" href="walk/board.do">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="blog.html">쇼핑하기</a>
-                          <a class="dropdown-item" href="blog.html">구매후기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                      	<a class="dropdown-item" href="product?catgo_code=9">쇼핑하기</a>
+                          <a class="dropdown-item" href="cart">장바구니</a>
+                          <a class="dropdown-item" href="order">결제</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                          <a class="dropdown-item" href="blog.html">공지사항</a>
-                          <a class="dropdown-item" href="blog-single.html">일상이야기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                          <a class="dropdown-item" href="board/list.do?board_idx=1&amp;cp=1">공지사항</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=2&amp;cp=1">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=3&amp;cp=1">산책후기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=4&amp;cp=1">쇼핑후기</a>
                       </div>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="gallery.html">로그인 </a>
+                      <a class="nav-link" href="gallery.html" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
                   </li>
                  
                   <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact </a>
+                      <a class="nav-link" href="sendmail.do">Contact </a>
                   </li>
               </ul>
           </div>
@@ -112,18 +109,9 @@
 <!--게시판 시작-->
 
 <table class="bbs-table" table style="margin-left: auto; margin-right: auto;">
-<!--  게시판 목록 머리말 -->
-<div class="title">
-
-<h3>게시판 </h3>
-산책에 관련된 내용을 업로드하는 게시판입니다.
-</div>
-공지사항
-일상
-
 <tr id = "t1">
-
     <td style="width: 60px;">NO</td>
+    <td style="width: 60px;">분류</td>
     <td style="width: 260px;">제목</td>
     <td style="width: 60px;">글쓴이</td>
     <td style="width: 60px;">조회수</td>
@@ -131,26 +119,42 @@
     <td style="width: 84px;">작성일</td>
     <c:if test="${empty listResult}">
 	<tr align="center" noshade>
-	   <td colspan="5">등록된 글이 존재하지 않습니다.</td>
+	   <td colspan="10">등록된 글이 존재하지 않습니다.</td>
 	</tr>
 </c:if>
 <c:forEach items="${listResult.list}" var="board">
 	<TR align='center' noshade>
-		<TD>${board.post_idx}</TD>
-
-
-	    <TD>
-	      <a href="content.do?post_idx=${board.post_idx}">
-		    ${board.post_subject}
-		  </a>
-		</TD>
+		<TD>${board.post_idx}</TD>	
 		
+		<c:choose>
+		<c:when test="${board.board_idx eq '1'}"><TD>공지사항</TD></c:when>
+		<c:when test="${board.board_idx eq '2'}"><TD>일상이야기</TD></c:when>
+		<c:when test="${board.board_idx eq '3'}"><TD>산책후기</TD></c:when>
+		<c:otherwise><TD>쇼핑후기</TD></c:otherwise>
+		</c:choose>
+		
+	 
+		<TD>
+		<c:choose>	
+		<c:when test="${board.post_depth>1}">
+			<c:forEach begin="1" end="${board.post_depth}"><span style='padding-left:10px'></span></c:forEach>
+			<span style='font-size:12px;'>[답변]</span>
+	      <a href="content.do?post_idx=${board.post_idx}&post_order=${board.post_order}">${board.post_subject}</a>
+		 </c:when>
+		 
+		 <c:otherwise>
+		 	 <a href="content.do?post_idx=${board.post_idx}&post_order=${board.post_order}">${board.post_subject}</a>
+		 </c:otherwise>
+		</c:choose>
+		</TD>
 		<TD>${board.post_writer}</TD>
 		<TD>${board.post_count}</TD>
 		<TD>${board.post_like}</TD>
 		<TD>${board.post_date}</TD>
+
 </TR>
 </c:forEach>
+
     
   
  
@@ -164,11 +168,16 @@
 <br>
 <br>
 <div class="boardtitle">
+
+
+<c:forEach items="${listResult.list}" begin="1" end="1"	 var="board"><!-- set으로 바꾸자~-->
 <c:choose>
-<c:when test="${board_idx eq '1'}"><h3>게시판1 </h3></c:when>
-<c:when test="${board_idx eq '2'}"><h3>게시판2 </h3></c:when>
-<c:otherwise><h3>게시판3 </h3></c:otherwise>
+<c:when test="${board.board_idx eq '1'}"><h3>공지사항 </h3></c:when>
+<c:when test="${board.board_idx eq '2'}"><h3>일상이야기 </h3></c:when>
+<c:when test="${board.board_idx eq '3'}"><h3>산책후기 </h3></c:when>
+<c:when test="${board.board_idx eq '4'}"><h3>쇼핑후기 </h3></c:when>
 </c:choose>
+
 	
    <c:choose>
       <c:when test="${empty loginPassUser.ct_id}">
@@ -178,14 +187,15 @@
       <a href='../qna/qna.do?m=write&ct_id=${loginPassUser.ct_id}'>전체문의 게시판</a><br/>
    </c:otherwise>
   </c:choose>
+</c:forEach>
  </div> 
  
-	<ul class="sidemenu">
-	  <li><a href="list.do?board_idx=1">공지사항</a></li>
-	  <li><a href="list.do?board_idx=2">일상이야기</a></li>
-	  <li><a href="list.do?board_idx=3">산책후기</a></li>
-	  <li><a href=list.do?board_idx=4>쇼핑후기</a></li>
-	</ul>
+	<div class="sidemenu">
+	 <a href="list.do?board_idx=1">공지사항</a>
+	 <a href="list.do?board_idx=2">일상이야기</a>
+  	 <a href="list.do?board_idx=3">산책후기</a>
+	 <a href="list.do?board_idx=4">쇼핑후기</a>
+	</div>
 </div>
 
 <!-- 메뉴바 끝-->
@@ -221,20 +231,33 @@
 
 <br>
     <div id="paging">
-    <a href="#">이전</a>
-    <c:forEach begin="1" end="${listResult.totalPageCount}" var="i">  
+   <c:choose>
+    <c:when test="${listResult.cp eq 1}">
+     
+    </c:when>
+  
+    <c:otherwise>
+     <a href="list.do?cp=${listResult.cp-(cp%countPage)}">이전</a>
+    </c:otherwise>
+    </c:choose>	
+    
+    
+
+    <c:forEach begin="${listResult.startPage}" end="${listResult.endPage}" var="i">  
         <a href="list.do?cp=${i}">
    			<c:choose>
    			    <c:when test="${i==listResult.cp}">
                 	<span class="bbs-strong">${i}</span>
                 </c:when>
+                
                 <c:otherwise>
                     ${i}
                 </c:otherwise>
 			</c:choose>
     	</a>	
     </c:forEach>
-    <a href="#">다음</a>
+    <c:if test="cp=10"><a href="list.do?cp=${listResult.cp+((countPage+1)-(cp%countPage))}">다음</a></c:if>
+    <a href="list.do?cp=${listResult.cp+((countPage+1)-(cp%countPage))}">다음</a>
 </div> 
  
 <!-- 페이징 -->

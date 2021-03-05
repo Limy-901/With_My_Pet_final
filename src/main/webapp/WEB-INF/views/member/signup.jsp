@@ -137,7 +137,7 @@ vertical-align: middle;
                               required="">
                           <input type="text" class="form-control" name="member_name" id="w3lSubject" placeholder="NAME"
                               required="">
-                          <input type="text" class="form-control" name="member_address" id="w3lMessage" placeholder="ADDRESS"
+                          <input type="text" class="form-control" name="member_address" id="w3lMessage" placeholder="ADRESS"
                               required="">
                       </div>
                      

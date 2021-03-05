@@ -27,6 +27,7 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	
 	<!--  트랜잭션 어노테이션 쓰기 -->
 	<tx:annotation-driven />
 	
@@ -46,10 +47,10 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-	<context:component-scan base-package="pet.mvc.shopservice" />
-	<context:component-scan base-package="pet.mvc.shopdomain" />
-	<context:component-scan base-package="pet.mvc.shopmapper"/>
-	<mybatis-spring:scan base-package="pet.mvc.shopmapper"/>	
+	<context:component-scan base-package="pet.shop.service" />
+	<context:component-scan base-package="pet.shop.domain" />
+	<context:component-scan base-package="pet.shop.mapper"/>
+	<mybatis-spring:scan base-package="pet.shop.mapper"/>	
 	
 	<context:component-scan base-package="pet.mvc.board"/>
 	
@@ -57,6 +58,8 @@
 	<context:component-scan base-package="pet.mvc.mapper"/>
 	<mybatis-spring:scan base-package="pet.mvc.mapper"/>
 	
+	<context:component-scan base-package="pet.admin.service" />
+	<context:component-scan base-package="pet.walk.service" />
 	<context:component-scan base-package="pet.member.service" />
 	<context:component-scan base-package="pet.member.dao" />
 	<mybatis-spring:scan base-package="pet.member.mapper"/>

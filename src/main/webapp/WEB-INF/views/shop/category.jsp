@@ -143,19 +143,20 @@
             상세 카테고리</h3>
       </div>
       <div class="row">
+      <c:forEach items="${category}" var="productDes" varStatus="status">
           <div class="col-lg-4 col-md-6 item">
               <div class="card">
                   <div class="card-header p-0 position-relative">
-                      <a href="productDes?catgo_code=9&review_number=6&product_code=8">
-                          <img class="card-img-bottom d-block" src="assets/images/g10-6.jpg" alt="Card image cap">
+                      <a href="productDes?catgo_code=${productDes.catgo_code}&review_number=${productDes.review_number}&product_code=${productDes.product_code}">
+                          <img class="card-img-bottom d-block" src="assets/images/${productDes.product_image}" alt="Card image cap">
                       </a>
-                      
                   </div>
                   <div class="card-body blog-details">
-                      <a href="blog-single2.html" class="blog-desc">애견 겨울 옷</a>
-                      <p>F/W 시즌 OFF 진행중!! 수량이 얼마 남지 않았습니다!! </p>
+                      <a href="productDes?catgo_code=9&review_number=6&product_code=8" class="blog-desc">${productDes.product_name}</a>
+                      <p>${productDes.product_content}</p>
                       <div class="author align-items-center mt-3 mb-1">
-                          <a href="#author">₩9,900</a> - <span class="meta-value">태그자리#베스트</span>
+                          <a href="productDes?catgo_code=${productDes.catgo_code}&review_number=${productDes.review_number}&product_code=${productDes.product_code}">${productDes.product_price}</a>
+                           - <span class="meta-value">${productDes.product_tag}</span>
                       </div>
                       <ul class="blog-meta">
                           <li class="meta-item blog-students">
@@ -168,185 +169,7 @@
                   </div>
               </div>
           </div>
-          <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g14.jpg" alt="Card image cap">
-                      </a>
-                    
-                  </div>
-                  <div class="card-body blog-details">
-                      <a href="blog-single.html" class="blog-desc">사계절 애견옷
-                      </a>
-                      <p>베이직한 디자인과 컬러</p>
-                      <div class="author align-items-center mt-3 mb-1">
-                          <a href="#author">₩7,900</a> - <span class="meta-value"> 태그자리#심플#산뜻한컬러 </span>
-                      </div>
-                      <ul class="blog-meta">
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-comment"></span> 30 comments</span>
-                          </li>
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-eye"></span> 30 Views</span>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6 item mt-lg-0 mt-5">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g10.jpg" alt="Card image cap">
-                      </a>
-                     
-                  </div>
-                  <div class="card-body blog-details">
-                      <a href="blog-single.html" class="blog-desc">애견 후드티
-                      </a>
-                      <p>로고 후드티&맨투맨</p>
-                      <div class="author align-items-center mt-3 mb-1">
-                          <a href="#author">#25,000</a> - <span class="meta-value">#편안#데일리 </span>
-                      </div>
-                      <ul class="blog-meta">
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-comment"></span> 30 comments</span>
-                          </li>
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-eye"></span> 30 Views</span>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6 item mt-5 pt-lg-3">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g7.jpg" alt="Card image cap">
-                      </a>
-                     
-                  </div>
-                  <div class="card-body blog-details">
-                      <a href="blog-single.html" class="blog-desc">수면조끼
-                      </a>
-                      <p>수면조끼</p>
-                      <div class="author align-items-center mt-3 mb-1">
-                          <a href="#author">₩16,000</a> - <span class="meta-value"> #편안#누빔 </span>
-                      </div>
-                      <ul class="blog-meta">
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-comment"></span> 30 comments</span>
-                          </li>
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-eye"></span> 30 Views</span>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6 item mt-5 pt-lg-3">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g11.jpg" alt="Card image cap">
-                      </a>
-                  </div>
-                  <div class="card-body blog-details">
-                      <a href="blog-single.html" class="blog-desc">네오프란 한복
-                      </a>
-                      <p>계량한복</p>
-                      <div class="author align-items-center mt-3 mb-1">
-                          <a href="#author">₩25,000</a> - <span class="meta-value">#네오프란</span>
-                      </div>
-                      <ul class="blog-meta">
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-comment"></span> 30 comments</span>
-                          </li>
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-eye"></span> 30 Views</span>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6 item mt-5 pt-lg-3">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g8.jpg" alt="Card image cap">
-                      </a>
-                  </div>
-                  <div class="card-body blog-details">
-                      <a href="blog-single.html" class="blog-desc">크리스마스
-                      </a>
-                      <p>산타 원피스/티셔츠</p>
-                      <div class="author align-items-center mt-3 mb-1">
-                          <a href="#author">₩16,000</a> - <span class="meta-value"> #빅사이즈구비</span>
-                      </div>
-                      <ul class="blog-meta">
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-comment"></span> 30 comments</span>
-                          </li>
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-eye"></span> 30 Views</span>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6 item mt-5 pt-lg-3">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g12.jpg" alt="Card image cap">
-                      </a>
-                  </div>
-                  <div class="card-body blog-details">
-                      <a href="blog-single.html" class="blog-desc">올인원
-                      </a>
-                      <p>면 100% 올인원</p>
-                      <div class="author align-items-center mt-3 mb-1">
-                          <a href="#author">24,000</a> - <span class="meta-value">#파자마 </span>
-                      </div>
-                      <ul class="blog-meta">
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-comment"></span> 30 comments</span>
-                          </li>
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-eye"></span> 30 Views</span>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-6 item mt-5 pt-lg-3">
-              <div class="card">
-                  <div class="card-header p-0 position-relative">
-                      <a href="blog-single.html">
-                          <img class="card-img-bottom d-block" src="assets/images/g13.jpg" alt="Card image cap">
-                      </a>
-                     
-                  </div>
-                  <div class="card-body blog-details">
-                      <a href="blog-single.html" class="blog-desc">원피스
-                      </a>
-                      <p>신축성좋은소재 원피스</p>
-                      <div class="author align-items-center mt-3 mb-1">
-                          <a href="#author">24,000</a> - <span class="meta-value"> #앵두 프린팅 </span>
-                      </div>
-                      <ul class="blog-meta">
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-comment"></span> 30 comments</span>
-                          </li>
-                          <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-eye"></span> 30 Views</span>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
+         </c:forEach>
          
       </div>
       <!-- pagination -->

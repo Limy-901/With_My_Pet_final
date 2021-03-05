@@ -2781,8 +2781,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #189A46;
-  border-color: #189A46;
+  background-color: #6EC5CE;
+  border-color: #6EC5CE;
 }
 
 .btn-primary:hover {
@@ -14257,7 +14257,7 @@ p.white {
 
 /*-- //play icon animation --*/
 .btn-style {
-  padding: 12px 35px;
+  padding: 12px inherit;
   font-size: 18px;
   line-height: 28px;
   text-transform: capitalize;
@@ -18629,7 +18629,6 @@ li.design {
     margin-top: 0;
     margin-bottom: 10px;
   }
-  
 }
 
 /*# sourceMappingURL=style-freedom.css.map */

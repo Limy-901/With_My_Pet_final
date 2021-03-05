@@ -9,20 +9,42 @@ import pet.mvc.board.BoardListResult;
 
 
 public interface BoardService {
-	//�뙆�씪�뾽濡쒕뱶�옉 而⑦뀗�듃�뾽濡쒕뱶 遺꾧린�븘�슂
+	
 	void write(Board board);
 	void edit(Board board);
 	void remove(long post_idx);
-	BoardListResult getBoardListResult(String catgo, String keyword, int cp, int ps);
-	BoardListResult getBoardListResult(int cp, int ps);
+	BoardListResult getBoardListResult(String catgo, String keyword, int cp, int ps, long board_idx, int countPage,
+			int startPage, int endPage);
+	BoardListResult getBoardListResult(int cp, int ps, long board_idx, int countPage, int startPage, int endPage);
 
 	
 	void plusHitCount(long post_idx);
 	
+	//BoardCmt getCmtList(long post_idx);
 	void writeCmt(BoardCmt boardCmt);
 	void removeCmt(long comment_idx);
-	void editCmt(BoardCmt boardCmt);
+	void updateCmt(BoardCmt boardCmt);
 	Board getBoard(long post_idx);
+	ArrayList<BoardCmt> selectCmtBySeq(long post_idx);
+	//BoardCmt selectCmtData(long comment_idx);
+	
+	
+
+
+	void updateReply(long post_idx);
+	int rewrite(Board board);
+	int reRewrite(Board board);
+	
+
+
+	
+	
+	//BoardCmt saveReply(BoardCmt boardCmt);
+
+
+
+
+
 
 	
 }
