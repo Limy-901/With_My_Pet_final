@@ -1,7 +1,6 @@
 package pet.shop.domain;
 
-import java.sql.Array;
-import java.util.ArrayList;
+
 import java.util.Date;
 
 import lombok.AllArgsConstructor;

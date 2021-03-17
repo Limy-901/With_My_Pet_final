@@ -2,9 +2,11 @@ package pet.member.service;
 
 import javax.inject.Inject;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.log4j.Log4j;
+import pet.member.controller.MailUtil;
 import pet.member.vo.MemberVO;
 import pet.mvc.mapper.memberMapper;
 
@@ -23,8 +25,8 @@ public class MemberServiceImpl implements MemberService {
    
    //이메일 중복체크
    @Override
-   public int mailChk(MemberVO vo) throws Exception {
-      int result = mapper.mailChk(vo);
+   public int mailChk(String email) throws Exception {
+      int result = mapper.mailChk(email);
       return result;
    }
    
@@ -46,16 +48,58 @@ public class MemberServiceImpl implements MemberService {
 	   mapper.memberUpdateDo(vo);
    }
 
-   //�븘�씠�뵒 李얘린
+   //이메일 찾기
    @Override
-   public MemberVO emailFind(MemberVO vo) throws Exception {
-      return  mapper.emailFind(vo);
+   public MemberVO getEmailSearch(String address, String name) throws Exception {
+      return  mapper.emailFind(address, name);
+   }
+   
+   //비밀번호 찾기 이메일발송
+   @Override
+   public void sendEmail(MemberVO vo) throws Exception  {
+	   
    }
 
-   //�뙣�뒪�썙�뱶 李얘린
+   //이메일로 비밀번호찾기
    @Override
-   public MemberVO pwFind(MemberVO pvo) {
-      return mapper.pwFind(pvo);
+   public String getpwSearch(String email) throws Exception {
+	   BCryptPasswordEncoder pwencoder = new BCryptPasswordEncoder();
+	   
+	   log.info("바보아니면 찍혀라"+email);
+	   MemberVO vo = new MemberVO();
+	   vo.setMember_email(email);
+	   
+   	int result = mapper.mailChk(email);
+
+   	// 가입된 아이디가 없으면
+   	if(result == 0) {
+   		log.info("등록되지 않은 아이디입니다.");
+   		return null;
+   	}else {
+   		// 임시 비밀번호 생성
+   		String pw = "";
+   		for (int i = 0; i < 12; i++) {
+   			pw += (char) ((Math.random() * 26) + 97);
+   		}
+   		log.info("암호 안걸린 임시비번 찍어본다"+pw);
+   		vo.setMember_password(pw);
+   		
+   		//메일 전송
+   		MailUtil mail = new MailUtil();
+   		mail.sendEmail(vo);
+   		
+   		String secPwd = pwencoder.encode(vo.getMember_password());
+        //  암호화된 비밀번호를 VO에 SET한다.
+        vo.setMember_password(secPwd);
+        log.info("암호걸린 임시비번 찍어본다"+secPwd);
+   		// 비밀번호 변경
+   		mapper.updatePw(vo);
+   		// 비밀번호 변경 메일 발송
+   		//sendEmail(vo, "getpwSearch");
+
+   		log.info("이메일로 임시 비밀번호를 발송하였습니다.");
+   			return pw;
+   	}
    }
 
    @Override

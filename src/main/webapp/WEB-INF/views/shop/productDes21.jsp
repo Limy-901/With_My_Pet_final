@@ -9,6 +9,8 @@
       <title>With My Pet | 쇼핑 상세페이지 </title>
       <!-- google fonts -->  
       <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="../assets/css/semantic.min.css">
+      <link rel="stylesheet" href="../assets/css/semantic2.css">
       <!-- google fonts --> 
       <!-- Template CSS -->
       <link rel="stylesheet" href="assets/css/productDes.css">
@@ -137,7 +139,7 @@
                      	<input name="product_code" type="hidden" value="${productDes21.product_code}">
                      	<input name="product_price" type="hidden" value="${productDes21.product_price}">
                      	<input name="product_content" type="hidden" value="${productDes21.product_content}">
-                     	<input name="product_image" type="hidden" value="${productDes21.product_image}">
+                     	<input name="product_image" type="hidden" value="assets/images/${productDes21.product_image}">
                         <table class="table" >
                            <tr>
                      		
@@ -157,7 +159,7 @@
                            	수량 선택 &nbsp;</br></td>
                            <td>
                           
-                          	<input type="number" id="product_amount" name="product_amount"
+                          	<input type="number" id="product_amount" name="product_amount" class="ui selection dropdown"
                           	value="${productDes21.product_amount}" step="1" min="1" max="10">
                            &nbsp;
                            
@@ -168,7 +170,7 @@
                            &nbsp;Size 선택 &nbsp;</br> 
                            </td>
                            <td>
-                           &nbsp;<select name="product_size" align="center" id="product_size" value="${productDes21.product_size}">==$0
+                           &nbsp;<select name="product_size" align="center" id="product_size" class="ui selection dropdown" value="${productDes21.product_size}">==$0
                            <option value="S 베이지">S 베이지</option>
                            <option value="M 베이지">M 베이지</option>
                            <option value="S 모카">S 모카</option>

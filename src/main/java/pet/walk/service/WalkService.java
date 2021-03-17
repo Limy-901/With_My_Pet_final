@@ -1,5 +1,7 @@
 package pet.walk.service;
 
+import java.util.Hashtable;
+import pet.member.vo.MypagePetVO;
 import pet.walk.vo.CmtVo;
 import pet.walk.vo.Comment;
 import pet.walk.vo.Walk;
@@ -18,5 +20,10 @@ public interface WalkService {
 	boolean insertWalkJoin(joinVo vo, long cmtIdx);
 	long selectByCmtIdx(long cmtIdx);
 	void addHeart(joinVo vo);
+	void deleteHeart(joinVo vo);
 	int getWalkLike(long idx);
+	MypagePetVO getCmtPetData(long member_number);
+	Hashtable<String, Object> getMemData(long member_number);
+	long checkLikeToggle(long walk_idx, long member_number);
+	String getWalkPic(long member_number);
 }

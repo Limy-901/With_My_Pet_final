@@ -360,7 +360,7 @@
                   <h3 class="title-blog mb-4">최근 상품 리뷰 </h3>
                   <div class="media">
                      <div class="img-circle">
-                        <img src="assets/images/g10-12.jpg" class="mr-3" alt="...">
+                        <!-- img src="assets/images/g10-12.jpg" class="mr-3" alt="..." -->
                      </div>
                      <div class="media-body">
                         <h5 class="mt-0">${review.member_number}</h5>

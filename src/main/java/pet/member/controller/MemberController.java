@@ -4,10 +4,11 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,11 +49,11 @@ public class MemberController {
       @RequestMapping(value = "/signup.do", method = RequestMethod.POST)
       public String postJoin(@ModelAttribute MemberVO vo ,  HttpServletRequest request) throws Exception {
          logger.info("회원가입 처리 성공");
-         int result = service.mailChk(vo);
+         int result = service.mailChk(vo.getMember_email());
          
          try {
             if(result == 1) {
-               return "signup";
+               return "member/signup";
             }else if(result == 0) {
                //  브라우저에서 입력한 패스워드를 암호화한다.
                String secPwd = pwencoder.encode(vo.getMember_password());
@@ -70,14 +71,14 @@ public class MemberController {
       }
       
       
-   //이메일 중복 체크
-   @RequestMapping(value = "/mailChk.do", method = RequestMethod.POST)
-   @ResponseBody
-   public int mailChk(MemberVO vo) throws Exception {
-      logger.info("이메일 중복체크 성공");
-      int result = service.mailChk(vo);
-      return result;
-   }
+      //이메일 중복 체크
+      @ResponseBody
+      @PostMapping(value="mailChk.do",  produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+      public int mailChk(String email) throws Exception {
+         logger.info("이메일 중복체크 성공"+email);
+         int result = service.mailChk(email);
+         return result;
+      }
    
    /*
    @RequestMapping("/mypage.do")

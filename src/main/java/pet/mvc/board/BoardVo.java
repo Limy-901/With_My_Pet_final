@@ -11,12 +11,12 @@ public class BoardVo {
 	String catgo;
 	String keyword;
 	
-	//ÇÑÆäÀÌÁö¿¡ Ãâ·ÂµÉ ÆäÀÌÁö¼ö countPage
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ countPage
 	private int cp; //page
 	private int ps; //countList =20
-	private int countPage;
-	private int startPage;
-	private int endPage;
+	//private int countPage;
+	//private int startPage;
+	//private int endPage;
 
 	private long board_idx; 
 
@@ -25,10 +25,10 @@ public class BoardVo {
 	{
 		cp = 1;
 		ps = 20;
-		countPage = 10;
+		//countPage = 10;
 
-		startPage = ((cp-1) / countPage) * countPage + 1;
-		endPage = startPage + countPage - 1 ;
+	//	startPage = ((cp-1) / countPage) * countPage + 1;
+		//endPage = startPage + countPage - 1 ;
 		
 	}
 

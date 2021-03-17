@@ -29,31 +29,32 @@
 	</select>	
 		
 	<select id="selectCmtBySeq" parameterType="long" resultType="BoardCmt">
-		select * from board_cmt where post_idx=#{post_idx} order by cmt_date desc
+		select * from board_cmt where post_idx=#{post_idx} order by cmt_date asc, cmt_order asc
 	</select>
 		
-	<select id="selectCmtData" parameterType="long" resultType="BoardCmt">
-		select * from board_cmt where comment_idx=#{comment_idx} order by cmt_date desc
-	</select>
+
 		
 		
-	<select id="selectCount" resultType="long">
-		select count(POST_IDX) from BOARD
+	<select id="selectCount" resultType="long" parameterType="long">
+		select count(POST_IDX) from BOARD where board_idx=#{board_idx}
 	</select>
-	<select id="selectCountByCatgo" resultType="long" parameterType="BoardVo">
+	
+	<select id="selectCountByCatgo" resultType="int" parameterType="BoardVo">
 		select count(POST_IDX) from BOARD where ${catgo} like '%'||#{keyword}||'%'
 	</select>	
 		
 		
 		
 	<insert id="insert" parameterType="Board">
-
-		insert into BOARD(post_idx, board_idx, post_writer, post_subject, content, post_date, post_no, post_order, post_depth)
-		 values(board_seq.nextval, #{board_idx}, 
-		 #{post_writer, jdbcType=VARCHAR}, #{post_subject, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, sysdate,
+	
+		insert into BOARD(post_idx, board_idx, member_number, post_writer, post_subject, content, post_date, post_count, post_like, post_no, post_order, post_depth)
+		 values(board_seq.nextval, #{board_idx}, #{member_number}, 
+		 #{post_writer, jdbcType=VARCHAR}, #{post_subject, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, sysdate, 0, 0,
 		 board_seq.nextval, 0, 1)
 		
 	</insert>
+	
+
 	
 	<delete id="delete" parameterType="long">
 		
@@ -64,21 +65,13 @@
     	update board set post_subject=#{post_subject}, content=#{content}
     	where post_idx=#{post_idx}
     </update>
+   
+   
     
     <select id = "getBoardReplyInfo" parameterType="long">
     	select post_idx, post_order, post_depth, post_no FROM board where post_idx=#{post_idx};
     </select>
-   
-   <insert id="insertReply" parameterType="Board">
-
-		insert into BOARD(post_idx, board_idx, post_writer, post_subject, content, post_date, post_no, post_order, post_depth)
-		 values(board_seq.nextval, #{board_idx}, 
-		 #{post_writer, jdbcType=VARCHAR}, #{post_subject, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, sysdate,
-		 #{post_no}, 0, 1)
-		
-	</insert>
-   
- 
+  
    
    <select id ="selectReplyElement" parameterType="long" resultType="Board">
    		select post_order, post_no, post_depth from board where post_idx=#{post_idx}
@@ -93,8 +86,8 @@
     		select board_seq.nextval from dual
     	</selectKey>
     	
-    	insert into BOARD(post_idx, board_idx, post_writer, post_subject, content, post_date, post_no, post_order, post_depth)
-		 values(#{post_idx}, #{board_idx}, 
+    	insert into BOARD(post_idx, board_idx, member_number, post_writer, post_subject, content, post_date, post_no, post_order, post_depth)
+		 values(#{post_idx}, #{board_idx}, #{member_number},
 		 #{post_writer, jdbcType=VARCHAR}, #{post_subject, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, sysdate,
 		 #{post_no},#{post_order},#{post_depth})
 		
@@ -102,26 +95,16 @@
 
 
 
-    <insert id="reRewriteBoard" parameterType="Board">
-    	<selectKey keyProperty="post_idx" keyColumn="post_idx" order="BEFORE" resultType="long">
-    		select board_seq.nextval from dual
-    	</selectKey>
-    	
-    	insert into BOARD(post_idx, board_idx, post_writer, post_subject, content, post_date, post_no, post_order, post_depth)
-		 values(#{post_idx}, #{board_idx}, 
-		 #{post_writer, jdbcType=VARCHAR}, #{post_subject, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, sysdate,
-		 #{post_idx},#{post_order},#{post_depth})
-		
-    </insert>
     
     
-    <update id="updateCount" parameterType="long">
+    <update id="updateHitCount" parameterType="long">
     	UPDATE BOARD SET post_count=post_count+1 WHERE post_idx=#{post_idx}
     </update>
     
+     
     <insert id="insertCmt" parameterType="BoardCmt">
-    INSERT INTO board_cmt(comment_idx, cmt_writer, post_idx, board_idx, cmt_content, cmt_date) 
-    VALUES(BOARD_CMT_SEQ.NEXTVAL, #{cmt_writer}, #{post_idx, jdbcType=INTEGER}, #{board_idx}, #{cmt_content}, sysdate)
+    INSERT INTO board_cmt(comment_idx, member_number, cmt_writer, post_idx, board_idx, cmt_content, cmt_date, cmt_no, cmt_order) 
+    VALUES(BOARD_CMT_SEQ.NEXTVAL, #{member_number}, #{cmt_writer}, #{post_idx, jdbcType=INTEGER}, #{board_idx}, #{cmt_content}, sysdate, BOARD_CMT_SEQ.NEXTVAL, 0)
 
 	</insert>
 	
@@ -134,6 +117,50 @@
 		update board_cmt set cmt_content=#{cmt_content} where comment_idx=#{comment_idx}
 	</update>
 	
-
+	<insert id="insertLike" parameterType="BoardLike">
+		insert into board_like values(#{post_idx}, #{member_number})
+	</insert>
 	
+	<select id="getLikeCount" resultType="int" parameterType="long">
+		select count(*) from board_like where post_idx=#{post_idx}
+	</select>
+	
+	<delete id="deleteLike" parameterType="BoardLike">
+		delete from board_like where post_idx=#{post_idx} and member_number=#{member_number}
+	</delete>
+	
+	<select id ="divideLike" parameterType="BoardLike" resultType="int">
+		select count(*) from board_like where post_idx=#{post_idx} and member_number=#{member_number}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<insert id="rewriteCmt" parameterType="BoardCmt">
+		<selectKey keyProperty="comment_idx" keyColumn="comment_idx" order="BEFORE" resultType="long">
+			select board_cmt_seq.nextval from dual
+		</selectKey>
+	
+		insert into board_cmt values(#{comment_idx}, #{post_idx}, #{board_idx},#{member_number}, #{cmt_content}
+		, #{cmt_writer}, sysdate, #{comment_idx}, 1)
+	
+	</insert>
+	
+	
+	
+
 	</mapper>

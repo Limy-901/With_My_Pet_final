@@ -70,7 +70,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  text-align: left;
+  text-align: center;
   background-color: #fff;
 }
 .dropdown {
@@ -18630,5 +18630,13 @@ li.design {
     margin-bottom: 10px;
   }
 }
+
+#col {
+-moz-column-count: 2;
+-webkit-column-count: 2;
+column-count: 2;
+}
+
+
 
 /*# sourceMappingURL=style-freedom.css.map */

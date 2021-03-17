@@ -2,7 +2,6 @@ package pet.member.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -14,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 import lombok.extern.log4j.Log4j;
 import pet.member.service.MemberService;
 import pet.member.service.MypagePetService;
-import pet.member.service.MypagePetServiceImpl;
 import pet.member.vo.MemberVO;
 import pet.member.vo.MypagePetVO;
 
@@ -62,8 +59,8 @@ public class MypageController {
       	   MypagePetVO mpvo = (MypagePetVO) session.getAttribute("petMypage");
       	   log.info("####이게 중요함"+mpvo);
       	   session.setAttribute("petMypage", mpvo);
-      	 ModelAndView mv = new ModelAndView("/member/mypageupdate","mpvo",mpvo);
-            return mv;
+      	   ModelAndView mv = new ModelAndView("/member/mypageupdate","mpvo",mpvo);
+           return mv;
          }
 
          

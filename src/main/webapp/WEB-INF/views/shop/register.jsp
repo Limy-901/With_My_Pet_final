@@ -36,7 +36,6 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
                 <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-                </span>
             </button>
   
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -106,7 +105,7 @@
  
   <!-- //header -->
 
- <!-- about breadcrumb -->
+ <!-- about banner -->
 <section >
   <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
       <div >
@@ -140,7 +139,7 @@
       </div>
   </div>
 </section>
-<!-- //about breadcrumb -->
+<!-- //about banner -->
 
 <section>   
  	<h3 class="hny-title" align="center">상품등록 화면</h3 ></br>     

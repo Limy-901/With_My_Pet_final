@@ -4,24 +4,27 @@ import javax.inject.Inject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import lombok.extern.log4j.Log4j;
 import pet.member.service.MemberService;
 import pet.member.service.MypagePetService;
+
 import pet.member.vo.MemberVO;
 import pet.member.vo.MypagePetVO;
+import pet.message.service.MsgService;
 
-@Log4j
 @Controller
 @RequestMapping(value = "/member")
 public class LoginController {
@@ -30,6 +33,9 @@ public class LoginController {
    
    @Inject
    private MemberService service;
+   
+   @Inject()
+   private MsgService msgService;
    
    @Inject
    private MypagePetService petservice;
@@ -41,7 +47,6 @@ public class LoginController {
    @RequestMapping(value = "/login.do", method = RequestMethod.GET)
    public String getLogin() throws Exception {
       logger.info("login.do 호출성공");
-      
       return "member/login";
    }
    
@@ -53,7 +58,6 @@ public class LoginController {
          ModelAndView mav = new ModelAndView();
          
          MemberVO vo = service.login(lvo);
-         
          
          if(vo == null) {
             mav.addObject("msg", "아이디를 정확히 입력해 주세요.");
@@ -68,20 +72,19 @@ public class LoginController {
          if (passMatch) {
         	 session.setAttribute("login", vo);
         	 mav.setViewName("member/mypage");
-        	 
         	 int member_number = vo.getMember_number();
+        	 long count = msgService.getUnreadMsg(member_number);
+        	 session.setAttribute("unread", count);
+        	 logger.info("읽지 않은 메시지"+count);
         	 MypagePetVO mpvo = petservice.petMypage(member_number);
-  		   	 log.info("이거되니?"+mpvo);
+  		   	 logger.info("이거되니?"+mpvo);
   		     
   		   	 mav.addObject("mpvo", mpvo);
   		   	 session.setAttribute("petMypage", mpvo);
         	 
         	 
         	 return mav;
-        	 
-        	 
-        	 
-        	 
+ 	 
          }else {
             mav.addObject("msg", "패스워드를 정확히 입력해주세요.");
             mav.setViewName("member/agree");
@@ -93,68 +96,62 @@ public class LoginController {
    //로그아웃 처리
    @RequestMapping(value = "/logout.do")
    public String logout(HttpSession session, HttpServletRequest request) {
-      logger.info("logout.do 호출 성공");
+      logger.info("logout 처리 성공");
       
       request.getSession().removeAttribute("login");
       session.removeAttribute("login");
       session.invalidate();
       
-      return "index";
+      return "redirect:/";
    }
    
    //아이디 찾기 창
-   @RequestMapping(value = "/idFind.do", method = RequestMethod.GET)
+   @RequestMapping(value = "/emailFind.do", method = RequestMethod.GET)
    public String getIdFind() throws Exception {
-      logger.info("idFind.do 호출 성공");
-      return "member/idFind";
+      logger.info("emailFind.do 호출 성공");
+      return "member/emailFind";
    }
-   //패스워드 찾기
+   
+   //패스워드 찾기 창
    @RequestMapping(value = "/pwFind.do", method = RequestMethod.GET)
    public String getPwFind() throws Exception {
       logger.info("get pwFind");
       return "member/pwFind";
    }
-   //패스워드 수정
-   @RequestMapping(value = "/pwModify.do", method = RequestMethod.GET)
-   public String getPwModify() throws Exception {
-      logger.info("get pwModify");
-      return "member/pwModify";
-   }
-   //회원 패스워드 수정
-      @RequestMapping(value = "/memberPwdModify.do", method = RequestMethod.GET)
-      public String getMemberPwModify() throws Exception {
-         logger.info("get getMemberPwModify");
-         return "member/memberPwdModify";
+   
+      //아이디 찾기
+      @ResponseBody
+      @GetMapping(value="emailSearch.do",  produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+   	public MemberVO emailFind(String address, String name) throws Exception {
+   	   MemberVO vo = service.getEmailSearch(address,name);
+   		return vo;
       }
-   //아이디 찾기
-   @RequestMapping(value = "/idFind.do", method = RequestMethod.POST)
-   public String idFind(MemberVO vo, Model model) throws Exception {
-      logger.info("아이디 찾기 호출");
-      MemberVO mvo  = service.emailFind(vo);
-      if(mvo != null) {
-         model.addAttribute("mem",mvo);
-         return "member/emailFindSuccess";
-      }else {
-         model.addAttribute("msg","이메일을 틀리게 입력 하셨거나 회원이 아닙니다");
-         return "member/emailFind";
+      
+      //비밀번호 찾기 
+      @ResponseBody
+      @PostMapping(value = "pwSearch.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+      public MemberVO pwFind(String email) throws Exception{
+   		logger.info("이거 돼냐??"+email);  
+   		MemberVO vo = new MemberVO();
+   		 String pw = service.getpwSearch(email);
+   		 	vo.setMember_password(pw);
+   		    logger.info("이거 돼?"+pw);
+   	    return vo;
       }
-   }
-   // 패스워드 찾기
-      @RequestMapping(value = "/pwFind.do", method = RequestMethod.POST)
-      public ModelAndView pwFind(@ModelAttribute("MemberVO") MemberVO pvo, HttpSession session, HttpServletRequest request) {
-         logger.info("pwFind.do pwFind.do 호출 성공");
-         ModelAndView mav = new ModelAndView();
-         MemberVO vo = service.pwFind(pvo);
-         if (vo != null) {
-            session.setAttribute("pwFind", vo);
-            mav.setViewName("member/pwModify");
-            return mav;
-         }else {
-            mav.addObject("msg", "아이디와 이메일을 정확하게 입력해주시길 바랍니다.");
-            mav.setViewName("member/pwFind");
-            return mav;
-         }
-      }
+      
+	  //패스워드 수정
+	  @RequestMapping(value = "/pwModify.do", method = RequestMethod.GET)
+	  public String getPwModify() throws Exception {
+	     logger.info("get pwModify");
+	     return "member/pwModify";
+	  }
+	  //회원 패스워드 수정
+	   @RequestMapping(value = "/memberPwdModify.do", method = RequestMethod.GET)
+	   public String getMemberPwModify() throws Exception {
+	     logger.info("get getMemberPwModify");
+	     return "member/memberPwdModify";
+	  }
+	         
    //패스워드 수정
       @RequestMapping(value = "/pwModify.do", method = RequestMethod.POST)
       public String memberUpdate(@ModelAttribute MemberVO vo, HttpSession session) throws Exception {

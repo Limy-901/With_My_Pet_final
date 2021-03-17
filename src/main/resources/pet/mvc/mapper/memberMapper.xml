@@ -42,10 +42,10 @@
    </update>
    
    <!-- 아이디 찾기 -->
-   <select id="emailFind" resultType="member" parameterType="member">
+   <select id="emailFind" resultType="member" parameterType="map">
       SELECT *
       FROM MEMBER
-      WHERE member_email = #{member_email}
+      WHERE member_address = #{member_address} and member_name = #{member_name}
    </select>
    
    <!-- 패스워드 찾기 -->
@@ -54,6 +54,13 @@
       FROM member
       WHERE member_email = #{member_email}
    </select>
+   
+   <!--이메일 비밀번호 변경 -->
+	<update id="updatePw" parameterType="member" >
+		update member 
+		set member_password = #{member_password} 
+		where member_email = #{member_email}
+	</update>
    
    <!-- 패스워드 수정 -->
    <update id="pwModify" parameterType="member">

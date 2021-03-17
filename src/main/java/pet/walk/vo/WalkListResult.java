@@ -13,14 +13,16 @@ public class WalkListResult {
 	private ArrayList<Walk> list;
 	private ArrayList<Comment> cmtList;
 	private long totalPageCount;
+	private ArrayList<String> picLists;
 	
-	public WalkListResult(int cp, int ps, long totalCount, ArrayList<Walk> list, ArrayList<Comment> cmtList) {
+	public WalkListResult(int cp, int ps, long totalCount, ArrayList<Walk> list, ArrayList<Comment> cmtList, ArrayList<String> picLists) {
 		this.cp = cp;
 		this.ps = ps;
 		this.totalCount = totalCount;
 		this.list = list;
 		this.cmtList = cmtList;
 		this.totalPageCount = calTotalPageCount();
+		this.picLists = picLists;
 	}
 	
 	private long calTotalPageCount() {

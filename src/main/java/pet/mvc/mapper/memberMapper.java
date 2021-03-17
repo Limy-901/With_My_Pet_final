@@ -1,15 +1,18 @@
 package pet.mvc.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import pet.member.vo.MemberVO;
 
 public interface memberMapper {
 	void join(MemberVO member);
-	int mailChk(MemberVO member);
+	int mailChk(String email);
 	MemberVO login(MemberVO member);
 	MemberVO mypage(MemberVO member);
 	void memberUpdateDo(MemberVO member);
-	MemberVO emailFind(MemberVO member);
-	MemberVO pwFind(MemberVO member);
+	MemberVO emailFind(@Param("member_address")String member_address, @Param("member_name")String member_name);
+	MemberVO pwFind(String email);
+	void updatePw(MemberVO member);
 	MemberVO pwModify(MemberVO member);
 	void memberModify(MemberVO member);
 }

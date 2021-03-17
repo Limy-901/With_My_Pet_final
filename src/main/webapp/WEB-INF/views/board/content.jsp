@@ -19,8 +19,9 @@
   <link rel="stylesheet" href="../assets/css/board.css">
   <!-- 제이쿼리 -->
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
   
-    
+
     
 </head>
 
@@ -77,7 +78,7 @@
                       </div>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="gallery.html" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
+                      <a class="nav-link" href="../member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
                   </li>
                  
                   <li class="nav-item">
@@ -122,11 +123,11 @@
 </c:choose>
 
  </div> 
-		<div class="sidemenu">
-	 <a href="list.do?board_idx=1">공지사항</a>
-	 <a href="list.do?board_idx=2">일상이야기</a>
-  	 <a href="list.do?board_idx=3">산책후기</a>
-	 <a href=list.do?board_idx=4>쇼핑후기</a>
+			<div class="sidemenu">
+	 <a style="color:#424242;font-weight: 500;" href="list.do?board_idx=1">공지사항</a>&nbsp;&nbsp;
+	 <a style="color:#424242;font-weight: 500;" href="list.do?board_idx=2">일상이야기</a>&nbsp;&nbsp;
+  	 <a style="color:#424242;fo	nt-weight: 500;" href="list.do?board_idx=3">산책후기</a>&nbsp;&nbsp;
+	 <a style="color:#424242;font-weight: 500;" href="list.do?board_idx=4">쇼핑후기</a>
 	</div>
 	</div>
 <!-- 메뉴바 끝-->
@@ -139,14 +140,81 @@
 <div class="user">${board.post_writer}</div> <div class="date">${board.post_date}</div> <div class="hit">조회 ${board.post_count}</div>
 </div>
 
-<div class="cont">${board.content}
-<div class="modi"><a href='rewrite.do?post_idx=${board.post_idx}&post_order=${board.post_order}'>답글작성</a></div>
-<div class="modi"><a href='modify.do?post_idx=${board.post_idx}'>수정</a></div>
-<div class="del"><a href='delete.do?post_idx=${board.post_idx}'>삭제</a></div>
+<div class="cont">${board.content}  
+	<div class="hambergurMenu">
+		<div class="hamburger"></div>
+		<div class="hamburger"></div>
+		<div class="hamburger"></div>
+	</div>
+    <div class="hamDropdown">
+    <a href="#">1</a>
+    <a href="#">1</a>
+    <a href="#">1</a>
+    <a href="#">1</a>
+    </div>
+    
+    
+<script>
+function clickLike(member_name){
+	var post_idx = ${board.post_idx};
+	var name = member_name;
+	var member_number = ${login.member_number};
+	
+	if(!name){
+		alert("로그인시 가능합니다.");		
+	}else{
+	$.ajax({
+		url: "insertLike.do",
+		type: 'get',
+		data:{	
+			post_idx:post_idx,
+			member_number:member_number	
+		},
+		dataType: 'json',
+		success: function(result){
+			var htmls= result;
+				$('.like').html(htmls); 
+		},
+		error: function(request, status, error){
+			  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+ error);
+		}
+	});
+	}
+}
+
+</script>
+<button class="clickLike" onclick="clickLike('${login.member_name}')"><i class="fa fa-thumbs-up fa-2x like-icon"></i>
+<div class="like">${board.like}</div>
+</button>
+
+<a href="javascript:sendLink()" style="margin-left: 25%;font-size: 12px;color: black;"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" style="width: 20px;"> 공유하기
+</a>
+
+<c:if test="${not empty login}"><div class="modi"><a href='rewrite.do?post_idx=${board.post_idx}&post_order=${board.post_order}' style="color: black;">답글작성</a></div></c:if>
+<c:if test="${login.member_number eq board.member_number or login.member_name eq '관리자'}">
+<div class="modi"><a href='modify.do?post_idx=${board.post_idx}' style="color: black;">수정</a></div>
+<div class="del"><a href='delete.do?post_idx=${board.post_idx}' style="color: black;">삭제</a></div></c:if>
 </div>
 
 
 <script>
+Kakao.init('63be5e5f8d770d2796e1e45e8fcfebbd');
+function sendLink() {
+  Kakao.Link.sendDefault({
+    objectType: 'feed',
+    content: {
+	        title: '함께 산책해요 :: With My Pet',
+	        description: 'With My Pet::커뮤니티',
+	        imageUrl: 'https://postfiles.pstatic.net/MjAyMTAzMDJfMTY1/MDAxNjE0NjgxMzk0MjY2.iMWrCceWl_Bat-8WehW_MPBWhiGWa_Zt3wpLYBrYrPgg.XAMxlGBwAYIdppCdX2H5CxObPeC-aYmLTvcYNXDLGAog.JPEG.misty901/Corg.jpg?type=w773',
+	        link: {
+	    	  mobileWebUrl: 'http://localhost:8080/board/content.do?post_idx='+${board.post_idx},
+	          webUrl: 'http://localhost:8080/board/content.do?post_idx='+${board.post_idx}
+	        }
+    },
+  })
+}
+
+
 function replyDelete(comment_idx, index){
 var sIndex = index;
 confirm("삭제하시겠습니까?");
@@ -173,36 +241,20 @@ confirm("삭제하시겠습니까?");
  	
 
 
-/* function showReplyList() {
-	
-	alert("냥");
-	var htmls="";
-	
- 	htmls += '<div class="replyfirstsec">';
-	htmls += '<div class="replywriter" id="writerId">'+this.cmt_writer+' 님의 댓글</div><br>';
-	htmls += '<div style="font-size:12px;" id="dateId">'+this.cmt_date+'</div></div>';
-	htmls += '<div class="replysecondsec" id="contentId">'+this.cmt_content+'</div>';
-	htmls += '<div class="contbtns"><div class="writecomment">댓글쓰기</div>';
-	htmls += '<div class="delete"><a class ="modify"onclick="replyButton()">수정&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>';
-	htmls += '<a onclick="replyDelete()">삭제</a></div></div></div>';
-	
-	$("#replyZone").html(htmls);
-
-}	
- 	 */
-function replyButton(comment_idx, cmt_writer, index){
+function replyButton(comment_idx, cmt_writer, index, cmt_date){
 	var cmtIdx = comment_idx;
 	var cmtWriter = cmt_writer;
 	var htmls = "";
 	var sIndex = index;
 
 
+
 	
 	htmls += '<form id="editReply">';
  	htmls += '<div class="replyfirstsec" id="editId">';
 	htmls += '<div class="replywriter" id="writerId">'+cmtWriter+' 님 댓글 수정중</div><input type="hidden" value='+cmtIdx+' name="comment_idx"/><br></div>';
-	htmls += '<div class="replysecondsec" id="editcontentId"><input type="text" name="cmt_content" size="95px" id="contentInput"></div>';	
-	htmls += '<div class="save"><a onclick="replyUpdate('+cmtIdx+',\''+cmtWriter+'\','+sIndex+')">입력</a><a onClick="showReplyList()">취소</a></div></div></div></form>';
+	htmls += '<div class="replysecondsec" id="editId"><div class="rereple"><textarea id="contentInput" name="cmt_content" rows="10" style="height: 70px; width:100%;"></textarea>';	
+	htmls += ' <input class="submitbtn" type="button" value="등록" onclick="replyUpdate('+cmtIdx+',\''+cmtWriter+'\','+sIndex+', '+cmt_date+')"></div></form>';
 	
 	
 	$('#replyZone'+sIndex).html(htmls);
@@ -211,12 +263,13 @@ function replyButton(comment_idx, cmt_writer, index){
 
 }
 
-function replyUpdate(comment_idx, cmt_writer, index){
+function replyUpdate(comment_idx, cmt_writer, index, cmt_date){
 	confirm("수정하시겠습니까?");
-	var writer = cmt_writer
+	var writer = cmt_writer;
 	var htmls = "";	
 	var sIndex = index;
 	var inputId = $('#contentInput').val();
+	alert(cmt_date);
 
 	
 	
@@ -229,11 +282,11 @@ function replyUpdate(comment_idx, cmt_writer, index){
 		data: $("#editReply").serialize(),
 		success: function(result){
 			htmls += '<div class="replyfirstsec" id="comment_idx'+comment_idx+'">';
-			htmls += '<div class="replywriter" id="writerId">'+writer+' 님의 답변 </div><br>';
-			htmls += '<div style="font-size:12px;" id="dateId">날짜</div></div>';
+			htmls += '<div class="replywriter" id="writerId">'+writer+' 님의 답변 </div>';
+			htmls += '<div style="font-size:12px;" id="dateId">'+cmt_date+'</div></div>';
 			htmls += '<div class="replysecondsec" id="contentId">'+inputId+'</div>';
 			htmls += '<div class="contbtns"><div class="writecomment">댓글쓰기</div>';
-			htmls += '<div class="modify"><a onclick="replyButton('+comment_idx+','+writer+','+sIndex+')">수정&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>';
+			htmls += '<div class="modify"><a onclick="replyButton('+comment_idx+','+writer+','+sIndex+','+cmt_date+')">수정&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>';
 			htmls += '<div class="delete"><a onclick="replyDelete('+comment_idx+','+sIndex+')">삭제</a></div>';
 
 			 
@@ -246,20 +299,62 @@ function replyUpdate(comment_idx, cmt_writer, index){
 	  }
 	});
 }
-		
-	</script>
+
+function writeReplyButton(comment_idx, cmt_writer,index, member_name, member_number, post_idx, board_idx){
+	var cmtIdx = comment_idx;
+	var writer = cmt_writer;
+	var sIndex = index;
+	var m_name = member_name;
+	var m_number = member_number;
+	var postIdx = post_idx;
+	var boardIdx = board_idx;
+	var htmls = "";	
+
+
+
+
+htmls += '<form name="tryReply" method="post" id="tryReply" action="rewriteCmt.do">';
+htmls += '<div class="rereple"><div class="replywriterr">'+m_name+'</div><br>';
+htmls += '<input type="hidden" value='+m_name+' name="cmt_writer"/><input type="hidden" value='+m_number+' name="member_number"/>';
+htmls += '<input type="hidden" value='+postIdx+' name="post_idx"/><input type="hidden" value='+boardIdx+' name="board_idx"/>';
+htmls += '<textarea name="cmt_content" rows="10" style="height: 70px; width:100%;" >@'+writer+' 	</textarea> ';
+htmls += '<input class="submitbtn" type="button" value="등록" onclick="rewritecmt()"></div></form>';
+	
+
+$('.replycomment'+sIndex).html(htmls); 
+}
+
+function rewritecmt(){
+if(tryReply.cmt_content.value == "")
+{
+    alert("내용을 입력해 주세요.");
+    return;
+}	
+tryReply.submit();
+}
+</script>
+
 
 <c:forEach items="${board.comment}" var="cmt" varStatus="status">
 <div class="reply" id="replyZone${status.index}">
-	<div class="replyfirstsec">
+	<div class="replyfirstsec">	
 	<div class="replywriter" id="writerId">${cmt.cmt_writer}님의 답변</div><br>
 	${cmt.cmt_date}
 	</div>
 	<div class="replysecondsec" id="contentId">${cmt.cmt_content}</div>
-	<div class="writecomment">댓글쓰기</div>
-	<div class="modify"><a onclick="replyButton(${cmt.comment_idx},'${cmt.cmt_writer}',${status.index})">수정</a></div>
+	<c:if test="${not empty login}"><div class="writecomment" onclick="writeReplyButton(${cmt.comment_idx}, '${cmt.cmt_writer}', 
+	${status.index}, '${login.member_name}',${login.member_number},${board.post_idx}, ${board.board_idx})">댓글쓰기</div></c:if>
+	<c:if test="${login.member_number eq cmt.member_number or login.member_name eq '관리자'}">
+	<div class="modify"><a onclick="replyButton(${cmt.comment_idx},'${cmt.cmt_writer}',${status.index},'${cmt.cmt_date}')">수정</a></div>
 	<div class="delete"><a onclick="replyDelete(${cmt.comment_idx}, ${status.index})">삭제</a></div>
+	</c:if>
 	
+	
+	
+	
+	<div class="replycomment${status.index}">
+	
+	</div>
 	
 </div>
 
@@ -271,27 +366,16 @@ function replyUpdate(comment_idx, cmt_writer, index){
 <!-- 댓글작성 -->
 
 
-<c:set value="${board}" var="board"/>
-<form name="f1" method="post" action="replyUpload.do" id="writeReple">
-<div class="writeReple">
-	<div class="replyfirstsec">댓글달기<br>
-	<div class="replywriter">내닉네임(${board.post_writer})</div><br>
-	<input type="hidden" value="${board.post_writer}" name="cmt_writer"/>
-	<input type="hidden" value="${board.post_idx}" name="post_idx"/>
-	<input type="hidden" value="${board.board_idx}" name="board_idx"/>
-	<input type="text" name="cmt_content" size=100px> <input type="button" value="등록" onclick="check()">
-	</div>
-</div>
-</form>
+
 
 <script language="javascript">
 
   function check(){
               	if(f1.cmt_content.value == "")
 	                  {
-	                      alert("리플 내용과 비밀번호를 모두 입력하셔야 합니다.");
+	                      alert("내용을 입력해 주세요.");
 	                      return;
-	                  }
+	                  }	
                   	  f1.submit();
                   }
 
@@ -300,13 +384,38 @@ function replyUpdate(comment_idx, cmt_writer, index){
 
 
 <!-- 댓글작성 -->
-
+<c:choose>
+ <c:when test="${empty login}">
 <div class="cantWriteReple">
-로그인 후에 댓글 작성이 가능합니다.
+<a href="../member/login.do">로그인</a> 후에 댓글 작성이 가능합니다.
 </div>
+</c:when>
+
+<c:otherwise>
+<c:set value="${board}" var="board"/>	
+<form name="f1" method="post" action="replyUpload.do" id="writeReple">
+<div class="writeReple">
+	<div class="replyfirstsec">
+	<div class="replywriter">${login.member_name}</div>
+	<input type="hidden" value="${login.member_name}" name="cmt_writer"/>
+	<input type="hidden" value="${login.member_number}" name="member_number"/>
+	<input type="hidden" value="${board.post_idx}" name="post_idx"/>
+	<input type="hidden" value="${board.board_idx}" name="board_idx"/>
+	<div class="replysecondsec" id="editId"><div class="rereple">
+	<textarea id="contentInput" name="cmt_content" rows="10" style="height: 70px; width:100%;"></textarea>
+	<input class="submitbtn" type="button" value="등록" onclick="check()"></div></div>
+
+	</div>
+</div>
+</form>
+</c:otherwise>
+</c:choose>
 
 
-
+<script>$('.like-button').on('click', function() {
+  $(this).toggleClass('liked')
+})
+</script>
 
 </body>
 

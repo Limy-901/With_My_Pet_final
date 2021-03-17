@@ -5,13 +5,17 @@
 <configuration>
 <settings> <setting name="jdbcTypeForNull" value="NULL" /> </settings>
    <typeAliases>
+   		<!-- 인덱스 -->
+   		<typeAlias alias="IndexData" type="pet.walk.vo.IndexData"/>
    		<!-- 산책 -->
    	    <typeAlias alias="Walk" type="pet.walk.vo.Walk"/>
     	<typeAlias alias="WalkListVo" type="pet.walk.vo.WalkListVo"/>
    	    <typeAlias alias="WalkComment" type="pet.walk.vo.Comment"/>
    	    <typeAlias alias="joinVo" type="pet.walk.vo.joinVo"/>
+   	    <typeAlias alias="DetailMemberData" type="pet.walk.vo.DetailMemberData"/>
    	    <!-- 쇼핑 -->
    	    <typeAlias alias="Product_pic" type="pet.shop.domain.Product_pic"/>
+   	    <typeAlias alias="OrderSu" type="pet.shop.domain.OrderSu"/>
    		<typeAlias alias="Pay" type="pet.shop.domain.Pay"/>
    		<typeAlias alias="Option" type="pet.shop.domain.Option"/>
   	    <typeAlias alias="Cart" type="pet.shop.domain.Cart"/>
@@ -26,6 +30,7 @@
 	    <typeAlias type="pet.mvc.board.BoardVo" alias="BoardVo"/>
 		<typeAlias type="pet.mvc.board.BoardListResult" alias="BoardListResult"/>
 		<typeAlias type="pet.mvc.board.BoardCmt" alias="BoardCmt"/>
+		<typeAlias type="pet.mvc.board.BoardLike" alias="BoardLike"/>
 		<!-- 멤버 -->
 		<typeAlias alias="member" type="pet.member.vo.MemberVO"/>
 		<typeAlias alias="pet_mypage" type="pet.member.vo.MypagePetVO"/>
@@ -35,10 +40,14 @@
 		<typeAlias alias="memberOption" type="pet.admin.vo.MemberOption"/>
 		<typeAlias alias="Qna" type="pet.admin.vo.Qna"/>
 		<typeAlias alias="memberWalkChart" type="pet.admin.vo.MemberWalkChart"/>
+		<!-- 메시지 -->
+		<typeAlias alias="msg" type="pet.message.vo.Msg"/>
+		<typeAlias alias="memberReview" type="pet.message.vo.MemberReview"/>
    	   
    </typeAliases>
    
    <mappers>
+   		<mapper resource="pet/mvc/mapper/MessageMapper.xml"/>
    		<mapper resource="pet/mvc/mapper/IndexMapper.xml"/>
    		<mapper resource="pet/mvc/mapper/WalkMapper.xml"/>
    		<mapper resource="pet/mvc/mapper/AdminMapper.xml"/>

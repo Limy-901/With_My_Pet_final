@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
@@ -34,10 +35,11 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import pet.mvc.board.Board;
 import pet.mvc.board.BoardCmt;
-
+import pet.mvc.board.BoardLike;
 import pet.mvc.board.BoardListResult;
 import pet.mvc.service.BoardService;
 import sun.print.resources.serviceui;
+import pet.member.vo.MemberVO;
 
 
 
@@ -78,7 +80,7 @@ public class BoardController {
 					cpStr = cpStr.trim();
 					cp = Integer.parseInt(cpStr);
 				}
-				session.setAttribute("cp", cp);
+				//session.setAttribute("cp", cp);
 				
 				//(2) ps 
 				int ps = 20;
@@ -255,16 +257,69 @@ public class BoardController {
 	
 	
 
-
 	
 	@GetMapping("content.do")
-	public ModelAndView content(long post_idx) {
-		Board board = service.getBoard(post_idx);
+	public ModelAndView content(HttpSession session, HttpServletRequest request, HttpServletResponse response, long post_idx) {
+		MemberVO vo = (MemberVO)session.getAttribute("member_number");
+		
+		Board board = service.getBoard(post_idx);		
+		int like = service.getLikeCount(post_idx);
 		ArrayList<BoardCmt> comment = service.selectCmtBySeq(post_idx);
-		board.setComment(comment);
-		ModelAndView mv = new ModelAndView("board/content", "board", board);
-		log.info("board.getComment()"+board);
-		return mv;
+		board.setComment(comment);	
+		board.setLike(like);
+		log.info("controller board@@@@@@@@@@@@@@@@@@@@@@"+board);
+		ModelAndView mv = new ModelAndView();
+		
+		Cookie[] cookies = request.getCookies();
+		Cookie viewCookie = null;
+		
+		if (cookies != null && cookies.length>0)
+		{
+			for(int i = 0; i < cookies.length; i++)
+			{	log.info("cookies[i]1:"+cookies[i]);
+				if(cookies[i].getName().equals("cookie"+post_idx))
+				{
+					System.out.println("처음 쿠키 생성후 들어옴");
+					viewCookie = cookies[i];
+				}
+			}
+		}
+		if(board != null) {
+			System.out.println("System-해당 상세 리뷰페이지로 넘어감");
+			
+			mv.addObject("board", board);
+			
+			if(viewCookie == null) {
+				System.out.println("cookie없음");
+				
+				Cookie newCookie = new Cookie("cookie"+post_idx, "|"+post_idx+"|");
+				
+				response.addCookie(newCookie);
+				int result = service.updateHitCount(post_idx);
+				log.info("@@@int result"+ result);//서비스로직에  board호출?
+				
+				if(result>0) {
+					System.out.println("조회수 증가");
+				}else{
+					System.out.println("조회수증가에러");
+				}
+			}
+			
+			else {
+				System.out.println("cookie있음");
+				
+				String value = viewCookie.getValue();
+				System.out.println("cookie값:"+value);
+			}
+			
+			mv.setViewName("board/content");
+			return mv;
+			
+		}
+		else {
+			mv.setViewName("error/reviewError");//에러페이지 만들어줘야함
+			return mv;
+		}
 	}
 	
 		
@@ -382,15 +437,52 @@ public class BoardController {
 	}
 	
 
-	@PostMapping("reRewrite.do")
-	public String reRewrite(Board board) {
-		service.reRewrite(board);
-		
-		return "redirect:list.do";
-	}
 	
+	@ResponseBody
+	@GetMapping("insertLike.do")
+	public long insertLike(long post_idx, long member_number, HttpServletResponse response) {
+		BoardLike boardLike = new BoardLike(post_idx, member_number);
+		
+		int oneOrZero = service.divideLike(boardLike);
+		if(oneOrZero==0) {
+			log.info("0or1@@@@@@"+oneOrZero);
+			service.insertLike(boardLike);
+			long like = service.getLikeCount(post_idx);
+			
+			return like;
+		}else {
+			service.deleteLike(boardLike);
+			long like = service.getLikeCount(post_idx);
+			
+			return like;
+		}
+	}
+	@PostMapping("rewriteCmt.do")
+	public String rewriteCmt(BoardCmt boardCmt) {
+		service.rewirteCmt(boardCmt);
+		
+		return "redirect:content.do?post_idx="+boardCmt.getPost_idx();
+	}
+
+		
+
+		
+		//여기에 한번 더 눌럿을경우 분기해조야해 그리고 멤버넘버 겟세션
+		
+		
 
 	
-	
+
+	/*
+	 * @ResponseBody
+	 * 
+	 * @GetMapping("updateLike.do") public Board updateLike(long post_idx,
+	 * HttpServletResponse response) { 
+	 * BoardLike like = service.selectLike(post_idx); 
+	 * service.updateLikeCount(post_idx);
+	 *  Board board = service.getBoard(post_idx);
+	 *   board.setLike(like);
+	 * log.info("@updateLikeDTO"+board); return board; }
+	 */
 	
 }

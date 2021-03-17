@@ -7,6 +7,13 @@
 	<select id="getWalkList" resultType="Walk">
 		select * from WALK where <![CDATA[ rownum<=3 ]]>
 	</select>
-	
+	<select id="getWalkData" resultType="IndexData">
+		select a.totalWalks, b.totalJoins, c.notJoin, d.todayPuppy
+		from
+		(select count(*) totalWalks from walk) a,
+		(select count(*) totalJoins from walk_join) b,
+		(select count(*) notJoin from walk left join walk_join on walk.walk_idx = walk_join.walk_idx) c,
+		(select count(*) todayPuppy from walk where walk_date=SYSDATE)d
+	</select>
 
 </mapper>

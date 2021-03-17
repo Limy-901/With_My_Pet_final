@@ -14,10 +14,12 @@
    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/icon/footprint16.png">
    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
-   <!-- google fonts --> 
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="assets/css/main.css">
-  <!-- Template CSS -->
+   <link rel="stylesheet" href="assets/plugins/toastr/css/toastr.min.css">
+   <link rel="stylesheet" href="assets/css/main.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
 </head>
 
 <body>
@@ -84,10 +86,13 @@
                   <li class="nav-item">
                       <a class="nav-link" href="/member/mypage.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
                   </li>
-                  <!--<c:if test="${login.member_name eq 'admin'}"> </c:if>-->
-                  <li class="nav-item">
-                      <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
-                  </li>
+                  
+                  <!-- 관리자일때만 관리자페이지 입장 -->
+                  <c:if test="${login.member_name eq 'admin'}"> 
+	                  <li class="nav-item">
+	                      <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
+	                  </li>
+                  </c:if>
                  
               </ul>
           </div>
@@ -105,12 +110,27 @@
                   </div>
               </nav>
           </div>
-          <!-- //toggle switch for light and dark theme -->
+          
+          <!-- 회원 접속 시, 메시지 띄움 -->
+          <c:if test="${!empty login}">
+	          <div>
+	          <c:choose>
+	          	<c:when test="${unread == 0}">
+	          		<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>
+	          	</c:when>
+	          	<c:otherwise>
+	          		<i class="mdi mdi-bell-outline"></i>
+                    <span class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%; padding-left:1.6%;
+                     margin-right:2%; color:#ffb446;">${unread}</span>
+	          		<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>
+	          	</c:otherwise>
+	          </c:choose>
+	          </div>
+          </c:if>
+          
       </nav>
   </div>
 </header>
-<!-- //header -->
-  <!-- main-slider -->
   <section class="w3l-main-slider" id="home">
     <div class="companies20-content">
       <div class="owl-one owl-carousel owl-theme">
@@ -177,8 +197,6 @@
       </div>
     </div>
   </section>
-  <!-- /main-slider -->
-  <!--/grids-->
   <section class="w3l-grids-3 py-5" id="about">
     <div class="container py-md-5 py-3">
       <div class="bottom-ab-grids align-items-center">
@@ -191,31 +209,30 @@
       </div>
     </div>
   </section>
-  <!--//grids-->
   
 <!-- 산책글 리스트 -->
 <section class="w3l-features py-5" id="features">
   <div class="container py-lg-5 py-md-4">
     <div class="grids-area-hny main-cont-wthree-fea row">
     
-      <c:if test="${empty walks}">
+      <c:if test="${empty map}">
       	최근 산책글이 없습니다.
       </c:if>
       
-      <c:forEach items="${walks}" var="item">
+      <c:forEach items="${map.walk}" var="item" varStatus="status">
 	      <div class="col-lg-4 col-sm-6 grids-feature">
 	        <div class="area-box" style="text-align:center;">
 	          <div class="icon">
 	            <span class="fa fa-snowflake-o"></span>
 	          </div><br/>
 	          <label>${item.walk_date}</label><br/>
-	          <img src="assets/images/f4.jpg">
+	          <img style="width:100%; height:auto;"src="<c:url value="/img/${map.walkPics[status.index]}"/>">
 	          <h4><a href="#feature" class="title-head">${item.walk_subject}</a></h4>
 	          <p>${item.walk_content}</p>
-	          <a href="walk/blog.do?idx=${item.walk_idx}" class="read">함께하기</a>
+	          <a onclick="loginCheck()" class="read">함께하기</a>
 	        </div>
 	      </div>
-      </c:forEach>
+	</c:forEach>
       
       
     </div>
@@ -228,28 +245,24 @@
     <div class="gallery-inner container py-lg-0 py-3">
       <div class="row stats-con pb-lg-3">
         <div class="col-lg-3 col-6 stats_info counter_grid">
-          <p class="counter">730</p>
+          <p class="counter">${map.walkData.totalwalks}</p>
           <h4>총 산책 모집</h4>
         </div>
         <div class="col-lg-3 col-6 stats_info counter_grid1">
-          <p class="counter">80</p>
+          <p class="counter">${map.walkData.totaljoins}</p>
           <h4>성사된 파티</h4>
         </div>
         <div class="col-lg-3 col-6 stats_info counter_grid mt-lg-0 mt-5">
-          <p class="counter">812</p>
+          <p class="counter">${map.walkData.notjoin}</p>
           <h4>참여를 기다리는 파티</h4>
         </div>
         <div class="col-lg-3 col-6 stats_info counter_grid2 mt-lg-0 mt-5">
-          <p class="counter">90</p>
+          <p class="counter">${map.walkData.todayPuppy}</p>
           <h4>오늘 행복해진 강아지</h4>
         </div>
       </div>
     </div>
   </section>
-  <!-- //stats -->
-  
-<!-- //bottom-grids-->
-  <!--//features-->
  
  <!-- pricing plans -->
 <section class="w3l-pricing-7-main py-5" id="pricing">
@@ -293,8 +306,7 @@
                       </div>
                   </div>
               </div>
-              <!-- //pricing grid 1 -->
-              <!-- pricing grid 2 -->
+              
               <div class="pricing-gd-left pric-7 active">
                   <div class="w3l-pricing-7">
                       <div class="w3l-pricing-7-top">
@@ -365,10 +377,9 @@
       </div>
   </div>
 </section>
-<!-- testimonials -->
+
 <section class="w3l-clients" id="clients">
-  <!-- /grids -->
-  <!-- 이거는 페이징하면 될 듯 -->
+
   <div class="cusrtomer-layout py-5">
       <div class="container py-lg-4 py-md-3 pb-lg-0">
           <div class="heading text-center mx-auto">
@@ -439,12 +450,9 @@
               </div>
           </div>
       </div>
-      <!-- /grids -->
   </div>
-  <!-- //grids -->
 </section>
 
-<!-- footer-28 block -->
 <section class="w3l-footer">
   <footer class="footer-28">
     <div class="footer-bg-layer">
@@ -525,8 +533,6 @@
   </footer>
   </section>
  
-
-  <!-- move top -->
   <button onclick="topFunction()" id="movetop" title="Go to top">
     &#10548;
   </button>
@@ -549,157 +555,169 @@
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
-  </script>
-  <!-- /move top -->
-<!-- //footer-28 block -->
-<!-- disable body scroll which navbar is in active -->
-<script>
-
-</script>
-<!-- disable body scroll which navbar is in active -->
-
-  <!-- Template JavaScript -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="assets/js/theme-change.js"></script>
-  <script src="assets/js/owl.carousel.js"></script>
-  <!-- script for banner slider-->
-  <script>
+    
     $(document).ready(function () {
-      $('.owl-one').owlCarousel({
-        loop: true,
-        margin: 0,
-        nav: false,
-        responsiveClass: true,
-        autoplay: true,
-        autoplayTimeout: 5000,
-        autoplaySpeed: 1000,
-        autoplayHoverPause: false,
-        responsive: {
-          0: {
-            items: 1,
-            nav: false
-          },
-          480: {
-            items: 1,
-            nav: false
-          },
-          667: {
-            items: 1,
-            nav: true
-          },
-          1000: {
-            items: 1,
-            nav: true
-          }
-        }
-      })
-    })
-  </script>
-  <!-- //script -->
-  <!-- script for tesimonials carousel slider -->
-<script>
-  $(document).ready(function () {
-    $("#owl-demo1").owlCarousel({
-      loop: true,
-      margin: 20,
-      nav: false,
-      responsiveClass: true,
-      responsive: {
-        0: {
-          items: 1,
-          nav: false
-        },
-        736: {
-          items: 1,
-          nav: false
-        },
-        1000: {
-          items: 2,
+    	 $('.popup-with-zoom-anim').magnificPopup({
+             type: 'inline',
+
+             fixedContentPos: false,
+             fixedBgPos: true,
+
+             overflowY: 'auto',
+
+             closeBtnInside: true,
+             preloader: false,
+
+             midClick: true,
+             removalDelay: 300,
+             mainClass: 'my-mfp-zoom-in'
+           });
+
+           $('.popup-with-move-anim').magnificPopup({
+             type: 'inline',
+
+             fixedContentPos: false,
+             fixedBgPos: true,
+
+             overflowY: 'auto',
+
+             closeBtnInside: true,
+             preloader: false,
+
+             midClick: true,
+             removalDelay: 300,
+             mainClass: 'my-mfp-slide-bottom'
+           });
+    	$("#owl-demo1").owlCarousel({
+    	      loop: true,
+    	      margin: 20,
+    	      nav: false,
+    	      responsiveClass: true,
+    	      responsive: {
+    	        0: {
+    	          items: 1,
+    	          nav: false
+    	        },
+    	        736: {
+    	          items: 1,
+    	          nav: false
+    	        },
+    	        1000: {
+    	          items: 2,
+    	          nav: false,
+    	          loop: false
+    	        }
+    	      }
+    	    })
+        $('.owl-one').owlCarousel({
+          loop: true,
+          margin: 0,
           nav: false,
-          loop: false
+          responsiveClass: true,
+          autoplay: true,
+          autoplayTimeout: 5000,
+          autoplaySpeed: 1000,
+          autoplayHoverPause: false,
+          responsive: {
+            0: {
+              items: 1,
+              nav: false
+            },
+            480: {
+              items: 1,
+              nav: false
+            },
+            667: {
+              items: 1,
+              nav: true
+            },
+            1000: {
+              items: 1,
+              nav: true
+            }
+          }
+        })
+      })
+
+    var login = '${login.member_name}';
+    var sender = $('#senNo').val();
+    var socket = null;
+    if(login != '') connectWS();
+    function connectWS(){
+    	var url = "ws://localhost:8080/replyEcho";
+    	var ws = new WebSocket(url);
+    	socket = ws;
+    	// 커넥션 연결
+    	ws.onopen = function(event){
+    		console.log('info : connection opened'+event);
+    	 // 메세지 왔을때 (알림 + 목록갱신)
+    	 ws.onmessage = function (event){
+    		toastr.options = {
+                  closeButton: true,
+                  progressBar: true,
+                  showMethod: 'slideDown',
+                  timeOut: 8000
+           };
+           toastr.success('메시지 알림', event.data+' 님이 메시지를 보냈습니다!');
+    	 };
+    	};
+    	ws.onclose = function(event) { 
+    		console.log('info : connection closed.');
+    		setTimeout(function(){ 
+    			connectWS();
+    		}, 1000);
+    	};
+    	ws.onerror = function(event) { console.log('error : '+event); };
+    };
+      $(window).on("scroll", function () {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+          $("#site-header").addClass("nav-fixed");
+        } else {
+          $("#site-header").removeClass("nav-fixed");
         }
-      }
-    })
-  })
-</script>
-<!-- //script for tesimonials carousel slider -->
-  <!-- stats number counter-->
-  <script src="assets/js/jquery.waypoints.min.js"></script>
-  <script src="assets/js/jquery.countup.js"></script>
-  <script>
-    $('.counter').countUp();
-  </script>
-  <!-- //stats number counter -->
-  <!-- video popup -->
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.popup-with-zoom-anim').magnificPopup({
-      type: 'inline',
+      });
 
-      fixedContentPos: false,
-      fixedBgPos: true,
-
-      overflowY: 'auto',
-
-      closeBtnInside: true,
-      preloader: false,
-
-      midClick: true,
-      removalDelay: 300,
-      mainClass: 'my-mfp-zoom-in'
-    });
-
-    $('.popup-with-move-anim').magnificPopup({
-      type: 'inline',
-
-      fixedContentPos: false,
-      fixedBgPos: true,
-
-      overflowY: 'auto',
-
-      closeBtnInside: true,
-      preloader: false,
-
-      midClick: true,
-      removalDelay: 300,
-      mainClass: 'my-mfp-slide-bottom'
-    });
-  });
-</script>
-<!-- //video popup -->
-
-  <!--/MENU-JS-->
-  <script>
-    $(window).on("scroll", function () {
-      var scroll = $(window).scrollTop();
-
-      if (scroll >= 80) {
-        $("#site-header").addClass("nav-fixed");
-      } else {
-        $("#site-header").removeClass("nav-fixed");
-      }
-    });
-
-    //Main navigation Active Class Add Remove
-    $(".navbar-toggler").on("click", function () {
-      $("header").toggleClass("active");
-    });
-    $(document).on("ready", function () {
-      if ($(window).width() > 991) {
-        $("header").removeClass("active");
-      }
-      $(window).on("resize", function () {
+      //Main navigation Active Class Add Remove
+      $(".navbar-toggler").on("click", function () {
+        $("header").toggleClass("active");
+      });
+      $(document).on("ready", function () {
         if ($(window).width() > 991) {
           $("header").removeClass("active");
         }
+        $(window).on("resize", function () {
+          if ($(window).width() > 991) {
+            $("header").removeClass("active");
+          }
+        });
       });
-    });
+      
+      function loginCheck(){
+  		var login = "${login.member_name}";
+  		if(login == ''){
+  			Swal.fire({
+  				  icon: 'error',
+  				  title: '로그인이 필요합니다!',
+  				  text: '산책은 회원 서비스 입니다. 로그인을 먼저 해주세요.',
+  				  footer: '<a href="/member/login.do">로그인</a> &nbsp;&nbsp;<b>/</b>&nbsp;&nbsp; <a href="/member/agree.do">회원가입</a>'
+  			})
+  		}else{
+  			location.href="walk/blog.do?idx=${item.walk_idx}";
+  		}
+  	}
   </script>
-  <!--//MENU-JS-->
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="assets/js/theme-change.js"></script>
+  <script src="assets/js/owl.carousel.js"></script>
+  <script src="assets/js/jquery.waypoints.min.js"></script>
+  <script src="assets/js/jquery.countup.js"></script>
+  <script src="assets/js/jquery.magnific-popup.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
-
+  <script src="../assets/plugins/sweetalert2/dist/sweetalert2.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 </html>
     

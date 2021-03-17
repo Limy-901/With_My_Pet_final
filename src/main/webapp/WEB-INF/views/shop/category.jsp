@@ -21,18 +21,12 @@
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-         <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
-                  </a>
-          <!-- if logo is image enable this   
-      <a class="navbar-brand" href="#index.html">
-          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-      </a> -->
+         <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>         
           <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
               data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
               aria-label="Toggle navigation">
               <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
               <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-              </span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -59,6 +53,7 @@
                       	<a class="dropdown-item" href="product">쇼핑하기</a>
                           <a class="dropdown-item" href="cart">장바구니</a>
                           <a class="dropdown-item" href="order">결제</a>
+                          <a class="dropdown-item" href="register?catgo_code=8">상품등록하기</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -148,7 +143,7 @@
               <div class="card">
                   <div class="card-header p-0 position-relative">
                       <a href="productDes?catgo_code=${productDes.catgo_code}&review_number=${productDes.review_number}&product_code=${productDes.product_code}">
-                          <img class="card-img-bottom d-block" src="assets/images/${productDes.product_image}" alt="Card image cap">
+                          <img class="card-img-bottom d-block" src="assets/images/${productDes.product_image}" alt="Card image cap" width="200" height="220">
                       </a>
                   </div>
                   <div class="card-body blog-details">

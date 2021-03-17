@@ -144,7 +144,7 @@
           <a href="category?catgo_code=8" data-lightbox="example-set" class="mb-4"
             data-title="lorem ipsum dolor sit amet">
             <figure>
-              <img src="assets/images/g1.jpg" alt="product" class="img-fluid" onclick="location.href='category?catgo_code=8'" >
+              <img src="assets/images/g1.jpg" alt="product" class="img-fluid" onclick="location.href='category?catgo_code=8'" width="400" height="400" >
             </figure>
             <c:if test="${empty product}">
             	없음.
@@ -155,7 +155,7 @@
           </a>
           <a href="category2" data-lightbox="example-set" class="mb-4" data-title="lorem ipsum dolor sit amet">
             <figure>
-              <img src="assets/images/g2.jpg" alt="product" class="img-fluid" onclick="location.href='category2'">
+              <img src="assets/images/g2.jpg" alt="product" class="img-fluid" onclick="location.href='category2'" width="400" height="400">
             </figure>
             
             <span class="sub-title2 text-center mb-2">가방</span>
@@ -168,13 +168,13 @@
           <a href="category2" data-lightbox="example-set" class="mb-4"
             data-title="lorem ipsum dolor sit amet">
             <figure>
-              <img src="assets/images/g3-1.jpg" alt="product" class="img-fluid" onclick="location.href='category2'">
+              <img src="assets/images/g3-1.jpg" alt="product" class="img-fluid" onclick="location.href='category2'" width="400" height="400">
             </figure>
             <span class="sub-title2 text-center mb-2">애견방석</span>
           </a>
           <a href="assets/images/g4.jpg" data-lightbox="example-set" class="mb-4" data-title="lorem ipsum dolor sit amet">
             <figure>
-              <img src="assets/images/g4.jpg" alt="product" class="img-fluid">
+              <img src="assets/images/g4.jpg" alt="product" class="img-fluid" width="400" height="400">
             </figure>
             <span class="sub-title2 text-center mb-2">사료</span>
           </a>  
@@ -183,13 +183,13 @@
           <a href="assets/images/g5.jpg" data-lightbox="example-set" class="mb-4"
             data-title="lorem ipsum dolor sit amet">
             <figure>
-              <img src="assets/images/g5.jpg" alt="product" class="img-fluid">
+              <img src="assets/images/g5.jpg" alt="product" class="img-fluid" width="400" height="400">
             </figure>
             <span class="sub-title2 text-center mb-2">계단</span>
           </a>
           <a href="assets/images/g6.jpg" data-lightbox="example-set" class="mb-4" data-title="lorem ipsum dolor sit amet">
             <figure>
-              <img src="assets/images/g6.jpg" alt="product" class="img-fluid">
+              <img src="assets/images/g6.jpg" alt="product" class="img-fluid" width="400" height="400">
             </figure>
             <span class="sub-title2 text-center mb-2">산책줄 & 하네스</span>
           </a>

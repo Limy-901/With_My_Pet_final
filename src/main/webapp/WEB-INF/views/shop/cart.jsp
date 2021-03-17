@@ -20,17 +20,11 @@
          <div class="container">
             <nav class="navbar navbar-expand-lg stroke">
                <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
-               </a>
-               <!-- if logo is image enable this   
-                  <a class="navbar-brand" href="#index.html">
-                      <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-                  </a> -->
-               <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
                   data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                   aria-label="Toggle navigation">
                <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
                <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-               </span>
                </button>
                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                   <ul class="navbar-nav ml-auto">
@@ -97,7 +91,7 @@
       <!-- //header -->
      
       <!-- about carousel -->
-      <section >
+      <section>
          <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
             <div >
                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -160,7 +154,7 @@
                   </colgroup>
                   <thead>
                      <tr>
-                        <th class="th--1G-vGQPU9O" scope="col" >코드</th>
+                        <th class="th--1G-vGQPU9O" scope="col" >번호</th>
                         <th class="th--1G-vGQPU9O" scope="col" >상품정보</th>
                         <th class="th--1G-vGQPU9O" scope="col" >상품사진</th>
                         <th class="th--1G-vGQPU9O" scope="col" >수량선택</th>
@@ -175,7 +169,7 @@
                     <tr class="table_row--2U-tpJvyb0">
                        <td name="product_code" id="product_code" type="hidden" value="${cartList.product_code}" class="table_cell--275JhdiLLN" >${status.index}</td>
                        <td name="product_content" id="product_content" type="text" value="${cartList.product_content}" class="table_cell--275JhdiLLN" >${cartList.product_content}</td>
-                       <td class="table_cell--275JhdiLLN" ><img src="assets/images/${cartList.product_image}" width=70 height=70 align="center"/></td>
+                       <td class="table_cell--275JhdiLLN" ><img src="${cartList.product_image}" width=70 height=70 align="center"/></td>
                        <td name="product_amount" id="product_amount" type="text" value="${cartList.product_amount}" class="table_cell--275JhdiLLN" >${cartList.product_amount}</td>
                        <td name="product_size" id="product_size" type="text" value="${cartList.product_size}" class="table_cell--275JhdiLLN" >${cartList.product_size}</td>
                        <td name="product_price" id="product_price" type="text" value="${cartList.product_price}" class="table_cell--275JhdiLLN" >${cartList.product_price}</td>
@@ -187,7 +181,7 @@
                   <div class="listResult">
                      <div class="sum">
                         <tr>
-                           <th class="table_cell--275JhdiLLN" colspan="6" value="${sum}"></br>주문 총 금액: ${sum}원  </br></th>
+                           <th class="table_cell--275JhdiLLN" colspan="7" value="${sum}"></br>주문 총 금액: ${sum}원  </br></th>
                         </tr>
                      </div>
                   </div>
@@ -224,12 +218,12 @@
            </br>
             <button type="reset" class="popup btn btn-style btn-primary"  style="float: center;" >
             리스트비우기&nbsp;</button>&nbsp;&nbsp;&nbsp;
-            &nbsp;<button type="submit" class="popup btn btn-style btn-primary"  style="float: right;" >
-            결제하기&nbsp;</button>&nbsp;
+            &nbsp;<a href="order?member_number=4"><button type="button" class="popup btn btn-style btn-primary"  style="float: right;" >
+            결제하기&nbsp;</button>&nbsp;</a>
             &nbsp;<button type="button" class="popup btn btn-style btn-primary" style="float: left;" onClick="location.href='product?catgo_code=9'">
             쇼핑계속하기</button>&nbsp;
-           
             <script src="assets/js/bootstrap.min.js"></script>
+            
          </form>
       </section>
       <!--//MENU-JS-->
@@ -259,6 +253,5 @@
     }
   </script>
   <!-- /move top -->
-</section>
 </body>
 </html>

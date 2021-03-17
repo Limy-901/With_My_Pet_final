@@ -29,4 +29,7 @@
 	#{product_pic_fsize})
 	]]>
 	</insert> 
+	<insert id="insertOrderSu" parameterType="OrderSu">
+	insert into ORDERSU values(#{product_code}, #{ordersu_name}, #{ordersu_addr}, #{ordersu_email})
+	</insert>
 </mapper>

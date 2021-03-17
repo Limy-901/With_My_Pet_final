@@ -10,7 +10,7 @@
 
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style-liberty.css">
+<link rel="stylesheet" href="../assets/css/write.css"> 
 
     
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -21,7 +21,7 @@
 <script src="../assets/js/summernote-ko-KR.js"></script>
 <title>글쓰기</title>
 <Style>
-.go{margin-top: 100px;}.navbar{margin:20px;}
+.go{ width: 90%;margin-left: 5%;margin-top: 5%;}
 
 </Style>
 
@@ -58,35 +58,12 @@ $(document).ready(function() {
             lang : 'ko-KR',
             toolbar : toolbar,
             //콜백 함수
-            callbacks : { 
-            	onImageUpload : function(files, editor, welEditable) {
-            // 파일 업로드(다중업로드를 위해 반복문 사용)
-            for (var i = files.length - 1; i >= 0; i--) {
-            uploadSummernoteImageFile(files[i],
-            this);
-            		}
-            	}
-            }
+
          };
         $('#summernote').summernote(setting);
         });
         
-         function uploadSummernoteImageFile(file, el) {
-			data = new FormData();
-			data.append("file", file);
-			$.ajax({
-				data : data,
-				type : "POST",
-				url : "uploadSummernoteImageFile",
-				contentType : false,
-				enctype : 'multipart/form-data',
-				processData : false,
-				success : function(data) {
-					alert('data load'+data.url);
-					$(el).summernote('editor.insertImage()', data.url);
-				}
-			});
-		} 
+       
 function goWrite(f) {
         	var title = f.post_subject.value;
         	var writer = f.post_writer.value;
@@ -173,53 +150,43 @@ function goWrite2(f) {
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                      	<a class="dropdown-item" href="walk/list.do?cp=1">산책모집 </a>
-                          <a class="dropdown-item" href="walk/board.do">산책후기 </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';border-radius:10px;	margin-top:20px;">
+                      	<a class="dropdown-item" href="../walk/list.do?cp=1">산책모집 </a>
+                          <a class="dropdown-item" href="../walk/board.do">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                      	<a class="dropdown-item" href="product?catgo_code=9">쇼핑하기</a>
-                          <a class="dropdown-item" href="cart">장바구니</a>
-                          <a class="dropdown-item" href="order">결제</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';border-radius:10px;margin-top:20px;">
+                      	<a class="dropdown-item" href="../product?catgo_code=9">쇼핑하기</a>
+                          <a class="dropdown-item" href="../cart">장바구니</a>
+                          <a class="dropdown-item" href="../order">결제</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                          <a class="dropdown-item" href="board/list.do?board_idx=1&amp;cp=1">공지사항</a>
-                          <a class="dropdown-item" href="board/list.do?board_idx=2&amp;cp=1">일상이야기</a>
-                          <a class="dropdown-item" href="board/list.do?board_idx=3&amp;cp=1">산책후기</a>
-                          <a class="dropdown-item" href="board/list.do?board_idx=4&amp;cp=1">쇼핑후기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';border-radius:10px;margin-top:20px;">
+                          <a class="dropdown-item" href="../board/list.do?board_idx=1">공지사항</a>
+                          <a class="dropdown-item" href="../board/list.do?board_idx=2">일상이야기</a>
+                          <a class="dropdown-item" href="../board/list.do?board_idx=3">산책후기</a>
+                          <a class="dropdown-item" href="../board/list.do?board_idx=4">쇼핑후기</a>
                       </div>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="gallery.html" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
                   </li>
                  
-                  <li class="nav-item">
-                      <a class="nav-link" href="sendmail.do">Contact </a>
-                  </li>
+                 
               </ul>
           </div>
           <!-- toggle switch for light and dark theme -->
           <div class="mobile-position">
               <nav class="navigation">
-                  <div class="theme-switch-wrapper">
-                      <label class="theme-switch" for="checkbox">
-                          <input type="checkbox" id="checkbox">
-                          <div class="mode-container">
-                              <i class="gg-sun"></i>
-                              <i class="gg-moon"></i>
-                          </div>
-                      </label>
-                  </div>
+
               </nav>
           </div>
           <!-- //toggle switch for light and dark theme -->
@@ -227,8 +194,7 @@ function goWrite2(f) {
   </div>
 </header>
 <!-- //header -->
-
-<h2 style="text-align: center;">글 작성</h2><br><br><br>
+<br><br><br>
 
 <div style="width: 60%; margin: auto;">
 	<form name="f" method="post" action="modify.do" class="go" enctype="multipart/form-data" onsubmit='return '>	
@@ -237,14 +203,14 @@ function goWrite2(f) {
 	<!-- 1. 최초글작성 / 2. 수정글 작성  -->
 	<c:choose>
 	<c:when test="${empty board.post_subject}">
-	<select id="category" name="board_idx" class="form-control" required="">
+	<select id="category" name="board_idx" class="form-control" required="" style="font-size:13px;">
 	       	         
 	         <option value="">게시판을 선택해 주세요.</option>
 	         
-	            <option value="1" >
-					공지사항(관리자만보게)</option>
+	            <c:if test="${login.member_name eq '관리자'}"><option value="1" >
+					공지사항</option></c:if>
 	            <option value="2" >
-					우리들이야기 </option>
+					일상이야기 </option>
 				<option value="3" >
 					산책후기 </option>
 			 	<option value="4" >
@@ -259,10 +225,10 @@ function goWrite2(f) {
 	      
 	         <c:when test="${board.board_idx eq '1'}">
 	         <option value="1" >
-					공지사항(관리자만보게)</option></c:when>
+					공지사항</option></c:when>
 			<c:when test="${board.board_idx eq '2'}">
 	         <option value="2" >
-					우리들이야기</option></c:when>
+					일상이야기</option></c:when>
 			<c:when test="${board.board_idx eq '3'}">
 	         <option value="3" >
 					산책후기</option></c:when>
@@ -277,24 +243,30 @@ function goWrite2(f) {
 			
 		<br>
                 
-        
-		<input type="text" name="post_writer" class="form-control" value="${board.post_writer}"/><br>
+      
+		
 		<input type="text" name="post_subject"  class="form-control" value="${board.post_subject}"/><br>
-		<input type="hidden" name="post_idx" class="form-control" value="${board.post_idx}"/><br>
-		<input type="hidden" name="post_no" class="form-control" value="${board.post_idx}"/><br>
+		
+		
 		<!-- <input type="text" name="tagString" placeholder="입력후 스페이스바를 눌러보세요"><br> -->
 		<br> 
 		<textarea id="summernote" name="content" >${board.content}</textarea>
 		${board.board_name}
+		
+		
 		<c:choose>
-		<c:when test="${!empty board.post_subject}">x`
+		<c:when test="${!empty board.post_subject}">
 		<input id="subBtn" type="button" value="수정" style="float: right;" onclick="goWrite(this.form)"/>
 		</c:when>
 		<c:otherwise>
-		<input id="subBtn" type="button" value="등록" style="float: right;" onclick="goWrite2(this.form)"/>
+		<input id="subBtn" type="button" value="등록" style="font-size:12px; float: right; padding: 4px 10px;" onclick="goWrite2(this.form)">
 		</c:otherwise>
 		</c:choose>
 		
+		<input type="hidden" name="post_writer" class="form-control" value="${login.member_name}" readonly/><br>
+		<input type="hidden" name="member_number" class="form-control" value="${login.member_number}"/><br>
+		<input type="hidden" name="post_idx" class="form-control" value="${board.post_idx}"/><br>
+		<input type="hidden" name="post_no" class="form-control" value="${board.post_idx}"/><br>
 
 	
 	</form>

@@ -170,7 +170,7 @@
                         <tr class="table_row--2U-tpJvyb0">
                            <th name="product_content" id="product_content" type="hidden" value="${cartList.product_content}" class="table_cell--275JhdiLLN" >${cartList.product_content}</td>
                            <th name="product_amount" id="product_amount" type="hidden" value="${cartList.product_amount}" class="table_cell--275JhdiLLN" >${cartList.product_amount}</td>
-                           <th name="product_color" id="product_size" type="hidden" value="${cartList.product_size}" class="table_cell--275JhdiLLN" >${cartList.product_size}</td>
+                           <th name="product_size" id="product_size" type="hidden" value="${cartList.product_size}" class="table_cell--275JhdiLLN" >${cartList.product_size}</td>
                            <th name="product_price" id="product_price" type="hidden" value="${cartList.product_price}" class="table_cell--275JhdiLLN" >${cartList.product_price}</td>
                         </tr>
                         <c:set var="sum" value="${sum + (cartList.product_price * cartList.product_amount)}" />
@@ -189,9 +189,9 @@
             			
                   </span>
                  	 원
-                  <h6>결제성함 : ${payOne.member_name}</h6>
-                  <h6>결제번호 : ${payOne.pay_number}</h6>
-                  <h6>배송지 : ${payOne.pay_address}</h6>
+                  <h6 name="ordersu_name" id="ordersu_name" type="text" value="${ordersu.ordersu_name}">결제성함 : ${ordersu.ordersu_name}</h6>
+                  <h6 name="product_code" id="product_code" type="text" value="${ordersu.product_code}">결제번호 : ${ordersu.product_code}</h6>
+                  <h6 name="ordersu_addr" id="ordersu_addr" type="text" value="${ordersu.ordersu_addr}">배송지 : ${ordersu.ordersu_addr}</h6>
                </div>
             </div>
             <!-- //about breadcrumb -->
@@ -292,5 +292,7 @@
       </script>
       <!--//MENU-JS-->
       <script src="../assets/js/bootstrap.min.js"></script>
-	</body>
+<section class="w3l-footer">
+ 
+   </body>
 </html>

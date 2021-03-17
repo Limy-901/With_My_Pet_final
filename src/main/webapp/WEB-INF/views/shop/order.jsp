@@ -12,7 +12,13 @@
       <!-- google fonts --> 
       <!-- Template CSS -->
       <link rel="stylesheet" href="assets/css/cart.css">
+      <link rel="stylesheet" href="../assets/css/semantic.min.css">
+      <link rel="stylesheet" href="../assets/css/semantic2.css">
       <!-- Template CSS -->
+      <!-- iamport  -->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+      <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+      <!-- iamport  -->
    </head>
    <body>
       <!--header-->
@@ -126,7 +132,7 @@
       </section>
       <!-- //about breadcrumb -->
       <section>
-         <form name="orderSu" id="orderSu" method="post" action="orderSu?member_number=4">
+         <!-- <form name="orderSu" id="orderSu" method="post" action="orderSu?member_number=4"> -->
             <div class="container py-lg-5" >
             <div class="content-info-in row">
             <div class="content-gd col-lg-5 pl-lg-4">
@@ -153,7 +159,7 @@
                </colgroup>
                <thead>
                   <tr>
-                     <th class="th--1G-vGQPU9O" scope="col" >코드</th>
+                     <th class="th--1G-vGQPU9O" scope="col" >번호</th>
                      <th class="th--1G-vGQPU9O" scope="col" >상품정보</th>
                      <th class="th--1G-vGQPU9O" scope="col" >상품사진</th>
                      <th class="th--1G-vGQPU9O" scope="col" >수량선택</th>
@@ -167,21 +173,17 @@
                      <tr class="table_row--2U-tpJvyb0">
                         <td name="product_code" id="product_code" type="hidden" value="${cartList.product_code}" class="table_cell--275JhdiLLN" >${cartList.product_code}</td>
                         <td name="product_content" id="product_content" type="text" value="${cartList.product_content}" class="table_cell--275JhdiLLN" >${cartList.product_content}</td>
-                        <td class="table_cell--275JhdiLLN" ><img src="assets/images/${cartList.product_image}" width=70 height=70 align="center"/></td>
+                        <td class="table_cell--275JhdiLLN" ><img src="${cartList.product_image}" width=70 height=70 align="center"/></td>
                         <td name="product_amount" id="product_amount" type="text" value="${cartList.product_amount}" class="table_cell--275JhdiLLN" >${cartList.product_amount}</td>
                         <td name="product_color" id="product_size" type="text" value="${cartList.product_size}" class="table_cell--275JhdiLLN" >${cartList.product_size}</td>
                         <td name="product_price" id="product_price" type="text" value="${cartList.product_price}" class="table_cell--275JhdiLLN" >${cartList.product_price}</td>
                      </tr>
                      <c:set var="sum" value="${sum + (cartList.product_price * cartList.product_amount)}" />
                   </c:forEach>
-               </tbody>
-               <div class="listResult">
-                  <div class="sum">
                      <tr>
-                        <th class="table_cell--275JhdiLLN" colspan="6" value="${sum}"></br>주문 총 금액: ${sum}원  </br></th>
-                     </tr>
-                  </div>
-               </div>
+                        <th class="table_cell--275JhdiLLN" colspan="6" value="${sum}" ></br>주문 총 금액: ${sum}원  </br></th>
+                     </tr>   
+                     </tbody>     
             </table>
             <table class="table" >
                <colgroup>
@@ -189,33 +191,29 @@
                </colgroup>
                <tr>
                   <td>회원 명</td>
-                  <td><input type="text" name="member_name" id="member_name" required="required" /></td>
+                  <td><input type="text" name="member_name" id="member_name" required="required" class="ui selection dropdown"/></td>
                </tr>
                <tr>
+                  <td>결제 방법 &nbsp;</br> </td>
                   <td>
-                     &nbsp;결제 방법 &nbsp;</br> 
-                  </td>
-                  <td>
-                     &nbsp;
-                     <select name="pay_method" align="center">
-                        ==$0
-                        <option value="계좌 이체">계좌 이체</option>
+                     <select name="pay_method" align="center" class="ui selection dropdown">
                         <option value="카드 결제">카드 결제</option>
+                        <option value="계좌 이체">계좌 이체</option>
                      </select>
                   </td>
                </tr>
                <tr>
                   <td>
-                     배송받으실 주소 &nbsp;</br>
+                     배송 받으실 주소 &nbsp;</br>
                   </td>
                   <td>
-                     <input type="text" id="sample4_postcode" placeholder="우편번호">
-                     <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-                     <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-                     <input type="text" id="sample4_jibunAddress" name="pay_address" placeholder="지번주소" >
+                     <input type="text" id="sample4_postcode" placeholder="우편번호" class="ui selection dropdown">
+                     <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="ui selection dropdown"><br>
+                     <input type="text" id="sample4_roadAddress" placeholder="도로명주소" class="ui selection dropdown">
+                     <input type="text" id="sample4_jibunAddress" name="sample4_jibunAddress" placeholder="지번주소" class="ui selection dropdown">
                      <span id="guide" style="color:#999;display:none"></span>
-                     <input type="text" id="sample4_detailAddress" placeholder="상세주소">
-                     <input type="text" id="sample4_extraAddress" placeholder="참고항목">
+                     <input type="text" id="sample4_detailAddress" placeholder="상세주소" class="ui selection dropdown">
+                     <input type="text" id="sample4_extraAddress" placeholder="참고항목"  class="ui selection dropdown">
                      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
                      <script>
                         //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -285,7 +283,7 @@
                      회원 이메일 &nbsp;</br> 
                   </td>
                   <td> 
-                     <input type="text" name="member_email" id="member_email" required="required"  />
+                     <input type="text" name="member_email" id="member_email" required="required" class="ui selection dropdown"/>
                   </td>
                   &nbsp;
                </tr>
@@ -319,10 +317,73 @@
             </div>
          </div>
          <button type="button" class="popup btn btn-style btn-primary" style="float: right;" >취소</button>&nbsp;
-         <button type="submit" class="popup btn btn-style btn-primary" style="float: right;" >주문</button>
-         </form>
+         <button id="check_module" type="button" class="popup btn btn-style btn-primary" style="float: right;">주문</button>
+         </p>
+         <script>
+            $("#check_module").click(function () {
+            var IMP = window.IMP;
+            var ordersu_product_code ='${productDes.product_code}';
+            var memberName = $("#member_name").val();
+            var ordersu_addr = $("#sample4_jibunAddress").val();
+            var ordersu_email = $("#member_email").val();
+            var ordersu_product_name = '${productDes.product_name}';
+            var ordersu_product_price = '${sum+2500}';
+            var ordersu_product_date = '${productDes.product_date}';
+            //var a = $('#dlrjdi').val();//해당페이지에 있는 값 뽑아오기.
+            
+            alert(ordersu_product_code+'+'+memberName+'+'+ordersu_addr+'+'+ordersu_email+'+'+
+            		ordersu_product_name+'+'+ordersu_product_price+'+'+ordersu_product_date);
+            IMP.init('imp02152838');
+            IMP.request_pay({
+            	//pg: 'inicis', 
+            	pay_method: 'card',
+            	merchant_uid: 'merchant_' + new Date().getTime(),
+            	name: '${productDes.product_content}',
+            	amount: 100,//가격
+            	buyer_email: ordersu_email,
+            	buyer_code: ordersu_product_code,     
+	            buyer_tel: '010-9279-6456',       
+	            buyer_postcode: '123-456',
+	            //m_redirect_url: 'orderSu?member_number=4' //결제 끝나고 랜딩되는 페이지 
+            	}, function (rsp) {
+            	console.log(rsp);
+            	if (rsp.success) {
+            		//서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+            		alert(ordersu_product_code+'+'+memberName+'+'+ordersu_addr+'+'+ordersu_email+'+'+
+            		ordersu_product_name+'+'+ordersu_product_price);
+            		$.ajax({
+            			url:"order",
+            			type: 'POST',
+            			data:{
+            				imp_uid : rsp.imp_uid,//조건
+            				buyer_code : ordersu_product_code,
+            				name : ordersu_product_name,//product name
+            				buyer_name : memberName,
+            				buyer_addr : ordersu_addr,
+            				buyer_email : ordersu_email,
+            				amout : ordersu_product_price
+            			},
+            			success: function(result){
+            				alert(result);
+            				location.href="/orderSu?member_number=4";
+            			}
+            		});
+		            var msg = '결제가 완료되었습니다.';
+		            msg += '고유ID : ' + rsp.imp_uid;
+		            msg += '상점 거래ID : ' + rsp.merchant_uid;
+		            msg += '결제 금액 : ' + rsp.paid_amount;
+		            msg += '카드 승인번호 : ' + rsp.apply_num;
+	            } else {
+	            var msg = '결제에 실패하였습니다.';
+		            msg += '에러내용 : ' + rsp.error_msg;
+		            }
+		            alert(msg);
+		            });
+	            });
+         </script>
+         <!-- </form> -->
       </section>
       <!-- //about breadcrumb -->
-      <script src="assets/js/bootstrap.min.js"></script>
+      <script id="check_module" src="assets/js/bootstrap.min.js"></script>
    </body>
 </html>

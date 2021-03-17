@@ -27,62 +27,54 @@
 <body>
 <!--header-->
 <header id="site-header" class="fixed-top">
- <div class="container">
+  <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <a href="#"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt=""></a>
-         
-          <!-- if logo is image enable this   
-      <a class="navbar-brand" href="#index.html">
-          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-      </a> -->
-          <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <a href="../"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt=""></a>
+           <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
               <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-              
           </button>
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                  <li class="nav-item">
+                      <a class="nav-link" href="../">Home <span class="sr-only">(current)</span></a>
                   </li>
-                  
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                      	<a class="dropdown-item" href="walk/list.do?cp=1">산책모집 </a>
-                          <a class="dropdown-item" href="walk/board.do">산책후기 </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                      	<a class="dropdown-item" href="walklist.do">산책모집 </a>
+                          <a class="dropdown-item" href="walkboard.do">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
+                      <a class="nav-link dropdown-toggle" href="product" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                      	<a class="dropdown-item" href="product?catgo_code=9">쇼핑하기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                      	<a class="dropdown-item" href="product">쇼핑하기</a>
                           <a class="dropdown-item" href="cart">장바구니</a>
                           <a class="dropdown-item" href="order">결제</a>
+                          <a class="dropdown-item" href="register?catgo_code=8">상품등록하기</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                          <a class="dropdown-item" href="board/list.do?board_idx=1&amp;cp=1">공지사항</a>
-                          <a class="dropdown-item" href="board/list.do?board_idx=2&amp;cp=1">일상이야기</a>
-                          <a class="dropdown-item" href="board/list.do?board_idx=3&amp;cp=1">산책후기</a>
-                          <a class="dropdown-item" href="board/list.do?board_idx=4&amp;cp=1">쇼핑후기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                          <a class="dropdown-item" href="blog.html">공지사항</a>
+                          <a class="dropdown-item" href="blog-single.html">일상이야기</a>
                       </div>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="gallery.html" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
+                      <a class="nav-link" href="../member/login.do">로그인 </a>
                   </li>
                  
                   <li class="nav-item">
-                      <a class="nav-link" href="sendmail.do">Contact </a>
+                      <a class="nav-link" href="contact.html">Contact </a>
                   </li>
               </ul>
           </div>
@@ -108,14 +100,14 @@
 
 <!--게시판 시작-->
 
-<table class="bbs-table" table style="margin-left: auto; margin-right: auto;">
+<table class="bbs-table" table style="margin-left: auto; margin-right: auto;margin-bottom: 2.5%;">
 <tr id = "t1">
     <td style="width: 60px;">NO</td>
     <td style="width: 60px;">분류</td>
-    <td style="width: 260px;">제목</td>
+    <td style="width: 280px; padding-left:70px;">제목</td>
     <td style="width: 60px;">글쓴이</td>
     <td style="width: 60px;">조회수</td>
-    <td style="width: 60px;">좋아요</td>  
+
     <td style="width: 84px;">작성일</td>
     <c:if test="${empty listResult}">
 	<tr align="center" noshade>
@@ -123,7 +115,7 @@
 	</tr>
 </c:if>
 <c:forEach items="${listResult.list}" var="board">
-	<TR align='center' noshade>
+	<TR noshade>
 		<TD>${board.post_idx}</TD>	
 		
 		<c:choose>
@@ -134,7 +126,7 @@
 		</c:choose>
 		
 	 
-		<TD>
+		<TD style="padding-left:70px;">
 		<c:choose>	
 		<c:when test="${board.post_depth>1}">
 			<c:forEach begin="1" end="${board.post_depth}"><span style='padding-left:10px'></span></c:forEach>
@@ -143,13 +135,13 @@
 		 </c:when>
 		 
 		 <c:otherwise>
-		 	 <a href="content.do?post_idx=${board.post_idx}&post_order=${board.post_order}">${board.post_subject}</a>
+		 	 <a href="content.do?post_idx=${board.post_idx}&member_number=${login.member_number}">${board.post_subject}</a>
 		 </c:otherwise>
 		</c:choose>
 		</TD>
 		<TD>${board.post_writer}</TD>
 		<TD>${board.post_count}</TD>
-		<TD>${board.post_like}</TD>
+
 		<TD>${board.post_date}</TD>
 
 </TR>
@@ -180,21 +172,21 @@
 
 	
    <c:choose>
-      <c:when test="${empty loginPassUser.ct_id}">
+      <c:when test="${empty login}">
          회원만 글쓰기가 가능합니다.
       </c:when>
    <c:otherwise>
-      <a href='../qna/qna.do?m=write&ct_id=${loginPassUser.ct_id}'>전체문의 게시판</a><br/>
+     안녕하세요, ${login.member_name}님
    </c:otherwise>
   </c:choose>
 </c:forEach>
  </div> 
  
 	<div class="sidemenu">
-	 <a href="list.do?board_idx=1">공지사항</a>
-	 <a href="list.do?board_idx=2">일상이야기</a>
-  	 <a href="list.do?board_idx=3">산책후기</a>
-	 <a href="list.do?board_idx=4">쇼핑후기</a>
+	 <a style="color:#424242;font-weight: 500;" href="list.do?board_idx=1">공지사항</a>&nbsp;&nbsp;
+	 <a style="color:#424242;font-weight: 500;" href="list.do?board_idx=2">일상이야기</a>&nbsp;&nbsp;
+  	 <a style="color:#424242;font-weight: 500;" href="list.do?board_idx=3">산책후기</a>&nbsp;&nbsp;
+	 <a style="color:#424242;font-weight: 500;" href="list.do?board_idx=4">쇼핑후기</a>
 	</div>
 </div>
 
@@ -215,22 +207,22 @@
 
 <!-- 검색 -->
 
-<hr width='600' size='2' color='gray' noshade>
+
       
     <form class="search" action="list.do" >
-      <select name="catgo">
+      <select name="catgo" style="padding-left: 4px;padding-top: 1px;padding-bottom: 1px;padding-right: 7px;border-color: #bababa; color: #262626">
         <option value="post_subject">제목</option>
         <option value="post_writer">글쓴이</option>
         <option value="post_content">내용</option>
       </select>
-      <input type="text" name="keyword" size="20" required="required" /> <button class="btn">검색</button>
+      <input type="text" name="keyword" size="17" required="required" style="border-color:white;"/> <button class="btn">검색</button>
     </form>  
 
 <!-- 검색 -->
 <!-- 페이징 -->
 
 <br>
-    <div id="paging">
+     <div id="paging">
    <c:choose>
     <c:when test="${listResult.cp eq 1}">
      
@@ -242,8 +234,10 @@
     </c:choose>	
     
     
+<c:choose>
 
-    <c:forEach begin="${listResult.startPage}" end="${listResult.endPage}" var="i">  
+<c:when test="${listResult.countPage<10}">
+ <c:forEach begin="${listResult.startPage}" end="${listResult.countPage}" var="i">  
         <a href="list.do?cp=${i}">
    			<c:choose>
    			    <c:when test="${i==listResult.cp}">
@@ -256,21 +250,61 @@
 			</c:choose>
     	</a>	
     </c:forEach>
-    <c:if test="cp=10"><a href="list.do?cp=${listResult.cp+((countPage+1)-(cp%countPage))}">다음</a></c:if>
-    <a href="list.do?cp=${listResult.cp+((countPage+1)-(cp%countPage))}">다음</a>
-</div> 
+</c:when>
+
+
+
+
+<c:otherwise>
+ <c:forEach begin="${listResult.startPage}" end="${listResult.endPage}" var="i">  
+        <a href="list.do?cp=${i}">
+   			<c:choose>
+   			    <c:when test="${i==listResult.cp}">
+                	<span class="bbs-strong">${i}</span>
+                </c:when>
+                
+                <c:otherwise>
+                    ${i}
+                </c:otherwise>
+			</c:choose>
+    	</a>	
+    </c:forEach>
+</c:otherwise>
+</c:choose>
+
+   
+   
+    <c:if test="${listResult.countPage>10}"><a href="list.do?cp=${listResult.cp+((countPage+1)-(cp%countPage))}">다음</a></c:if>
+ 
+</div>
+ 
+ 
  
 <!-- 페이징 -->
 <br>
 <div id="list-menu">
 
-     <a href="write.do" type="button" class="btn">새 글쓰기</a>
+
+<c:choose>
+      <c:when test="${empty login}">
+     <a type="button" class="btn" onclick="writeButton()" style="margin-left:-2.5%;">새 글쓰기</a></button>
+     </c:when>
+     <c:otherwise>
+     <a href="write.do" type="button" class="btn" style="margin-left:-2.5%;">새 글쓰기</a></button>
+     </c:otherwise>
+</c:choose>
 </div>
 
 
 <!--게시판 끝-->
 
+<script>
+function writeButton(){
+	location.href = '../member/login.do';
+}
 
+
+</script>
 
 <!-- disable body scroll which navbar is in active -->
 <script>
@@ -329,13 +363,10 @@
             <h6 class="footer-title-28">Contact information</h6>
             <ul>
               <li>
-                <p><strong>Address</strong> : #135 block, Barnard St. Brooklyn, London 10036, UK</p>
+                <p><strong>Address</strong> : Seoul Mapo Baekbumro, South Korea</p>
               </li>
               <li>
-                <p><strong>Phone</strong> : <a href="tel:+(12)234-11-24">+(12)234-11-24</a></p>
-              </li>
-              <li>
-                <p><strong>Email</strong> : <a href="mailto:example@mail.com">example@mail.com</a></p>
+                <p><strong>Contact</strong> : <a href="tel:+(12)234-11-24">Click Here</a></p>
               </li>
             </ul>
 
@@ -367,30 +398,24 @@
           <div class="col-lg-6 col-md-7">
             <div class="row">
               <div class="col-sm-4 col-6 footer-list-28 mt-5">
-                <h6 class="footer-title-28">Company</h6>
+                <h6 class="footer-title-28">Walk Service</h6>
                 <ul>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="blog.html">Blog Posts</a></li>
-                  <li><a href="services.html">Services</a></li>
-                  <li><a href="#pricing">Pricing</a></li>
+                  <li><a href="about.html">Cha Ji Hyun</a></li>
+                  <li><a href="blog.html">Lim Yeon Ji</a></li>
                 </ul>
               </div>
               <div class="col-sm-4 col-6 footer-list-28 mt-5">
-                <h6 class="footer-title-28">Quick Links</h6>
+                <h6 class="footer-title-28">Shopping Service</h6>
                 <ul>
-                  <li><a href="contact.html">Contact Us</a></li>
-                  <li><a href="#signup">Create account</a></li>
-                  <li><a href="#learn">Care Center</a></li>
-                  <li><a href="#feedback">Site Feedack</a></li>
+                  <li><a href="contact.html">Lee Ok Seok</a></li>
+                  <li><a href="#signup">Sung Jin Hee</a></li>
                 </ul>
               </div>
               <div class="col-sm-4 footer-list-28 mt-5">
-                <h6 class="footer-title-28">Support</h6>
+                <h6 class="footer-title-28">Member Service</h6>
                 <ul>
-                  <li><a href="#URL">All Dogs</a></li>
-                  <li><a href="#URL">Care Advices</a></li>
-                  <li><a href="#URL">Care Support</a></li>
-                  <li><a href="#URL">Veterinary Help</a></li>
+                  <li><a href="#URL">Choi Woo Jae</a></li>
+                  <li><a href="#URL">Lee Su Jin</a></li>
                 </ul>
               </div>
             </div>
@@ -401,12 +426,12 @@
 
       <div class="midd-footer-28 align-center py-lg-4 py-3 mt-5">
         <div class="container">
-          <p class="copy-footer-28 text-center"> &copy; 2021 With My pet from Us. All Rights Reserved.
+          <p class="copy-footer-28 text-center"> © 2021 With My Pet. All Rights Reserved.
            </p>
         </div>
       </div>
     </div>
   </footer>
-</section>
+  </section>
 </body>
 </html>

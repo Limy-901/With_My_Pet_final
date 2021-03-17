@@ -28,17 +28,14 @@
 	  	}
 	</style>
 <body>
-  <!--header-->
+ <!--header-->
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <h1><a class="navbar-brand" href="index.html">
-               Pooch Care
-          </a></h1>
-          <!-- if logo is image enable this   
-      <a class="navbar-brand" href="#index.html">
-          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-      </a> -->
+          <a href="#"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
+         
+      
+      
           <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
               data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
               aria-label="Toggle navigation">
@@ -52,32 +49,52 @@
                   <li class="nav-item active">
                       <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                   </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="about.html">About</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="services.html">Services</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="gallery.html">Gallery</a>
+                  
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
+                            산 책 <span class="fa fa-angle-down"></span>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
+                         <a class="dropdown-item" href="walk/list.do?cp=1" >산책모집 </a>
+                          <a class="dropdown-item" href="walk/board.do">산책후기 </a>
+                      </div>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Blog<span class="fa fa-angle-down"></span>
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
+                            쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                          <a class="dropdown-item" href="blog.html">Blog Posts</a>
-                          <a class="dropdown-item" href="blog-single.html">Blog single</a>
-						   <a class="dropdown-item" href="landing-single.html">Landing Page</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                         <a class="dropdown-item" href="product?catgo_code=9">쇼핑하기</a>
+                          <a class="dropdown-item" href="cart">장바구니</a>
+                          <a class="dropdown-item" href="order">결제</a>
                       </div>
                   </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
+                             커뮤니티 <span class="fa fa-angle-down"></span>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                          <a class="dropdown-item" href="board/list.do">공지사항</a>
+                          <a class="dropdown-item" href="board/list.do">일상이야기</a>
+                      </div>
+                  </li>             
                   <li class="nav-item">
-                      <a class="nav-link" href="login.do">Login</a>
+                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="agree.do">Signup</a>
+                      <a class="nav-link" onclick="location.href='logout.do'" style="font-family: 'Spoqa Han Sans Neo';">로그아웃</a>
                   </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/member/mypage.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
+                  </li>
+                  <!--<c:if test="${login.member_name eq 'admin'}"> </c:if>-->
+                  <li class="nav-item">
+                      <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
+                  </li>
+                 
               </ul>
           </div>
           <!-- toggle switch for light and dark theme -->
@@ -97,10 +114,8 @@
           <!-- //toggle switch for light and dark theme -->
       </nav>
   </div>
-  
-  
 </header>
-
+<!-- //header -->
 &nbsp;
 
 

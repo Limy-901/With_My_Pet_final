@@ -208,18 +208,34 @@ function goWrite(f) {
 	
 	<!-- 1. 최초글작성 / 2. 수정글 작성  -->
 
-
+<c:choose>
+	<c:when test="${empty board.post_subject}">
+	<select id="category" name="board_idx" class="form-control" required="">
+	       	         
+	         <option value="">게시판을 선택해 주세요.</option>
+	         
+	            <c:if test="${login.member_name eq '관리자'}"><option value="1" >
+					공지사항</option></c:if>
+	            <option value="2" >
+					일상이야기 </option>
+				<option value="3" >
+					산책후기 </option>
+			 	<option value="4" >
+					쇼핑후기 </option>
 		
-
+    </select>
+	</c:when>
+		
+	<c:otherwise>
 	<select id="category" name="board_idx" class="form-control" required="">
 	         <c:choose>
 	      
 	         <c:when test="${board.board_idx eq '1'}">
 	         <option value="1" >
-					공지사항(관리자만보게)</option></c:when>
+					공지사항</option></c:when>
 			<c:when test="${board.board_idx eq '2'}">
 	         <option value="2" >
-					우리들이야기</option></c:when>
+					일상이야기</option></c:when>
 			<c:when test="${board.board_idx eq '3'}">
 	         <option value="3" >
 					산책후기</option></c:when>
@@ -228,25 +244,28 @@ function goWrite(f) {
 					쇼핑후기</option></c:otherwise>	
 			</c:choose>
 	</select>
-
+	</c:otherwise>
+	</c:choose>
 			
 			
 		<br>
                 
         
-		<input type="text" name="post_writer" class="form-control" value="작성자"/><br>
+		
 		<input type="text" name="post_subject"  class="form-control" value="제목"/><br>
-		<input type="hidden" name="post_idx" class="form-control" value="${board.post_idx}"/><br>
-
-		<input type="hidden" name="post_order" class="form-control" value="${board.post_order}"/><br>
+		<input type="text" name="post_tag"  class="form-control" value="${board.tag.post_subject}"/><br>
+		
 		<!-- <input type="text" name="tagString" placeholder="입력후 스페이스바를 눌러보세요"><br> -->
 		<br> 
 		<textarea id="summernote" name="content" >${board.content}</textarea>
 		${board.board_name}
-
-
+<input type="hidden" name="member_number" class="form-control" value="${login.member_number}"/><br>
+		
+		
 		<input id="subBtn" type="button" value="rewrite" style="float: right;" onclick="goWrite(this.form)"/>
-
+		<input type="hidden" name="post_order" class="form-control" value="${board.post_order}"/><br>
+		<input type="hidden" name="post_idx" class="form-control" value="${board.post_idx}"/><br>
+		<input type="hidden" name="post_writer" class="form-control" value="${login.member_name}" readonly/><br>
 	
 	</form>
 </div>

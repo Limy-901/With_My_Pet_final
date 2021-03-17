@@ -23,7 +23,7 @@ public class Board {
 	
 	private Date post_date;
 	private long post_count;
-	private int post_like;
+	//private int post_like;
 	private long rnum;
 	private String content;
 	private long post_no;
@@ -34,6 +34,7 @@ public class Board {
 
 	private String board_name;
 	private ArrayList<BoardCmt> comment;
+	private int like;
 	//private ArrayList<BoardPic> pic;
 
 

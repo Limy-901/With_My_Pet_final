@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import pet.member.vo.MemberVO;
 import pet.mvc.board.Board;
 import pet.mvc.mapper.AdminMapper;
 import pet.walk.vo.Walk;
+
 import static pet.admin.vo.Options.*;
 
 @Log4j
@@ -53,7 +55,7 @@ public class AdminServiceImpl implements AdminService {
 		String matchPer = getMatchPer();
 		Hashtable<String, Object> allList = getWeeklyData();
 		ArrayList<MemberVO> newMemList = mapper.getNewMemList();
-		// 寃곗젣 異붽��릺硫�, �뙋留ㅼ쑉 and �뙋留ㅻ━�뒪�듃 異붽��빐�빞 �븿. 
+		// 결제 추가되면, 판매율 and 판매리스트 추가해야 함.
 		map.put("newMember",newMember);
 		map.put("totalMember",totalMember);
 		map.put("todayIncome",todayIncome);
@@ -64,13 +66,10 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	public String getMatchPer() {
-		//double allWalk = (double)mapper.getTotalWalk();
-		//double allJoin = (double)mapper.getTotalJoin();
 		double allWalk=80;
 		double allJoin=50;
 		double per = allJoin / allWalk * 100.0;
 		String percent = per+"%";
-		log.info("�씠嫄� �띁�꽱�듃" +percent);
 		return percent;
 	}
 	
@@ -104,7 +103,6 @@ public class AdminServiceImpl implements AdminService {
 			long member_number = list.getMember_number();
 			MemberOption memberOption = mapper.getMemOptionData(member_number);
 			if(memberOption == null) {
-				log.info("##�꼸�엯�땲�떎.");
 				MemberOption newMemberOption = new MemberOption();
 				newMemberOption.setWalk(0); 
 				newMemberOption.setSale(0); 
@@ -124,8 +122,8 @@ public class AdminServiceImpl implements AdminService {
 		else lists = mapper.getPreWalks();
 		for(Walk list:lists) {
 			Date origin = list.getWalk_date();
-			DateFormat dayForm = new SimpleDateFormat("yyyy�뀈 MM�썡 dd�씪");
-			DateFormat timeForm = new SimpleDateFormat("a hh�떆 mm遺�");
+			DateFormat dayForm = new SimpleDateFormat("yyyy년 MM월 dd일");
+			DateFormat timeForm = new SimpleDateFormat("a hh시 mm분");
 			String day = dayForm.format(origin);
 			String time = timeForm.format(origin);
 			list.setDay(day);
@@ -155,8 +153,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	public String makeStrTime(long seconds, int type) {
-		int change = 1; // next, previous�뿉 �뵲�씪 �쓬�닔 �뼇�닔 蹂��솚, default:�뼇�닔
-		String changeStr = " 吏��궓";
+		int change = 1; // next, previous에 따라 음/양수 변경.
+		String changeStr = " 지남";
 		long days = TimeUnit.MILLISECONDS.toDays(seconds);
 		seconds -= TimeUnit.DAYS.toMillis(days);
         long hours = TimeUnit.MILLISECONDS.toHours(seconds);
@@ -166,16 +164,16 @@ public class AdminServiceImpl implements AdminService {
         StringBuilder sb = new StringBuilder(64);
         if(type==NEXT_WALKS) {
         	change = -1; 
-        	changeStr = " �쟾";
+        	changeStr = " 전";
         }
         if(days != 0) {
 	        sb.append(days*change);
-	        sb.append("�씪 ");
+	        sb.append("일 ");
         }
         sb.append(hours*change);
-        sb.append("�떆媛� ");
+        sb.append("시간 ");
         sb.append(minutes*change);
-        sb.append("遺�"+changeStr);
+        sb.append("분"+changeStr);
         return(sb.toString());
 	}
 
@@ -196,8 +194,8 @@ public class AdminServiceImpl implements AdminService {
 		for(Qna list:lists) {
 			Date origin_post = list.getPost_date();
 			Date origin_cmt = list.getCmt_date();
-			DateFormat dayForm = new SimpleDateFormat("yyyy�뀈 MM�썡 dd�씪");
-			DateFormat timeForm = new SimpleDateFormat("a hh�떆 mm遺�");
+			DateFormat dayForm = new SimpleDateFormat("yyyy년 MM월 dd일");
+			DateFormat timeForm = new SimpleDateFormat("a hh시 mm분");
 			String post_day = dayForm.format(origin_post);
 			String cmt_day = dayForm.format(origin_cmt);
 			String post_time = timeForm.format(origin_post);
@@ -219,7 +217,7 @@ public class AdminServiceImpl implements AdminService {
 			one.setJcount(dto.getJcount());
 			one.setRecent(dto.getRecent());
 			one.setPercent(Math.round((double)one.getJcount()/(double)one.getCount()*10000)/100.0+"%");
-			DateFormat dayForm = new SimpleDateFormat("yyyy�뀈 MM�썡 dd�씪");
+			DateFormat dayForm = new SimpleDateFormat("yyyy년 MM월 dd일");
 			String day = dayForm.format(one.getRecent());
 			one.setDay(day);
 		}
@@ -231,7 +229,7 @@ public class AdminServiceImpl implements AdminService {
 		ArrayList<MemberWalkChart> lists = mapper.getLocationList();
 		for(MemberWalkChart one : lists) {
 			one.setPercent(Math.round((double)one.getJcount()/(double)one.getCount()*10000)/100.0+"%");
-			DateFormat dayForm = new SimpleDateFormat("yyyy�뀈 MM�썡 dd�씪");
+			DateFormat dayForm = new SimpleDateFormat("yyyy년 MM월 dd일");
 			String day = dayForm.format(one.getRecent());
 			one.setDay(day);
 		}

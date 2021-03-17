@@ -23,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import lombok.extern.log4j.Log4j;
 import pet.shop.fileSetting.path;
+import pet.member.vo.MemberVO;
+import pet.member.vo.MypagePetVO;
 import pet.shop.domain.Category;
 import pet.shop.domain.Option;
 import pet.shop.domain.Product;
@@ -143,12 +145,15 @@ public class ShopController {
 			@RequestParam long review_number, Option option, long product_code) {
 		log.info("##"+review_number+catgo_code+product_code);
 		Product list = service.listS(catgo_code);
+		MypagePetVO mpvo = (MypagePetVO) session.getAttribute("petMypage");
+		log.info("mpvo 들어옴: "+mpvo);
 		ArrayList<Review> reviewCon = service.listReviewS(review_number);
 		ArrayList<Option> optionlist= service.listOption(product_code);
 		session.setAttribute("reviewCon", reviewCon);
 		session.setAttribute("list", list);
 		session.setAttribute("optionlist", optionlist);
-		log.info("###productDes"+optionlist+reviewCon+list);
+		session.setAttribute("mpvo", mpvo);
+		log.info("###productDes"+optionlist+reviewCon+list+mpvo);
 		session.setAttribute("productDes", list);
 		ModelAndView mvv = new ModelAndView("/shop/productDes","productDes", list);
 		return mvv;
@@ -206,7 +211,7 @@ public class ShopController {
 	        file.transferTo(saveFile); // 업로드 파일에 saveFile이라는 껍데기 입힘
 	    } catch (IOException e) {
 	        e.printStackTrace();
-	        return "redirect:category?catgo_code=8";
+	        return "/shop/category";
 	    }
 	    if(saveFile.length() !=0) {
 	    	String url = fileService.saveStore(file, product);//service로 이동..파일 저장함

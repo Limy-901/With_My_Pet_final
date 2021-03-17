@@ -18683,12 +18683,17 @@ li.design1 {
     font-size: 13px;
     line-height: 20px;
     color: #222;
+    
+    border-top: 1px solid #cacbd4;
+    border-bottom: 1px solid #cacbd4;
+    
 }
 .table_cell--275JhdiLLN {
     position: relative;
-    border-left: 1px solid #ececef;
+    
     border-top: 1px solid #cacbd4;
     border-bottom: 1px solid #cacbd4;
+    
 }
 .order_calculator--2zlH_jz09P {
     display: table;

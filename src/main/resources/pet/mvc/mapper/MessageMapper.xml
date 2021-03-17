@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pet.mvc.mapper.MessageMapper">
+
+	<select id="getAllMsgList" resultType="msg" parameterType="long">
+		select a.*, b.member_name sender_name, c.member_name member_name from
+		(SELECT MAX(MSG_IDX) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS MSG_IDX
+		       , MAX(MEMBER_NUMBER) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS MEMBER_NUMBER
+		       , MAX(SENDER_NUMBER) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS SENDER_NUMBER
+		       , MAX(MSG_CONTENT) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS MSG_CONTENT
+		       , MAX(SENDDATE) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS SENDDATE
+		       , MAX(OPENDATE) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS OPENDATE
+		FROM MESSAGE
+<![CDATA[WHERE MEMBER_NUMBER = #{member_number} OR SENDER_NUMBER = #{member_number}
+		GROUP BY GREATEST(MEMBER_NUMBER, SENDER_NUMBER) || LEAST(MEMBER_NUMBER, SENDER_NUMBER))a,
+		(select member_number, member_name from member) b,
+		(select member_number, member_name from member) c
+		where a.SENDER_NUMBER = b.member_number and a.MEMBER_NUMBER = c.member_number]]>
+	</select>
+	
+	<select id="getMsgList" resultType="msg" parameterType="map">
+		select message.*, b.member_name sender_name, c.member_name member_name from MESSAGE,
+		(select member_number, member_name from member) b,
+        (select member_number, member_name from member) c
+		where 
+        <![CDATA[(message.sender_number = b.member_number and message.member_number = c.member_number)
+        and(
+        (message.MEMBER_NUMBER = #{member_number} and message.SENDER_NUMBER = #{sender_number}) 
+        or 
+        (message.MEMBER_NUMBER = #{sender_number} and message.SENDER_NUMBER = #{member_number}))]]>
+		order by message.SENDDATE
+	</select>
+	
+	<insert id="insertMsg" parameterType="msg">
+		insert into MESSAGE values(msg_seq.nextval, #{member_number}, #{sender_number}, #{msg_content}, null, SYSDATE)
+	</insert>
+	
+	<select id="getUnreadMsg" resultType="long" parameterType="long">
+		select count(*) from MESSAGE where SENDER_NUMBER = #{member_number} and OPENDATE is null
+	</select>
+	
+	<update id="msgRead" parameterType="map">
+		update MESSAGE set OPENDATE=SYSDATE where MEMBER_NUMBER = #{sender_number} and SENDER_NUMBER = #{member_number}
+	</update>
+	
+	<select id="selectRecentWalk" resultType="memberReview" parameterType="map">
+		<![CDATA[select a.WALK_IDX, a.MEMBER_NUMBER, b.WALK_NUMBER, a.WALK_DATE, a.WALK_LOCATION, b.MEMBER_REVIEW
+		from (
+		    select max(WALK_IDX) keep ( dense_rank first order by (SYSDATE-WALK_DATE)) as WALK_IDX,
+		        max(MEMBER_NUMBER) keep ( dense_rank first order by (SYSDATE-WALK_DATE)) as MEMBER_NUMBER,
+		        max(WALK_DATE) keep ( dense_rank first order by (SYSDATE-WALK_DATE)) as WALK_DATE,
+		        max(WALK_LOCATION) keep ( dense_rank first order by (SYSDATE-WALK_DATE)) as WALK_LOCATION
+		    from WALK
+		    where MEMBER_NUMBER = #{member_number} or MEMBER_NUMBER = #{walk_number}
+		) a 
+		inner join (
+		    select WALK_IDX, MEMBER_NUMBER as WALK_NUMBER, MEMBER_REVIEW
+		    from WALK_JOIN
+		    where MEMBER_NUMBER = #{member_number}
+		    and MEMBER_REVIEW is null
+		) b
+		on a.WALK_IDX = b.WALK_IDX]]>
+	</select>
+	
+	<insert id="writeReview" parameterType="memberReview">
+		insert into MEMBER_REVIEW values(member_review_seq.nextval, #{member_number}, #{walk_idx}, SYSDATE, #{member_review})
+	</insert>
+	
+	<update id="updateJoin" parameterType="map">
+		update WALK_JOIN set 
+		MEMBER_REVIEW = 'Y'
+		where (WALK_IDX = #{walk_idx} and MEMBER_NUMBER = #{member_number})
+	</update>
+	
+	<select id="getSenderName" parameterType="long" resultType="String">
+		select MEMBER_NAME from MEMBER where MEMBER_NUMBER = #{member_number}
+	</select>
+
+</mapper>

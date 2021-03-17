@@ -21,16 +21,13 @@ import pet.walk.vo.Walk;
 import static pet.admin.vo.Options.*;
 
 @Controller
-@Log4j
 @RequestMapping("admin")
 public class AdminController {
 	@Autowired
 	AdminService adminService;
-	
 
 	@RequestMapping("index.do")
 	private ModelAndView index() {
-		log.info("Admin Controller 들어옴");
 		Hashtable<String, Object> map = adminService.getIndexData();
 		ModelAndView mv = new ModelAndView("admin/adminIndex","indexData",map);
 		return mv;
@@ -58,10 +55,12 @@ public class AdminController {
 			else return new ModelAndView("admin/memberList","list",null);
 		}else return mv;
 	}
+	
 	@RequestMapping("memberMessage.do")
 	private String memberMessage() {
 		return "admin/memberMessage";
 	}
+	
 	@RequestMapping("nextWalk.do")
 	private ModelAndView nextWalk() {
 		Hashtable<String, Object> map = new Hashtable<String, Object>();
@@ -72,6 +71,7 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView("admin/nextWalk","map",map);
 		return mv;
 	}
+	
 	@RequestMapping("previousWalk.do")
 	private ModelAndView previousWalk() {
 		Hashtable<String, Object> map = new Hashtable<String, Object>();
@@ -82,16 +82,19 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView("admin/previousWalk","map",map);
 		return mv;
 	}
+	
 	@RequestMapping("registerProduct.do")
 	private String registerProduct() {
 		return "admin/registerProduct";
 	}
+	
 	@RequestMapping("productQ.do")
 	private ModelAndView productQ() {
 		ArrayList<Board> lists = adminService.getNotAnsweredQ();
 		ModelAndView mv = new ModelAndView("admin/productQ","lists",lists);
 		return mv;
 	}
+	
 	@GetMapping(value="answer.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public @ResponseBody ArrayList<Board> answer(String content, int board_idx) {
 		adminService.writeAnswer(content,board_idx);
@@ -119,14 +122,17 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView("admin/productA","lists",lists);
 		return mv;
 	}
+	
 	@RequestMapping("orderStatus.do")
 	private String orderStatus() {
 		return "admin/orderStatus";
 	}
+	
 	@RequestMapping("reportedPost.do")
 	private String reportedPost() {
 		return "admin/reportedPost";
 	}
+	
 	@RequestMapping("walkStatistic.do")
 	private ModelAndView walkStatistic() {
 		Hashtable<String, Object> map = new Hashtable<String, Object>(); 
@@ -135,13 +141,14 @@ public class AdminController {
 		map.put("walkLists",lists1);
 		map.put("locLists",lists2);
 		ModelAndView mv = new ModelAndView("admin/walkStatistic", "map", map);
-		
 		return mv;
 	}
+	
 	@RequestMapping("salesStatistic.do")
 	private String salesStatistic() {
 		return "admin/salesStatistic";
 	}
+	
 	@RequestMapping("postNotice.do")
 	private String postNotice() {
 		return "admin/postNotice";

@@ -12,44 +12,27 @@
       <!-- google fonts --> 
       <!-- Template CSS -->
       <link rel="stylesheet" href="assets/css/productDes.css">
+      <link rel="stylesheet" href="../assets/css/semantic.min.css">
+      <link rel="stylesheet" href="../assets/css/semantic2.css">
+      <script src="assets/js/jquery-3.3.1.min.js"></script>
+  	  <script src="assets/js/theme-change.js"></script>
       <!-- Template CSS -->
-   
+      <!-- sweetAlert -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
+      <!-- sweetAlert -->
    </head>
    <body>
-   		<style>
-      .btn-like {
-        color: transparent;
-        text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 #000;
-      }
-      .btn-like:hover {
-           text-shadow: 0 0 0 #ea0;
-         }
-      .btn-like.done {
-           color: inherit;
-           text-shadow: 0;
-         }
-      .btn-like.done:hover {
-           color: transparent;
-           text-shadow: 0 0 0 #777;
-         }
-      </style>
       <!--header-->
       <header id="site-header" class="fixed-top">
          <div class="container">
             <nav class="navbar navbar-expand-lg stroke">
                <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
-               </a>
-               </h1>
-               <!-- if logo is image enable this   
-                  <a class="navbar-brand" href="#index.html">
-                      <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-                  </a> -->
-               <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+              <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
                   data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                   aria-label="Toggle navigation">
                <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
                <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-               </span>
                </button>
                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                   <ul class="navbar-nav ml-auto">
@@ -114,8 +97,7 @@
          </div>
       </header>
       <!-- //header -->
-      <!-- about breadcrumb -->
-      <!-- //about breadcrumb -->
+      &nbsp;&nbsp;&nbsp;
       <section class="w3l-blog-single" id="blog">
       <section class="w3l-blog-single1 py-5">
          <div class="container py-lg-5">
@@ -128,87 +110,90 @@
                   <li class="design">${productDes.product_tag}</li>
                </ul>
                <h3 class="hny-title mt-3">겨울 포근 조끼  </h3>
-               
-                  <h4>&nbsp;</h4>
-                  <table>
-                     <tr>
-                        <td>
-                           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" align="center" data-interval="false">
-                              <ol class="carousel-indicators">
-                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                              </ol>
-                              <div class="carousel-inner" >
-                                 <div class="carousel-item active" >
-                                    <img class="d-block w-100" src="assets/images/g10-6.jpg" height="400px" alt="First slide">
-                                 </div>
-                                 <div class="carousel-item" >
-                                    <img class="d-block w-100" src="assets/images/g10-15.jpg" height="400px" alt="Second slide">
-                                 </div>
-                                 <div class="carousel-item" >
-                                    <img class="d-block w-100" src="assets/images/g10-1.jpg" height="400px" alt="Third slide">
-                                 </div>
+               <h4>&nbsp;</h4>
+               <table>
+                  <tr>
+                     <td>
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" align="center" data-interval="false">
+                           <ol class="carousel-indicators">
+                              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                           </ol>
+                           <div class="carousel-inner" >
+                              <div class="carousel-item active" >
+                                 <img class="d-block w-100" src="assets/images/g10-6.jpg" height="400px" alt="First slide">
+                              </div>
+                              <div class="carousel-item" >
+                                 <img class="d-block w-100" src="assets/images/g10-15.jpg" height="400px" alt="Second slide">
+                              </div>
+                              <div class="carousel-item" >
+                                 <img class="d-block w-100" src="assets/images/g10-1.jpg" height="400px" alt="Third slide">
                               </div>
                            </div>
-                  </table>
-                  <!--img src="assets/images/g10-1.jpg" width="350" height="450"-->
-                  
-                  <td align="center">
-                     <form name="addProductsInCart" id="addProductsInCart" method="post" action="cart">
-                     	<input name="product_name" type="hidden" value="${productDes.product_name}">
-                     	<input name="product_code" type="hidden" value="${productDes.product_code}">
-                     	<input name="product_price" type="hidden" value="${productDes.product_price}">
-                     	<input name="product_content" type="hidden" value="${productDes.product_content}">
-                     	<input name="product_image" type="hidden" value="${productDes.product_image}">
-                     	<input name="member_number" type="hidden" value="${productDes.member_number}">
-	                        <table class="table" >
-	                           <tr>
-		                           <td>상품명</td>
-		                           <td>${productDes.product_name}</td>
-	                           </tr>
-	                           <tr>
-		                           <td>가격</td>
-		                           <td>${productDes.product_price}</td>
-	                           </tr>
-	                           <td>수량 선택 &nbsp;</br></td>
-	                           <td>
-	                           	<input type="number" id="product_amount" name="product_amount"
-	                          	value="${productDes.product_amount}" step="1" min="1" max="10">
-	                           	&nbsp;</br>
-	                           </td>
-	                           <tr>
-	                           	<td>&nbsp;Size 선택 &nbsp;</br></td>
-	                           	<td>&nbsp;<select name="product_size" align="center" >==$0
-	                           		   <option value="선택해주세요" selected="selected">Size를 선택해주세요</option>
-			                           <option value="S 핑크">S 핑크</option>
-			                           <option value="M 핑크">M 핑크</option>
-			                           <option value="S 아이보리">S 아이보리</option>
-			                           <option value="M 아이보리">M 아이보리</option>
-			                           <option value="S 민트">S 민트</option>
-			                           <option value="M 민트">M 민트</option>
-			                           <option value="S 퍼플">S 퍼플</option>
-			                           <option value="M 퍼플">M 퍼플</option>
-		                           	</select>&nbsp;
-	                           	</td> &nbsp;
-	                           </tr></br></br>
-	                           <td colspan="4">
-	                              &nbsp;
-	                              <input type="submit" style="text-align:left;" value="장바구니에 담기">
-	                              <!--input type="submit" value="리뷰 올리기" class="btn btn-style btn-primary"-->
-	                              </br>
-	                              </br>
-	                              <a href="product?catgo_code=9">상품목록</a>
-	                              <input type="checkbox" name="" id="btn" />
-			                     <label class="container" for="btn"></label>
-			                        <a href="gallay.html" target="_blank"></a>
-			                        <td>
-			                        <a href="javascript:void(0);" class="btn-like">💛</a>
-			                     </td>
-	                           </td>
-	                        </table>
-                        </form>
+                        </div>
+               </table>
+               <!--img src="assets/images/g10-1.jpg" width="350" height="450"-->
+               <td align="center">
+                  <form name="addProductsInCart" id="addProductsInCart" method="post" action="cart?catgo_code=9">
+                     <input name="product_name" type="hidden" value="${productDes.product_name}">
+                     <input name="product_code" type="hidden" value="${productDes.product_code}">
+                     <input name="product_price" type="hidden" value="${productDes.product_price}">
+                     <input name="product_content" type="hidden" value="${productDes.product_content}">
+                     <input name="product_image" type="hidden" value="assets/images/${productDes.product_image}">
+                     <table class="table" >
+                        <tr>
+                           <td>상품명</td>
+                           <td>${productDes.product_name}</td>
+                        </tr>
+                        <tr>
+                           <td>가격</td>
+                           <td>${productDes.product_price}</td>
+                        </tr>
+                        <td>수량 선택 &nbsp;</br></td>
+                        <td>
+                           <input type="number" id="product_amount" name="product_amount"
+                           class="ui selection dropdown"
+                              value="${productDes.product_amount}" step="1" min="1" max="10">
+                           &nbsp;</br>
                         </td>
+                        <tr>
+                           <td>&nbsp;Size 선택 &nbsp;</br></td>
+                           <td>
+                              &nbsp;
+                              
+                              <select name="product_size" align="center" class="ui selection dropdown" >
+                                 ==$0
+                                 <option class="item" value="선택해주세요" selected="selected">Size를 선택해주세요</option>
+                                 <option class="item" value="S 핑크">S 핑크</option>
+                                 <option class="item" value="M 핑크">M 핑크</option>
+                                 <option class="item" value="S 아이보리">S 아이보리</option>
+                                 <option class="item" value="M 아이보리">M 아이보리</option>
+                                 <option class="item" value="S 민트">S 민트</option>
+                                 <option class="item" value="M 민트">M 민트</option>
+                                 <option class="item" value="S 퍼플">S 퍼플</option>
+                                 <option class="item" value="M 퍼플">M 퍼플</option>
+                              </select>
+                              &nbsp;
+                           </td>
+                           &nbsp;
+                        </tr>
+                        </br></br>
+                        <td colspan="4">
+                           &nbsp;
+                           <input type="submit" style="text-align:left;" value="장바구니에 담기" onclick="Confirm();" class="ui button">
+                           </br>
+                           <script>
+                              function Confirm(){
+                              Swal.fire('장바구니에 담겼습니다.')
+                              }
+                           </script>
+                           </br>
+                           <a href="product?catgo_code=9" class="ui button">상품목록</a>
+                        </td>
+                     </table>
+                  </form>
+               </td>
             </div>
          </div>
          <div class="text-bg-image">
@@ -227,9 +212,11 @@
                   <p class="text2-text2 mt-2" align="center">
                <a align="center">안녕하세요~~!💕</br><p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
                With My Pet 입니다! </br><p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-               베이직한 디자인과 컬러로 </br><p>&nbsp;&nbsp;&nbsp;&nbsp;</p>오랫동안 착용해도 질리지 않는 </br> <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>기본 아이템이에요^^*</br><p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+               베이직한 디자인과 컬러로 </br><p>&nbsp;&nbsp;&nbsp;&nbsp;</p>오랫동안 착용해도 질리지 않는 </br> 
+               <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>기본 아이템이에요^^*</br><p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
                <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-               모든 의류는 스판끼 있는 원단을 사용해서 입고 </br> <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>벗기기 편함은 물론아이들이 입었을때</br><p>&nbsp;&nbsp;&nbsp;&nbsp;</p> 활동하기도 편하답니다.</br>
+               모든 의류는 스판끼 있는 원단을 사용해서 입고 </br> <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>벗기기 편함은 물론아이들이 입었을때</br>
+               <p>&nbsp;&nbsp;&nbsp;&nbsp;</p> 활동하기도 편하답니다.</br>
                </a>
             </h4>
             </p>
@@ -288,8 +275,7 @@
             </div>
          </div>
       </section>
-      <!-- text-styles-33 -->
-      <!-- /text-styles-33 -->
+     
       <!-- text -->
       <section class="w3l-blog-single3">
       <div class="text-element-9">
@@ -343,12 +329,10 @@
                <div class="text-styles-top-30">
                   <h3 class="title-blog mb-4">최근 상품 리뷰 </h3>
                   <div>
-                     
-                     <div class="media-body">
+                   <div class="media-body">
                         <c:forEach items="${reviewCon}" var="reviewCon" varStatus="status">
-                        <div class="img-circle">
-                        <img src="assets/images/g10-12.jpg" class="mr-3" alt="리뷰 상품 사진">
-                     		</div>
+                        <div class="img-circle"> 
+                        <img src=${mvo.member_number}  alt="리뷰 상품 사진" id="col"></div>
                            <input type="hidden" name="member_number" value="member_number">
                            <h5 class="mt-0">${reviewCon.review_subject}</h5>
                            <span class="time">${reviewCon.review_message}</span>
@@ -357,14 +341,13 @@
                            <input type="hidden" name="catgo_code" value="catgo_code">
                            <a href="#reply-form" class="reply">Reply</a></br>
                            <!-- status.index: ${status.index}  -->
-                        </c:forEach>
-                     </div>
+                        </c:forEach>  
                   </div>
+                  
                </div>
             </div>
          </div>
       </section>
-      <!-- /text-styles-30 -->
       <!-- /text-styles-30 -->
       <section class="w3l-blog-single5">
          <div class="grid-main py-3">
@@ -428,6 +411,7 @@
             </div>
          </div>
       </section>
+      
       <!-- form 29 block -->
       <section class="w3l-blog-single6" id="reply-form">
          <div class="form-29 py-5">
@@ -576,10 +560,8 @@
       <!-- Template JavaScript -->
       <script src="assets/js/jquery-3.3.1.min.js"></script>
       <script src="assets/js/theme-change.js"></script>
-      
       <!--/MENU-JS-->
       <script language="javascript">
-    
          $(window).on("scroll", function () {
            var scroll = $(window).scrollTop();
          
@@ -591,7 +573,7 @@
          });
          
          //Main navigation Active Class Add Remove
-         $('.navbar-toggler').on("click", function () {
+         $(".navbar-toggler").on("click", function () {
            $("header").toggleClass("active");
          });
          $(document).on("ready", function () {
@@ -605,34 +587,14 @@
            });
          });
          
-         /* function check()
-         {
-          /* for(var i=0; i<document.input.elements.length; i++)
-         {
-          if(document.input.elements[i].value == "")
-         {
-          alert("모든 값을 입력 하셔야 합니다. ");
-         return false;
-         }
-         } */
+       
          document.getElementById("reviewform").submit();
          }
-         
-         function check2()
-         {
-            /* for(var i=0; i<document.input.elements.length; i++)
-         {
-            if(document.input.elements[i].value == "")
-         {
-            alert("모든 값을 입력 하셔야 합니다. ");
-         return false;
-         }
-         } */
          document.getElementById("productOrderList").submit();
-           } */
+           } 
            
           function getItem(){
-        	   $("#selectBox option:seleted").text();
+            $("#selectBox option:seleted").text();
            }
          	
          

@@ -36,6 +36,7 @@ vertical-align: middle;
 	   <!-- google fonts --> 
 	  <!-- Template CSS -->
 	  <link rel="stylesheet" href="../assets/css/login.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	  <!-- Template CSS -->
 	</head>
 
@@ -131,13 +132,15 @@ vertical-align: middle;
                   <!--<form action="https://sendmail.w3layouts.com/submitForm" method="post">-->
                   <form action="signup.do" method="post">
                       <div class="input-wrap">
-                          <input type="email" class="form-control" name="member_email" id="w3lName" placeholder="E-MAIL"
+                          <input type="email" class="form-control" name="member_email" id="member_email" placeholder="E-MAIL"
+                              required=""> 
+                          <input type="password" class="form-control" name="member_password" id="member_password1" placeholder="PASSWORD"
                               required="">
-                          <input type="text" class="form-control" name="member_password" id="w3lSender" placeholder="PASSWORD"
+                          <input type="password" class="form-control" name="member_password" id="member_password2" placeholder="PASSWORDChk"
                               required="">
-                          <input type="text" class="form-control" name="member_name" id="w3lSubject" placeholder="NAME"
+                          <input type="text" class="form-control" name="member_name" id="member_name" placeholder="NAME"
                               required="">
-                          <input type="text" class="form-control" name="member_address" id="w3lMessage" placeholder="ADRESS"
+                          <input type="text" class="form-control" name="member_address" id="member_address" placeholder="ADRESS"
                               required="">
                       </div>
                      
@@ -148,36 +151,51 @@ vertical-align: middle;
       </div>
   </div>
 </section>
-		
-	    <!--
-			<h1>회원가입</h1>
-			<form action="/login-index" method="post">
-				<table>
-					<tr>
-						<th>E-MAIL</th>
-						<td><input name="email" type="text"></td>
-					</tr>
-					<tr>
-						<th>PASSWORD</th>
-						<td><input name="password" type="password"></td>
-					</tr>
-					<tr>
-						<th>이름</th>
-						<td><input name="name" type="text"></td>
-					</tr>
-					<tr>
-						<th>주소</th>
-						<td><input name="address" type="text"></td>
-					</tr>
-				</table>
-				
-				<input type="submit" value="회원가입"/>
-				       
-			</form>
-			-->
+
 
 		</div>
 	</body>
+	
+		<script>
+
+		$("#member_email").blur(function() {
+			var email = document.getElementById("member_email").value;
+			if(email == ""){
+				alert("이메일에는 공백이 들어갈수 없습니다ㅠㅠ");	
+			} else{
+				$.ajax({
+					url : "mailChk.do",
+					type: 'post',
+					async: false,
+					data:{
+						email:email
+					},
+					success : function(data) {		
+						if(data == 1){
+							alert("이메일이 존재합니다. 다른 이메일을 입력해주세요.");
+							
+						}else{
+							alert("사용가능한 이메일 입니다!");
+							$("#member_password1").focus();
+						}
+					}
+				})
+			}
+		});	
+		
+		$(function(){
+			//비밀번호 확인
+			$('#member_password2').blur(function(){
+			   if($('#member_password1').val() != $('#member_password2').val()){
+			    	if($('#member_password2').val()!=''){
+				    alert("비밀번호가 일치하지 않습니다.");
+			    	    $('#member_password2').val('');
+			          $('#member_passwordw2').focus();
+			       }
+			    }
+			})  	   
+		});
+	</script>
 </html>
 
 

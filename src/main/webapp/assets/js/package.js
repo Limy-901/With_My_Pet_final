@@ -6,7 +6,7 @@ Package.describe({
   name    : 'semantic:ui-css',
   summary : 'Semantic UI - CSS Release of Semantic UI',
   version : '2.4.1',
-  git     : 'git://github.com/Semantic-Org/Semantic-UI-CSS.git',
+  git     : 'git://github.com/Semantic-Org/Semantic-UI-CSS.git'
 });
 
 Package.onUse(function(api) {

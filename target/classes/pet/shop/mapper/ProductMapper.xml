@@ -25,7 +25,8 @@
 	select count(product_code) from PRODUCT where ${catgo} like '%'||#{keyword}||'%'
 	</select>
 	<insert id="insert" parameterType="Product">
-		insert into PRODUCT values(PRODUCT_SEQ.nextval, #{catgo_code}, #{product_name}, #{product_price}, #{product_content}, #{product_tag}, SYSDATE, #{product_like}, #{product_image}, #{review_number})
+		insert into PRODUCT values(PRODUCT_SEQ.nextval, #{catgo_code}, #{product_name}, 
+		#{product_price}, #{product_content}, #{product_tag}, SYSDATE, #{product_like}, #{product_image}, #{review_number})
 	</insert>
 	<select id="listProduct" resultType="Product" parameterType="long">
 	   <!--  select * from PRODUCT where CATGO_CODE= #{catgo_code}-->
@@ -63,5 +64,7 @@
 		#{product_size}
 		)
 	</insert>
-	
+	<select id="contentProduct" parameterType="long" resultType="Product">
+	select * from PRODUCT natural join PRODUCT_PIC where catgo_code=#{catgo_code}
+	</select>
 </mapper>

@@ -1,22 +1,33 @@
 package pet.shop.controller;
+
+
 import java.util.ArrayList;
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import lombok.extern.log4j.Log4j;
 import pet.shop.domain.Cart;
+import pet.shop.domain.OrderSu;
 import pet.shop.domain.Pay;
 import pet.shop.domain.Product;
 import pet.shop.service.CartService;
 import pet.shop.service.ProductService;
+
+
 @Log4j
 @Controller
 public class CartController {
@@ -28,13 +39,11 @@ public class CartController {
 	private CartService service;
 	@Resource(name="ProductServiceImpl")
 	private ProductService service2;
-	
-	
+
 	
 	//리스트 불러오기
 	@GetMapping("/del")
 	public String cart(Cart cart,HttpSession session,int idx) throws Exception {
-		log.info("cartController 장바구니");
 		log.info("##여기"+idx);
 		ArrayList<Cart> cartSession = (ArrayList<Cart>)session.getAttribute("cartLists");
 		cartSession.remove(idx);
@@ -46,7 +55,6 @@ public class CartController {
 	@PostMapping("/cart")//전송된 상품 번호를 받는다.
 	public ModelAndView addProductsInCart(HttpServletRequest request, Cart cart,
 	HttpServletResponse response) throws Exception{
-		log.info("cartController 장바구니 갖고왔다");
 		log.info("##가져온 카트값"+cart);
 		HttpSession session =request.getSession();
 		ArrayList<Cart> cartLists = new ArrayList<Cart>();
@@ -82,7 +90,7 @@ public class CartController {
 			}
 			session.setAttribute("viewlists", viewlists);
 			//추가된 viewlists를 이제 session에 넣어준다.
-			log.info("$$$$viewlists:"+viewlists);
+			log.info("$$viewlists:"+viewlists);
 			ModelAndView mvvv = new ModelAndView("/shop/cart","viewlists",viewlists);
 			return mvvv;
 		}
@@ -94,28 +102,33 @@ public class CartController {
 		ArrayList<Pay> pay = service.selectPay(member_number);
 		return "/shop/order";
 	}
+	
+	@ResponseBody
 	@PostMapping("/order")
-	public ModelAndView order(HttpSession session,int member_number) throws Exception {
-		log.info("##오더(결제)post()로 왔다.");
+	public ModelAndView order(HttpSession session, String buyer_name, long buyer_code, String name, 
+			String buyer_addr, String buyer_email, long amout
+			) throws Exception{
+			log.info("buyer_name: "+buyer_name+"name: "+name);
+			//가져온 값을 orderSu에 넣어주기.
+			OrderSu ordersu = new OrderSu();
+			ordersu.setProduct_code(buyer_code);
+			ordersu.setOrdersu_name(buyer_name);
+			ordersu.setOrdersu_addr(buyer_addr);
+			ordersu.setOrdersu_email(buyer_email);
+			//넣어진 값의 ordersu를 DB에 insert해주기.
+			service.insertOrderSu(ordersu);
+			session.setAttribute("ordersu", ordersu);
+			log.info("ordersu:"+ordersu);
+			ModelAndView mv = new ModelAndView("/shop/order","ordersu",ordersu);
+			return mv;
+			}
+	
+	@GetMapping("/orderSu")
+	public ModelAndView orderSu(HttpSession session, int member_number) throws Exception{
 		ArrayList<Pay> payUpdate = service.selectPay(member_number);
 		session.setAttribute("pay", payUpdate);
 		log.info("오더(결제)post() pay: "+payUpdate);
-		ModelAndView mv = new ModelAndView("/shop/order","	",payUpdate);
-		return mv;
+		ModelAndView mv = new ModelAndView("/shop/orderSu","pay",payUpdate);
+		return mv;		
+		}
 	}
-	
-	@RequestMapping("/orderSu")
-	public ModelAndView orderSu(HttpSession session,Pay pay, HttpServletRequest request, int member_number) throws Exception {
-		log.info("##결제완료 화면으로 옴");
-		HttpSession session1 =request.getSession();
-		ArrayList<Pay> payUpdate = new ArrayList<Pay>();
-		ArrayList<Pay> paySession = (ArrayList<Pay>) session1.getAttribute("payUpdate"); 
-		payUpdate.add(pay);
-		Pay payOne = service.selectPayOne(member_number);
-		//service.updatePayS(pay);
-		//session.setAttribute("pay",payUpdate);
-		log.info("payUpdate:"+paySession);
-		ModelAndView mv = new ModelAndView("/shop/orderSu","payOne",payOne);
-		return mv;
-	}
-}
