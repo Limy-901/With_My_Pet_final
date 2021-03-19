@@ -34,12 +34,16 @@
 		<!-- 멤버 -->
 		<typeAlias alias="member" type="pet.member.vo.MemberVO"/>
 		<typeAlias alias="pet_mypage" type="pet.member.vo.MypagePetVO"/>
+		<typeAlias alias="follow" type="pet.member.vo.FollowVO"/>
 		<!-- 어드민 -->
 		<typeAlias alias="WeeklyData" type="pet.admin.vo.WeeklyData"/>
 		<typeAlias alias="memberListResult" type="pet.admin.vo.MemListResult"/>
 		<typeAlias alias="memberOption" type="pet.admin.vo.MemberOption"/>
 		<typeAlias alias="Qna" type="pet.admin.vo.Qna"/>
 		<typeAlias alias="memberWalkChart" type="pet.admin.vo.MemberWalkChart"/>
+		<typeAlias alias="BestSeller" type="pet.admin.vo.BestSeller"/>
+		<typeAlias alias="PayData" type="pet.admin.vo.PayData"/>
+		<typeAlias alias="OrderStatus" type="pet.admin.vo.OrderStatus"/>
 		<!-- 메시지 -->
 		<typeAlias alias="msg" type="pet.message.vo.Msg"/>
 		<typeAlias alias="memberReview" type="pet.message.vo.MemberReview"/>

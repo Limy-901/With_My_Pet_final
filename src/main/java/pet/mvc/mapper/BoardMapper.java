@@ -44,7 +44,7 @@ public interface BoardMapper {
 	
 	int divideLike(BoardLike boardLike);
 
-
+	List<Board> getRecent();
 	int rewriteCmt(BoardCmt boardCmt);
 	
 }

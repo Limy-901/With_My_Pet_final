@@ -9,12 +9,11 @@
       <title>With My Pet | 쇼핑 상세페이지 </title>
       <!-- google fonts -->  
       <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="../assets/css/productDes.css">
       <link rel="stylesheet" href="../assets/css/semantic.min.css">
       <link rel="stylesheet" href="../assets/css/semantic2.css">
       <!-- google fonts --> 
-      <!-- Template CSS -->
-      <link rel="stylesheet" href="assets/css/productDes.css">
-      <!-- Template CSS -->
+      
    </head>
    <body>
       <!--header-->
@@ -24,10 +23,6 @@
                <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
                </a>
                </h1>
-               <!-- if logo is image enable this   
-                  <a class="navbar-brand" href="#index.html">
-                      <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-                  </a> -->
                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
                   data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                   aria-label="Toggle navigation">
@@ -321,7 +316,7 @@
       <!-- //text -->
       <!-- text-styles-30 -->
       <section class="w3l-blog-single4">
-         <div class="text-styles-30_sur py-5">
+         <div class="text-styles-30_sur py-5" style=" text-align: left">
          <div class="container py-lg-3">
             <div class="text-styles-top-30">
                <h3 class="title-blog mb-4">리뷰</h3>
@@ -340,25 +335,7 @@
                            <a href="#reply-form" class="reply">Reply</a>
                            <!-- status.index: ${status.index}  -->
                         </c:forEach>
-                  <div class="media-body">
-                  <h5 class="mt-0">러블리유민</h5>
-                  <span class="time">210205</span>
-                  <p>아이가 너무 좋아해요</p>
-                  <a href="#reply-form" class="reply">Reply</a>
-                  <div class="media mt-4">
-                  <a class="" href="#">
-                  <div class="img-circle img-circle-sm">
-                  <img src="assets/images/jong.jpg" class="mr-3" alt="...">
-                  </div>
-                  </a>
-                  <div class="media-body">
-                  <h5 class="mt-0">쫑범</h5>
-                  <span class="time">210102</span>
-                  <p>너무 푹신하고 좋아요</p>
-                  <a href="#reply-form" class="reply">Reply</a>
-                  </div>
-                  </div>
-                  </div>
+                  
                   </div>
                </div>
             </div>

@@ -1,40 +1,24 @@
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+    
 <!doctype html>
-<html>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<html lang="en">
 
-<script>
-	$(document)
-			.ready(
-					function() {
-						$("#google-login")
-								.click(
-										function() {
-											window
-													.open("https://accounts.google.com/o/oauth2/v2/auth?"
-															+ "client_id=1074707418128-sgd1uis9lslvip02f4a6gnadnog15c88.apps.googleusercontent.com"
-															+ "&redirect_uri=http://localhost:8080/login/google/auth"
-															+ "&response_type=code"
-															+ "&scope=email%20profile%20openid"
-															+ "&access_type=offline");
-										});
-					});
-</script>
-<head>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Pooch Care an Animals Category Bootstrap Responsive Template | Home </title>
-   <!-- google fonts -->  
-   <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>:: With My Pet :: 함께 산책해요 </title>
    <!-- google fonts --> 
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="../assets/css/login.css">
-  <!-- Template CSS -->
+      <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/icon/footprint16.png">
+   <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+   <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" href="assets/plugins/toastr/css/toastr.min.css">
+   <link rel="stylesheet" href="../assets/css/login.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </head>
 
 	<style>
@@ -42,79 +26,81 @@
 	  		margin-top: 10px;
 	  	}
 	</style>
-
 <body>
+
   <!--header-->
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <h1><a class="navbar-brand" href="index.html">
-               Pooch Care
-          </a></h1>
-          <!-- if logo is image enable this   
-      <a class="navbar-brand" href="#index.html">
-          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-      </a> -->
+        <a href="/"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
+
           <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
               data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
               aria-label="Toggle navigation">
               <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
               <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-              </span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-              <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="about.html">About</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="services.html">Services</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="gallery.html">Gallery</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Blog<span class="fa fa-angle-down"></span>
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                          <a class="dropdown-item" href="blog.html">Blog Posts</a>
-                          <a class="dropdown-item" href="blog-single.html">Blog single</a>
-						   <a class="dropdown-item" href="landing-single.html">Landing Page</a>
-                      </div>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="login.do">Login</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="agree.do">Signup</a>
-                  </li>
-              </ul>
-          </div>
-          <!-- toggle switch for light and dark theme -->
-          <div class="mobile-position">
-              <nav class="navigation">
-                  <div class="theme-switch-wrapper">
-                      <label class="theme-switch" for="checkbox">
-                          <input type="checkbox" id="checkbox">
-                          <div class="mode-container">
-                              <i class="gg-sun"></i>
-                              <i class="gg-moon"></i>
-                          </div>
-                      </label>
-                  </div>
-              </nav>
-          </div>
-          <!-- //toggle switch for light and dark theme -->
-      </nav>
-  </div>
-</header>
-&nbsp;
+			 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+	              <ul class="navbar-nav ml-auto">
+	                  <li class="nav-item active">
+	                      <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+	                  </li>
+	                  
+	                  <li class="nav-item dropdown">
+	                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+	                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
+	                         	산 책 <span class="fa fa-angle-down"></span>
+	                      </a>
+	                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
+	                      	<a class="dropdown-item" href="walk/list.do?cp=1" >산책모집 </a>
+	                          <a class="dropdown-item" href="walk/board.do">산책후기 </a>
+	                      </div>
+	                  </li>
+	                  <li class="nav-item dropdown">
+	                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+	                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
+	                         	쇼 핑 <span class="fa fa-angle-down"></span>
+	                      </a>
+	                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+	                      	<a class="dropdown-item" href="product?catgo_code=9">쇼핑하기</a>
+	                          <a class="dropdown-item" href="cart">장바구니</a>
+	                          <a class="dropdown-item" href="order">결제</a>
+	                      </div>
+	                  </li>
+	                  <li class="nav-item dropdown">
+	                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+	                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
+	                         	 커뮤니티 <span class="fa fa-angle-down"></span>
+	                      </a>
+	                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+	                          <a class="dropdown-item" href="board/list.do">공지사항</a>
+	                          <a class="dropdown-item" href="board/list.do">일상이야기</a>
+	                      </div>
+	                  </li>
+	                  <li class="nav-item">
+	                      <a class="nav-link" href="/member/agree.do" style="font-family: 'Spoqa Han Sans Neo';">회원가입</a>
+	                  </li>              
+	              </ul>
+	          </div>
+	          <!-- toggle switch for light and dark theme -->
+	          <div class="mobile-position">
+	              <nav class="navigation">
+	                  <div class="theme-switch-wrapper">
+	                      <label class="theme-switch" for="checkbox">
+	                          <input type="checkbox" id="checkbox">
+	                          <div class="mode-container">
+	                              <i class="gg-sun"></i>
+	                              <i class="gg-moon"></i>
+	                          </div>
+	                     </label>
+	                 </div>
+	             </nav>
+	             </div>
+	           </nav>
+	       </div>
+	</header>
+
 
 
 <!-- //header -->
@@ -146,14 +132,14 @@ vertical-align: middle;
 
 		
 		
-	<!-- //header -->
-		<div style="text-align:center">
+		<!-- //header -->
+	<div style="text-align:center">
 		
 		
-		<section class="w3l-contact-1 pt-5"id="contact">
+<section class="w3l-contact-1 pt-5"id="contact">
   <div class="contacts-9 pt-lg-4">
       <h5 class="sub-title text-center mb-2">With Us!</h5>
-      <h3 class="hny-title text-center mb-5">Log In</h3>
+      <h3 class="hny-title text-center mb-5">로그인</h3>
       <div class="container pb-lg-4 modify-container">
           <div class="d-grid">
            
@@ -173,47 +159,17 @@ vertical-align: middle;
                             
                                          
                      <div>
-                      <button type="submit" class="btn btn-primary mt-4">로그인</button>
+                      <button onclick="loginCheck()"  id="loginCheck" class="btn btn-primary mt-4">로그인</button>
                       </div>       
                       
                   </form>
-          </div>
-     </div>
-    </div>
-  </div>
-</section>
-              
-<!-- 네이버 -->
-		<div class="sns-buttons">
-		
-			<div class="SnsLoginBtn">
-				<a input type="button" id="naver-login" value="naver" class="sns-login-btn">			
-						<img src="../assets/images/naver_login2.PNG"> 			
-				</a>
-			</div>
-					
-			
-			
-<!-- 카카오 -->			
-			<div class="SnsLoginBtn">
-				<a input type="button" id="kakao-login" value="kakao" class="sns-login-btn">
-					<img src="../assets/images/kakao_login_large_narrow.png">
-				</a>
-			</div>
-			
-			
-
-<!-- 구글 -->
-			<div class="SnsLoginBtn">
-				<a input type="button" id="google-login" value="google" class="sns-login-btn">
-					<img src="../assets/images/google_login.png" >
-				</a>
-			</div>
-			
-		</div>
-
-
-
+         	 </div>
+    		 </div>
+   			 </div>
+ 		 </div>
+		</section>
 	</div>
 </body>
+
+
 </html>

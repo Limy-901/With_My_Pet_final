@@ -8729,7 +8729,7 @@ button.bg-dark:focus {
 
 .pt-5,
 .py-5 {
-  padding-top: 3rem !important;
+  padding-top: 6rem !important;
 }
 
 .pr-5,
@@ -8737,10 +8737,7 @@ button.bg-dark:focus {
   padding-right: 3rem !important;
 }
 
-.pb-5,
-.py-5 {
-  padding-bottom: 3rem !important;
-}
+
 
 .pl-5,
 .px-5 {
@@ -14098,7 +14095,7 @@ li {
 a,
 a:hover {
   text-decoration: none;
-  color: #189A46;
+  color: #000000;
 }
 
 iframe {

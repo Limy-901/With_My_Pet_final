@@ -4,12 +4,16 @@
 
 <mapper namespace="pet.mvc.mapper.mypagePetMapper">
  
-   <!-- 강아지 정보 기입-->  
-   <insert id="petUpdateDo" parameterType="pet_mypage">
+   <!-- 강아지 정보 기입-->
+   <update id="petUpdateDo" parameterType="pet_mypage">
       <!-- 회원 가입 Insert -->
+      <!--
          INSERT INTO PET_MYPAGE
          VALUES(#{member_number},#{pet_name},#{pet_sex},#{pet_age},#{pet_walkarea},0,#{pet_fname},#{pet_ofname},#{pet_fsize})
-	</insert>
+       -->
+         UPDATE PET_MYPAGE
+      WHERE member_number = #{member_number}
+	</update>
 	
 	<!-- 강아지 정보 select -->
    <select id="petMypage" resultType="pet.member.vo.MypagePetVO" parameterType="int">

@@ -253,9 +253,9 @@ function goWrite(f) {
         
 		
 		<input type="text" name="post_subject"  class="form-control" value="제목"/><br>
-		<input type="text" name="post_tag"  class="form-control" value="${board.tag.post_subject}"/><br>
 		
-		<!-- <input type="text" name="tagString" placeholder="입력후 스페이스바를 눌러보세요"><br> -->
+		
+
 		<br> 
 		<textarea id="summernote" name="content" >${board.content}</textarea>
 		${board.board_name}

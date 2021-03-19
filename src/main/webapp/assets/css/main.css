@@ -18615,4 +18615,15 @@ li.design {
   }
 }
 
+.w3l-clients blockquote q::after{
+	font-size: 50px;
+	color: var(--primary-color);
+	line-height: .8;
+	padding-top: 8px;
+	font-weight: 600;
+	display: inline-block;
+	font-family: "Merriweather", serif;
+	
+}
+
 /*# sourceMappingURL=style-freedom.css.map */

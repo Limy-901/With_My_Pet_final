@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import = "java.util.Date, java.text.SimpleDateFormat" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 <%
@@ -21,6 +22,7 @@
     <link href="../assets/css/admin/style.css" rel="stylesheet">
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style>
 	canvas{
 		-moz-user-select: none;
@@ -72,99 +74,13 @@
                 <div class="header-right">
                     <ul class="clearfix">
                     	<!-- 새 문의글  -->
-                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                        <li class="icons dropdown">
+                        	<a href="../msg/chat.do">
                                 <i class="mdi mdi-email-outline"></i>
                                 <span class="badge badge-pill gradient-1">3</span>
                             </a>
-                            <div class="drop-down animated fadeIn dropdown-menu">
-                                <div class="dropdown-content-heading d-flex justify-content-between">
-                                    <span class="" style="font-family: 'Spoqa Han Sans Neo';">새 문의글</span>  
-                                    <a href="javascript:void()" class="d-inline-block">
-                                        <span style="font-family: 'Spoqa Han Sans Neo';"class="badge badge-pill gradient-1">3</span>
-                                    </a>
-                                </div>
-                                <div class="dropdown-content-body">
-                                    <ul>
-                                        <li class="notification-unread">
-                                            <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="../assets/images/admin/avatar/1.jpg" alt="">
-                                                <div class="notification-content">
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-heading">Saiful Islam</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-timestamp">08 Hours ago</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="notification-unread">
-                                            <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="../assets/images/admin/avatar/2.jpg" alt="">
-                                                <div class="notification-content">
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-heading">Adam Smith</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-timestamp">08 Hours ago</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-text">Can you do me a favour?</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="../assets/images/admin/avatar/3.jpg" alt="">
-                                                <div class="notification-content">
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-heading">Barak Obama</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-timestamp">08 Hours ago</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="../assets/images/admin/avatar/4.jpg" alt="">
-                                                <div class="notification-content">
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-heading">Hilari Clinton</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-timestamp">08 Hours ago</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-text">Hello</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                         </li>
-                        <!-- 확인 필요 사항 -->
-                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                <i class="mdi mdi-bell-outline"></i>
-                                <span class="badge badge-pill gradient-2">5</span>
-                            </a>
-                            <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
-                                <div class="dropdown-content-heading d-flex justify-content-between">
-                                    <span class="">확인사항</span>  
-                                    <a href="javascript:void()" class="d-inline-block">
-                                        <span class="badge badge-pill gradient-2">5</span>
-                                    </a>
-                                </div>
-                                <div class="dropdown-content-body">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
-                                                <div class="notification-content">
-                                                    <h6 class="notification-heading">산책 포인트 지급</h6>
-                                                    <span class="notification-text">Within next 5 days</span> 
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
-                                                <div class="notification-content">
-                                                    <h6 class="notification-heading">배송 현황 변경</h6>
-                                                    <span class="notification-text">One hour ago</span> 
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
+                        
                         <!-- 페이지 이동 네비 바 -->
                         <li class="icons dropdown d-none d-md-flex">
                             <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
@@ -202,7 +118,6 @@
                         </a>
                         <ul aria-expanded="false">
                         	<li><a href="memberList.do"style="font-family: 'Spoqa Han Sans Neo';">회원 목록</a></li>
-                        	<li><a href="memberMessage.do"style="font-family: 'Spoqa Han Sans Neo';">회원에게 메세지 전송</a></li>
                         </ul>
                     </li>
                     
@@ -228,32 +143,11 @@
                         </ul>
                     </li>
                     
-                    <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-graph menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">게시글</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="recentBoard.do"style="font-family: 'Spoqa Han Sans Neo';">최근 게시글</a></li>
-                            <li><a href="reportedPost.do"style="font-family: 'Spoqa Han Sans Neo';">신고글 목록</a></li>
-                        </ul>
-                    </li>
-                    
                     <li>
                         <a href="walkStatistic.do" aria-expanded="false">
                             <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">산책 통계</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="salesStatistic.do" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">매출 통계</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="postNotice.do" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">공지사항 작성</span>
-                        </a>
-                    </li>
-                    
                     
                 </ul>
             </div>
@@ -324,12 +218,6 @@
 	                        </div>
                         </div>    
 <script>
-	/* 최근 일주일 날짜 
-	var currentDay = new Date();  
-	var theYear = currentDay.getFullYear();
-	var theMonth = currentDay.getMonth();
-	var theDate  = currentDay.getDate();
-	var theDayOfWeek = currentDay.getDay();*/
 	var thisWeek = new Array();
 	var weekWalk = new Array();
 	var weekSale = new Array();
@@ -405,16 +293,20 @@
 	                        </div>
 		                </div>
 		            </div><br/><hr style="width:50%; margin:auto;"><br/><br/><br/>
+		            <c:forEach items="${indexData.bestSeller}" var="item" varStatus="status">
+		            	<input type="hidden" id="names${status.index}" value="${item.product_name}">
+		            	<input type="hidden" id="sales${status.index}" value="${item.count}">
+		            </c:forEach>
 <script>
 /*도넛 차트*/
 new Chart(document.getElementById("doughnutChart"), {
     type: 'doughnut',
     data: {
-      labels: ["상품1", "상품2", "상품3", "상품4", "상품5"],
+      labels: [$('#names0').val(), $('#names1').val(), $('#names2').val(), $('#names3').val(), $('#names4').val()],
       datasets: [{
           label: "Population (millions)",
           backgroundColor: ["#FFB446", "#FEE4B1","#AFD4DD","#6EC5CE","#999999"],
-          data: [2478,5267,734,784,433]
+          data: [$('#sales0').val(), $('#sales1').val(), $('#sales2').val(), $('#sales3').val(), $('#sales4').val()]
         }]
     },
     options: {
@@ -445,110 +337,45 @@ new Chart(document.getElementById("doughnutChart"), {
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            
+                                            	<c:forEach items="${indexData.payData}" var="pay" varStatus="status">
                                                 <tr style="font-family: 'Spoqa Han Sans Neo';">
-                                                    <td><img src="../assets/images/admin/avatar/1.jpg" class=" rounded-circle mr-3" alt="">Sarah Smith</td>
-                                                    <td>iPhone X</td>
+                                                    <td><img src="${indexData.payPicList[status.index]}" class=" rounded-circle mr-3" alt="">${pay.member_name}</td>
+                                                    <td>${pay.product_name}</td>
                                                     <td>
-                                                        <span>United States</span>
+                                                        <span>${pay.member_address}</span>
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <div class="progress" style="height: 6px">
-                                                                <div class="progress-bar bg-success" style="width: 50%"></div>
-                                                            </div>
+                                                            
+                                                            	<c:choose>
+                                                            		<c:when test="${!empty pay.pcount}">
+                                                            			<span>결제대기</span>
+                                                            		</c:when>
+                                                            		<c:otherwise>
+                                                            			<span><i class="fa fa-circle-o text-success  mr-2"></i>결제완료</span>
+                                                            		</c:otherwise>
+                                                                </c:choose>
+                                                                
                                                         </div>
                                                     </td>
-                                                    <td><i class="fa fa-circle-o text-success  mr-2"></i> Paid</td>
+                                                    
+                                                    <c:choose>
+                                                		<c:when test="${pay.pay_method eq null}">
+                                                			<td></td>
+                                                		</c:when>
+                                                		<c:otherwise>
+                                                			<td>${pay.pay_method}</td>
+                                                		</c:otherwise>
+                                                    </c:choose>
+                                                    
                                                     <td>
                                                         <span>Last Login</span>
                                                         <span class="m-0 pl-3">10 sec ago</span>
                                                     </td>
                                                 </tr>
-                                                <tr style="font-family: 'Spoqa Han Sans Neo';">
-                                                    <td><img src="../assets/images/admin/avatar/2.jpg" class=" rounded-circle mr-3" alt="">Walter R.</td>
-                                                    <td>Pixel 2</td>
-                                                    <td><span>Canada</span></td>
-                                                    <td>
-                                                        <div>
-                                                            <div class="progress" style="height: 6px">
-                                                                <div class="progress-bar bg-success" style="width: 50%"></div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><i class="fa fa-circle-o text-success  mr-2"></i> Paid</td>
-                                                    <td>
-                                                        <span>Last Login</span>
-                                                        <span class="m-0 pl-3">50 sec ago</span>
-                                                    </td>
-                                                </tr>
-                                                <tr style="font-family: 'Spoqa Han Sans Neo';">
-                                                    <td><img src="../assets/images/admin/avatar/3.jpg" class=" rounded-circle mr-3" alt="">Andrew D.</td>
-                                                    <td>OnePlus</td>
-                                                    <td><span>Germany</span></td>
-                                                    <td>
-                                                        <div>
-                                                            <div class="progress" style="height: 6px">
-                                                                <div class="progress-bar bg-warning" style="width: 50%"></div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><i class="fa fa-circle-o text-warning  mr-2"></i> Pending</td>
-                                                    <td>
-                                                        <span>Last Login</span>
-                                                        <span class="m-0 pl-3">10 sec ago</span>
-                                                    </td>
-                                                </tr>
-                                                <tr style="font-family: 'Spoqa Han Sans Neo';">
-                                                    <td><img src="../assets/images/admin/avatar/6.jpg" class=" rounded-circle mr-3" alt=""> Megan S.</td>
-                                                    <td>Galaxy</td>
-                                                    <td><span>Japan</span></td>
-                                                    <td>
-                                                        <div>
-                                                            <div class="progress" style="height: 6px">
-                                                                <div class="progress-bar bg-success" style="width: 50%"></div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><i class="fa fa-circle-o text-success  mr-2"></i> Paid</td>
-                                                    <td>
-                                                        <span>Last Login</span>
-                                                        <span class="m-0 pl-3">10 sec ago</span>
-                                                    </td>
-                                                </tr>
-                                                <tr style="font-family: 'Spoqa Han Sans Neo';">
-                                                    <td><img src="../assets/images/admin/avatar/4.jpg" class=" rounded-circle mr-3" alt=""> Doris R.</td>
-                                                    <td>Moto Z2</td>
-                                                    <td><span>England</span></td>
-                                                    <td>
-                                                        <div>
-                                                            <div class="progress" style="height: 6px">
-                                                                <div class="progress-bar bg-success" style="width: 50%"></div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><i class="fa fa-circle-o text-success  mr-2"></i> Paid</td>
-                                                    <td>
-                                                        <span>Last Login</span>
-                                                        <span class="m-0 pl-3">10 sec ago</span>
-                                                    </td>
-                                                </tr>
-                                                <tr style="font-family: 'Spoqa Han Sans Neo';">
-                                                    <td><img src="../assets/images/admin/avatar/5.jpg" class=" rounded-circle mr-3" alt="">Elizabeth W.</td>
-                                                    <td>Notebook Asus</td>
-                                                    <td><span>China</span></td>
-                                                    <td>
-                                                        <div>
-                                                            <div class="progress" style="height: 6px">
-                                                                <div class="progress-bar bg-warning" style="width: 50%"></div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><i class="fa fa-circle-o text-warning  mr-2"></i> Pending</td>
-                                                    <td>
-                                                        <span>Last Login</span>
-                                                        <span class="m-0 pl-3">10 sec ago</span>
-                                                    </td>
-                                                </tr>
+                                                </c:forEach>
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -568,11 +395,9 @@ new Chart(document.getElementById("doughnutChart"), {
                         <div class="card">
                             <div class="card-body">
                                 <div class="text-center">
-                                    <img src="../assets/images/admin/users/8.jpg" class="rounded-circle" alt="">
-                                    
+                                    <img src="<c:url value="/img/${indexData.picList[status.index]}"/>" class="rounded-circle" alt="">
                                     <h5 class="mt-3 mb-1"style="font-family: 'Spoqa Han Sans Neo';">${member.member_name}</h5>
                                     <p class="m-0"style="font-family: 'Spoqa Han Sans Neo';">${member.member_address}</p>
-                                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
                                 </div>
                             </div>
                         </div>
@@ -582,20 +407,7 @@ new Chart(document.getElementById("doughnutChart"), {
                 </div><br/><br/><br/>
                 
             </div>
-            <!-- #/ container -->
         </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
-        
-        
-        <!--**********************************
-            Footer start
-        ***********************************-->
-        
-        <!--**********************************
-            Footer end
-        ***********************************-->
     </div>
     
     

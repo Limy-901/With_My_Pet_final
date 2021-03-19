@@ -8,6 +8,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/logos/logo-yellow.png">
     <link href="../assets/css/admin/style.css" rel="stylesheet">
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
 </head>
 <body>
 	<!-- 프리로더 -->
@@ -30,141 +34,6 @@
             </div>
         </div>
         <div class="header" style="background-color:#FFD687; margin-bottom: -1%;">    
-            <div class="header-content clearfix">
-                
-                <div class="nav-control">
-                    <div class="hamburger">
-                        <span class="toggle-icon"><i class="icon-menu"></i></span>
-                    </div>
-                </div>
-                <!-- 검색 -->
-                <div class="header-left">
-                    <div class="input-group icons" style="width:200%;">
-                        <input id="mainSearchKeyword" type="text" class="form-control" placeholder="검색어를 입력하세요." aria-label="Search Dashboard">
-                        <div class="drop-down animated flipInX d-md-none">
-                           <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1">
-                        	<a onclick="mainSearchCheck()"><i class="mdi mdi-magnify"></i></a>
-                        </span>
-                    </div>                    
-                </div>
-                <div class="header-right">
-                    <ul class="clearfix">
-                    	<!-- 새 문의글  -->
-                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                <i class="mdi mdi-email-outline"></i>
-                                <span class="badge badge-pill gradient-1">3</span>
-                            </a>
-                            <div class="drop-down animated fadeIn dropdown-menu">
-                                <div class="dropdown-content-heading d-flex justify-content-between">
-                                    <span class="" style="font-family: 'Spoqa Han Sans Neo';">새 문의글</span>  
-                                    <a href="javascript:void()" class="d-inline-block">
-                                        <span style="font-family: 'Spoqa Han Sans Neo';"class="badge badge-pill gradient-1">3</span>
-                                    </a>
-                                </div>
-                                <div class="dropdown-content-body">
-                                    <ul>
-                                        <li class="notification-unread">
-                                            <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="../assets/images/admin/avatar/1.jpg" alt="">
-                                                <div class="notification-content">
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-heading">Saiful Islam</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-timestamp">08 Hours ago</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="notification-unread">
-                                            <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="../assets/images/admin/avatar/2.jpg" alt="">
-                                                <div class="notification-content">
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-heading">Adam Smith</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-timestamp">08 Hours ago</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-text">Can you do me a favour?</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="../assets/images/admin/avatar/3.jpg" alt="">
-                                                <div class="notification-content">
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-heading">Barak Obama</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-timestamp">08 Hours ago</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="../assets/images/admin/avatar/4.jpg" alt="">
-                                                <div class="notification-content">
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-heading">Hilari Clinton</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-timestamp">08 Hours ago</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-text">Hello</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- 확인 필요 사항 -->
-                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                <i class="mdi mdi-bell-outline"></i>
-                                <span class="badge badge-pill gradient-2">5</span>
-                            </a>
-                            <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
-                                <div class="dropdown-content-heading d-flex justify-content-between">
-                                    <span class="">확인사항</span>  
-                                    <a href="javascript:void()" class="d-inline-block">
-                                        <span class="badge badge-pill gradient-2">5</span>
-                                    </a>
-                                </div>
-                                <div class="dropdown-content-body">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
-                                                <div class="notification-content">
-                                                    <h6 class="notification-heading">산책 포인트 지급</h6>
-                                                    <span class="notification-text">Within next 5 days</span> 
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
-                                                <div class="notification-content">
-                                                    <h6 class="notification-heading">배송 현황 변경</h6>
-                                                    <span class="notification-text">One hour ago</span> 
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- 페이지 이동 네비 바 -->
-                        <li class="icons dropdown d-none d-md-flex">
-                            <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
-                                <span>관리페이지</span>  <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
-                            </a>
-                            <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
-                                <div class="dropdown-content-body">
-                                    <ul>
-                                        <li><a href="../">메인화면</a></li>
-                                        <li><a href="../walk/list.do">산책</a></li>
-                                        <li><a href="../product">쇼핑</a></li>
-                                        <li><a href="../board/list.do">커뮤니티</a></li>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
         <div class="nk-sidebar" style="background-color:#FFD687;">           
             <div class="nk-nav-scroll" style="background-color:#FFD687;">
@@ -244,10 +113,10 @@
             <div class="card-body" >
                 <h3 style="font-family: 'Spoqa Han Sans Neo';text-align:center;">회원 목록</h3><br/>
                 <div class="table-responsive" style="width:85%; margin:auto;"> 
-                    <div class="custom-media-object-2" style="width:95%; margin:auto;">
+                    <div id="memList" class="custom-media-object-2" style="width:95%; margin:auto;">
                         
                         <!-- 회원 목록 -->
-                        <c:if test="${empty list}">
+                        <c:if test="${empty result.list}">
                         	<div class="media border-bottom-1 p-t-15" style="text-align:center;">
                             	<div class="media-body">
 	                                <div class="row">
@@ -257,72 +126,42 @@
                             </div>
                         </c:if>
                         
-                        <c:forEach items="${list.list}" var="member" varStatus="status">
+                        <c:forEach items="${result.list}" var="list" varStatus="status">
 	                        <div class="media border-bottom-1 p-t-15" style="text-align:center;">
-	                            <img class="mr-3 rounded-circle" src="../assets/images/admin/avatar/1.jpg" alt="">
+	                            <img class="mr-3 rounded-circle" src="${result.memberPic[status.index]}" alt="">
 	                            <div class="media-body">
 	                                <div class="row">
 	                                    <div class="col-lg-2">
-	                                        <h5 style="margin-top:2%; margin-bottom:2%;margin:auto;">${member.member_name}</h5>
-	                                        <p style="margin-bottom:2%;margin:auto;">${member.member_email}</p>
+	                                        <h5 style="margin-top:2%; margin-bottom:2%;margin:auto;">${list.member_name}</h5>
+	                                        <p style="margin-bottom:2%;margin:auto;">${list.member_email}</p>
 	                                    </div>
 	                                    <div class="col-lg-3">
-	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14">${member.member_address}</p>
+	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>주소</b><br/>${list.member_address}</p>
 	                                    </div>
 	                                    <div class="col-lg-1">
-	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>산책</b><br/>${list.memberOption[status.index].walk} 회</p>
+	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>산책</b><br/>${result.memberOption[status.index].walk} 회</p>
 	                                    </div>
 	                                    <div class="col-lg-1">
-	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>구매</b><br/>${list.memberOption[status.index].sale} 회</p>
+	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>구매</b><br/>${result.memberOption[status.index].sale} 회</p>
 	                                    </div>
 	                                    <div class="col-lg-1">
-	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>산책포인트</b><br/>${list.memberOption[status.index].point} 점</p>
+	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>산책포인트</b><br/>${result.memberOption[status.index].point} 점</p>
 	                                    </div>
 	                                    <div class="col-lg-2">
-	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>가입</b><br/>${member.member_date}</p>
+	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>가입</b><br/>${list.member_date}</p>
 	                                    </div>
 	                                    <div class="col-lg-2 text-right">
 	                                    	강제 탈퇴
-	                                        <span><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+	                                        <span><a onclick="memDelete(${list.member_number})" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
 	                                        <p class="f-s-13 text-muted">접속 : 2021.2월 21일</p>
 	                                    </div>
+
 	                                </div>
 	                            </div>
 	                        </div>
                         </c:forEach>
                         
                         
-                        <div class="media border-bottom-1 p-t-15" style="text-align:center;">
-                            <img class="mr-3 rounded-circle" src="../assets/images/admin/avatar/1.jpg" alt="">
-                            <div class="media-body">
-                                <div class="row">
-                                    <div class="col-lg-2">
-                                        <h5>John Tomas</h5>
-                                        <p>tomas@example.com</p>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <p class="text-muted f-s-14">서울시 서대문구 여기저기 이렇게 길게써도 되나 동~ 호까지 다 써도 됨</p>
-                                    </div>
-                                    <div class="col-lg-1">
-                                        <p class="text-muted f-s-14"><b>산책</b><br/>10 회</p>
-                                    </div>
-                                    <div class="col-lg-1">
-                                        <p class="text-muted f-s-14"><b>구매</b><br/>2 회</p>
-                                    </div>
-                                    <div class="col-lg-1">
-                                        <p class="text-muted f-s-14"><b>산책포인트</b><br/>3000 점</p>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <p class="text-muted f-s-14"><b>가입</b><br/>2021.02.02</p>
-                                    </div>
-                                    <div class="col-lg-2 text-right">
-                                    	회원 탈퇴
-                                        <span><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
-                                        <p class="f-s-13 text-muted">접속 : 2021.2월 21일</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -407,6 +246,71 @@
     <script src="../assets/js/admin/settings.js"></script>
     <script src="../assets/js/admin/gleek.js"></script>
     <script src="../assets/js/admin/styleSwitcher.js"></script>
-                    
+    <script src="../assets/plugins/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+    
+
+	function memDelete(member_number){
+		Swal.fire({
+			  title: '탈퇴 처리 하시겠습니까?',
+			  text: "되돌릴 수 없습니다! 신중하게 결정하세요!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '탈퇴',
+			  cancelButtonText: '취소'
+		}).then((result) => {
+		  if (result.value) {
+			  deleteMember(member_number);
+		  }
+		})
+	}
+	
+    function deleteMember(member_number){
+		alert(member_number);
+		$.ajax({
+			  url: "memberDelete.do",
+			  type: 'GET',
+			  data: { member_number: member_number },
+			  success : function(list){
+				  Swal.fire({
+					  position: 'top-end',
+					  icon: 'success',
+					  title: '회원읉 탈퇴처리했습니다.',
+					  showConfirmButton: false,
+					  timer: 1500
+				 })
+				  $('#memList').empty();
+				  var html = "";
+				  for(var i=0; i<list.list.length; i++){
+					  alert("안녕"+list.list[i].member_name);
+					  html += "<div class='media border-bottom-1 p-t-15' style='text-align:center;'>";
+					  html += "<img class='mr-3 rounded-circle' src='"+list.memberPic[i]+"' alt=''>";
+					  html += "<div class='media-body'><div class='row'><div class='col-lg-2'>";
+					  html += "<h5 style='margin-top:2%; margin-bottom:2%;margin:auto;'>"+list.list[i].member_name+"</h5>";
+					  html += "<p style='margin-bottom:2%;margin:auto;'>"+list.list[i].member_email+"</p></div>";
+					  html += "<div class='col-lg-3'>";
+					  html += "<p style='margin-top:2%; margin-bottom:2%;'class='text-muted f-s-14'><b>주소</b><br/>"+list.list[i].member_address+"</p></div>";
+					  html += "<div class='col-lg-1'>";
+					  html += "<p style='margin-top:2%; margin-bottom:2%;'class='text-muted f-s-14'><b>산책</b><br/>"+list.memberOption[i].walk+" 회</p>";
+					  html += "</div><div class='col-lg-1'>";
+					  html += "<p style='margin-top:2%; margin-bottom:2%;'class='text-muted f-s-14'><b>구매</b><br/>"+list.memberOption[i].sale+" 회</p>";
+					  html += "</div><div class='col-lg-1'>";
+					  html += "<p style='margin-top:2%; margin-bottom:2%;'class='text-muted f-s-14'><b>산책포인트</b><br/>"+list.memberOption[i].point+" 점</p>";
+					  html += "</div><div class='col-lg-2'>";
+					  html += "<p style='margin-top:2%; margin-bottom:2%;'class='text-muted f-s-14'><b>가입</b><br/>"+list.list[i].member_date+"</p>";
+					  html += "</div><div class='col-lg-2 text-right'>강제 탈퇴";
+					  html += "<span><a onclick='memDelete(${list.member_number})' data-toggle='tooltip' data-placement='top' title='Close'><i class='fa fa-close color-danger'></i></a></span>";
+					  html += "<p class='f-s-13 text-muted'>접속 : 2021.2월 21일</p></div></div></div></div>";
+				  }
+				  $('#memList').html(html);
+			  }
+		});
+	}
+	
+	</script>
 </body>
 </html>

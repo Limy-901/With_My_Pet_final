@@ -116,7 +116,7 @@ public class ShopController {
 			}else {
 				ArrayList<Product> list = service.listProduct2(catgo_code);
 				log.info(" category catgo_code받아짐:"+catgo_code+list);
-				ModelAndView mv1 = new ModelAndView("/shop/category","category",list);
+				ModelAndView mv1 = new ModelAndView("shop/category","category",list);
 				log.info("성공2");
 				return mv1;
 			}
@@ -192,13 +192,13 @@ public class ShopController {
 	
 	//상품등록페이지 수정1
 	@PostMapping("/category")
-	public void upload(MultipartFile uploadfile,Product product,long catgo_code) throws Exception {
+	public String upload(MultipartFile uploadfile,Product product,long catgo_code) throws Exception {
 		log.info("register 뷰가 나오네? ㅎ");
 		log.info("upload() POST 호출");
 	    log.info("파일 이름: {}"+ uploadfile.getOriginalFilename());
 	    log.info("파일 크기: {}"+ uploadfile.getSize());
-	   log.info("product_name: "+product);
-		saveFilee(uploadfile,product,catgo_code);
+	    log.info("product_name: "+product);
+		return saveFilee(uploadfile,product,catgo_code);
 	}
 	private String saveFilee(MultipartFile file, Product product,long catgo_code) {
 		//파일 이름 변경
@@ -211,12 +211,12 @@ public class ShopController {
 	        file.transferTo(saveFile); // 업로드 파일에 saveFile이라는 껍데기 입힘
 	    } catch (IOException e) {
 	        e.printStackTrace();
-	        return "/shop/category";
+	        return "shop/category";
 	    }
 	    if(saveFile.length() !=0) {
 	    	String url = fileService.saveStore(file, product);//service로 이동..파일 저장함
 	    }
-	    return "/shop/category";
+	    return "redirect:shop/category?catgo_code=8";
 		}
 	
 	

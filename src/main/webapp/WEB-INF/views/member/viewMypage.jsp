@@ -1,8 +1,9 @@
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+    
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
   <!-- Required meta tags -->
@@ -28,7 +29,7 @@
 	</style>
 	
 <body>
-  <!--header-->
+<!--header-->
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
@@ -99,10 +100,10 @@
                   </div>
               </nav>
           </div>
+          <!-- //toggle switch for light and dark theme -->
       </nav>
   </div>
 </header>
-
 <!-- //header -->
 &nbsp;
   <section class="w3l-stats py-5" id="follow-stats">
@@ -121,11 +122,11 @@
           <h4>게시물</h4>
         </div>
         <div class="col-lg-3 col-6 stats_info counter_grid mt-lg-0 mt-5" button type="button" onclick="location.href =  '/member/follower.do';">
-          <p class="counter">${fn:length(followerMembervo1) }</p>
+          <p class="counter">812</p>
           <h4>팔로워</h4>
         </div>
         <div class="col-lg-3 col-6 stats_info counter_grid mt-lg-0 mt-5" button type="button" onclick="location.href =  '/member/following.do';">
-          <p class="counter">${fn:length(followingMembervo1) }</p>
+          <p class="counter">90</p>
           <h4>팔로잉</h4>
         </div>
       </div>
@@ -142,8 +143,9 @@
               <br>
               <h3 class="name-pos"><a href="#url">${login.member_name}</a></h3>
               <p>
-				<button onclick="location.href='mypageupdate.do'"class="btn btn-primary mt-4">수정</button >
-				<button onclick="location.href='../msg/chat.do?member_number=${login.member_number}'"class="btn btn-primary mt-4">메세지</button >
+				<a href="mypageupdate.do" class="btn btn-primary mt-4">수정</a>
+				&nbsp;&nbsp;
+				<button onclick="location.href='messge.jsp'"class="btn btn-primary mt-4">메세지</button >
 				
 			 </p>
 			

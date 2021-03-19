@@ -35,6 +35,17 @@
       WHERE member_email = #{member_email}
    </select>
    
+   <!-- follow 마이페이지 정보 확인 -->
+   <select id="followmypage" resultType="pet.member.vo.MemberVO" parameterType="int">
+      SELECT
+      member_number,
+	  member_email,
+	  member_name,
+	  member_address
+      FROM MEMBER
+      WHERE member_number = #{member_number}
+   </select>
+   
    <!-- 마이페이지 회원정보 수정 -->
    <update id="memberUpdateDo" parameterType="member">
       UPDATE member 
@@ -77,5 +88,15 @@
       member_address = #{member_address}      
       WHERE member_number = #{member_number}
    </update>
+   
+    <!-- 로그인 로그 남기기 -->
+	<insert parameterType="map" id="makeLoginLog">
+		insert into login_log values(#{member_number}, #{member_name}, SYSDATE); 
+	</insert>
+
+	<!-- 로그인 로그 생성 -->
+	<update parameterType="long" id="loginLog">
+		update login_log set login_date=SYSDATE where member_number = #{member_number}
+	</update>
    
 </mapper>

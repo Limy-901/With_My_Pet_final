@@ -42,6 +42,12 @@ public class MemberServiceImpl implements MemberService {
       return mapper.mypage(lvo);
    }
    
+ //follow 마이페이지 정보 확인
+   @Override
+   public MemberVO followmypage(int lvo) {
+      return mapper.followmypage(lvo);
+   }
+   
    //회원정보 수정(아님)
    @Override
    public void memberUpdateDo(MemberVO vo) throws Exception {
@@ -91,7 +97,7 @@ public class MemberServiceImpl implements MemberService {
    		String secPwd = pwencoder.encode(vo.getMember_password());
         //  암호화된 비밀번호를 VO에 SET한다.
         vo.setMember_password(secPwd);
-        log.info("암호걸린 임시비번 찍어본다"+secPwd);
+        //log.info("암호걸린 임시비번 찍어본다"+secPwd);
    		// 비밀번호 변경
    		mapper.updatePw(vo);
    		// 비밀번호 변경 메일 발송
@@ -112,6 +118,18 @@ public class MemberServiceImpl implements MemberService {
    public void memberModify(MemberVO vo) {
 	   mapper.memberModify(vo);
    }
+   
+   // 로그인 로그 남기기 
+	@Override
+	public void loginLog(long member_number) {
+		mapper.loginLog(member_number);
+	}
+
+	// 로그인 로그 생성
+	@Override
+	public void makeLoginLog(long member_number, String member_name) {
+		mapper.makeLoginLog(member_number, member_name);
+	}
    
 
 }

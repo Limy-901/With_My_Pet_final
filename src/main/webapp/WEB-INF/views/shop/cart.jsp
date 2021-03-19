@@ -11,7 +11,7 @@
       <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
       <!-- google fonts --> 
       <!-- Template CSS -->
-      <link rel="stylesheet" href="assets/css/cart.css">
+      <link rel="stylesheet" href="../assets/css/cart.css">
       <!-- Template CSS -->
    </head>
    <body>
@@ -173,7 +173,7 @@
                        <td name="product_amount" id="product_amount" type="text" value="${cartList.product_amount}" class="table_cell--275JhdiLLN" >${cartList.product_amount}</td>
                        <td name="product_size" id="product_size" type="text" value="${cartList.product_size}" class="table_cell--275JhdiLLN" >${cartList.product_size}</td>
                        <td name="product_price" id="product_price" type="text" value="${cartList.product_price}" class="table_cell--275JhdiLLN" >${cartList.product_price}</td>
-                       <td class="table_cell--275JhdiLLN" type="text" align='center' value="${status.index}"><a href="del?idx=${status.index}">선택 삭제</a></td>
+                       <td class="table_cell--275JhdiLLN" type="text" align='center' value="${status.index}"><a href="del?idx=${status.index}"><b>X</b></a></td>
                     </tr>
                     <c:set var="sum" value="${sum + (cartList.product_price * cartList.product_amount)}" />
                  </c:forEach>

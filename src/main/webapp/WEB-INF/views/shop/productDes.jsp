@@ -11,7 +11,7 @@
       <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
       <!-- google fonts --> 
       <!-- Template CSS -->
-      <link rel="stylesheet" href="assets/css/productDes.css">
+      <link rel="stylesheet" href="../assets/css/productDes.css">
       <link rel="stylesheet" href="../assets/css/semantic.min.css">
       <link rel="stylesheet" href="../assets/css/semantic2.css">
       <script src="assets/js/jquery-3.3.1.min.js"></script>
@@ -322,16 +322,16 @@
       </div>
       </section>
       <!-- //text -->
-      <!-- text-styles-30 -->
+      <!-- review part -->
       <section class="w3l-blog-single4">
-         <div class="text-styles-30_sur py-5">
+         <div class="text-styles-30_sur py-5" style=" text-align: left">
             <div class="container py-lg-3">
                <div class="text-styles-top-30">
                   <h3 class="title-blog mb-4">최근 상품 리뷰 </h3>
                   <div>
                    <div class="media-body">
                         <c:forEach items="${reviewCon}" var="reviewCon" varStatus="status">
-                        <div class="img-circle"> 
+                        <div class="img-circle">
                         <img src=${mvo.member_number}  alt="리뷰 상품 사진" id="col"></div>
                            <input type="hidden" name="member_number" value="member_number">
                            <h5 class="mt-0">${reviewCon.review_subject}</h5>
@@ -341,14 +341,13 @@
                            <input type="hidden" name="catgo_code" value="catgo_code">
                            <a href="#reply-form" class="reply">Reply</a></br>
                            <!-- status.index: ${status.index}  -->
-                        </c:forEach>  
+                        </c:forEach>
                   </div>
-                  
                </div>
             </div>
          </div>
       </section>
-      <!-- /text-styles-30 -->
+      <!-- /review part -->
       <section class="w3l-blog-single5">
          <div class="grid-main py-3">
          <div class="container">

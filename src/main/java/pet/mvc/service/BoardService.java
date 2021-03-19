@@ -44,7 +44,7 @@ public interface BoardService {
 	void deleteLike(BoardLike boardLike);
 	
 	int rewirteCmt(BoardCmt boardCmt);
-
+	List<Board> getRecent();
 	
 
 

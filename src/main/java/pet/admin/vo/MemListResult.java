@@ -18,14 +18,16 @@ public class MemListResult {
 	private int startRow;
 	private int endRow;
 	private List<MemberOption> memberOption;
+	private List<String> memberPic;
 
-	public MemListResult(int currentPage, long totalCount, String keyword, List<MemberVO> list, List<MemberOption> memberOption) {
+	public MemListResult(int currentPage, long totalCount, String keyword, List<MemberVO> list, List<MemberOption> memberOption, List<String> memberPic) {
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;
 		this.keyword = keyword;
 		this.list = list;
 		this.totalPageCount = calTotalPageCount();
 		this.memberOption = memberOption;
+		this.memberPic = memberPic;
 	}
 	private long calTotalPageCount() {
 		long tpc = totalCount/7; 
@@ -67,5 +69,11 @@ public class MemListResult {
 	}
 	public List<MemberOption> getMemberOption() {
 		return memberOption;
+	}
+	public void setMemberPic(List<String> memberPic) {
+		this.memberPic = memberPic;
+	}
+	public List<String> getMemberPic() {
+		return memberPic;
 	}
 }

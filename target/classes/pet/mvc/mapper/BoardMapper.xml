@@ -135,21 +135,6 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<insert id="rewriteCmt" parameterType="BoardCmt">
 		<selectKey keyProperty="comment_idx" keyColumn="comment_idx" order="BEFORE" resultType="long">
 			select board_cmt_seq.nextval from dual
@@ -159,6 +144,12 @@
 		, #{cmt_writer}, sysdate, #{comment_idx}, 1)
 	
 	</insert>
+	
+		<select id ="getRecent" resultType="Board">
+	<![CDATA[select post_subject, post_idx, content, post_writer from ( select * from board order by post_date desc) where board_idx=3 and rownum<5]]>
+	</select>
+	
+	
 	
 	
 	

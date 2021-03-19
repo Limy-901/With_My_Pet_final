@@ -11,14 +11,18 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.extern.log4j.Log4j;
+import pet.admin.vo.BestSeller;
 import pet.admin.vo.MemListResult;
 import pet.admin.vo.MemberOption;
 import pet.admin.vo.MemberWalkChart;
+import pet.admin.vo.OrderStatus;
+import pet.admin.vo.PayData;
 import pet.admin.vo.Qna;
 import pet.admin.vo.WeeklyData;
 import pet.member.vo.MemberVO;
 import pet.mvc.board.Board;
 import pet.mvc.mapper.AdminMapper;
+import pet.mvc.mapper.WalkMapper;
 import pet.walk.vo.Walk;
 
 import static pet.admin.vo.Options.*;
@@ -28,6 +32,8 @@ import static pet.admin.vo.Options.*;
 public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private AdminMapper mapper;
+	@Autowired
+	private WalkMapper walkMapper;
 
 	@Override
 	public long getTotalMember() {
@@ -55,13 +61,30 @@ public class AdminServiceImpl implements AdminService {
 		String matchPer = getMatchPer();
 		Hashtable<String, Object> allList = getWeeklyData();
 		ArrayList<MemberVO> newMemList = mapper.getNewMemList();
-		// 결제 추가되면, 판매율 and 판매리스트 추가해야 함.
+		ArrayList<String> PicList = new ArrayList<String>();
+		ArrayList<String> payPicList = new ArrayList<String>();
+		ArrayList<BestSeller> bestSeller = mapper.getBestSeller();
+		for(MemberVO member : newMemList) {
+			log.info(member.getMember_number());
+			String url = walkMapper.getWalkPic(member.getMember_number());
+			PicList.add(url);
+		}
+		ArrayList<PayData> payData = mapper.getPayData();
+		for(PayData data : payData) {
+			String url = walkMapper.getWalkPic(data.getMember_number());
+			log.info("이거가 다시나온거"+url);
+			payPicList.add(url);
+		}
 		map.put("newMember",newMember);
 		map.put("totalMember",totalMember);
 		map.put("todayIncome",todayIncome);
 		map.put("matchPer",matchPer);
 		map.put("allList",allList);
 		map.put("newMemList",newMemList);
+		map.put("bestSeller",bestSeller);
+		map.put("picList",PicList);
+		map.put("payData",payData);
+		map.put("payPicList",payPicList);
 		return map;
 	}
 	
@@ -99,9 +122,11 @@ public class AdminServiceImpl implements AdminService {
 		result.setList(lists);
 		result.setTotalCount(mapper.getTotalMember());
 		ArrayList<MemberOption> optionLists = new ArrayList<MemberOption>();
+		ArrayList<String> urls = new ArrayList<String>();
 		for(MemberVO list : lists) {
 			long member_number = list.getMember_number();
 			MemberOption memberOption = mapper.getMemOptionData(member_number);
+			urls.add(walkMapper.getWalkPic(member_number));
 			if(memberOption == null) {
 				MemberOption newMemberOption = new MemberOption();
 				newMemberOption.setWalk(0); 
@@ -109,9 +134,10 @@ public class AdminServiceImpl implements AdminService {
 				newMemberOption.setPoint(0);
 				optionLists.add(newMemberOption);
 			}else optionLists.add(memberOption);
-			
 		}
 		result.setMemberOption(optionLists);
+		result.setMemberPic(urls);
+		log.info("#####이것좀 봐주세요"+result);
 		return result;
 	}
 
@@ -184,8 +210,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void writeAnswer(String content, int idx) {
-		mapper.writeAnswer(content, idx);
+	public void writeAnswer(String content, int idx, long member_number) {
+		mapper.writeAnswer(content, idx, member_number);
 	}
 
 	@Override
@@ -236,5 +262,21 @@ public class AdminServiceImpl implements AdminService {
 		return lists;
 	}
 
+	@Override
+	public void deleteMember(long member_number) {
+		mapper.deleteMember(member_number);
+	}
+
+	@Override
+	public ArrayList<OrderStatus> getOrderStatus() {
+		ArrayList<OrderStatus> lists = mapper.getOrderStatus();
+		for(OrderStatus list:lists) {
+			Date origin_post = list.getPay_date();
+			DateFormat dayForm = new SimpleDateFormat("yyyy년 MM월 dd일");
+			String pay_day = dayForm.format(origin_post);
+			list.setPay_day(pay_day);
+		}
+		return lists;
+	}
 
 }

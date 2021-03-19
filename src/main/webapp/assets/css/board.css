@@ -153,14 +153,12 @@ body{
 	position: absolute;
 	margin-top: 50px;
 	z-index: 1;
-	background: #f7f7f7;
-	
+	background: #f7f7f7;	
 	padding: 40px 30px;
 	transition: all 0.5s ease 0s;
 	border-radius: var(--border-radius);
 	background-color: var(--bg-color);
 	position: relative;
-	margin-bottom: 30px;
 	margin-left: 25%;
 	font-size:16px;
 	border: 1px solid #dedede;
@@ -221,8 +219,8 @@ body{
     margin-right: -20px;
 }
 .replysecondsec{
-	margin-top: 10px;
-	font-size: 12px;
+	margin-top: 12px;
+	font-size: 13.5px;
 }
 .replywriter{
     font-size: 14px;
@@ -231,13 +229,14 @@ body{
 
 }
 .writecomment{
-	font-size: 10px;
-	margin-top: 40px;
+	font-size: 12px;
+	margin-top: 53px;
 }
 .modify{
 	font-size: 12px;
 	margin-left: 88.5%;
 	margin-top:-15px;
+
 }
 .delete{
 	font-size: 12px;
@@ -245,6 +244,7 @@ body{
 	margin-top: -17.8px;
 	border-left: 1px solid #d2d2d2;
 	padding-left: 2%;
+	margin-bottom: -15px;
 
 }
 .search{
@@ -469,6 +469,10 @@ textarea{
 	padding-bottom: 10px;
 	color: cx  crgb(93, 93, 93);
 }
+.hambergurMenu {
+  cursor: pointer;
+  padding: 16px;
+}
 .hamburger {
 	width: 5px;
 	height: 5px;
@@ -477,16 +481,39 @@ textarea{
 	margin-left: 98%;
 	border-radius: 1px;
 	position: relative;
-	bottom: 40px;
 	cursor: pointer;
 }
-.hamDropdown{
 
-  position: relative;
+.drop {
+  position: absolute;
   display: inline-block;
-
+	margin-left: 90%;
+	bottom: 73%;
 }
 
-.hamburger:hover .hamDropdown {
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
   display: block;
+  font-size: 12px;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.drop:hover .dropdown-content {
+  display: block;
+}
+
+.drop:hover .dropbtn {
+  background-color: #3e8e41;
 }

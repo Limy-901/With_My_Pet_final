@@ -170,15 +170,11 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
-
-
-
-	//대댓글
-	
-
-	
-
-
+	@Override
+	public List<Board> getRecent() {
+		return boardMapper.getRecent();
+				
+	}
 
 
 

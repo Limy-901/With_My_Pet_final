@@ -15,7 +15,9 @@ import lombok.extern.log4j.Log4j;
 import pet.admin.service.AdminService;
 import pet.admin.vo.MemListResult;
 import pet.admin.vo.MemberWalkChart;
+import pet.admin.vo.OrderStatus;
 import pet.admin.vo.Qna;
+import pet.member.vo.MemberVO;
 import pet.mvc.board.Board;
 import pet.walk.vo.Walk;
 import static pet.admin.vo.Options.*;
@@ -49,16 +51,20 @@ public class AdminController {
 		}
 		session.setAttribute("memKeyword", memKeyword);
 		MemListResult list = adminService.getTotalMemberList(memCp, memKeyword);
-		ModelAndView mv = new ModelAndView("admin/memberList","list",list);
+		ModelAndView mv = new ModelAndView("admin/memberList","result",list);
 		if(list.getList().size() == 0) {
 			if(memCp>1) return new ModelAndView("redirect:memberList.do?cp="+(memCp-1));
-			else return new ModelAndView("admin/memberList","list",null);
+			else return new ModelAndView("admin/memberList","result",null);
 		}else return mv;
 	}
 	
-	@RequestMapping("memberMessage.do")
-	private String memberMessage() {
-		return "admin/memberMessage";
+	@GetMapping(value="memberDelete.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public @ResponseBody MemListResult memberDelete(HttpSession session, long member_number) {
+		adminService.deleteMember(member_number);
+		int memCp = (Integer)session.getAttribute("memCp");
+		String memKeyword = null;
+		MemListResult list = adminService.getTotalMemberList(memCp, memKeyword);
+		return list;
 	}
 	
 	@RequestMapping("nextWalk.do")
@@ -85,6 +91,7 @@ public class AdminController {
 	
 	@RequestMapping("registerProduct.do")
 	private String registerProduct() {
+		
 		return "admin/registerProduct";
 	}
 	
@@ -96,8 +103,9 @@ public class AdminController {
 	}
 	
 	@GetMapping(value="answer.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public @ResponseBody ArrayList<Board> answer(String content, int board_idx) {
-		adminService.writeAnswer(content,board_idx);
+	public @ResponseBody ArrayList<Board> answer(HttpSession session, String content, int board_idx) {
+		MemberVO vo = (MemberVO)session.getAttribute("login");
+		adminService.writeAnswer(content,board_idx,vo.getMember_number());
 		ArrayList<Board> lists = adminService.getNotAnsweredQ();
 		return lists;
 	}
@@ -124,13 +132,19 @@ public class AdminController {
 	}
 	
 	@RequestMapping("orderStatus.do")
-	private String orderStatus() {
-		return "admin/orderStatus";
+	private ModelAndView orderStatus() {
+		ArrayList<OrderStatus> list = adminService.getOrderStatus();
+		ModelAndView mv = new ModelAndView("admin/orderStatus","list",list);
+		return mv;
 	}
 	
-	@RequestMapping("reportedPost.do")
-	private String reportedPost() {
-		return "admin/reportedPost";
+	@GetMapping(value="editDeli.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public @ResponseBody ArrayList<Board> editDeli(HttpSession session, long editType) {
+		String edit = "";
+		if (editType == 1) edit = "배송준비";
+		else if (editType == 2) edit = "배송중";
+		else if (editType == 3) edit = "배송완료";
+		return null;
 	}
 	
 	@RequestMapping("walkStatistic.do")
@@ -147,11 +161,6 @@ public class AdminController {
 	@RequestMapping("salesStatistic.do")
 	private String salesStatistic() {
 		return "admin/salesStatistic";
-	}
-	
-	@RequestMapping("postNotice.do")
-	private String postNotice() {
-		return "admin/postNotice";
 	}
 	
 	

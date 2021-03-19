@@ -52,7 +52,9 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 
-
+	
+	
+	
 	
 	
 	@RequestMapping("list.do")
@@ -167,23 +169,6 @@ public class BoardController {
 		session.setAttribute("board_idx", board_idx);
 		
 		
-		
-	
-		/*활성화하면 검색결과가 저장되서 쿠키삭제해줘야함...
-		 * if(catgo == null) { Object catgoObj = session.getAttribute("catgo");
-		 * if(catgoObj != null) { catgo = (String)catgoObj; } }else { catgo =
-		 * catgo.trim();
-		 * 
-		 * }session.setAttribute("catgo", catgo);
-		 * 
-		 * 
-		 * //(4) keyword
-		 * 
-		 * if(keyword == null) { Object keywordObj = session.getAttribute("keyword");
-		 * if(keywordObj != null) { keyword = (String)keywordObj; } }else { keyword =
-		 * keyword.trim(); }session.setAttribute("keyword", keyword);
-		 */
-		
 		BoardListResult listResult = null;
 		ModelAndView mv = null;
 	
@@ -221,38 +206,22 @@ public class BoardController {
 	}
 	
 	
-	@GetMapping("write.do")
+	@GetMapping("write.do")//string으로 리턴할때 신뢰할수없는 라우팅이라고 함
 	public ModelAndView write() {
 		Board board = new Board();
-		
-		String post_subject = board.getPost_subject();
-		board.setPost_subject(post_subject);
-	
-		long board_idx = board.getBoard_idx();
-		board.setBoard_idx(board_idx);
 
 		ModelAndView mv = new ModelAndView("board/write", "board", board);		
 		return mv;
 	}
 	
-	@RequestMapping("write.do")
+	@PostMapping("write.do")
 	public String upload(Board board) {
 		service.write(board);
-		log.info("##board:"+board);
+		
 		return "redirect:list.do";
 	}
 
 
-	
-/*	@PostMapping("updateFirstReply.do")
-	public ModelAndView updateFirstReply(Board board) {
-		long post_idx = board.getPost_idx();
-		board.setPost_idx(post_idx);
-		ModelAndView mv = new ModelAndView("board/write", "board", board);
-		
-		return mv;
-	}
-	*/
 
 	
 	
@@ -260,14 +229,12 @@ public class BoardController {
 	
 	@GetMapping("content.do")
 	public ModelAndView content(HttpSession session, HttpServletRequest request, HttpServletResponse response, long post_idx) {
-		MemberVO vo = (MemberVO)session.getAttribute("member_number");
 		
 		Board board = service.getBoard(post_idx);		
 		int like = service.getLikeCount(post_idx);
 		ArrayList<BoardCmt> comment = service.selectCmtBySeq(post_idx);
 		board.setComment(comment);	
 		board.setLike(like);
-		log.info("controller board@@@@@@@@@@@@@@@@@@@@@@"+board);
 		ModelAndView mv = new ModelAndView();
 		
 		Cookie[] cookies = request.getCookies();
@@ -317,7 +284,7 @@ public class BoardController {
 			
 		}
 		else {
-			mv.setViewName("error/reviewError");//에러페이지 만들어줘야함
+			mv.setViewName("error/reviewError");//에러페이지 만들어줘야함- 시러
 			return mv;
 		}
 	}
@@ -367,12 +334,8 @@ public class BoardController {
 	}
 	
 	@PostMapping("modify.do")
-	public String edit(Board board) {
-		
+	public String edit(Board board) {		
 		service.edit(board);
-		
-		Board boardd = new Board();
-		log.info("@@@list:0"+boardd);
 		
 		return "redirect:list.do";
 	}
@@ -443,9 +406,9 @@ public class BoardController {
 	public long insertLike(long post_idx, long member_number, HttpServletResponse response) {
 		BoardLike boardLike = new BoardLike(post_idx, member_number);
 		
-		int oneOrZero = service.divideLike(boardLike);
-		if(oneOrZero==0) {
-			log.info("0or1@@@@@@"+oneOrZero);
+		int likeToggle = service.divideLike(boardLike);
+		if(likeToggle==0) {
+			log.info("##0or1##"+likeToggle);
 			service.insertLike(boardLike);
 			long like = service.getLikeCount(post_idx);
 			
@@ -466,23 +429,5 @@ public class BoardController {
 
 		
 
-		
-		//여기에 한번 더 눌럿을경우 분기해조야해 그리고 멤버넘버 겟세션
-		
-		
-
-	
-
-	/*
-	 * @ResponseBody
-	 * 
-	 * @GetMapping("updateLike.do") public Board updateLike(long post_idx,
-	 * HttpServletResponse response) { 
-	 * BoardLike like = service.selectLike(post_idx); 
-	 * service.updateLikeCount(post_idx);
-	 *  Board board = service.getBoard(post_idx);
-	 *   board.setLike(like);
-	 * log.info("@updateLikeDTO"+board); return board; }
-	 */
 	
 }

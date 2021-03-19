@@ -141,18 +141,23 @@
 </div>
 
 <div class="cont">${board.content}  
+
+<div class="drop">
 	<div class="hambergurMenu">
 		<div class="hamburger"></div>
 		<div class="hamburger"></div>
 		<div class="hamburger"></div>
 	</div>
-    <div class="hamDropdown">
-    <a href="#">1</a>
-    <a href="#">1</a>
-    <a href="#">1</a>
-    <a href="#">1</a>
-    </div>
-    
+
+  <div class="dropdown-content">
+  <a href="javascript:sendLink()">공유하기  <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" style="width: 20px;padding-bottom:5px;">
+  </a>
+  <c:if test="${not empty login}"><a href='rewrite.do?post_idx=${board.post_idx}&post_order=${board.post_order}' style="color: black;">답글작성</a></c:if>
+  <c:if test="${login.member_number eq board.member_number or login.member_name eq '관리자'}">
+<a href='modify.do?post_idx=${board.post_idx}'>수정</a>
+<a href='delete.do?post_idx=${board.post_idx}'>삭제</a></c:if>
+  </div>
+</div>
     
 <script>
 function clickLike(member_name){
@@ -174,6 +179,9 @@ function clickLike(member_name){
 		success: function(result){
 			var htmls= result;
 				$('.like').html(htmls); 
+				/* $('.like-button').on('click', function() {
+					  $('.like-button').toggleClass('liked')
+					}) */
 		},
 		error: function(request, status, error){
 			  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+ error);
@@ -182,18 +190,11 @@ function clickLike(member_name){
 	}
 }
 
+
 </script>
 <button class="clickLike" onclick="clickLike('${login.member_name}')"><i class="fa fa-thumbs-up fa-2x like-icon"></i>
 <div class="like">${board.like}</div>
 </button>
-
-<a href="javascript:sendLink()" style="margin-left: 25%;font-size: 12px;color: black;"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" style="width: 20px;"> 공유하기
-</a>
-
-<c:if test="${not empty login}"><div class="modi"><a href='rewrite.do?post_idx=${board.post_idx}&post_order=${board.post_order}' style="color: black;">답글작성</a></div></c:if>
-<c:if test="${login.member_number eq board.member_number or login.member_name eq '관리자'}">
-<div class="modi"><a href='modify.do?post_idx=${board.post_idx}' style="color: black;">수정</a></div>
-<div class="del"><a href='delete.do?post_idx=${board.post_idx}' style="color: black;">삭제</a></div></c:if>
 </div>
 
 
@@ -252,7 +253,7 @@ function replyButton(comment_idx, cmt_writer, index, cmt_date){
 	
 	htmls += '<form id="editReply">';
  	htmls += '<div class="replyfirstsec" id="editId">';
-	htmls += '<div class="replywriter" id="writerId">'+cmtWriter+' 님 댓글 수정중</div><input type="hidden" value='+cmtIdx+' name="comment_idx"/><br></div>';
+	htmls += '<div class="replywriter" id="writerId">'+cmtWriter+'님 댓글 수정 중</div><input type="hidden" value='+cmtIdx+' name="comment_idx"/><br></div>';
 	htmls += '<div class="replysecondsec" id="editId"><div class="rereple"><textarea id="contentInput" name="cmt_content" rows="10" style="height: 70px; width:100%;"></textarea>';	
 	htmls += ' <input class="submitbtn" type="button" value="등록" onclick="replyUpdate('+cmtIdx+',\''+cmtWriter+'\','+sIndex+', '+cmt_date+')"></div></form>';
 	
@@ -282,7 +283,7 @@ function replyUpdate(comment_idx, cmt_writer, index, cmt_date){
 		data: $("#editReply").serialize(),
 		success: function(result){
 			htmls += '<div class="replyfirstsec" id="comment_idx'+comment_idx+'">';
-			htmls += '<div class="replywriter" id="writerId">'+writer+' 님의 답변 </div>';
+			htmls += '<div class="replywriter" id="writerId">'+writer+' 님의 답변 </div><br>';
 			htmls += '<div style="font-size:12px;" id="dateId">'+cmt_date+'</div></div>';
 			htmls += '<div class="replysecondsec" id="contentId">'+inputId+'</div>';
 			htmls += '<div class="contbtns"><div class="writecomment">댓글쓰기</div>';
@@ -412,10 +413,7 @@ tryReply.submit();
 </c:choose>
 
 
-<script>$('.like-button').on('click', function() {
-  $(this).toggleClass('liked')
-})
-</script>
+
 
 </body>
 

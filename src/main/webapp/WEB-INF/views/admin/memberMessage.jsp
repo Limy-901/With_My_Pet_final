@@ -7,6 +7,16 @@
 <title>:: 관리자 :: With My Pet</title>
 <link href="../assets/css/admin/style.css" rel="stylesheet">
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+    		<link rel="stylesheet" href="../assets/css/chat.css">
+    		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <link rel="stylesheet" href="../assets/css/button/button.min.css">
+        <link rel="stylesheet" href="../assets/css/button/button.css">
+	    <!-- sweetAlert -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
+    		
 </head>
 <body>
     <!-- 기본 틀 -->
@@ -247,6 +257,71 @@
                 </ul>
             </div><br/>
         </div></div>
+        
+        <!-- 본문 -->
+    <div class="row">
+		<div class="col-md-4 bg-white " style="width:110%; margin:auto;">
+           
+            <ul class="friend-list"><br><br>
+            	<div id="chatList">
+            	<c:if test="${empty map.msgLists}">
+            		<li class="active bounceInDown">
+	                	<a href="#" class="clearfix">
+	                		<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+	                		<div>	
+	                			<strong>현재 도착한 메시지가 없습니다.</strong>
+	                		</div>
+	                	</a>
+	                </li>
+            	</c:if>
+            	
+            	<!-- 메세지 리스트 -->
+            	<c:forEach items="${map.msgLists.chatList}" var="list" varStatus="status">
+	                <li>
+	                	<c:choose>
+                		<c:when test="${list.sender_number eq login.member_number}">
+               				<a onclick="msgClick(${list.member_number})" class="clearfix">
+                		</c:when>
+                		<c:otherwise>
+               				<a onclick="msgClick(${list.sender_number})" class="clearfix">
+                		</c:otherwise>
+	                	</c:choose>
+	                		<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+	                		<div class="friend-name">	
+		                		<c:choose>
+		                			<c:when test="${list.sender_name eq login.member_name}">
+		                				<strong>${list.member_name}</strong>
+		                			</c:when>
+		                			<c:otherwise>
+		                				<strong>${list.sender_name}</strong>
+		                			</c:otherwise>
+		                		</c:choose>
+	                		</div>
+	                		<div class="last-message text-muted">${list.msg_content}</div>
+	                		<small class="time text-muted">${list.time}</small>
+	                		<c:choose>
+	                			<c:when test="${list.sender_number eq login.member_number}">
+		                			<c:choose>
+				                		<c:when test="${empty list.opendate}">
+				                			<small class="chat-alert label label-danger">1</small>
+				                		</c:when>
+				                		<c:when test="${!empty list.opendate}">
+				                			<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>
+				                		</c:when>
+			                		</c:choose>
+		                		</c:when>
+		                		<c:otherwise>
+		                			<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>
+		                		</c:otherwise>
+	                		</c:choose>
+	                	</a>
+	                </li>
+                </c:forEach>
+                </div>
+            </ul>
+		</div>
+		</div>
+		
  <!-- footer-28 block -->
 <section class="w3l-footer" style="background-color:black; display:absolute;z-index:100;">
   <footer class="footer-28">

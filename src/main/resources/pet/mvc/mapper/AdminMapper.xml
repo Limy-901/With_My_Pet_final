@@ -162,5 +162,41 @@
 		where ROWNUM>0 and ROWNUM<=5]]>
 	</select>
 	
+	<select id="getBestSeller" resultType="BestSeller">
+		select ROWNUM,a.product_code, a.count, b.product_name
+		from
+		(select product_code, count(product_code) count from orderlist group by product_code order by count desc)
+		a inner join
+		(select product_code, product_name from product) b
+		on a.product_code = b.product_code
+		<![CDATA[where ROWNUM >= 0 and ROWNUM <= 5]]>
+	</select>
+	
+	<select id="getPayData" resultType="PayData">
+		select ROWNUM, a.member_number, a.member_name, b.product_name, a.member_address, c.pcount, c.pay_method
+		from 
+		(select * from orderlist natural join member) a,
+		(select product_code,product_name from product) b,
+		(select ROWNUM pcount, order_code, pay_method from pay) c
+		where a.product_code = b.product_code and a.order_code = c.order_code(+) and
+		<![CDATA[ROWNUM >= 0 and ROWNUM <= 5]]>
+	</select>
+	
+	<delete id="deleteMember" parameterType="long">
+		delete from MEMBER where MEMBER_NUMBER = #{member_number}
+	</delete>
+	
+	<select id="getOrderStatus" resultType="OrderStatus">
+		select aa.member_name, bb.product_name, pay.pay_totalpay, pay.pay_date, pay.pay_address, pay.pay_method from pay,
+		(
+		select orderlist.order_code, orderlist.member_number, orderlist.product_code, m.member_name 
+		from orderlist left join member m 
+		on orderlist.member_number = m.member_number(+)
+		) 
+		aa,
+		(select * from product) bb
+		where pay.order_code = aa.order_code and aa.product_code = bb.product_code
+	</select>
+	
 
 </mapper>

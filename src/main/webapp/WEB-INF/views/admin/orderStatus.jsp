@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,42 +104,6 @@
                                                     <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-heading">Hilari Clinton</div>
                                                     <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-timestamp">08 Hours ago</div>
                                                     <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-text">Hello</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- 확인 필요 사항 -->
-                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                <i class="mdi mdi-bell-outline"></i>
-                                <span class="badge badge-pill gradient-2">5</span>
-                            </a>
-                            <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
-                                <div class="dropdown-content-heading d-flex justify-content-between">
-                                    <span class="">확인사항</span>  
-                                    <a href="javascript:void()" class="d-inline-block">
-                                        <span class="badge badge-pill gradient-2">5</span>
-                                    </a>
-                                </div>
-                                <div class="dropdown-content-body">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
-                                                <div class="notification-content">
-                                                    <h6 class="notification-heading">산책 포인트 지급</h6>
-                                                    <span class="notification-text">Within next 5 days</span> 
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
-                                                <div class="notification-content">
-                                                    <h6 class="notification-heading">배송 현황 변경</h6>
-                                                    <span class="notification-text">One hour ago</span> 
                                                 </div>
                                             </a>
                                         </li>
@@ -259,94 +224,61 @@
                         <table class="table table-bordered" style="text-align:center;">
                             <thead>
                                 <tr>
-                                    <th style="width:4%;">#</th>
-                                    <th style="width:3%;">이름</th>
-                                    <th style="width:6%;">상품명</th>
-                                    <th style="width:6%;">옵션</th>
-                                    <th style="width:4%;">구매일</th>
+                                    <th style="width:2%;">이름</th>
+                                    <th style="width:5%;">상품명</th>
+                                    <th style="width:1%;">금액</th>
+                                    <th style="width:3%;">구매일</th>
                                     <th style="width:10%;">배송지</th>
                                     <th style="width:3%;">결제방법</th>
-                                    <th style="width:3%;">결제상태</th>
-                                    <th style="width:4%;">배송현황</th>
+                                    <th style="width:3%;">배송현황</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th>1</th>
-                                    <td>Kolor</td>
-                                    <td><span class="badge badge-primary px-2">Sale</span></td>
-                                    <td>January 22</td>
-                                    <td class="color-primary">$21.56</td>
-                                    <td>서울시 서대문구 어딘가에 삽니다. 아파트11111</td>
-                                    <td>카드</td>
-                                    <td>결제완료</td>
-                                    <td>배송중</td>
-                              
-                                </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td>Kolor </td>
-                                    <td><span class="badge badge-danger px-2">Tax</span>
-                                    </td>
-                                    <td>January 30</td>
-                                    <td class="color-success">$55.32</td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>Blue</td>
-                                    <td><span class="badge badge-success px-2">Extended</span>
-                                    </td>
-                                    <td>January 25</td>
-                                    <td class="color-danger">$14.85</td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>Blue</td>
-                                    <td><span class="badge badge-success px-2">Extended</span>
-                                    </td>
-                                    <td>January 25</td>
-                                    <td class="color-danger">$14.85</td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>Blue</td>
-                                    <td><span class="badge badge-success px-2">Extended</span>
-                                    </td>
-                                    <td>January 25</td>
-                                    <td class="color-danger">$14.85</td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>Blue</td>
-                                    <td><span class="badge badge-success px-2">Extended</span>
-                                    </td>
-                                    <td>January 25</td>
-                                    <td class="color-danger">$14.85</td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>Blue</td>
-                                    <td><span class="badge badge-success px-2">Extended</span>
-                                    </td>
-                                    <td>January 25</td>
-                                    <td class="color-danger">$14.85</td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>Blue</td>
-                                    <td><span class="badge badge-success px-2">Extended</span>
-                                    </td>
-                                    <td>January 25</td>
-                                    <td class="color-danger">$14.85</td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>Blue</td>
-                                    <td><span class="badge badge-success px-2">Extended</span>
-                                    </td>
-                                    <td>January 25</td>
-                                    <td class="color-danger">$14.85</td>
-                                </tr>
+                            	<c:if test="${empty list}">
+                            		<tr><td colspan="8">판매한 상품이 없습니다.</td></tr>
+                            	</c:if>
+                            	<c:forEach items="${list}" var="list">
+	                                <tr>
+	                                    <td>${list.member_name}</td>
+	                                    <td>${list.product_name}</td>
+	                                    <td>${list.pay_totalpay} 원</td>
+	                                    <td class="color-primary">${list.pay_day}</td>
+	                                    <td>${list.pay_address}</td>
+	                                    <c:choose>
+	                                    	<c:when test="${list.pay_method eq '카드결제'}">
+	                                    		<td><span style="font-size:1rem;" class="badge badge-primary px-2">${list.pay_method}</span></td>
+	                                    	</c:when>
+	                                    	<c:otherwise>
+	                                    		<td><span style="font-size:1rem;" class="badge badge-danger px-2">${list.pay_method}</span></td>
+	                                    	</c:otherwise>
+	                                    </c:choose>
+	                                    
+	                                    <td>배송준비
+	                                       	<button type="button" style="padding:5%;" class="btn mb-1 btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+	                                        <div class="dropdown-menu">
+	                                        	<a class="dropdown-item" onclick="editDeli(1)">배송준비</a>
+	                                        	<a class="dropdown-item" onclick="editDeli(2)">배송중</a>
+	                                        	<a class="dropdown-item" onclick="editDeli(3)">배송완료</a>
+	                                        </div>
+	                                    </td>
+	                                </tr>
+                                </c:forEach>
+<script>
+function editDeli(type){
+	$.ajax({
+		url: "editDeli.do",
+	    type: 'GET',
+	    async: false,
+	    data: {
+	    	editType: type
+		},
+    success : function(map) {
+	  
+    }
+}
+</script>              
+                                
+                                
                                 
                             </tbody>
                         </table>

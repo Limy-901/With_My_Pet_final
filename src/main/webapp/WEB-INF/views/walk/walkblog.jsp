@@ -9,7 +9,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>:: With My Pet :: 산책모집 </title>
-
   <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style-liberty.css">
   <link rel="stylesheet" href="../assets/css/walkform.css">
@@ -20,16 +19,20 @@
   <link rel="stylesheet" href="../assets/js/semantic-modal/modal.min.js">
   <link rel="stylesheet" href="../assets/js/semantic-modal/index.js">
   <link rel="stylesheet" href="../assets/js/semantic-modal/package.js">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" href="../assets/css/blog.css">
   <link rel="stylesheet" href="../assets/css/postCard.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- 실시간 메시지 알림 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-	<!-- sweetAlert -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
-	<!-- sweetAlert -->
-	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <!-- sweetAlert -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
+  <!-- 카카오 공유하기 -->
+  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+
+
  
 </head>
 
@@ -39,23 +42,18 @@
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
           <a href="../"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
-         
-          <!-- if logo is image enable this   
-      <a class="navbar-brand" href="#index.html">
-          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-      </a> -->
+
           <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
               data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
               aria-label="Toggle navigation">
               <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
               <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-              </span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul class="navbar-nav ml-auto">
                   <li class="nav-item active">
-                      <a class="nav-link" href="index.html" style="font-family: 'Spoqa Han Sans Neo';">Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="../" style="font-family: 'Spoqa Han Sans Neo';">Home <span class="sr-only">(current)</span></a>
                   </li>
                   
                   <li class="nav-item dropdown">
@@ -64,8 +62,7 @@
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
-                      	<a class="dropdown-item" href="walklist.do" style="font-family: 'Spoqa Han Sans Neo';">산책모집 </a>
-                          <a class="dropdown-item" href="walkboard.do" style="font-family: 'Spoqa Han Sans Neo';">산책후기 </a>
+                      	<a class="dropdown-item" href="list.do?cp=1" style="font-family: 'Spoqa Han Sans Neo';">산책모집 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -74,9 +71,9 @@
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                      	<a class="dropdown-item" href="/product?catgo_code=9" style="font-family: 'Spoqa Han Sans Neo';">쇼핑하기</a>
-                        <a class="dropdown-item" href="/cart">장바구니</a>
-                        <a class="dropdown-item" href="/order">결제</a>
+                      	<a class="dropdown-item" href="product?catgo_code=9" style="font-family: 'Spoqa Han Sans Neo';">쇼핑하기</a>
+                          <a class="dropdown-item" href="cart" style="font-family: 'Spoqa Han Sans Neo';">장바구니</a>
+                          <a class="dropdown-item" href="/shop/order" style="font-family: 'Spoqa Han Sans Neo';">결제</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -85,19 +82,37 @@
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                          <a class="dropdown-item" href="/board/list.do" style="font-family: 'Spoqa Han Sans Neo';">공지사항</a>
-                          <a class="dropdown-item" href="/board/list.do" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=1" style="font-family: 'Spoqa Han Sans Neo';">공지사항</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=2" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=3" style="font-family: 'Spoqa Han Sans Neo';">산책후기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=4" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
                       </div>
                   </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
-                  </li>
-                 
-                  <li class="nav-item">
-                      <a class="nav-link" href="contact.html" style="font-family: 'Spoqa Han Sans Neo';">Contact </a>
-                  </li>
+                  <c:choose>
+                  	  <c:when test="${empty login.member_name}">
+		                  <li class="nav-item">
+		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
+		                  </li>
+	                  </c:when>
+	                  <c:otherwise>
+	                  	  <li class="nav-item">
+		                      <a class="nav-link" href="/member/logout.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
+		                  </li>
+		                  <li class="nav-item">
+		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
+		                  </li>
+	                  </c:otherwise>
+                  </c:choose>
+                  <!-- 관리자일때만 관리자페이지 입장 -->
+                  <c:if test="${login.member_name eq 'admin'}"> 
+	                  <li class="nav-item">
+	                      <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
+	                  </li>
+                  </c:if>
               </ul>
           </div>
+          
+          
           <!-- toggle switch for light and dark theme -->
           <div class="mobile-position">
               <nav class="navigation">
@@ -112,7 +127,23 @@
                   </div>
               </nav>
           </div>
-          <!-- //toggle switch for light and dark theme -->
+          
+          <!-- 회원 접속 시, 메시지 띄움 -->
+          <c:if test="${!empty login}">
+	          <div>
+	          <c:choose>
+	          	<c:when test="${unread == 0}">
+	          		<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>
+	          	</c:when>
+	          	<c:otherwise>
+	          		<i class="mdi mdi-bell-outline"></i>
+                    <span class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%; padding-left:1.6%;
+                     margin-right:2%; color:#ffb446;">${unread}</span>
+	          		<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>
+	          	</c:otherwise>
+	          </c:choose>
+	          </div>
+          </c:if>
       </nav>
   </div>
 </header>
@@ -296,7 +327,6 @@ function displayMarker(place) {
     <div class="blog-tags" style="font-family: 'Spoqa Han Sans Neo';">
       <ul>
         <li><a href="#" style="font-family: 'Spoqa Han Sans Neo';">${content.dto.walk_location}</a></li>
-        <li><a href="#" style="font-family: 'Spoqa Han Sans Neo';">유저강아지정보</a></li>
         <li><a href="#" style="font-family: 'Spoqa Han Sans Neo';">${content.dto.walk_type}</a></li>
       </ul>
     </div>
@@ -771,7 +801,7 @@ function walkJoinOk(){
 
   </script>
 <!--//MENU-JS-->
-<script src="../assets/js/bootstrap.min.js"></script>
+
 <section class="w3l-footer">
   <footer class="footer-28">
     <div class="footer-bg-layer">

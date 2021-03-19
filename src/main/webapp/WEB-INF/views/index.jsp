@@ -29,21 +29,17 @@
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
           <a href="#"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
-         
-      
-      
           <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
               data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
               aria-label="Toggle navigation">
               <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
               <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-              </span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul class="navbar-nav ml-auto">
                   <li class="nav-item active">
-                      <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="index.html" style="font-family: 'Spoqa Han Sans Neo';">Home <span class="sr-only">(current)</span></a>
                   </li>
                   
                   <li class="nav-item dropdown">
@@ -52,8 +48,8 @@
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
-                      	<a class="dropdown-item" href="walk/list.do?cp=1" >산책모집 </a>
-                          <a class="dropdown-item" href="walk/board.do">산책후기 </a>
+                      	<a class="dropdown-item" href="walk/list.do?cp=1" style="font-family: 'Spoqa Han Sans Neo';">산책모집 </a>
+                          <a class="dropdown-item" href="walk/board.do" style="font-family: 'Spoqa Han Sans Neo';">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -62,9 +58,9 @@
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                      	<a class="dropdown-item" href="product?catgo_code=9">쇼핑하기</a>
-                          <a class="dropdown-item" href="cart">장바구니</a>
-                          <a class="dropdown-item" href="order">결제</a>
+                      	<a class="dropdown-item" href="product?catgo_code=9" style="font-family: 'Spoqa Han Sans Neo';">쇼핑하기</a>
+                          <a class="dropdown-item" href="cart" style="font-family: 'Spoqa Han Sans Neo';">장바구니</a>
+                          <a class="dropdown-item" href="/shop/order" style="font-family: 'Spoqa Han Sans Neo';">결제</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -73,29 +69,37 @@
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                          <a class="dropdown-item" href="board/list.do">공지사항</a>
-                          <a class="dropdown-item" href="board/list.do">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=1" style="font-family: 'Spoqa Han Sans Neo';">공지사항</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=2" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=3" style="font-family: 'Spoqa Han Sans Neo';">산책후기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=4" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
                       </div>
                   </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/member/agree.do" style="font-family: 'Spoqa Han Sans Neo';">회원가입</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/member/mypage.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
-                  </li>
-                  
+                  <c:choose>
+                  	  <c:when test="${empty login.member_name}">
+		                  <li class="nav-item">
+		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
+		                  </li>
+	                  </c:when>
+	                  <c:otherwise>
+	                  	  <li class="nav-item">
+		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
+		                  </li>
+		                  <li class="nav-item">
+		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
+		                  </li>
+	                  </c:otherwise>
+                  </c:choose>
                   <!-- 관리자일때만 관리자페이지 입장 -->
                   <c:if test="${login.member_name eq 'admin'}"> 
 	                  <li class="nav-item">
 	                      <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
 	                  </li>
                   </c:if>
-                 
               </ul>
           </div>
+          
+          
           <!-- toggle switch for light and dark theme -->
           <div class="mobile-position">
               <nav class="navigation">
@@ -390,68 +394,36 @@
           <div class="testimonial-width">
               <div id="owl-demo1" class="owl-two owl-carousel owl-theme">
               
+                    <c:forEach items="${board}" var="board">          
                   <div class="item">
                       <div class="testimonial-content">
                           <div class="testimonial">
                               <blockquote>
-                                  <q>최근 산책후기 내용 몇줄만 가져오기</q>
+                                  <q>${board.content}</q>
                               </blockquote>
                               <div class="testi-des">
-                                  <div class="test-img"><img src="assets/images/f1.jpg" class="img-fluid" alt="client-img">
+                                  
                                   </div>
                                   <div class="peopl align-self">
-                                      <h3>작성자 이름</h3>
-                                      <p class="indentity">산책 지역</p>
+                                      <h3>${board.post_writer}</h3>
                                   </div>
                               </div>
                           </div>
-                      </div>
-                  </div>
-                  
-                  <div class="item">
-                      <div class="testimonial-content">
-                          <div class="testimonial">
-                              <blockquote>
-                                  <q>최근 산책후기 내용 몇줄만 가져오기</q>
-                              </blockquote>
-                              <div class="testi-des">
-                                  <div class="test-img"><img src="assets/images/f1.jpg" class="img-fluid" alt="client-img">
-                                  </div>
-                                  <div class="peopl align-self">
-                                      <h3>작성자 이름</h3>
-                                      <p class="indentity">산책 지역</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  
-                  <div class="item">
-                      <div class="testimonial-content">
-                          <div class="testimonial">
-                              <blockquote>
-                                  <q>최근 산책후기 내용 몇줄만 가져오기</q>
-                              </blockquote>
-                              <div class="testi-des">
-                                  <div class="test-img"><img src="assets/images/f1.jpg" class="img-fluid" alt="client-img">
-                                  </div>
-                                  <div class="peopl align-self">
-                                      <h3>작성자 이름</h3>
-                                      <p class="indentity">산책 지역</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  
+                      </div>       
+     	   		</c:forEach>
+     	  	 </div>
+
                   
                   
                   
               </div>
           </div>
       </div>
-  </div>
+      <!-- /grids -->
+ 
+
 </section>
+
 
 <section class="w3l-footer">
   <footer class="footer-28">

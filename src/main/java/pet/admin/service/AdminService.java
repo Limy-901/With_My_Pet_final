@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import pet.admin.vo.MemListResult;
 import pet.admin.vo.MemberWalkChart;
+import pet.admin.vo.OrderStatus;
 import pet.admin.vo.Qna;
 import pet.mvc.board.Board;
 import pet.walk.vo.Walk;
@@ -17,8 +18,10 @@ public interface AdminService {
 	ArrayList<Walk> getWalks(int status);
 	ArrayList<String> getWalkTimes(ArrayList<Walk> lists, int type);
 	ArrayList<Board> getNotAnsweredQ();
-	void writeAnswer(String content, int idx);
+	void writeAnswer(String content, int idx, long member_number);
 	ArrayList<Qna> getAnsweredQ(int cp, String keyword);
 	ArrayList<MemberWalkChart> getMemChartValues();
 	ArrayList<MemberWalkChart> getLocationList();
+	void deleteMember(long member_number);
+	ArrayList<OrderStatus> getOrderStatus();
 }

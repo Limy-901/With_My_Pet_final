@@ -45,11 +45,10 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 
-	<context:component-scan base-package="pet.mvc.shopservice" />
-	<context:component-scan base-package="pet.mvc.shopdomain" />
-	<context:component-scan base-package="pet.mvc.shopmapper"/>
-	<mybatis-spring:scan base-package="pet.mvc.shopmapper"/>	
-	<context:component-scan base-package="pet.mvc.board"/>
+	<context:component-scan base-package="pet.shop.service" />
+	<context:component-scan base-package="pet.shop.domain" />
+	<context:component-scan base-package="pet.shop.mapper"/>
+	<mybatis-spring:scan base-package="pet.shop.mapper"/>
 	
 	<context:component-scan base-package="pet.mvc.service" />
 	<context:component-scan base-package="pet.mvc.mapper"/>

@@ -210,6 +210,8 @@ figure {
 img {
   vertical-align: middle;
   border-style: none;
+  width: 90px;
+  height: 90px;
 }
 
 svg {
@@ -2763,14 +2765,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #189A46;
-  border-color: #189A46;
+  background-color: #ffa81d;
+  border-color: #ffa81d;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color:#116E32;
-  border-color:#116E32;
+  background-color:#fe6d1f;
+  border-color:#fe6d1f;
 }
 
 .btn-primary:focus,

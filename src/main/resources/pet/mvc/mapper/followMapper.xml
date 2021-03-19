@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pet.mvc.mapper.followMapper">
+   <!-- 팔로우 -->
+   <insert id="addfollow" parameterType="follow">
+      <!-- 팔로우 Insert -->
+         INSERT INTO follow
+         VALUES(follow_seq.nextval,#{member_number},#{target_member_number}, sysdate)
+   </insert>
+   <!-- 팔로잉 -->
+   <select id="following" resultType="pet.member.vo.FollowVO" parameterType="int">
+      SELECT *
+      FROM FOLLOW
+      WHERE member_number = #{member_number}
+   </select>
+   <!-- 팔로워 -->
+   <select id="follower" resultType="pet.member.vo.FollowVO" parameterType="int">
+      SELECT *
+      FROM FOLLOW
+      WHERE target_member_number = #{target_member_number}
+   </select>
+   <!-- 팔로잉 끊기 -->
+   <delete id="deleteFollowing" parameterType="String">
+    	delete from FOLLOW WHERE target_member_number = #{member_number}
+    </delete>
+    <!-- 팔로워 끊기 -->
+   <delete id="deleteFollower" parameterType="String">
+    	delete from FOLLOW WHERE member_number = #{member_number}
+    </delete>
+   <!-- 회원가입 이메일 중복체크
+   <select id="mailChk" resultType="int">
+      SELECT COUNT(*)
+      FROM MEMBER
+      WHERE member_email = #{member_email}
+   </select>
+   -->
+</mapper>

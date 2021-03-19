@@ -61,12 +61,14 @@ public class LoginController {
          
          if(vo == null) {
             mav.addObject("msg", "아이디를 정확히 입력해 주세요.");
-            mav.setViewName("member/signup");
+            //mav.setViewName("member/signup");
             return mav;
          }
          
          boolean passMatch = pwencoder.matches(lvo.getMember_password(), vo.getMember_password());
-        
+         logger.info("비밀번호 받아?"+lvo.getMember_password()+ "비밀번호 받아?222"+vo.getMember_password());
+         logger.info("passMatch" + passMatch);
+         
          
          //로그인 성공
          if (passMatch) {
@@ -75,19 +77,18 @@ public class LoginController {
         	 int member_number = vo.getMember_number();
         	 long count = msgService.getUnreadMsg(member_number);
         	 session.setAttribute("unread", count);
-        	 logger.info("읽지 않은 메시지"+count);
         	 MypagePetVO mpvo = petservice.petMypage(member_number);
   		   	 logger.info("이거되니?"+mpvo);
-  		     
   		   	 mav.addObject("mpvo", mpvo);
   		   	 session.setAttribute("petMypage", mpvo);
-        	 
+  		   	 //로그인 기록 남기기
+  		     service.loginLog(member_number);
         	 
         	 return mav;
  	 
          }else {
             mav.addObject("msg", "패스워드를 정확히 입력해주세요.");
-            mav.setViewName("member/agree");
+           // mav.setViewName("member/agree");
             return mav;
          }
 
