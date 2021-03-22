@@ -18,4 +18,7 @@ public class MemberVO {
 	private String member_name;
 	private String member_address;
 	private Date member_date;
+	private String member_fname;
+	private Date login_date;
+	private String login;
 }

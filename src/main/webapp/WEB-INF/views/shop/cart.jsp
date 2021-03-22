@@ -251,6 +251,27 @@
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
+  //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function () {
+      $("header").toggleClass("active");
+    });
+    $(document).on("ready", function () {
+      if ($(window).width() > 991) {
+        $("header").removeClass("active");
+      }
+      $(window).on("resize", function () {
+        if ($(window).width() > 991) {
+          $("header").removeClass("active");
+        }
+      });
+    });
+
+     function getItem(){
+       $("#selectBox option:seleted").text();
+      }
+    	
+    
+    
   </script>
   <!-- /move top -->
 </body>

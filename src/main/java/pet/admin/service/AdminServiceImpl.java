@@ -55,25 +55,35 @@ public class AdminServiceImpl implements AdminService {
 
 	public Hashtable<String, Object> getIndexData() {
 		Hashtable<String, Object> map = new Hashtable<String, Object>();
+		// 신규 멤버 통계
 		long newMember = mapper.getNewMember();
+		// 총 회원 통계
 		long totalMember = mapper.getTotalMember();
+		// 일일 매출
 		long todayIncome = mapper.getTodayIncome();
+		// 매칭 성사 퍼센트
 		String matchPer = getMatchPer();
+		// 주간 통계
 		Hashtable<String, Object> allList = getWeeklyData();
+		// 신규 가입 멤버
 		ArrayList<MemberVO> newMemList = mapper.getNewMemList();
 		ArrayList<String> PicList = new ArrayList<String>();
 		ArrayList<String> payPicList = new ArrayList<String>();
+		// 베스트 셀러
 		ArrayList<BestSeller> bestSeller = mapper.getBestSeller();
 		for(MemberVO member : newMemList) {
-			log.info(member.getMember_number());
 			String url = walkMapper.getWalkPic(member.getMember_number());
-			PicList.add(url);
+			member.setMember_fname(url);
 		}
+		// 최근 판매 통계
 		ArrayList<PayData> payData = mapper.getPayData();
 		for(PayData data : payData) {
 			String url = walkMapper.getWalkPic(data.getMember_number());
-			log.info("이거가 다시나온거"+url);
 			payPicList.add(url);
+			Date origin = data.getLogin_date();
+			DateFormat dayForm = new SimpleDateFormat("yyyy년 MM월 dd일");
+			String day = dayForm.format(origin);
+			data.setLogin(day);
 		}
 		map.put("newMember",newMember);
 		map.put("totalMember",totalMember);
@@ -82,16 +92,20 @@ public class AdminServiceImpl implements AdminService {
 		map.put("allList",allList);
 		map.put("newMemList",newMemList);
 		map.put("bestSeller",bestSeller);
-		map.put("picList",PicList);
 		map.put("payData",payData);
 		map.put("payPicList",payPicList);
 		return map;
 	}
 	
 	public String getMatchPer() {
-		double allWalk=80;
-		double allJoin=50;
-		double per = allJoin / allWalk * 100.0;
+		long allWalk = mapper.getTotalWalk();
+		String allWalkStr = String.valueOf(allWalk);
+		long allJoin = mapper.getTotalJoin();
+		String allJoinStr = String.valueOf(allJoin);
+		Double walkD = Double.parseDouble(allWalkStr);
+		Double joinD = Double.parseDouble(allJoinStr);
+		Double.parseDouble(allJoinStr);
+		double per = joinD / walkD * 100.0;
 		String percent = per+"%";
 		return percent;
 	}
@@ -127,6 +141,13 @@ public class AdminServiceImpl implements AdminService {
 			long member_number = list.getMember_number();
 			MemberOption memberOption = mapper.getMemOptionData(member_number);
 			urls.add(walkMapper.getWalkPic(member_number));
+			// 로그인 날짜 변환
+			if(list.getLogin_date() != null) {
+				Date origin = list.getLogin_date();
+				DateFormat dayForm = new SimpleDateFormat("yyyy년 MM월 dd일");
+				String day = dayForm.format(origin);
+				list.setLogin(day);
+			}
 			if(memberOption == null) {
 				MemberOption newMemberOption = new MemberOption();
 				newMemberOption.setWalk(0); 
@@ -137,7 +158,6 @@ public class AdminServiceImpl implements AdminService {
 		}
 		result.setMemberOption(optionLists);
 		result.setMemberPic(urls);
-		log.info("#####이것좀 봐주세요"+result);
 		return result;
 	}
 
@@ -239,13 +259,16 @@ public class AdminServiceImpl implements AdminService {
 		for(MemberWalkChart one : lists) {
 			long memno = one.getMember_number();
 			MemberWalkChart dto = mapper.getMemWalkChart(memno);
+			log.info("이것"+dto);
 			one.setCount(dto.getCount());
 			one.setJcount(dto.getJcount());
-			one.setRecent(dto.getRecent());
 			one.setPercent(Math.round((double)one.getJcount()/(double)one.getCount()*10000)/100.0+"%");
-			DateFormat dayForm = new SimpleDateFormat("yyyy년 MM월 dd일");
-			String day = dayForm.format(one.getRecent());
-			one.setDay(day);
+			if(dto.getRecent() != null) {
+				one.setRecent(dto.getRecent());
+				DateFormat dayForm = new SimpleDateFormat("yyyy년 MM월 dd일");
+				String day = dayForm.format(one.getRecent());
+				one.setDay(day);
+			}
 		}
 		return lists; 
 	}
@@ -277,6 +300,22 @@ public class AdminServiceImpl implements AdminService {
 			list.setPay_day(pay_day);
 		}
 		return lists;
+	}
+
+	@Override
+	public void givePoint(long member_number, long point) {
+		mapper.givePoint(member_number, point);
+		log.info(member_number+"번에, "+point+"포인트 지급");
+	}
+
+	@Override
+	public ArrayList<String> getWalkPic(ArrayList<Walk> lists) {
+		ArrayList<String> urls = new ArrayList<String>();
+		for(Walk list : lists) {
+			String url = walkMapper.getWalkPic(list.getMember_number());
+			urls.add(url);
+		}
+		return urls;
 	}
 
 }

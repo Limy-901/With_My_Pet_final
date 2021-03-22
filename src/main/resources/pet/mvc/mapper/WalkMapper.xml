@@ -75,7 +75,7 @@
 	</update>
 	
 	<insert id="insertWalkJoin" parameterType="joinVo">
-    	insert into WALK_JOIN values(#{walk_idx}, #{member_number})
+    	insert into WALK_JOIN values(#{walk_idx}, #{member_number}, null)
     </insert>
     
     <select id="selectByCmtIdx" parameterType="long" resultType="long">

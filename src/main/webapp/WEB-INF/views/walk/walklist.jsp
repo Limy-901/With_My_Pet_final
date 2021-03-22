@@ -250,17 +250,10 @@ function search(){
 	      	<img src="<c:url value="/img/${list.picLists[status.index]}"/>" style="width:100%; height:auto;" class="img-fluid img-thumbnail"/>
 	      </div>
 	      <c:if test="${empty list.cmtList[status.index]}"> 
-	      	<span class="acard-media-object-tag subtle">참가자를 기다리고 있어요!</span>
+	      	<span class="acard-media-object-tag subtle">첫 번째 참가자를 기다리고 있어요!</span>
 	      </c:if>
 	      <ul class="acard-media-object-social-list">
 	      
-	      
-	        <li><!-- 댓글 회원 사진 -->
-	          <img src="https://s10.postimg.cc/3rjjbzcvd/profile_f.jpg" class="">
-	        </li>
-	        <li><!-- 댓글 회원 사진 -->
-	          <img src="https://s16.postimg.cc/b0j0djh79/profile_0_f.jpg" class="">
-	        </li>
 	        
 	        
 	      </ul>

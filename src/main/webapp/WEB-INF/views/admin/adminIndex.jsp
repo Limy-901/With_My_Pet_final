@@ -117,7 +117,7 @@
                             <i class="icon-globe-alt user-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">회 원</span>
                         </a>
                         <ul aria-expanded="false">
-                        	<li><a href="memberList.do"style="font-family: 'Spoqa Han Sans Neo';">회원 목록</a></li>
+                        	<li><a href="memberList.do" style="font-family: 'Spoqa Han Sans Neo';">회원 목록</a></li>
                         </ul>
                     </li>
                     
@@ -333,14 +333,14 @@ new Chart(document.getElementById("doughnutChart"), {
                                                     <th>주소지</th>
                                                     <th>상 태</th>
                                                     <th>결제방법</th>
-                                                    <th>최근활동</th>
+                                                    <th>최근 로그인</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             
                                             	<c:forEach items="${indexData.payData}" var="pay" varStatus="status">
                                                 <tr style="font-family: 'Spoqa Han Sans Neo';">
-                                                    <td><img src="${indexData.payPicList[status.index]}" class=" rounded-circle mr-3" alt="">${pay.member_name}</td>
+                                                    <td><img src="<c:url value="/img/${indexData.payPicList[status.index]}"/>" class=" rounded-circle mr-3" alt="">${pay.member_name}</td>
                                                     <td>${pay.product_name}</td>
                                                     <td>
                                                         <span>${pay.member_address}</span>
@@ -370,8 +370,7 @@ new Chart(document.getElementById("doughnutChart"), {
                                                     </c:choose>
                                                     
                                                     <td>
-                                                        <span>Last Login</span>
-                                                        <span class="m-0 pl-3">10 sec ago</span>
+                                                        <span>${pay.login}</span>
                                                     </td>
                                                 </tr>
                                                 </c:forEach>
@@ -395,7 +394,7 @@ new Chart(document.getElementById("doughnutChart"), {
                         <div class="card">
                             <div class="card-body">
                                 <div class="text-center">
-                                    <img src="<c:url value="/img/${indexData.picList[status.index]}"/>" class="rounded-circle" alt="">
+                                    <img style="width:160px;height:160px;"src="<c:url value="/img/${member.member_fname}"/>" class="rounded-circle" alt="">
                                     <h5 class="mt-3 mb-1"style="font-family: 'Spoqa Han Sans Neo';">${member.member_name}</h5>
                                     <p class="m-0"style="font-family: 'Spoqa Han Sans Neo';">${member.member_address}</p>
                                 </div>

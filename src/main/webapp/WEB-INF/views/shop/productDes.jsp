@@ -181,7 +181,7 @@
                         </br></br>
                         <td colspan="4">
                            &nbsp;
-                           <input type="submit" style="text-align:left;" value="장바구니에 담기" onclick="Confirm();" class="ui button">
+                           <input type="submit" style="text-align:left;" value="장바구니에 담기" onclick="Confirm();" class="btn btn-style btn-primary">
                            </br>
                            <script>
                               function Confirm(){
@@ -189,7 +189,7 @@
                               }
                            </script>
                            </br>
-                           <a href="product?catgo_code=9" class="ui button">상품목록</a>
+                           <a href="product?catgo_code=9" class="btn btn-style btn-primary">상품목록</a>
                         </td>
                      </table>
                   </form>

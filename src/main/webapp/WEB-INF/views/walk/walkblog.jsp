@@ -412,11 +412,23 @@ function deleteHeart(){
 </script>
 
 </div>
-
-<center><div class="modifies" style="font-family: 'Spoqa Han Sans Neo';">
-  <a class="modify" href="update.do?idx=${content.dto.walk_idx}">수정</a>
-  <a class="modify" href="delete.do?idx=${content.dto.walk_idx}">삭제</a>
-</div></center>
+<c:choose>
+	<c:when test="${content.dto.walk_writer eq login.member_name}">
+		<center>
+			<div class="modifies" style="font-family: 'Spoqa Han Sans Neo';">
+			  <a class="modify" href="update.do?idx=${content.dto.walk_idx}">수정</a>
+			  <a class="modify" href="delete.do?idx=${content.dto.walk_idx}">삭제</a>
+			</div>
+		</center>
+	</c:when>
+	<c:otherwise>
+		<center>
+			<div class="modifies" style="font-family: 'Spoqa Han Sans Neo';">
+			  <a class="modify" style="font-family: 'Spoqa Han Sans Neo';" href="../msg/chat.do?member_number=${content.dto.member_number}">메시지 보내기</a>
+			</div>
+		</center>
+	</c:otherwise>
+</c:choose>
 </section>
 
 <!-- Join 테이블 조회 -->
@@ -437,10 +449,10 @@ function deleteHeart(){
       <div class="card" id="card${item.walk_cmt_idx}">
           <div class="card-header p-0 position-relative">
           		<input type="hidden" class="test1"  name=idx${item.walk_cmt_idx} value="${item.walk_cmt_idx}">
-               <img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">
+               <img class="card-img-bottom d-block" src="<c:url value="/img/${content.dto.joinUrls[status.index]}"/>" alt="Card image cap">
           </div>
           <div class="card-body blog-details" style="font-family: 'Spoqa Han Sans Neo'; flex:0 0 auto;">
-              <p>${item.walk_cmt_writer}</p>
+              <p>${item.walk_cmt_writer}님 참여!</p>
               <p>${item.walk_cmt_content}</p>
           </div>
       </div>
@@ -471,12 +483,12 @@ function deleteHeart(){
 			  data: { idx: idx},
 			  success : function(map){
 			   		if(map.length != 0){
-			   			$('#pet_name').text(map.Comment.walk_cmt_writer+' 님과 \n 반려동물 '+map.Pet.pet_name);
-			    		$('#pet_birthday').text(map.Pet.pet_age);
-			    		$('#pet_character').text(map.Comment.walk_cmt_content);
-			    		$('#pet_date').text(map.Comment.walk_cmt_date);
-			    		$('#joinWalkIdx').text(map.Comment.walk_idx);
-			    		$('#joinCmtIdx').text(map.Comment.walk_cmt_idx);
+			   			$('#pet_name').html('<b>보호자 : </b>'+map.Comment.walk_cmt_writer);
+			    		$('#pet_birthday').html('<b>반려동물 : </b>'+map.Pet.pet_name+'<br><b>나이 : </b>'+map.Pet.pet_age+'<br><b>성별 : </b>'+map.Pet.pet_sex);
+			    		$('#pet_character').html('<b>참가메시지 : </b>'+map.Comment.walk_cmt_content);
+			    		$('#pet_date').html('<b>참가신청일 : </b>'+map.Comment.walk_cmt_date);
+			    		$('#joinWalkIdx').html(map.Comment.walk_idx);
+			    		$('#joinCmtIdx').html(map.Comment.walk_cmt_idx);
 			    		
 			    		window.location.href = "#popup2";
 			   		}else{
@@ -505,7 +517,7 @@ function deleteHeart(){
            <div class="card-header p-0 position-relative">
            		<input type="hidden" class="test1"  name=idx${item.walk_cmt_idx} value="${item.walk_cmt_idx}">
                 <button id="detailbtn${item.walk_cmt_idx}" class="detailbtn" onclick="getWalkCmt(${item.walk_cmt_idx},${content.dto.walk_idx})">자세히 보기</button>
-                <img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">
+                <img class="card-img-bottom d-block" src="<c:url value="/img/${content.dto.normalUrls[status.index]}"/>" alt="Card image cap">
            </div>
            <div class="card-body blog-details" style="font-family: 'Spoqa Han Sans Neo'; flex:0 0 auto;">
                <p>${item.walk_cmt_writer}</p>
@@ -533,20 +545,22 @@ function deleteHeart(){
  <!-- 참가팝업시작 -->
 <div id="popup1" class="overlay" style="z-index:1;">
 	<div class="popup">
-		<center><h4 style="font-family: 'Spoqa Han Sans Neo';">같이 산책할래요!</h4></center><br>
-		<p style="font-family: 'Spoqa Han Sans Neo'; text-align:center;">작성자가 승인해야 참가자가 됩니다.</p>
+		<center><h4 style="font-family: 'Spoqa Han Sans Neo';">같이 산책할래요!</h4></center>
+		<p style="font-family: 'Spoqa Han Sans Neo'; text-align:center;">작성자가 승인해야 참가할 수 있습니다.</p><br>
 		<a class="close" href="#">&times;</a>
 		
 		<!-- 내정보 -->
 		<div class="col-lg-3 col-sm-6 grids-feature">
 	        <div class="area-box">          
 	          <div class="col-md-4">
-	            <img src="../assets/images/g1.jpg" class="img-fluid radius-image mt-1" alt="blog-post-image">
+	            <img src="<c:url value="/img/${petMypage.pet_fname}"/>" class="img-fluid radius-image mt-1" alt="blog-post-image">
 	          </div>        
 		       <div class="col-md-8 align-self" style="font-family: 'Spoqa Han Sans Neo';">
-		          <p style="font-family: 'Spoqa Han Sans Neo';">${login.member_name}</p>
-		          <p style="font-family: 'Spoqa Han Sans Neo';">${mpvo.pet_name}, ${mpvo.pet_sex}, ${mpvo.pet_age}</p>       
-		          <p style="font-family: 'Spoqa Han Sans Neo';">${mpvo.walkarea}</p>
+		       	  <h4 style="display:flex; margin:auto; font-family: 'Spoqa Han Sans Neo';">내 정보</h4><br>
+		          <p style="font-family: 'Spoqa Han Sans Neo';"><b>보호자 : </b>${login.member_name}</p>
+		          <p style="font-family: 'Spoqa Han Sans Neo';"><b>반려동물 : </b>${petMypage.pet_name}<br><b>성별 : </b>${petMypage.pet_sex}, <br><b>나이 : </b>${petMypage.pet_age}</p>       
+		          <p style="font-family: 'Spoqa Han Sans Neo';"><b>주 산책지역 : </b>${petMypage.pet_walkarea}</p>
+		          <button class="modify" onclick="location.href='../member/mypage'" style="border:none; left:65%; top:110%; position:absolute;font-family: 'Spoqa Han Sans Neo';">정보 수정</button>
 		       </div>
 	        </div>
         </div>
@@ -557,15 +571,16 @@ function deleteHeart(){
 		    <input type="hidden"  name="walk_idx" value="${content.dto.walk_idx}">
 		    <input type="text" id="cmt_walk_cmt_content" placeholder="만나실 견주분께 인사를 보내보세요!" style="font-family: 'Spoqa Han Sans Neo';"><br/>
 		  </div>
-          <button class="modify" onclick="insertCheck(${content.dto.walk_idx})" style="border-color:none;">보내기</button>
+          <button class="modify" onclick="insertCheck(${content.dto.walk_idx})" style="border:none;font-family: 'Spoqa Han Sans Neo';">보내기</button>
 	   </form>
 	</div>
 </div>
 <script>
 function insertCheck(walk_idx){
-	alert("작동은 됩니당.");
 	var content = document.getElementById("cmt_walk_cmt_content").value;
-	$.ajax({
+	if(content == '') alert("참가 메시지는 필수입니다!");
+	else{
+		$.ajax({
 		url: "apply.do",
 	    type: 'GET',
 	    async: false,
@@ -582,7 +597,6 @@ function insertCheck(walk_idx){
 			  $('#applyList').empty();
 			  $('#joinCount').empty();
 			  $('#applyCount').empty();
-			  alert(data.joinCount+", "+applyCount);
 			  var html1='';
 			  var html2='';
 			  var html3='신청자   :  '+data.joinCount+' 명';
@@ -593,7 +607,7 @@ function insertCheck(walk_idx){
 				  html1 += '<div class="card-header p-0 position-relative">';
 				  html1 += '<input type="hidden" class="test1"  name=idx'+data.normal[i].walk_cmt_idx+' value="'+data.normal[i].walk_cmt_idx+'">';
 				  html1 += '<button id="detailbtn'+data.normal[i].walk_cmt_idx+'" class="detailbtn" onclick="getWalkCmt('+data.normal[i].walk_cmt_idx+')">자세히 보기</button>';
-				  html1 += '<img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">';
+				  html1 += '<img class="card-img-bottom d-block" src="<c:url value="/img/'+data.normalUrls[i]+'${petMypage.pet_fname}"/>" alt="Card image cap">';
 				  html1 += '</div>';
 				  html1 += '<div class="card-body blog-details" style="font-family: "Spoqa Han Sans Neo"; flex:0 0 auto;">';
 				  html1 += '<p>'+data.normal[i].walk_cmt_writer+'</p><p>'+data.normal[i].walk_cmt_content+'</p></div></div></div>';
@@ -604,7 +618,7 @@ function insertCheck(walk_idx){
 				  html2 += '<div class="card-header p-0 position-relative">';
 				  html2 += '<input type="hidden" class="test1"  name=idx'+data.join[i].walk_cmt_idx+' value="'+data.join[i].walk_cmt_idx+'">';
 				  html2 += '<button id="detailbtn'+data.join[i].walk_cmt_idx+'" class="detailbtn" onclick="getWalkCmt('+data.join[i].walk_cmt_idx+')">자세히 보기</button>';
-				  html2 += '<img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">';
+				  html2 += '<img class="card-img-bottom d-block" src="<c:url value="/img/'+data.joinUrls[i]+'"/>" alt="Card image cap">';
 				  html2 += '</div>';
 				  html2 += '<div class="card-body blog-details" style="font-family: "Spoqa Han Sans Neo"; flex:0 0 auto;">';
 				  html2 += '<p>'+data.join[i].walk_cmt_writer+'</p><p>'+data.join[i].walk_cmt_content+'</p></div></div></div>';
@@ -624,6 +638,8 @@ function insertCheck(walk_idx){
 		}
 	  }
 	});
+		
+	}
 }
 </script>
 <!-- 참가팝업끝 -->
@@ -651,9 +667,11 @@ function insertCheck(walk_idx){
 	        </div>
 	    </div>
 	    <center>
-      	<div class="yesorno">
-			<button id="yesBtn" class="yesornobtn" onclick="walkJoinOk()" style="font-family: 'Spoqa Han Sans Neo';">수락</button>
-		</div>
+	    <c:if test="${login.member_name eq content.dto.walk_writer}">
+	      	<div class="yesorno">
+				<button id="yesBtn" class="yesornobtn" onclick="walkJoinOk()" style="font-family: 'Spoqa Han Sans Neo';">수락</button>
+			</div>
+		</c:if>
 		</center>
 	</div>
 </div>
@@ -692,7 +710,7 @@ function walkJoinOk(){
 					  html1 += '<div class="card-header p-0 position-relative">';
 					  html1 += '<input type="hidden" class="test1"  name=idx'+data.normal[i].walk_cmt_idx+' value="'+data.normal[i].walk_cmt_idx+'">';
 					  html1 += '<button id="detailbtn'+data.normal[i].walk_cmt_idx+'" class="detailbtn" onclick="getWalkCmt('+data.normal[i].walk_cmt_idx+')">자세히 보기</button>';
-					  html1 += '<img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">';
+					  html1 += '<img class="card-img-bottom d-block" src="<c:url value="/img/'+data.normalUrls[i]+'"/>" alt="Card image cap">';
 					  html1 += '</div>';
 					  html1 += '<div class="card-body blog-details" style="font-family: "Spoqa Han Sans Neo"; flex:0 0 auto;">';
 					  html1 += '<p>'+data.normal[i].walk_cmt_writer+'</p><p>'+data.normal[i].walk_cmt_content+'</p></div></div></div>';
@@ -702,7 +720,7 @@ function walkJoinOk(){
 					  html2 += '<div class="card" id="card'+data.join[i].walk_cmt_idx+'">';
 					  html2 += '<div class="card-header p-0 position-relative">';
 					  html2 += '<input type="hidden" class="test1"  name=idx'+data.join[i].walk_cmt_idx+' value="'+data.join[i].walk_cmt_idx+'">';
-					  html2 += '<img class="card-img-bottom d-block" src="../assets/images/g1.jpg" alt="Card image cap">';
+					  html2 += '<img class="card-img-bottom d-block" src="<c:url value="/img/'+data.joinUrls[i]+'"/>" alt="Card image cap">';
 					  html2 += '</div>';
 					  html2 += '<div class="card-body blog-details" style="font-family: "Spoqa Han Sans Neo"; flex:0 0 auto;">';
 					  html2 += '<p>'+data.join[i].walk_cmt_writer+'</p><p>'+data.join[i].walk_cmt_content+'</p></div></div></div>';
@@ -734,14 +752,14 @@ function walkJoinOk(){
 		  	</c:when>
 		  	<c:otherwise>
 			  <nav>
-			   <a class="button" onclick="memberCheck()" style="border-color:white; font-family: 'Spoqa Han Sans Neo'; margin-left: -150%; color:white;">참가할래요🐕</a>
+			   <a class="button" onclick="memberCheck()" style="border-color:white; font-family: 'Spoqa Han Sans Neo'; margin-left: -150%; color:white;">${mpvo.pet_name}참가할래요🐕</a>
 			  </nav>
 			</c:otherwise>
 		  </c:choose>
 		</div>
  <script>
  function memberCheck(){
-	 var here = '${mpvo}';
+	 var here = '${petMypage.pet_name}';
 	 if(here != '') {
 		 window.location.href = "#popup1";
 	 }

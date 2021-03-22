@@ -1,5 +1,7 @@
 package pet.admin.vo;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
@@ -14,4 +16,6 @@ public class PayData {
 	private String member_address;
 	private long pcount;
 	private String pay_method;
+	private Date login_date;
+	private String login;
 }

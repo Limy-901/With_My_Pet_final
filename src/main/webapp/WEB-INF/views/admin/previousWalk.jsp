@@ -36,23 +36,6 @@
         <div class="header" style="background-color:#FFD687; margin-bottom: -1%;">    
             <div class="header-content clearfix">
                 
-                <div class="nav-control">
-                    <div class="hamburger">
-                        <span class="toggle-icon"><i class="icon-menu"></i></span>
-                    </div>
-                </div>
-                <!-- 검색 -->
-                <div class="header-left">
-                    <div class="input-group icons" style="width:200%;">
-                        <input id="mainSearchKeyword" type="text" class="form-control" placeholder="검색어를 입력하세요." aria-label="Search Dashboard">
-                        <div class="drop-down animated flipInX d-md-none">
-                           <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1">
-                        	<a onclick="mainSearchCheck()"><i class="mdi mdi-magnify"></i></a>
-                        </span>
-                    </div>                    
-                </div>
                 <div class="header-right">
                     <ul class="clearfix">
                     	<!-- 새 문의글  -->
@@ -66,86 +49,6 @@
                                     <a href="javascript:void()" class="d-inline-block">
                                         <span style="font-family: 'Spoqa Han Sans Neo';"class="badge badge-pill gradient-1">3</span>
                                     </a>
-                                </div>
-                                <div class="dropdown-content-body">
-                                    <ul>
-                                        <li class="notification-unread">
-                                            <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="../assets/images/admin/avatar/1.jpg" alt="">
-                                                <div class="notification-content">
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-heading">Saiful Islam</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-timestamp">08 Hours ago</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="notification-unread">
-                                            <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="../assets/images/admin/avatar/2.jpg" alt="">
-                                                <div class="notification-content">
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-heading">Adam Smith</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-timestamp">08 Hours ago</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-text">Can you do me a favour?</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="../assets/images/admin/avatar/3.jpg" alt="">
-                                                <div class="notification-content">
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-heading">Barak Obama</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-timestamp">08 Hours ago</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="../assets/images/admin/avatar/4.jpg" alt="">
-                                                <div class="notification-content">
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-heading">Hilari Clinton</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-timestamp">08 Hours ago</div>
-                                                    <div style="font-family: 'Spoqa Han Sans Neo';"class="notification-text">Hello</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- 확인 필요 사항 -->
-                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                                <i class="mdi mdi-bell-outline"></i>
-                                <span class="badge badge-pill gradient-2">5</span>
-                            </a>
-                            <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
-                                <div class="dropdown-content-heading d-flex justify-content-between">
-                                    <span class="">확인사항</span>  
-                                    <a href="javascript:void()" class="d-inline-block">
-                                        <span class="badge badge-pill gradient-2">5</span>
-                                    </a>
-                                </div>
-                                <div class="dropdown-content-body">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
-                                                <div class="notification-content">
-                                                    <h6 class="notification-heading">산책 포인트 지급</h6>
-                                                    <span class="notification-text">Within next 5 days</span> 
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void()">
-                                                <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
-                                                <div class="notification-content">
-                                                    <h6 class="notification-heading">배송 현황 변경</h6>
-                                                    <span class="notification-text">One hour ago</span> 
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </li>
@@ -177,7 +80,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="nk-sidebar" style="background-color:#FFD687;">           
+                <div class="nk-sidebar" style="background-color:#FFD687;">           
             <div class="nk-nav-scroll" style="background-color:#FFD687;">
                 <ul class="metismenu" id="menu" style="background-color:#FFD687;">
                     <li class="nav-label"></li>
@@ -193,7 +96,6 @@
                         </a>
                         <ul aria-expanded="false">
                         	<li><a href="memberList.do"style="font-family: 'Spoqa Han Sans Neo';">회원 목록</a></li>
-                        	<li><a href="memberMessage.do"style="font-family: 'Spoqa Han Sans Neo';">회원에게 메세지 전송</a></li>
                         </ul>
                     </li>
                     
@@ -214,17 +116,8 @@
                         <ul aria-expanded="false">
                             <li><a href="registerProduct.do"style="font-family: 'Spoqa Han Sans Neo';">상품 등록</a></li>
                             <li><a href="productQ.do"style="font-family: 'Spoqa Han Sans Neo';">문의 답변</a></li>
+                            <li><a href="productA.do"style="font-family: 'Spoqa Han Sans Neo';">지난 문의 내용</a></li>
                             <li><a href="orderStatus.do"style="font-family: 'Spoqa Han Sans Neo';">주문 현황</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-graph menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">게시글</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="recentBoard.do"style="font-family: 'Spoqa Han Sans Neo';">최근 게시글</a></li>
-                            <li><a href="reportedPost.do"style="font-family: 'Spoqa Han Sans Neo';">신고글 목록</a></li>
                         </ul>
                     </li>
                     
@@ -233,25 +126,15 @@
                             <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">산책 통계</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="salesStatistic.do" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">매출 통계</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="postNotice" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">공지사항 작성</span>
-                        </a>
-                    </li>
-                    
                     
                 </ul>
-            </div><br/>
+            </div>
+        <br/>
         </div>
         <!-- 본문, card 8개 -->
-        <div class="row" style="margin-left:16%;width:80%;">
+        <div class="row" style="min-height:660px; margin-left:16%;width:80%;">
            <div class="col-12 m-b-30"><br/>
-               <div class="row">
+               <div class="row" style="font-family: 'Spoqa Han Sans Neo';">
                	   <!-- 반복 -->
 
                	   <c:if test="${empty map.lists}">
@@ -260,19 +143,19 @@
                	   
                	   <c:forEach items="${map.lists}" var="list" varStatus="status">
 	                   <div class="col-md-6 col-lg-3">
-	                       <div class="card">
+	                       <div class="card" style="min-height:500px;">
 	                           <div class="card-header bg-white">
-	                               <h5 class="card-title">${list.walk_subject}</h5>
-	                               <h6 class="card-subtitle mb-2 text-muted">${list.day} <br/> ${list.time} / ${list.walk_type}</h6>
+	                               <h5 style="font-family: 'Spoqa Han Sans Neo';" class="card-title">${list.walk_subject}</h5>
+	                               <h6 style="font-family: 'Spoqa Han Sans Neo';" class="card-subtitle mb-2 text-muted">${list.day} <br/> ${list.time} / ${list.walk_type}</h6>
 	                           </div>
-	                           <img class="img-fluid" src="../assets/images/admin/big/img1.jpg" alt="">
+	                           <img class="img-fluid" src="<c:url value="/img/${map.urls[status.index]}"/>" alt="">
 	                           <div class="card-body">
-	                               <p class="card-text">${list.walk_content}</p>
+	                               <p style="font-family: 'Spoqa Han Sans Neo';" class="card-text">${list.walk_content}</p>
 	                           </div>
 	                           <div class="card-footer">
 
-	                               <p class="card-text d-inline"><small class="text-muted">${map.times[status.index]}</small>
-	                               </p><a href="../walk/blog.do?idx=${list.walk_idx}" class="card-link float-right"><small>Card link</small></a>
+	                               <p style="font-family: 'Spoqa Han Sans Neo';" class="card-text d-inline"><small style="font-family: 'Spoqa Han Sans Neo';" class="text-muted">${map.times[status.index]}</small>
+	                               </p><a style="font-family: 'Spoqa Han Sans Neo';" href="../walk/blog.do?idx=${list.walk_idx}" class="card-link float-right"><small>Card link</small></a>
 	                           </div>
 	                       </div>
 	                   </div>

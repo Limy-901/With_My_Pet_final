@@ -19,6 +19,7 @@ public interface BoardMapper {
 	void delete(long post_idx);
 	void update(Board board);
 	String selectPostTime(long post_idx);
+	List<Board> selectPerMember(BoardVo boardVo);
 	
 	
 	int updateHitCount(long post_idx);

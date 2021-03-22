@@ -51,7 +51,6 @@
                         </a>
                         <ul aria-expanded="false">
                         	<li><a href="memberList.do"style="font-family: 'Spoqa Han Sans Neo';">회원 목록</a></li>
-                        	<li><a href="memberMessage.do"style="font-family: 'Spoqa Han Sans Neo';">회원에게 메세지 전송</a></li>
                         </ul>
                     </li>
                     
@@ -72,17 +71,8 @@
                         <ul aria-expanded="false">
                             <li><a href="registerProduct.do"style="font-family: 'Spoqa Han Sans Neo';">상품 등록</a></li>
                             <li><a href="productQ.do"style="font-family: 'Spoqa Han Sans Neo';">문의 답변</a></li>
+                            <li><a href="productA.do"style="font-family: 'Spoqa Han Sans Neo';">지난 문의 내용</a></li>
                             <li><a href="orderStatus.do"style="font-family: 'Spoqa Han Sans Neo';">주문 현황</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-graph menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">게시글</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="recentBoard.do"style="font-family: 'Spoqa Han Sans Neo';">최근 게시글</a></li>
-                            <li><a href="reportedPost.do"style="font-family: 'Spoqa Han Sans Neo';">신고글 목록</a></li>
                         </ul>
                     </li>
                     
@@ -91,17 +81,6 @@
                             <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">산책 통계</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="salesStatistic.do" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">매출 통계</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="postNotice" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">공지사항 작성</span>
-                        </a>
-                    </li>
-                    
                     
                 </ul>
             </div>
@@ -109,7 +88,7 @@
     <!-- 멤버 리스트, 7개씩 -->
 	<div style="max-width:150%; height:100%; margin:auto; display:relative;">
 	
-        <div class="card" style="display:flex;margin:auto; max-width:92%; margin-left:13%;height:100%;">
+        <div class="card" style="min-height:670px; display:flex; margin:auto; max-width:92%; margin-left:13%;height:100%;">
             <div class="card-body" >
                 <h3 style="font-family: 'Spoqa Han Sans Neo';text-align:center;">회원 목록</h3><br/>
                 <div class="table-responsive" style="width:85%; margin:auto;"> 
@@ -120,7 +99,7 @@
                         	<div class="media border-bottom-1 p-t-15" style="text-align:center;">
                             	<div class="media-body">
 	                                <div class="row">
-	                        			<p>검색 내용에 해당하는 회원이 존재하지 않습니다.</p>
+	                        			<p style="font-family: 'Spoqa Han Sans Neo';">검색 내용에 해당하는 회원이 존재하지 않습니다.</p>
                         			</div>
                         	    </div>
                             </div>
@@ -128,54 +107,114 @@
                         
                         <c:forEach items="${result.list}" var="list" varStatus="status">
 	                        <div class="media border-bottom-1 p-t-15" style="text-align:center;">
-	                            <img class="mr-3 rounded-circle" src="${result.memberPic[status.index]}" alt="">
+	                        <c:choose>
+	                        <c:when test="${!empty result.memberPic[status.index]}">
+	                            <img class="mr-3 rounded-circle" style="width:50px" src="<c:url value="/img/${result.memberPic[status.index]}"/>" alt="">
+	                        </c:when>
+	                        <c:otherwise>
+	                        	<img class="mr-3 rounded-circle" style="width:50px" src="" alt="">
+	                        </c:otherwise>
+	                        </c:choose>
 	                            <div class="media-body">
 	                                <div class="row">
 	                                    <div class="col-lg-2">
-	                                        <h5 style="margin-top:2%; margin-bottom:2%;margin:auto;">${list.member_name}</h5>
-	                                        <p style="margin-bottom:2%;margin:auto;">${list.member_email}</p>
+	                                        <h5 style="font-family: 'Spoqa Han Sans Neo';margin-top:2%; margin-bottom:2%;margin:auto;">${list.member_name}</h5>
+	                                        <p style="font-family: 'Spoqa Han Sans Neo';margin-bottom:2%;margin:auto;">${list.member_email}</p>
 	                                    </div>
 	                                    <div class="col-lg-3">
-	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>주소</b><br/>${list.member_address}</p>
+	                                        <p style="font-family: 'Spoqa Han Sans Neo';margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>주소</b><br/>${list.member_address}</p>
 	                                    </div>
 	                                    <div class="col-lg-1">
-	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>산책</b><br/>${result.memberOption[status.index].walk} 회</p>
+	                                        <p style="font-family: 'Spoqa Han Sans Neo';margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>산책</b><br/>${result.memberOption[status.index].walk} 회</p>
 	                                    </div>
 	                                    <div class="col-lg-1">
-	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>구매</b><br/>${result.memberOption[status.index].sale} 회</p>
+	                                        <p style="font-family: 'Spoqa Han Sans Neo';margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>구매</b><br/>${result.memberOption[status.index].sale} 회</p>
 	                                    </div>
 	                                    <div class="col-lg-1">
-	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>산책포인트</b><br/>${result.memberOption[status.index].point} 점</p>
+	                                        <p style="font-family: 'Spoqa Han Sans Neo';margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>산책포인트</b><br/>${result.memberOption[status.index].point} 점</p>
 	                                    </div>
 	                                    <div class="col-lg-2">
-	                                        <p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>가입</b><br/>${list.member_date}</p>
+	                                        <p style="font-family: 'Spoqa Han Sans Neo';margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>가입</b><br/>${list.member_date}</p>
 	                                    </div>
-	                                    <div class="col-lg-2 text-right">
+	                                    <div class="col-lg-2 text-right" style="font-family: 'Spoqa Han Sans Neo';">
 	                                    	강제 탈퇴
-	                                        <span><a onclick="memDelete(${list.member_number})" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
-	                                        <p class="f-s-13 text-muted">접속 : 2021.2월 21일</p>
+	                                        <span><a style="font-family: 'Spoqa Han Sans Neo';" onclick="memDelete(${list.member_number})" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+	                                        <p style="font-family: 'Spoqa Han Sans Neo';" class="f-s-13 text-muted">${list.login} 접속</p>
 	                                    </div>
-
+	                                    <button class="modify" onclick="point(${list.member_number})" style="font-family: 'Spoqa Han Sans Neo';background-color: rgb(255, 214, 135); padding-left:10px; padding-right:10px; line-height:55px; position:absolute; left:91%;border:none;font-family: 'Spoqa Han Sans Neo';">포인트 지급</button>
 	                                </div>
 	                            </div>
 	                        </div>
-                        </c:forEach>
-                        
-                        
+	                    </c:forEach>
                     </div>
                 </div>
             </div>
-            <div class="input-group icons" style="width:30%;margin:auto;">
-                <input id="mainSearchKeyword" type="text" class="form-control" placeholder="검색어를 입력하세요." aria-label="Search Dashboard">
-                <div class="drop-down animated flipInX d-md-none">
-                   <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1">
-                	<a onclick="mainSearchCheck()"><i class="mdi mdi-magnify"></i></a>
-                </span>
-            </div> <br/>
+<script>
+function point(member_number){
+	Swal.fire({
+		  title: '산책 포인트',
+		  text: "지급할 포인트를 입력하세요.",
+		  input: 'text',
+		  inputAttributes: {
+		    autocapitalize: 'off'
+		  },
+		  showCancelButton: true,
+		  confirmButtonText: '지급',
+		  cancelButtonText: '취소',
+		  showLoaderOnConfirm: true,
+		  preConfirm: (comment) => {
+			  $.ajax({
+				  url: "point.do",
+				  type: 'GET',
+				  data: { 
+					  member_number: member_number,
+					  point: comment
+				  },
+				  success : function(list){
+					  alert(list.list.length);
+					  $('#memList').empty();                             
+					  var html = '';
+					  for(var i=0; i<list.list.length; i++){
+						  alert(list.list);
+						  html += '<div class="media border-bottom-1 p-t-15" style="text-align:center;">';
+						  html += '<img class="mr-3 rounded-circle" style="width:50px" src="<c:url value="/img/'+list.memberPic[i]+'"/>" alt="">';
+						  html += '<div class="media-body"><div class="row"><div class="col-lg-2">';
+						  html += '<h5 style="margin-top:2%; margin-bottom:2%;margin:auto;">'+list.list[i].member_name+'</h5>';
+						  html += '<p style="margin-bottom:2%;margin:auto;">'+list.list[i].member_email+'</p></div><div class="col-lg-3">';
+						  html += '<p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>주소</b><br/>'+list.list[i].member_address+'</p></div>';
+						  html += '<div class="col-lg-1">';
+						  html += '<p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>산책</b><br/>'+list.memberOption[i].walk+' 회</p>';
+						  html += '</div><div class="col-lg-1">';
+						  html += '<p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>구매</b><br/>'+list.memberOption[i].sale+' 회</p>';
+						  html += '</div><div class="col-lg-1">';
+						  html += '<p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>산책포인트</b><br/>'+list.memberOption[i].point+' 점</p>';
+						  html += '</div><div class="col-lg-2">';
+						  html += '<p style="margin-top:2%; margin-bottom:2%;"class="text-muted f-s-14"><b>가입</b><br/>'+list.list[i].member_date+'</p>';
+						  html += '</div><div class="col-lg-2 text-right">강제 탈퇴';
+						  html += '<span><a onclick="memDelete('+list.list[i].member_number+')" data-toggle="tooltip" data-placement="top" title="Close">';
+						  html += '<i class="fa fa-close color-danger"></i></a></span><p class="f-s-13 text-muted">'+list.login+' 접속</p></div>';
+						  html += '<button class="modify" onclick="point('+list.list[i].member_number+')" style="background-color: rgb(255, 214, 135); padding-left:10px; padding-right:10px; line-height:55px; position:absolute; left:91%;border:none;font-family: "Spoqa Han Sans Neo";">포인트 지급</button>';
+						  html += '</div></div></div>';
+					  }
+					  $('#memList').html(html); 
+					  Swal.fire({
+						  position: 'top-end',
+						  icon: 'success',
+						  title: '포인트를 지급했습니다!',
+						  showConfirmButton: false,
+						  timer: 2000
+					  })
+				  }
+			  });
+		  }
+	});
+}
+</script>
+	                                
+            <br/>
             
             <!-- 페이지네이션 -->
+            <!-- 
 			<nav style="margin:auto; display:flex;">
 			    <ul class="pagination"  align="center" style="margin:auto; display:flex;">
 			        <li class="page-item disabled"><a class="page-link" href="#">Previous</a>
@@ -189,7 +228,7 @@
 			        <li class="page-item"><a class="page-link" href="#">Next</a>
 			        </li>
 			    </ul>
-			</nav><br/><br/>
+			</nav><br/><br/> -->
         </div>
     </div>
 </div>
@@ -304,7 +343,7 @@
 					  html += "<p style='margin-top:2%; margin-bottom:2%;'class='text-muted f-s-14'><b>가입</b><br/>"+list.list[i].member_date+"</p>";
 					  html += "</div><div class='col-lg-2 text-right'>강제 탈퇴";
 					  html += "<span><a onclick='memDelete(${list.member_number})' data-toggle='tooltip' data-placement='top' title='Close'><i class='fa fa-close color-danger'></i></a></span>";
-					  html += "<p class='f-s-13 text-muted'>접속 : 2021.2월 21일</p></div></div></div></div>";
+					  html += "<p class='f-s-13 text-muted'>"+list.list[i].login+" 접속</p>  </div></div></div></div>";
 				  }
 				  $('#memList').html(html);
 			  }

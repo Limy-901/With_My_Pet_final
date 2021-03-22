@@ -144,7 +144,7 @@
                				<a onclick="msgClick(${list.sender_number})" class="clearfix">
                 		</c:otherwise>
 	                	</c:choose>
-	                		<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+	                		<img src="<c:url value="/img/${map.msgLists.chatPics[status.index]}"/>" alt="" class="img-circle">
 	                		<div class="friend-name">	
 		                		<c:choose>
 		                			<c:when test="${list.sender_name eq login.member_name}">
@@ -211,7 +211,7 @@ function msgClick(idx){
 			      if(map.msgLists.chatList[i].sender_number == map.senderNumber || map.msgLists.chatList[i].member_number == map.senderNumber) {
 					  html1 += '<li class="active bounceInDown">';
 	               	  html1 += '<a class="clearfix">';
-			          html1 += '<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">';
+			          html1 += '<img src="<c:url value="/img/'+map.msgLists.chatPics[i]+'"/>" alt="" class="img-circle">';
 			          html1 += '<div class="friend-name">';	
 			          if(map.msgLists.chatList[i].member_name != myName){
 			          	html1 += '<strong style="font-family: "Spoqa Han Sans Neo";">'+map.msgLists.chatList[i].member_name+'</strong></div>';
@@ -234,7 +234,7 @@ function msgClick(idx){
 			          } else{
 			        	html1 += '<a onclick="msgClick('+map.msgLists.chatList[i].sender_number+')" class="clearfix">';
 			          }
-			          html1 += '<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">';
+			          html1 += '<img src="<c:url value="/img/'+map.msgLists.chatPics[i]+'"/>" alt="" class="img-circle">';
 			          html1 += '<div class="friend-name">';	
 			          if(map.msgLists.chatList[i].member_name != myName){
 			          	html1 += '<strong style="font-family: "Spoqa Han Sans Neo";">'+map.msgLists.chatList[i].member_name+'</strong></div>';
@@ -271,7 +271,7 @@ function msgClick(idx){
 				  if(map.detailLists.chatList[i].sender_number != map.senderNumber){ // 사용자가 발신자일때
 					  html2 += '<li class="left clearfix">';
 					  html2 += '<span class="chat-img pull-left">';
-					  html2 += '<img src="https://bootdey.com/img/Content/user_3.jpg" alt="User Avatar">';
+					  html2 += '<img src="<c:url value="/img/'+map.detailLists.chatPics[i]+'"/>" alt="User Avatar">';
 					  html2 += '</span>';
 					  html2 += '<div class="chat-body clearfix">';
 					  html2 += '<div class="header">';
@@ -284,7 +284,7 @@ function msgClick(idx){
 				  }else if(map.detailLists.chatList[i].sender_number == map.senderNumber) { // 사용자가 수신자일때
 					  html2 += '<li class="right clearfix">';
 					  html2 += '<span class="chat-img pull-right">';
-					  html2 += '<img src="https://bootdey.com/img/Content/user_1.jpg" alt="User Avatar">';
+					  html2 += '<img src="<c:url value="/img/'+map.detailLists.chatPics[i]+'"/>" alt="User Avatar">';
 					  html2 += '</span>';
 					  html2 += '<div class="chat-body clearfix">';
 					  html2 += '<div class="header">';
@@ -326,7 +326,6 @@ function msgClick(idx){
 function writeReview(){
 	var name = $('#senName').val();
 	var sender_number = $('#senNo').val();
-	alert(sender_number);
 	Swal.fire({
 	  title: '산책을 함께 하셨나요?',
 	  text: "최근 일주일 내의 산책만 후기 작성이 가능하며, 사진후기를 남겨주시면 산책포인트가 지급됩니다.",
@@ -566,7 +565,7 @@ function writeReview(){
 			          html1 += '</center>';
 	  				  html2 += '<li class="right clearfix">';
 					  html2 += '<span class="chat-img pull-right">';
-					  html2 += '<img src="https://bootdey.com/img/Content/user_1.jpg" alt="User Avatar">';
+					  html2 += '<img src="<c:url value="/img/'+map.detailLists.chatPics[i]+'"/>" alt="User Avatar">';
 					  html2 += '</span>';
 					  html2 += '<div class="chat-body clearfix">';
 					  html2 += '<div class="header">';
@@ -599,7 +598,7 @@ function writeReview(){
     				      if(map.msgLists.chatList[i].sender_number == map.senderNumber || map.msgLists.chatList[i].member_number == map.senderNumber) {
     						  html1 += '<li class="active bounceInDown">';
     		               	  html1 += '<a class="clearfix">';
-    				          html1 += '<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">';
+    				          html1 += '<img src="<c:url value="/img/'+map.msgLists.chatPics[i]+'"/>" alt="" class="img-circle">';
     				          html1 += '<div class="friend-name">';	
     				          if(map.msgLists.chatList[i].member_name != myName){
     				          	html1 += '<strong style="font-family: "Spoqa Han Sans Neo";">'+map.msgLists.chatList[i].member_name+'</strong></div>';
@@ -622,7 +621,7 @@ function writeReview(){
     				          } else{
     				        	html1 += '<a onclick="msgClick('+map.msgLists.chatList[i].sender_number+')" class="clearfix">';
     				          }
-    				          html1 += '<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">';
+    				          html1 += '<img src="<c:url value="/img/'+map.msgLists.chatPics[i]+'"/>" alt="" class="img-circle">';
     				          html1 += '<div class="friend-name">';	
     				          if(map.msgLists.chatList[i].member_name != myName){
     				          	html1 += '<strong style="font-family: "Spoqa Han Sans Neo";">'+map.msgLists.chatList[i].member_name+'</strong></div>';
@@ -659,7 +658,7 @@ function writeReview(){
     					  if(map.detailLists.chatList[i].sender_number != map.senderNumber){ // 사용자가 발신자일때
     						  html2 += '<li class="left clearfix">';
     						  html2 += '<span class="chat-img pull-left">';
-    						  html2 += '<img src="https://bootdey.com/img/Content/user_3.jpg" alt="User Avatar">';
+    						  html2 += '<img src="<c:url value="/img/'+map.detailLists.chatPics[i]+'"/>" alt="User Avatar">';
     						  html2 += '</span>';
     						  html2 += '<div class="chat-body clearfix">';
     						  html2 += '<div class="header">';
@@ -672,7 +671,7 @@ function writeReview(){
     					  }else if(map.detailLists.chatList[i].sender_number == map.senderNumber) { // 사용자가 수신자일때
     						  html2 += '<li class="right clearfix">';
     						  html2 += '<span class="chat-img pull-right">';
-    						  html2 += '<img src="https://bootdey.com/img/Content/user_1.jpg" alt="User Avatar">';
+    						  html2 += '<img src="<c:url value="/img/'+map.detailLists.chatPics[i]+'"/>" alt="User Avatar">';
     						  html2 += '</span>';
     						  html2 += '<div class="chat-body clearfix">';
     						  html2 += '<div class="header">';
@@ -873,7 +872,9 @@ function writeReview(){
   // 웹소켓 연결
   var sender = $('#senNo').val();
   var socket = null;
-  $(document).ready(function(){ connectWS(); })
+  $(document).ready(function(){
+	  if('${login.member_name}' != '') connectWS(); })
+  }
   function connectWS(){
   	var url = "ws://localhost:8080/replyEcho";
   	var ws = new WebSocket(url);

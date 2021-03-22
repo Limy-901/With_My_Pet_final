@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MsgListResult {
 	private ArrayList<Msg> chatList;
-	
+	private ArrayList<String> chatPics;
 }

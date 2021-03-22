@@ -72,8 +72,10 @@ public class AdminController {
 		Hashtable<String, Object> map = new Hashtable<String, Object>();
 		ArrayList<Walk> lists = adminService.getWalks(NEXT_WALKS);
 		ArrayList<String> times = adminService.getWalkTimes(lists,NEXT_WALKS);
+		ArrayList<String> urls = adminService.getWalkPic(lists);
 		map.put("lists",lists);
 		map.put("times",times);
+		map.put("urls",urls);
 		ModelAndView mv = new ModelAndView("admin/nextWalk","map",map);
 		return mv;
 	}
@@ -83,8 +85,10 @@ public class AdminController {
 		Hashtable<String, Object> map = new Hashtable<String, Object>();
 		ArrayList<Walk> lists = adminService.getWalks(PREVIOUS_WALKS);
 		ArrayList<String> times = adminService.getWalkTimes(lists,PREVIOUS_WALKS);
+		ArrayList<String> urls = adminService.getWalkPic(lists);
 		map.put("lists",lists);
 		map.put("times",times);
+		map.put("urls",urls);
 		ModelAndView mv = new ModelAndView("admin/previousWalk","map",map);
 		return mv;
 	}
@@ -108,6 +112,25 @@ public class AdminController {
 		adminService.writeAnswer(content,board_idx,vo.getMember_number());
 		ArrayList<Board> lists = adminService.getNotAnsweredQ();
 		return lists;
+	}
+	
+	@GetMapping(value="point.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public @ResponseBody MemListResult point(HttpSession session, long member_number, long point) {
+		adminService.givePoint(member_number, point);
+		int memCp = 0;
+		String memKeyword = null;
+		Object cpObj = session.getAttribute("memCp");
+		if(cpObj != null) memCp =(Integer)cpObj;
+		else memCp = 1;
+		session.setAttribute("memCp", memCp);
+		if(memKeyword == null) {
+			String keySession = (String) session.getAttribute("memKeyword");
+			if(keySession != null) keySession = keySession.trim();
+			memKeyword = keySession;
+		}
+		session.setAttribute("memKeyword", memKeyword);
+		MemListResult list = adminService.getTotalMemberList(memCp, memKeyword);
+		return list;
 	}
 	
 	@RequestMapping("productA.do")
@@ -156,11 +179,6 @@ public class AdminController {
 		map.put("locLists",lists2);
 		ModelAndView mv = new ModelAndView("admin/walkStatistic", "map", map);
 		return mv;
-	}
-	
-	@RequestMapping("salesStatistic.do")
-	private String salesStatistic() {
-		return "admin/salesStatistic";
 	}
 	
 	

@@ -7,8 +7,7 @@
 	    <![CDATA[ 
 	     select B.* from (select rownum as rnum, A.* from (select * from board order by post_no desc, post_order asc) A
 	  where board_idx=#{board_idx} and rownum<=#{endRow}) B where B.rnum>#{startRow}]]>
-	  
-	  
+  
 	</select>
 		
 	<select id="selectByCatgo" resultType="Board" parameterType="BoardVo" >
@@ -19,6 +18,18 @@
 	]]>
 	</select>
 	
+	
+	<select id="selectPerMember" resultType="Board" parameterType="BoardVo">
+	    <![CDATA[ 
+	     select B.* from (select rownum as rnum, A.* from (select * from board order by post_no desc, post_order asc) A
+	  where member_number=#{member_number} and board_idx=#{board_idx} and rownum<=#{endRow}) B where B.rnum>#{startRow}]]>
+  
+	</select>
+	
+	
+	
+	
+
 	<select id="selectBySeq" parameterType="long" resultType="Board">
 	    select * from board where post_idx=#{post_idx}
 	</select>   

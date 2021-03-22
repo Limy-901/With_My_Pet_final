@@ -384,6 +384,6 @@
          <!-- </form> -->
       </section>
       <!-- //about breadcrumb -->
-      <script id="check_module" src="assets/js/bootstrap.min.js"></script>
+      
    </body>
 </html>

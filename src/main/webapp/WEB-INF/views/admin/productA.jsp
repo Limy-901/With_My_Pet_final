@@ -35,23 +35,6 @@
         <div class="header" style="background-color:#FFD687; margin-bottom: -1%;">    
             <div class="header-content clearfix">
                 
-                <div class="nav-control">
-                    <div class="hamburger">
-                        <span class="toggle-icon"><i class="icon-menu"></i></span>
-                    </div>
-                </div>
-                <!-- 검색 -->
-                <div class="header-left">
-                    <div class="input-group icons" style="width:200%;">
-                        <input id="mainSearchKeyword" type="text" class="form-control" placeholder="검색어를 입력하세요." aria-label="Search Dashboard">
-                        <div class="drop-down animated flipInX d-md-none">
-                           <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1">
-                        	<a onclick="mainSearchCheck()"><i class="mdi mdi-magnify"></i></a>
-                        </span>
-                    </div>                    
-                </div>
                 <div class="header-right">
                     <ul class="clearfix">
                     	<!-- 새 문의글  -->
@@ -119,7 +102,7 @@
                             </a>
                             <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
                                 <div class="dropdown-content-heading d-flex justify-content-between">
-                                    <span class="">확인사항</span>  
+                                    <span class="" style="font-family: 'Spoqa Han Sans Neo';">확인사항</span>  
                                     <a href="javascript:void()" class="d-inline-block">
                                         <span class="badge badge-pill gradient-2">5</span>
                                     </a>
@@ -130,8 +113,8 @@
                                             <a href="javascript:void()">
                                                 <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
                                                 <div class="notification-content">
-                                                    <h6 class="notification-heading">산책 포인트 지급</h6>
-                                                    <span class="notification-text">Within next 5 days</span> 
+                                                    <h6 class="notification-heading" style="font-family: 'Spoqa Han Sans Neo';">산책 포인트 지급</h6>
+                                                    <span class="notification-text" style="font-family: 'Spoqa Han Sans Neo';">Within next 5 days</span> 
                                                 </div>
                                             </a>
                                         </li>
@@ -139,8 +122,8 @@
                                             <a href="javascript:void()">
                                                 <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
                                                 <div class="notification-content">
-                                                    <h6 class="notification-heading">배송 현황 변경</h6>
-                                                    <span class="notification-text">One hour ago</span> 
+                                                    <h6 class="notification-heading" style="font-family: 'Spoqa Han Sans Neo';">배송 현황 변경</h6>
+                                                    <span class="notification-text" style="font-family: 'Spoqa Han Sans Neo';">One hour ago</span> 
                                                 </div>
                                             </a>
                                         </li>
@@ -151,15 +134,15 @@
                         <!-- 페이지 이동 네비 바 -->
                         <li class="icons dropdown d-none d-md-flex">
                             <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
-                                <span>관리페이지</span>  <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
+                                <span style="font-family: 'Spoqa Han Sans Neo';">관리페이지</span>  <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
                             </a>
                             <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
                                 <div class="dropdown-content-body">
                                     <ul>
-                                        <li><a href="../">메인화면</a></li>
-                                        <li><a href="../walk/list.do">산책</a></li>
-                                        <li><a href="../product">쇼핑</a></li>
-                                        <li><a href="../board/list.do">커뮤니티</a></li>
+                                        <li><a style="font-family: 'Spoqa Han Sans Neo';" href="../">메인화면</a></li>
+                                        <li><a style="font-family: 'Spoqa Han Sans Neo';" href="../walk/list.do">산책</a></li>
+                                        <li><a style="font-family: 'Spoqa Han Sans Neo';" href="../product">쇼핑</a></li>
+                                        <li><a style="font-family: 'Spoqa Han Sans Neo';" href="../board/list.do">커뮤니티</a></li>
                                         
                                     </ul>
                                 </div>
@@ -176,7 +159,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="nk-sidebar" style="background-color:#FFD687;">           
+                <div class="nk-sidebar" style="background-color:#FFD687;">           
             <div class="nk-nav-scroll" style="background-color:#FFD687;">
                 <ul class="metismenu" id="menu" style="background-color:#FFD687;">
                     <li class="nav-label"></li>
@@ -188,17 +171,16 @@
                     
                     <li class="mega-menu mega-menu-sm">
                     	<a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-globe-alt user-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">회 원</span>
+                            <i class="icon-globe-alt user-icon"></i><span class="nav-text" style="font-family: 'Spoqa Han Sans Neo';">회 원</span>
                         </a>
                         <ul aria-expanded="false">
-                        	<li><a href="memberList.do"style="font-family: 'Spoqa Han Sans Neo';">회원 목록</a></li>
-                        	<li><a href="memberMessage.do"style="font-family: 'Spoqa Han Sans Neo';">회원에게 메세지 전송</a></li>
+                        	<li><a href="memberList.do" style="font-family: 'Spoqa Han Sans Neo';">회원 목록</a></li>
                         </ul>
                     </li>
                     
                     <li class="mega-menu mega-menu-sm">
                     	<a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-globe-alt user-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">산 책</span>
+                            <i class="icon-globe-alt user-icon"></i><span class="nav-text" style="font-family: 'Spoqa Han Sans Neo';">산 책</span>
                         </a>
                         <ul aria-expanded="false">
                         	<li><a href="nextWalk.do"style="font-family: 'Spoqa Han Sans Neo';">산책 예정 현황</a></li>
@@ -208,23 +190,13 @@
                     
                     <li class="mega-menu mega-menu-sm" style="z-index:999;">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-graph menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">상 품</span>
+                            <i class="icon-graph menu-icon"></i><span class="nav-text" style="font-family: 'Spoqa Han Sans Neo';">상 품</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="registerProduct.do"style="font-family: 'Spoqa Han Sans Neo';">상품 등록</a></li>
-                            <li><a href="productQ.do"style="font-family: 'Spoqa Han Sans Neo';">문의 답변</a></li>
-                            <li><a href="productA.do"style="font-family: 'Spoqa Han Sans Neo';">지난 문의 내용</a></li>
-                            <li><a href="orderStatus.do"style="font-family: 'Spoqa Han Sans Neo';">주문 현황</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-graph menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">게시글</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="recentBoard.do"style="font-family: 'Spoqa Han Sans Neo';">최근 게시글</a></li>
-                            <li><a href="reportedPost.do"style="font-family: 'Spoqa Han Sans Neo';">신고글 목록</a></li>
+                            <li><a href="registerProduct.do" style="font-family: 'Spoqa Han Sans Neo';">상품 등록</a></li>
+                            <li><a href="productQ.do" style="font-family: 'Spoqa Han Sans Neo';">문의 답변</a></li>
+                            <li><a href="productA.do" style="font-family: 'Spoqa Han Sans Neo';">지난 문의 내용</a></li>
+                            <li><a href="orderStatus.do" style="font-family: 'Spoqa Han Sans Neo';">주문 현황</a></li>
                         </ul>
                     </li>
                     
@@ -233,27 +205,17 @@
                             <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">산책 통계</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="salesStatistic.do" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">매출 통계</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="postNotice" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">공지사항 작성</span>
-                        </a>
-                    </li>
-                    
                     
                 </ul>
-            </div><br/>
+            </div>
+        <br/>
         </div>
 
 		<!-- 본문 -->
 		<div class="col-lg-12">
-		    <div class="card" style="width:75%;margin-left:20%;">
+		    <div class="card" style="min-height:655px; width:75%;margin-left:20%;">
 		        <div class="card-body">
-		            <h4 class="card-title">지난 답변 내용</h4><br/>
+		            <h4 style="font-family: 'Spoqa Han Sans Neo';" class="card-title">지난 답변 내용</h4><br/>
 		            
 		            <c:if test="${empty lists}">
 		            	<div class="bootstrap-media">
@@ -263,7 +225,7 @@
 		                            <a class="pr-3" href="#">
 		                                <img src="../assets/images/admin/avatar/1.jpg" alt="Generic placeholder image">
 		                            </a>
-		                            <div class="media-body">
+		                            <div style="font-family: 'Spoqa Han Sans Neo';" class="media-body">
 		                                	아직 답변한 문의가 없습니다.
 		                            </div>
 		                        </div>
@@ -278,13 +240,13 @@
 		                <div class="media">
 		                    <img class="mr-3" src="../assets/images/admin/avatar/1.jpg" alt="Generic placeholder image">
 		                    <div class="media-body">
-		                        <h5 class="mt-0">${list.post_writer} / ${list.post_day}, ${list.post_time}</h5>${list.content}
+		                        <h5 class="mt-0" style="font-family: 'Spoqa Han Sans Neo';">${list.post_writer} / ${list.post_day}, ${list.post_time}</h5>${list.content}
 		                        <div class="media mt-3">
 		                            <a class="pr-3" href="#">
 		                                <img src="../assets/images/admin/avatar/1.jpg" alt="Generic placeholder image">
 		                            </a>
 		                            <div class="media-body">
-		                                <h5 class="mt-0">${list.cmt_writer} / ${list.cmt_day}, ${list.cmt_time}</h5>${list.cmt_content}</div>
+		                                <h5 class="mt-0" style="font-family: 'Spoqa Han Sans Neo';">${list.cmt_writer} / ${list.cmt_day}, ${list.cmt_time}</h5>${list.cmt_content}</div>
 		                        </div>
 		                    </div>
 		                </div>
@@ -299,7 +261,7 @@
 		</div>
 
 
-    <!-- 페이지네이션 -->
+    <!-- 
 	<nav style="margin:auto; display:flex;">
 	    <ul class="pagination"  align="center" style="margin:auto; display:flex;">
 	        <li class="page-item disabled"><a class="page-link" href="#">Previous</a>
@@ -313,7 +275,7 @@
 	        <li class="page-item"><a class="page-link" href="#">Next</a>
 	        </li>
 	    </ul>
-	</nav><br/><br/>    
+	</nav><br/><br/> -->   
 </div>
 <section class="w3l-footer" style="background-color:black; display:absolute;z-index:100;">
   <footer class="footer-28">

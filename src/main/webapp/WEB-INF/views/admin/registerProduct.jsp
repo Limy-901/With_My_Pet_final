@@ -30,23 +30,7 @@
          ***********************************-->
       <div class="header" style="background-color:#FFD687; margin-bottom: -1%;">
          <div class="header-content clearfix">
-            <div class="nav-control">
-               <div class="hamburger">
-                  <span class="toggle-icon"><i class="icon-menu"></i></span>
-               </div>
-            </div>
-            <!-- 검색 -->
-            <div class="header-left">
-               <div class="input-group icons" style="width:200%;">
-                  <input id="mainSearchKeyword" type="text" class="form-control" placeholder="검색어를 입력하세요." aria-label="Search Dashboard">
-                  <div class="drop-down animated flipInX d-md-none">
-                     <input type="text" class="form-control" placeholder="Search">
-                  </div>
-                  <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1">
-                  <a onclick="mainSearchCheck()"><i class="mdi mdi-magnify"></i></a>
-                  </span>
-               </div>
-            </div>
+           
             <div class="header-right">
                <ul class="clearfix">
                   <!-- 새 문의글  -->
@@ -171,70 +155,55 @@
       <!--**********************************
          Sidebar start
          ***********************************-->
-      <div class="nk-sidebar" style="background-color:#FFD687;">
-         <div class="nk-nav-scroll" style="background-color:#FFD687;">
-            <ul class="metismenu" id="menu" style="background-color:#FFD687;">
-               <li class="nav-label"></li>
-               <li>
-                  <a href="#" aria-expanded="false">
-                  <i class="icon-menu menu-icon"></i><span class="nav-text"></span>
-                  </a>
-               </li>
-               <li class="mega-menu mega-menu-sm">
-                  <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                  <i class="icon-globe-alt user-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">회 원</span>
-                  </a>
-                  <ul aria-expanded="false">
-                     <li><a href="memberList.do"style="font-family: 'Spoqa Han Sans Neo';">회원 목록</a></li>
-                     <li><a href="memberMessage.do"style="font-family: 'Spoqa Han Sans Neo';">회원에게 메세지 전송</a></li>
-                  </ul>
-               </li>
-               <li class="mega-menu mega-menu-sm">
-                  <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                  <i class="icon-globe-alt user-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">산 책</span>
-                  </a>
-                  <ul aria-expanded="false">
-                     <li><a href="nextWalk.do"style="font-family: 'Spoqa Han Sans Neo';">산책 예정 현황</a></li>
-                     <li><a href="previousWalk.do"style="font-family: 'Spoqa Han Sans Neo';">지난 산책 현황</a></li>
-                  </ul>
-               </li>
-               <li class="mega-menu mega-menu-sm" style="z-index:999;">
-                  <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                  <i class="icon-graph menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">상 품</span>
-                  </a>
-                  <ul aria-expanded="false">
-                     <li><a href="registerProduct.do"style="font-family: 'Spoqa Han Sans Neo';">상품 등록</a></li>
-                     <li><a href="productQ.do"style="font-family: 'Spoqa Han Sans Neo';">문의 답변</a></li>
-                     <li><a href="productA.do"style="font-family: 'Spoqa Han Sans Neo';">지난 문의 내용</a></li>
-                     <li><a href="orderStatus.do"style="font-family: 'Spoqa Han Sans Neo';">주문 현황</a></li>
-                  </ul>
-               </li>
-               <li class="mega-menu mega-menu-sm">
-                  <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                  <i class="icon-graph menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">게시글</span>
-                  </a>
-                  <ul aria-expanded="false">
-                     <li><a href="recentBoard.do"style="font-family: 'Spoqa Han Sans Neo';">최근 게시글</a></li>
-                     <li><a href="reportedPost.do"style="font-family: 'Spoqa Han Sans Neo';">신고글 목록</a></li>
-                  </ul>
-               </li>
-               <li>
-                  <a href="walkStatistic.do" aria-expanded="false">
-                  <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">산책 통계</span>
-                  </a>
-               </li>
-               <li>
-                  <a href="salesStatistic.do" aria-expanded="false">
-                  <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">매출 통계</span>
-                  </a>
-               </li>
-               <li>
-                  <a href="postNotice" aria-expanded="false">
-                  <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">공지사항 작성</span>
-                  </a>
-               </li>
-            </ul>
-         </div>
+              <div class="nk-sidebar" style="background-color:#FFD687;">           
+            <div class="nk-nav-scroll" style="background-color:#FFD687;">
+                <ul class="metismenu" id="menu" style="background-color:#FFD687;">
+                    <li class="nav-label"></li>
+                    <li>
+                        <a href="#" aria-expanded="false">
+                            <i class="icon-menu menu-icon"></i><span class="nav-text"></span>
+                        </a>
+                    </li>
+                    
+                    <li class="mega-menu mega-menu-sm">
+                    	<a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-globe-alt user-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">회 원</span>
+                        </a>
+                        <ul aria-expanded="false">
+                        	<li><a href="memberList.do"style="font-family: 'Spoqa Han Sans Neo';">회원 목록</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="mega-menu mega-menu-sm">
+                    	<a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-globe-alt user-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">산 책</span>
+                        </a>
+                        <ul aria-expanded="false">
+                        	<li><a href="nextWalk.do"style="font-family: 'Spoqa Han Sans Neo';">산책 예정 현황</a></li>
+                        	<li><a href="previousWalk.do"style="font-family: 'Spoqa Han Sans Neo';">지난 산책 현황</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="mega-menu mega-menu-sm" style="z-index:999;">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-graph menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">상 품</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="registerProduct.do"style="font-family: 'Spoqa Han Sans Neo';">상품 등록</a></li>
+                            <li><a href="productQ.do"style="font-family: 'Spoqa Han Sans Neo';">문의 답변</a></li>
+                            <li><a href="productA.do"style="font-family: 'Spoqa Han Sans Neo';">지난 문의 내용</a></li>
+                            <li><a href="orderStatus.do"style="font-family: 'Spoqa Han Sans Neo';">주문 현황</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="walkStatistic.do" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">산책 통계</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
          <br/>
       </div>
       <!-- //about register parts -->

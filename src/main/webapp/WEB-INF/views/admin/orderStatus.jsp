@@ -34,23 +34,6 @@
         <div class="header" style="background-color:#FFD687; margin-bottom: -1%;">    
             <div class="header-content clearfix">
                 
-                <div class="nav-control">
-                    <div class="hamburger">
-                        <span class="toggle-icon"><i class="icon-menu"></i></span>
-                    </div>
-                </div>
-                <!-- 검색 -->
-                <div class="header-left">
-                    <div class="input-group icons" style="width:200%;">
-                        <input id="mainSearchKeyword" type="text" class="form-control" placeholder="검색어를 입력하세요." aria-label="Search Dashboard">
-                        <div class="drop-down animated flipInX d-md-none">
-                           <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1">
-                        	<a onclick="mainSearchCheck()"><i class="mdi mdi-magnify"></i></a>
-                        </span>
-                    </div>                    
-                </div>
                 <div class="header-right">
                     <ul class="clearfix">
                     	<!-- 새 문의글  -->
@@ -114,15 +97,15 @@
                         <!-- 페이지 이동 네비 바 -->
                         <li class="icons dropdown d-none d-md-flex">
                             <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
-                                <span>관리페이지</span>  <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
+                                <span style="font-family: 'Spoqa Han Sans Neo';">관리페이지</span>  <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
                             </a>
                             <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
                                 <div class="dropdown-content-body">
                                     <ul>
-                                        <li><a href="../">메인화면</a></li>
-                                        <li><a href="../walk/list.do">산책</a></li>
-                                        <li><a href="../product">쇼핑</a></li>
-                                        <li><a href="../board/list.do">커뮤니티</a></li>
+                                        <li><a style="font-family: 'Spoqa Han Sans Neo';" href="../">메인화면</a></li>
+                                        <li><a style="font-family: 'Spoqa Han Sans Neo';" href="../walk/list.do">산책</a></li>
+                                        <li><a style="font-family: 'Spoqa Han Sans Neo';" href="../product">쇼핑</a></li>
+                                        <li><a style="font-family: 'Spoqa Han Sans Neo';" href="../board/list.do">커뮤니티</a></li>
                                         
                                     </ul>
                                 </div>
@@ -155,7 +138,6 @@
                         </a>
                         <ul aria-expanded="false">
                         	<li><a href="memberList.do"style="font-family: 'Spoqa Han Sans Neo';">회원 목록</a></li>
-                        	<li><a href="memberMessage.do"style="font-family: 'Spoqa Han Sans Neo';">회원에게 메세지 전송</a></li>
                         </ul>
                     </li>
                     
@@ -181,86 +163,57 @@
                         </ul>
                     </li>
                     
-                    <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-graph menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">게시글</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="recentBoard.do"style="font-family: 'Spoqa Han Sans Neo';">최근 게시글</a></li>
-                            <li><a href="reportedPost.do"style="font-family: 'Spoqa Han Sans Neo';">신고글 목록</a></li>
-                        </ul>
-                    </li>
-                    
                     <li>
                         <a href="walkStatistic.do" aria-expanded="false">
                             <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">산책 통계</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="salesStatistic.do" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">매출 통계</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="postNotice" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text"style="font-family: 'Spoqa Han Sans Neo';">공지사항 작성</span>
-                        </a>
-                    </li>
-                    
                     
                 </ul>
-            </div><br/>
+            </div>
+        <br/>
         </div>
 <div class="container-fluid">
 <br/><br/>
-     <div class="row" style="width:175%; margin-left:12.5%;">     
+     <div class="row" style=" width:175%; margin-left:12.5%;">     
         <div class="col-lg-6">
-            <div class="card">
+            <div class="card" style="min-height:620px;">
                 <div class="card-body">
                     <div class="card-title">
-                        <h4>주문 현황</h4>
+                        <h4 style="font-family: 'Spoqa Han Sans Neo';">주문 현황</h4>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-bordered" style="text-align:center;">
                             <thead>
                                 <tr>
-                                    <th style="width:2%;">이름</th>
-                                    <th style="width:5%;">상품명</th>
-                                    <th style="width:1%;">금액</th>
-                                    <th style="width:3%;">구매일</th>
-                                    <th style="width:10%;">배송지</th>
-                                    <th style="width:3%;">결제방법</th>
-                                    <th style="width:3%;">배송현황</th>
+                                    <th style="width:2%;font-family: 'Spoqa Han Sans Neo';">이름</th>
+                                    <th style="width:5%;font-family: 'Spoqa Han Sans Neo';">상품명</th>
+                                    <th style="width:1%;font-family: 'Spoqa Han Sans Neo';">금액</th>
+                                    <th style="width:3%;font-family: 'Spoqa Han Sans Neo';">구매일</th>
+                                    <th style="width:10%;font-family: 'Spoqa Han Sans Neo';">배송지</th>
+                                    <th style="width:3%;font-family: 'Spoqa Han Sans Neo';">결제방법</th>
                                 </tr>
                             </thead>
                             <tbody>
                             	<c:if test="${empty list}">
-                            		<tr><td colspan="8">판매한 상품이 없습니다.</td></tr>
+                            		<tr><td colspan="8" style="width:3%;font-family: 'Spoqa Han Sans Neo';">판매한 상품이 없습니다.</td></tr>
                             	</c:if>
                             	<c:forEach items="${list}" var="list">
 	                                <tr>
-	                                    <td>${list.member_name}</td>
-	                                    <td>${list.product_name}</td>
-	                                    <td>${list.pay_totalpay} 원</td>
-	                                    <td class="color-primary">${list.pay_day}</td>
-	                                    <td>${list.pay_address}</td>
+	                                    <td style="width:3%;font-family: 'Spoqa Han Sans Neo';">${list.member_name}</td>
+	                                    <td style="width:3%;font-family: 'Spoqa Han Sans Neo';">${list.product_name}</td>
+	                                    <td style="width:3%;font-family: 'Spoqa Han Sans Neo';">${list.pay_totalpay} 원</td>
+	                                    <td style="width:3%;font-family: 'Spoqa Han Sans Neo';" class="color-primary">${list.pay_day}</td>
+	                                    <td style="width:3%;font-family: 'Spoqa Han Sans Neo';">${list.pay_address}</td>
 	                                    <c:choose>
 	                                    	<c:when test="${list.pay_method eq '카드결제'}">
-	                                    		<td><span style="font-size:1rem;" class="badge badge-primary px-2">${list.pay_method}</span></td>
+	                                    		<td><span style="font-size:1rem;font-family: 'Spoqa Han Sans Neo';" class="badge badge-primary px-2">${list.pay_method}</span></td>
 	                                    	</c:when>
 	                                    	<c:otherwise>
-	                                    		<td><span style="font-size:1rem;" class="badge badge-danger px-2">${list.pay_method}</span></td>
+	                                    		<td><span style="font-size:1rem;font-family: 'Spoqa Han Sans Neo';" class="badge badge-danger px-2">${list.pay_method}</span></td>
 	                                    	</c:otherwise>
 	                                    </c:choose>
 	                                    
-	                                    <td>배송준비
-	                                       	<button type="button" style="padding:5%;" class="btn mb-1 btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-	                                        <div class="dropdown-menu">
-	                                        	<a class="dropdown-item" onclick="editDeli(1)">배송준비</a>
-	                                        	<a class="dropdown-item" onclick="editDeli(2)">배송중</a>
-	                                        	<a class="dropdown-item" onclick="editDeli(3)">배송완료</a>
-	                                        </div>
-	                                    </td>
 	                                </tr>
                                 </c:forEach>
 <script>
@@ -272,9 +225,10 @@ function editDeli(type){
 	    data: {
 	    	editType: type
 		},
-    success : function(map) {
-	  
-    }
+	    success : function(map) {
+		  
+	    }
+	});
 }
 </script>              
                                 
@@ -284,7 +238,7 @@ function editDeli(type){
                         </table>
                     </div>
                 </div>
-                <!-- 페이지네이션 -->
+                <!-- 
 				<nav style="margin:auto; display:flex;">
 				    <ul class="pagination"  align="center" style="margin:auto; display:flex;">
 				        <li class="page-item disabled"><a class="page-link" href="#">Previous</a>
@@ -298,7 +252,7 @@ function editDeli(type){
 				        <li class="page-item"><a class="page-link" href="#">Next</a>
 				        </li>
 				    </ul>
-				</nav><br/>
+				</nav><br/>페이지네이션 -->
             </div>
         </div>
 	</div>

@@ -5,7 +5,7 @@
 <mapper namespace="pet.mvc.mapper.AdminMapper">
 	
 	<select id="getNewMember" resultType="long">
-		select count(*) from MEMBER where MEMBER_DATE=SYSDATE
+		select count(*) from MEMBER where to_char(MEMBER_DATE,'YYYYMMDD') = to_char(sysdate, 'YYYYMMDD')
 	</select>
 	
 	<select id="getTotalMember" resultType="long">
@@ -20,8 +20,8 @@
 		select count(*) from WALK
 	</select>
 	
-	<select id="getTotalJoin" resultType="double">
-		select count(*) from WALK_JOIN
+	<select id="getTotalJoin" resultType="long">
+		select count(*) from walk_join
 	</select>
 	
 	<select id="getTodayWalk" resultType="long">
@@ -61,7 +61,8 @@
 	</select>
 	
 	<select id="getTotalMemberList" parameterType="memberListResult" resultType="member">
-		select * from (select ROWNUM rnum, a.* from (select * from MEMBER
+		select * from 
+		(select ROWNUM rnum, a.*, b.login_date from (select * from MEMBER
 		<if test="keyword != null and !keyword.equals('')">
 			where 
 			MEMBER_EMAIL like '%'||#{keyword}||'%' or
@@ -69,7 +70,10 @@
 			MEMBER_ADDRESS like '%'||#{keyword}||'%' or
 			MEMBER_DATE like '%'||#{keyword}||'%'
 		</if>
-		) a) 
+		) a, 
+		(select member_number, login_date from login_log) b
+		where a.member_number = b.member_number(+)
+		) 
 		<![CDATA[where rnum>#{startRow} and rnum<=#{endRow}]]>
 	</select>
 	
@@ -155,7 +159,7 @@
 		select ROWNUM, value.* from 
 		(select  a.*, b.recent, c.jcount from 
 		(select walk_location, count(*) count from walk group by walk_location) a,
-		<![CDATA[(select walk_location, max(walk_date) recent from walk where walk_date<SYSDATE group by walk_location) b,
+		<![CDATA[(select walk_location, max(walk_date) recent from walk group by walk_location) b,
 		(select walk.walk_location, count(*) jcount from walk_join left join walk on (walk.walk_idx = walk_join.walk_idx) group by walk.walk_location) c
 		where a.walk_location = b.walk_location(+) and a.walk_location = c.walk_location(+) and b.recent is not null
 		order by a.count desc) value
@@ -173,12 +177,13 @@
 	</select>
 	
 	<select id="getPayData" resultType="PayData">
-		select ROWNUM, a.member_number, a.member_name, b.product_name, a.member_address, c.pcount, c.pay_method
+		select ROWNUM, a.member_number, a.member_name, b.product_name, a.member_address, c.pcount, c.pay_method, d.login_date
 		from 
 		(select * from orderlist natural join member) a,
 		(select product_code,product_name from product) b,
-		(select ROWNUM pcount, order_code, pay_method from pay) c
-		where a.product_code = b.product_code and a.order_code = c.order_code(+) and
+		(select ROWNUM pcount, order_code, pay_method from pay) c,
+        (select member_number, login_date from login_log) d
+		where a.product_code = b.product_code and a.order_code = c.order_code(+) and a.member_number = d.member_number and
 		<![CDATA[ROWNUM >= 0 and ROWNUM <= 5]]>
 	</select>
 	
@@ -197,6 +202,10 @@
 		(select * from product) bb
 		where pay.order_code = aa.order_code and aa.product_code = bb.product_code
 	</select>
+	
+	<update id="givePoint" parameterType="map">
+		update PET_MYPAGE set pet_walkpoint = pet_walkpoint + #{point} where member_number = #{member_number}
+	</update>
 	
 
 </mapper>

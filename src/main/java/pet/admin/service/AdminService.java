@@ -24,4 +24,6 @@ public interface AdminService {
 	ArrayList<MemberWalkChart> getLocationList();
 	void deleteMember(long member_number);
 	ArrayList<OrderStatus> getOrderStatus();
+	void givePoint(long member_number, long point);
+	ArrayList<String> getWalkPic(ArrayList<Walk> lists);
 }

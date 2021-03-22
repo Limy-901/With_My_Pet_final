@@ -20,7 +20,9 @@ public interface BoardService {
 	BoardListResult getBoardListResult(String catgo, String keyword, int cp, int ps, int board_idx, int countPage,
 			int startPage, int endPage);
 	BoardListResult getBoardListResult(int cp, int ps, int board_idx, int countPage, int startPage, int endPage);
-
+	
+	
+	
 	
 
 	void writeCmt(BoardCmt boardCmt);

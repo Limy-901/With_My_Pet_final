@@ -229,11 +229,26 @@
 	          <div class="icon">
 	            <span class="fa fa-snowflake-o"></span>
 	          </div><br/>
-	          <label>${item.walk_date}</label><br/>
+	          <label>${item.day}</label><br/>
 	          <img style="width:100%; height:auto;"src="<c:url value="/img/${map.walkPics[status.index]}"/>">
 	          <h4><a href="#feature" class="title-head">${item.walk_subject}</a></h4>
 	          <p>${item.walk_content}</p>
-	          <a onclick="loginCheck()" class="read">함께하기</a>
+	          <a onclick="loginCheck(${item.walk_idx})" class="read">함께하기</a>
+<script>
+function loginCheck(idx){
+	var login = "${login.member_name}";
+	if(login == ''){
+		Swal.fire({
+			  icon: 'error',
+			  title: '로그인이 필요합니다!',
+			  text: '산책은 회원 서비스 입니다. 로그인을 먼저 해주세요.',
+			  footer: '<a href="/member/login.do">로그인</a> &nbsp;&nbsp;<b>/</b>&nbsp;&nbsp; <a href="/member/agree.do">회원가입</a>'
+		})
+	}else{
+		location.href="walk/blog.do?idx="+idx;
+	}
+}
+</script>
 	        </div>
 	      </div>
 	</c:forEach>
@@ -666,18 +681,7 @@
         });
       });
       
-      function loginCheck(){
-  		var login = "${login.member_name}";
-  		if(login == ''){
-  			Swal.fire({
-  				  icon: 'error',
-  				  title: '로그인이 필요합니다!',
-  				  text: '산책은 회원 서비스 입니다. 로그인을 먼저 해주세요.',
-  				  footer: '<a href="/member/login.do">로그인</a> &nbsp;&nbsp;<b>/</b>&nbsp;&nbsp; <a href="/member/agree.do">회원가입</a>'
-  			})
-  		}else{
-  			location.href="walk/blog.do?idx=${item.walk_idx}";
-  		}
+
   	}
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

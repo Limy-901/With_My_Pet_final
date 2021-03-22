@@ -1,6 +1,9 @@
 package pet.mvc.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +21,16 @@ public class IndexServiceImpl implements IndexService {
 	@Override
 	public ArrayList<Walk> getWalkList() {
 		ArrayList<Walk> items = indexMapper.getWalkList();
-		log.info(items);
+		for(Walk item : items) {
+			// 시간데이터 가공
+			Date origin = item.getWalk_date();
+			DateFormat dayForm = new SimpleDateFormat("yyyy년 MM월 dd일");
+			DateFormat timeForm = new SimpleDateFormat("a hh시 mm분");
+			String day = dayForm.format(origin);
+			String time = timeForm.format(origin);
+			item.setDay(day);
+			item.setTime(time);
+		}
 		return items;
 	}
 

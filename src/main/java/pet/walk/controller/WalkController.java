@@ -165,16 +165,15 @@ public class WalkController {
 	// 산책 게시글 구체적으로 보기
 	@RequestMapping("blog.do")
 	public ModelAndView walkblog(HttpSession session, HttpServletRequest request, long idx) {
+		Hashtable<String,Object> map = new Hashtable<String,Object>();
 		MemberVO vo = (MemberVO) session.getAttribute("login");
 		Walk dto = walkService.getWalk(idx);
-		log.info("여기욤"+dto);
 		// 날짜 + 시간 가공
 		Date origin = dto.getWalk_date();
 		DateFormat dayForm = new SimpleDateFormat("yyyy년 MM월 dd일");
 		DateFormat timeForm = new SimpleDateFormat("a hh시 mm분");
 		String day = dayForm.format(origin);
 		String time = timeForm.format(origin);
-		Hashtable<String,Object> map = new Hashtable<String,Object>();
 		// 멤버 + 반려동물 정보
 		Hashtable<String, Object> memberData = walkService.getMemData(dto.getMember_number());
 		MypagePetVO pet = walkService.getCmtPetData(dto.getMember_number());
@@ -185,7 +184,6 @@ public class WalkController {
 		map.put("memberData",memberData);
 		map.put("pet",pet);
 		if (likeToggle != 0) {
-			log.info("#####like햇음");
 			map.put("likeToggle",likeToggle);
 		}
 		ModelAndView mv = new ModelAndView("walk/walkblog","content",map);

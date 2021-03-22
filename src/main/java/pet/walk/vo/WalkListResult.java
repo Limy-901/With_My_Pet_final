@@ -21,8 +21,8 @@ public class WalkListResult {
 		this.totalCount = totalCount;
 		this.list = list;
 		this.cmtList = cmtList;
-		this.totalPageCount = calTotalPageCount();
 		this.picLists = picLists;
+		this.totalPageCount = calTotalPageCount();
 	}
 	
 	private long calTotalPageCount() {

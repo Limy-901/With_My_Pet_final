@@ -24,6 +24,8 @@ public class Walk {
 	private Timestamp walk_date;
 	private ArrayList<Comment> normalCmts;
 	private ArrayList<Comment> joinCmts;
+	private ArrayList<String> normalUrls;
+	private ArrayList<String> joinUrls;
 	private int like;
 	private int apply;
 	private int join;

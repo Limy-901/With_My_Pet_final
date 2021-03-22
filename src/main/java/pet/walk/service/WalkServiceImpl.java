@@ -71,6 +71,7 @@ public class WalkServiceImpl implements WalkService {
 		ArrayList<Walk> lists = walkMapper.getList(listVo);
 		ArrayList<Comment> cmtList = new ArrayList<Comment>();
 		ArrayList<String> picLists = new ArrayList<String>();
+		ArrayList<String> cmtPics = new ArrayList<String>();
 		for(Walk list:lists) {
 			// 시간데이터 가공
 			Date origin = list.getWalk_date();
@@ -84,6 +85,7 @@ public class WalkServiceImpl implements WalkService {
 			// 프로필 사진 셋팅
 			String url = walkMapper.getWalkPic(list.getMember_number());
 			picLists.add(url);
+			
 		}
 		return new WalkListResult(cp, ps, walkMapper.totalWalk(orderType, keyword), lists, cmtList, picLists);
 	}
@@ -94,6 +96,16 @@ public class WalkServiceImpl implements WalkService {
 		Walk dto = walkMapper.getWalk(idx);
 		ArrayList<Comment> cmts = walkMapper.getWalkCmt(idx);
 		ArrayList<Comment> joinCmts = walkMapper.getJoinCmt(idx);
+		ArrayList<String> normalUrls = new ArrayList<String>();
+		ArrayList<String> joinUrls = new ArrayList<String>();
+		for(Comment normalpic : cmts) {
+			String normalUrl = walkMapper.getWalkPic(normalpic.getMember_number());
+			normalUrls.add(normalUrl);
+		}
+		for(Comment joinPic : joinCmts) {
+			String joinUrl = walkMapper.getWalkPic(joinPic.getMember_number());
+			joinUrls.add(joinUrl);
+		}
 		int apply = cmts.size();
 		int join = joinCmts.size();
 		int like = walkMapper.getWalkLike(idx);
@@ -102,6 +114,8 @@ public class WalkServiceImpl implements WalkService {
 		dto.setLike(like);
 		dto.setNormalCmts(cmts);
 		dto.setJoinCmts(joinCmts);
+		dto.setNormalUrls(normalUrls);
+		dto.setJoinUrls(joinUrls);
 		log.info("###apply:"+apply+", join:"+join+", like:"+like);
 		return dto;
 	}
@@ -111,9 +125,19 @@ public class WalkServiceImpl implements WalkService {
 	public CmtVo getWalkCmt(long idx) {
 		ArrayList<Comment> normal = walkMapper.getWalkCmt(idx);
 		ArrayList<Comment> join = walkMapper.getJoinCmt(idx);
+		ArrayList<String> normalUrls = new ArrayList<String>();
+		ArrayList<String> joinUrls = new ArrayList<String>();
+		for(Comment normalpic : normal) {
+			String normalUrl = walkMapper.getWalkPic(normalpic.getMember_number());
+			normalUrls.add(normalUrl);
+		}
+		for(Comment joinPic : join) {
+			String joinUrl = walkMapper.getWalkPic(joinPic.getMember_number());
+			joinUrls.add(joinUrl);
+		}
 		int applyCount = normal.size();
 		int joinCount = join.size();
-		CmtVo vo = new CmtVo(normal, join, applyCount, joinCount);
+		CmtVo vo = new CmtVo(normal, join, normalUrls, joinUrls, applyCount, joinCount);
 		return vo;
 	}
 

@@ -13,33 +13,50 @@ import pet.message.vo.MemberReview;
 import pet.message.vo.Msg;
 import pet.message.vo.MsgListResult;
 import pet.mvc.mapper.MessageMapper;
+import pet.mvc.mapper.WalkMapper;
 
 @AllArgsConstructor
 @Service
 @Log4j
 public class MsgServiceImpl implements MsgService {
 	MessageMapper msgMapper;
+	WalkMapper walkMapper;
 	
 	// 최근 대화목록 리스트
 	@Override
 	public MsgListResult getAllMsgList(long member_number) {
 		MsgListResult msgLists = new MsgListResult();
+		// 대화상대 목록 가져오기
 		ArrayList<Msg> lists = msgMapper.getAllMsgList(member_number);
-		
-		getTimes(lists); // 지난 시간 구하기
+		// 대화상대 프로필 사진 가져오기
+		ArrayList<String> urls = new ArrayList<String>();
+		for(Msg list : lists) {
+			String url = walkMapper.getWalkPic(list.getMember_number());
+			urls.add(url);
+		}
+		// 지난 시간 구하기
+		getTimes(lists);
 		msgLists.setChatList(lists);
+		msgLists.setChatPics(urls);
 		return msgLists;
-		
 	}
 
 	// 1:1 주고받은 메시지 
 	@Override
 	public MsgListResult getMsgList(long member_number, long sender_number) {
-		MsgListResult msgList = new MsgListResult();
+		MsgListResult msgLists = new MsgListResult();
 		ArrayList<Msg> lists = msgMapper.getMsgList(member_number, sender_number);
-		getTimes(lists); // 경과 시간 구한 후, msg_time 셋팅
-		msgList.setChatList(lists);
-		return msgList;
+		// 대화상대 프로필 사진 가져오기
+		ArrayList<String> urls = new ArrayList<String>();
+		for(Msg list : lists) {
+			String url = walkMapper.getWalkPic(list.getMember_number());
+			urls.add(url);
+		}
+		// 지난 시간 구하기
+		getTimes(lists); 
+		msgLists.setChatList(lists);
+		msgLists.setChatPics(urls);
+		return msgLists;
 	}
 	
 	// 메시지 insert (= 보내기)

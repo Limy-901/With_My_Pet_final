@@ -2,7 +2,6 @@ package pet.mvc.mapper;
 
 import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
-
 import pet.admin.vo.BestSeller;
 import pet.admin.vo.MemListResult;
 import pet.admin.vo.MemberOption;
@@ -38,4 +37,5 @@ public interface AdminMapper {
 	ArrayList<PayData> getPayData();
 	void deleteMember(long member_number);
 	ArrayList<OrderStatus> getOrderStatus();
+	void givePoint(@Param("member_number")long member_number, @Param("point")long point);
 }

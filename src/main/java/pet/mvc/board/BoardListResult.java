@@ -31,6 +31,7 @@ public class BoardListResult {
 		this.startPage = startPage;
 		this.endPage = endPage;
 
+
 	}
 	private long calTotalPageCount() {
 		long tpc = totalCount/ps; 

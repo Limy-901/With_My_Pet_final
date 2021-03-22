@@ -29,18 +29,15 @@ public class MsgController {
 	@RequestMapping("chat.do")
 	public ModelAndView chat(HttpServletRequest request, HttpSession session, 
 	@RequestParam (defaultValue="0", required=false) long member_number) {
-		Hashtable<String, Object> map = new Hashtable<String, Object>();
-		if(member_number != 0) map.put("directMember",member_number);
 		MemberVO vo = (MemberVO) session.getAttribute("login"); // 세션에서 로그인 정보 받기
-		if(vo != null) { // 로그인 상태이면
-			MsgListResult msgLists = msgService.getAllMsgList(vo.getMember_number());
-			map.put("msgLists",msgLists);
-			ModelAndView mv = new ModelAndView("message/chat","map",map);
-			return mv;
-		}else { // 로그인 상태가 아니면 (세션이 날아갔으면)
-			ModelAndView mv = new ModelAndView("/index","map",null);
-			return mv;
-		}
+		Hashtable<String, Object> map = new Hashtable<String, Object>();
+		// 특정 상대를 정해서 메세지창으로 넘어오는 경우
+		if(member_number != 0) map.put("directMember",member_number);
+		// 대화 목록 가져오기.
+		MsgListResult msgLists = msgService.getAllMsgList(vo.getMember_number());
+		map.put("msgLists",msgLists);
+		ModelAndView mv = new ModelAndView("message/chat","map",map);
+		return mv;
 	}
 	
 	// 메시지 상대 선택, 해당 상대와의 메시지 읽음 처리, ajax
