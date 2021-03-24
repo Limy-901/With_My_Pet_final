@@ -66,5 +66,4 @@
 	<context:component-scan base-package="pet.message.controller" />
 	<context:component-scan base-package="pet.shop.controller" />
 	
-	
 </beans:beans>

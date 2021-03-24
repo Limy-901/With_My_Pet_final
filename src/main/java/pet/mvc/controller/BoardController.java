@@ -37,6 +37,7 @@ import pet.mvc.board.Board;
 import pet.mvc.board.BoardCmt;
 import pet.mvc.board.BoardLike;
 import pet.mvc.board.BoardListResult;
+import pet.mvc.board.BoardTag;
 import pet.mvc.service.BoardService;
 import sun.print.resources.serviceui;
 import pet.member.vo.MemberVO;
@@ -53,12 +54,9 @@ public class BoardController {
 	private BoardService service;
 
 	
-	
-	
-	
-	
 	@RequestMapping("list.do")
 	public ModelAndView search(HttpServletRequest request, HttpSession session) {
+		MemberVO vo = (MemberVO) session.getAttribute("login");
 		String cpStr = request.getParameter("cp");
 		String psStr = request.getParameter("ps");
 		String countPageStr = request.getParameter("countPage");
@@ -68,6 +66,7 @@ public class BoardController {
 		String keyword = request.getParameter("keyword");
 		String rnum = request.getParameter("rnum");
 		String boardIdxStr = request.getParameter("board_idx");
+		String memberNumberStr = request.getParameter("member_number");
 		System.out.println("#"+rnum);
 
 		//(1) cp 
@@ -114,7 +113,7 @@ public class BoardController {
 				session.setAttribute("ps", ps);
 				
 		//countPage
-		int countPage = 10;
+		int countPage = 10;//1로 초기화하면 arithmetic exception
 		if(countPageStr == null) {
 			Object countPageObj = session.getAttribute("countPageStr");
 			if(countPageObj != null) {
@@ -169,6 +168,9 @@ public class BoardController {
 		session.setAttribute("board_idx", board_idx);
 		
 		
+
+
+		int member_number=0;
 		BoardListResult listResult = null;
 		ModelAndView mv = null;
 	
@@ -184,7 +186,28 @@ public class BoardController {
 					return new ModelAndView("board/list", "listResult", null);
 			}
 			return mv;
+		
 			
+		}else if(member_number!= 0) {	
+			String post_idxStr = request.getParameter("post_idx");
+			int post_idx = 1;
+			Object post_idxObj = session.getAttribute("post_idxStr");
+			post_idx = (Integer)post_idxObj;
+			
+			Board b = service.getBoard(post_idx);
+			int mnum = (int) b.getMember_number();
+			
+			
+			listResult = service.getBoardListResultPerMember(cp, ps, board_idx, countPage, startPage, endPage, mnum);
+			mv = new ModelAndView("board/list", "listResult", listResult);
+			if(listResult.getList().size()==0) {
+				if(cp>1)
+					return new ModelAndView("redirect:list.do?&member_number="+mnum);
+				
+				else
+					return new ModelAndView("board/list", "listResult", null);
+			}
+			return mv;
 		}else {
 			listResult = service.getBoardListResult(cp, ps, board_idx, countPage, startPage, endPage);	
 			listResult.setTotalCount(100);
@@ -426,8 +449,22 @@ public class BoardController {
 		
 		return "redirect:content.do?post_idx="+boardCmt.getPost_idx();
 	}
+	
+	@ResponseBody
+	@GetMapping("enterTag.do")
+	public List<BoardTag> enterTag(BoardTag boardTag) {
+		BoardTag tag = service.enterTag(boardTag);
+		long post_idx= tag.getPost_idx();
+		List<BoardTag> tagResult= service.getTag(post_idx);
+		return tagResult;
+	}
 
-		
+	
+//	@getMapping("viewPost.do")
+//	public ModelAndView viewPost(Board board) {
+//		service.getBoardListResultPerMember(cp, ps, board_idx, countPage, startPage, endPage, member_number);
+//		
+//	}
 
 	
 }

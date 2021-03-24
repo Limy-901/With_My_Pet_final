@@ -2789,7 +2789,7 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled).active,
 .show>.btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #189A46;
+  background-color:var(--primary-color);
   border-color: #189A46;
 }
 
@@ -14161,6 +14161,7 @@ p.white {
 
 /*-- container --*/
 .container {
+  font-family: 'Spoqa Han Sans Neo';	
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
@@ -14532,7 +14533,8 @@ a.nav-link:before,
 a.dropdown-item:before {
   position: absolute;
   content: '';
-  background: var(--primary-color);
+  color:var(--secondary-color);
+  background: var(--secondary-color);
   width: 0px;
   height: 1px;
   bottom: 13px;

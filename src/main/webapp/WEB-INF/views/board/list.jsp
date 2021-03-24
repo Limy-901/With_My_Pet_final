@@ -11,15 +11,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>:: With My Pet :: 게시판 </title>
-   <!-- google fonts -->  
-   <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
-   <!-- google fonts --> 
+   <!-- google fonts -->  	
   <!-- Template CSS -->
-  <link rel="stylesheet" href="../assets/css/style-liberty.css">
-    <link rel="stylesheet" href="../assets/css/board.css">
+   <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+   <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" href="../assets/css/style-liberty.css">
+   <link rel="stylesheet" href="../assets/css/board.css">
 
   <!-- Template CSS -->
-  
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 
  
 </head>
@@ -29,53 +29,75 @@
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <a href="../"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt=""></a>
-           <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <a href="../"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
+         
+      
+      
+          <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+              data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+              aria-label="Toggle navigation">
               <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
               <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+              </span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-              <ul class="navbar-nav ml-auto">
-                  <li class="nav-item">
-                      <a class="nav-link" href="../">Home <span class="sr-only">(current)</span></a>
+             <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="index.html" style="font-family: 'Spoqa Han Sans Neo';">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="walklist.do">산책모집 </a>
-                          <a class="dropdown-item" href="walkboard.do">산책후기 </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                      	<a class="dropdown-item" href="../walk/list.do?cp=1" style="font-family: 'Spoqa Han Sans Neo';">산책모집 </a>
+                          <a class="dropdown-item" href="../walk/board.do" style="font-family: 'Spoqa Han Sans Neo';">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="product" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                      	<a class="dropdown-item" href="product">쇼핑하기</a>
-                          <a class="dropdown-item" href="cart">장바구니</a>
-                          <a class="dropdown-item" href="order">결제</a>
-                          <a class="dropdown-item" href="register?catgo_code=8">상품등록하기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                      	<a class="dropdown-item" href="../product?catgo_code=9" style="font-family: 'Spoqa Han Sans Neo';">쇼핑하기</a>
+                          <a class="dropdown-item" href="../cart" style="font-family: 'Spoqa Han Sans Neo';">장바구니</a>
+                          <a class="dropdown-item" href="../shop/order" style="font-family: 'Spoqa Han Sans Neo';">결제</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                          <a class="dropdown-item" href="blog.html">공지사항</a>
-                          <a class="dropdown-item" href="blog-single.html">일상이야기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                          <a class="dropdown-item" href="../board/list.do?board_idx=1" style="font-family: 'Spoqa Han Sans Neo';">공지사항</a>
+                          <a class="dropdown-item" href="../board/list.do?board_idx=2" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
+                          <a class="dropdown-item" href="../board/list.do?board_idx=3" style="font-family: 'Spoqa Han Sans Neo';">산책후기</a>
+                          <a class="dropdown-item" href="../board/list.do?board_idx=4" style="font-family: 'Spoqa Han Sans Neo';">쇼핑후기</a>
+                          <a class="dropdown-item" href="../board/list.do?board_idx=4" style="font-family: 'Spoqa Han Sans Neo';">문의사항</a>
                       </div>
                   </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="../member/login.do">로그인 </a>
-                  </li>
-                 
-                  <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact </a>
-                  </li>
+                  	                   <c:choose>
+                  	  <c:when test="${empty login.member_name}">
+		                  <li class="nav-item">
+		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
+		                  </li>
+	                  </c:when>
+	                  <c:otherwise>
+	                  	  <li class="nav-item">
+		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
+		                  </li>
+		                  <li class="nav-item">
+		                      <a class="nav-link" href="/member/mypage.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
+		                  </li>
+	                  </c:otherwise>
+                  </c:choose>
+                  <!-- 관리자일때만 관리자페이지 입장 -->
+                  <c:if test="${login.member_name eq 'admin'}"> 
+	                  <li class="nav-item">
+	                      <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
+	                  </li>
+                  </c:if>
               </ul>
           </div>
           <!-- toggle switch for light and dark theme -->
@@ -122,7 +144,7 @@
 		<c:when test="${board.board_idx eq '1'}"><TD>공지사항</TD></c:when>
 		<c:when test="${board.board_idx eq '2'}"><TD>일상이야기</TD></c:when>
 		<c:when test="${board.board_idx eq '3'}"><TD>산책후기</TD></c:when>
-		<c:otherwise><TD>쇼핑후기</TD></c:otherwise>
+		<c:otherwise><TD>문의사항</TD></c:otherwise>
 		</c:choose>
 		
 	 
@@ -135,7 +157,7 @@
 		 </c:when>
 		 
 		 <c:otherwise>
-		 	 <a href="content.do?post_idx=${board.post_idx}&member_number=${login.member_number}">${board.post_subject}</a>
+		 	 <a href="content.do?post_idx=${board.post_idx}">${board.post_subject}</a>
 		 </c:otherwise>
 		</c:choose>
 		</TD>
@@ -168,6 +190,7 @@
 <c:when test="${board.board_idx eq '2'}"><h3>일상이야기 </h3></c:when>
 <c:when test="${board.board_idx eq '3'}"><h3>산책후기 </h3></c:when>
 <c:when test="${board.board_idx eq '4'}"><h3>쇼핑후기 </h3></c:when>
+<c:when test="${board.board_idx eq '5'}"><h3>문의사항 </h3></c:when>
 </c:choose>
 
 	
@@ -183,10 +206,13 @@
  </div> 
  
 	<div class="sidemenu">
+
 	 <a style="color:#424242;font-weight: 500;" href="list.do?board_idx=1">공지사항</a>&nbsp;&nbsp;
 	 <a style="color:#424242;font-weight: 500;" href="list.do?board_idx=2">일상이야기</a>&nbsp;&nbsp;
   	 <a style="color:#424242;font-weight: 500;" href="list.do?board_idx=3">산책후기</a>&nbsp;&nbsp;
-	 <a style="color:#424242;font-weight: 500;" href="list.do?board_idx=4">쇼핑후기</a>
+	 <a style="color:#424242;font-weight: 500;" href="list.do?board_idx=4">쇼핑후기</a>&nbsp;&nbsp;
+	 <a style="color:#424242;font-weight: 500;" href="list.do?board_idx=5">문의사항</a>
+	  
 	</div>
 </div>
 
@@ -236,7 +262,7 @@
     
 <c:choose>
 
-<c:when test="${listResult.countPage<10}">
+<c:when test="${listResult.countPage<endPage}">
  <c:forEach begin="${listResult.startPage}" end="${listResult.countPage}" var="i">  
         <a href="list.do?cp=${i}">
    			<c:choose>

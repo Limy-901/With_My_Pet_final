@@ -52,7 +52,7 @@
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
+                      <div class="dropdown-menu " aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
                       	<a class="dropdown-item" href="walk/list.do?cp=1" >산책모집 </a>
                           <a class="dropdown-item" href="walk/board.do">산책후기 </a>
                       </div>
@@ -62,7 +62,7 @@
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                      <div class="dropdown-menu " aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
                       	<a class="dropdown-item" href="product?catgo_code=9">쇼핑하기</a>
                           <a class="dropdown-item" href="cart">장바구니</a>
                           <a class="dropdown-item" href="order">결제</a>
@@ -73,7 +73,7 @@
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                      <div class="dropdown-menu " aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
                           <a class="dropdown-item" href="board/list.do">공지사항</a>
                           <a class="dropdown-item" href="board/list.do">일상이야기</a>
                       </div>
@@ -199,5 +199,178 @@
 			
 			  	 </center>
 		  </div>
+		  
+
+
+  <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction()
+    };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("movetop").style.display = "block";
+      } else {
+        document.getElementById("movetop").style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+    
+    $(document).ready(function () {
+    	 $('.popup-with-zoom-anim').magnificPopup({
+             type: 'inline',
+
+             fixedContentPos: false,
+             fixedBgPos: true,
+
+             overflowY: 'auto',
+
+             closeBtnInside: true,
+             preloader: false,
+
+             midClick: true,
+             removalDelay: 300,
+             mainClass: 'my-mfp-zoom-in'
+           });
+
+           $('.popup-with-move-anim').magnificPopup({
+             type: 'inline',
+
+             fixedContentPos: false,
+             fixedBgPos: true,
+
+             overflowY: 'auto',
+
+             closeBtnInside: true,
+             preloader: false,
+
+             midClick: true,
+             removalDelay: 300,
+             mainClass: 'my-mfp-slide-bottom'
+           });
+    	$("#owl-demo1").owlCarousel({
+    	      loop: true,
+    	      margin: 20,
+    	      nav: false,
+    	      responsiveClass: true,
+    	      responsive: {
+    	        0: {
+    	          items: 1,
+    	          nav: false
+    	        },
+    	        736: {
+    	          items: 1,
+    	          nav: false
+    	        },
+    	        1000: {
+    	          items: 2,
+    	          nav: false,
+    	          loop: false
+    	        }
+    	      }
+    	    })
+        $('.owl-one').owlCarousel({
+          loop: true,
+          margin: 0,
+          nav: false,
+          responsiveClass: true,
+          autoplay: true,
+          autoplayTimeout: 5000,
+          autoplaySpeed: 1000,
+          autoplayHoverPause: false,
+          responsive: {
+            0: {
+              items: 1,
+              nav: false
+            },
+            480: {
+              items: 1,
+              nav: false
+            },
+            667: {
+              items: 1,
+              nav: true
+            },
+            1000: {
+              items: 1,
+              nav: true
+            }
+          }
+        })
+      })
+
+    var login = '${login.member_name}';
+    var sender = $('#senNo').val();
+    var socket = null;
+    if(login != '') connectWS();
+    function connectWS(){
+    	var url = "ws://localhost:8080/replyEcho";
+    	var ws = new WebSocket(url);
+    	socket = ws;
+    	// 커넥션 연결
+    	ws.onopen = function(event){
+    		console.log('info : connection opened'+event);
+    	 // 메세지 왔을때 (알림 + 목록갱신)
+    	 ws.onmessage = function (event){
+    		toastr.options = {
+                  closeButton: true,
+                  progressBar: true,
+                  showMethod: 'slideDown',
+                  timeOut: 8000
+           };
+           toastr.success('메시지 알림', event.data+' 님이 메시지를 보냈습니다!');
+    	 };
+    	};
+    	ws.onclose = function(event) { 
+    		console.log('info : connection closed.');
+    		setTimeout(function(){ 
+    			connectWS();
+    		}, 1000);
+    	};
+    	ws.onerror = function(event) { console.log('error : '+event); };
+    };
+      $(window).on("scroll", function () {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+          $("#site-header").addClass("nav-fixed");
+        } else {
+          $("#site-header").removeClass("nav-fixed");
+        }
+      });
+
+      //Main navigation Active Class Add Remove
+      $(".navbar-toggler").on("click", function () {
+        $("header").toggleClass("active");
+      });
+      $(document).on("ready", function () {
+        if ($(window).width() > 991) {
+          $("header").removeClass("active");
+        }
+        $(window).on("resize", function () {
+          if ($(window).width() > 991) {
+            $("header").removeClass("active");
+          }
+        });
+      })
+      
+      
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../assets/js/theme-change.js"></script>
+  <script src="../assets/js/owl.carousel.js"></script>
+  <script src="../assets/js/jquery.waypoints.min.js"></script>
+  <script src="../assets/js/jquery.countup.js"></script>
+  <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+  <script src="../assets/js/bootstrap.min.js"></script>
+  <script src="../assets/plugins/sweetalert2/dist/sweetalert2.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 </html>

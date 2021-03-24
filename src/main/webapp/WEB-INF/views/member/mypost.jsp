@@ -53,7 +53,7 @@
                       <a class="nav-link dropdown-toggle" href="product" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                      <div class="dropdown-menu " aria-labelledby="navbarDropdown1">
                       	<a class="dropdown-item" href="product">쇼핑하기</a>
                           <a class="dropdown-item" href="cart">장바구니</a>
                           <a class="dropdown-item" href="order">결제</a>

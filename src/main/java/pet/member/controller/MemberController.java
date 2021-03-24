@@ -54,6 +54,7 @@ public class MemberController {
          try {
             if(result == 1) {
                return "member/signup";
+               
             }else if(result == 0) {
                //  브라우저에서 입력한 패스워드를 암호화한다.
                String secPwd = pwencoder.encode(vo.getMember_password());
@@ -70,7 +71,7 @@ public class MemberController {
          }
          return "member/login";
       }
-      
+
       
       //이메일 중복 체크
       @ResponseBody
@@ -80,37 +81,4 @@ public class MemberController {
          int result = service.mailChk(email);
          return result;
       }
-   
-   /*
-   @RequestMapping("/mypage.do")
-   public String mypage() {
-		//log.info("ȸ������ �Ծ : " + vo.getEmail() + ", "+vo.getPassword() + ", "+vo.getName() + ", " + vo.getAddress());
-		return "/pet/mypage";
-	}
-	*/
-	
-	@RequestMapping("/mypost.do")
-	public String mypost() {
-		//log.info("ȸ������ �Ծ : " + vo.getEmail() + ", "+vo.getPassword() + ", "+vo.getName() + ", " + vo.getAddress());
-		return "/pet/mypost";
-	}
-	
-	
-	@RequestMapping("/post_blog.do")
-	public String post_blog() {
-		//log.info("ȸ������ �Ծ : " + vo.getEmail() + ", "+vo.getPassword() + ", "+vo.getName() + ", " + vo.getAddress());
-		return "/pet/post_blog";
-	}
-	
-	@RequestMapping("/follower.do")
-	public String follower() {
-		//log.info("follower ���� ");
-		return "/pet/follower";
-	}
-	
-	@RequestMapping("/follower2.do")
-	public String follower2() {
-		//log.info("follower ���� ");
-		return "/pet/follower2";
-	}
 }

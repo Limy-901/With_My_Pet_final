@@ -5,10 +5,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 import java.util.concurrent.TimeUnit;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import pet.member.vo.MemberVO;
 import pet.message.vo.MemberReview;
 import pet.message.vo.Msg;
 import pet.message.vo.MsgListResult;
@@ -31,7 +33,9 @@ public class MsgServiceImpl implements MsgService {
 		// 대화상대 프로필 사진 가져오기
 		ArrayList<String> urls = new ArrayList<String>();
 		for(Msg list : lists) {
-			String url = walkMapper.getWalkPic(list.getMember_number());
+			String url = "";
+			if(list.getMember_number() == member_number) url = walkMapper.getWalkPic(list.getSender_number());
+			else url = walkMapper.getWalkPic(list.getMember_number());
 			urls.add(url);
 		}
 		// 지난 시간 구하기
@@ -174,6 +178,33 @@ public class MsgServiceImpl implements MsgService {
 	public String getSenderName(long member_number) {
 		String name = msgMapper.getSenderName(member_number);
 		return name;
+	}
+
+	// 회원 검색 시, 해당 회원과의 최근 대화 뽑기
+	@Override
+	public Hashtable<String, Object> getMemberByName(long member_number, String member_name) {
+		Hashtable<String, Object> map = new Hashtable<String, Object>();
+		ArrayList<MemberVO> memberList = msgMapper.getMemberByName(member_name);
+		ArrayList<Msg> msgList = new ArrayList<Msg>();
+		ArrayList<String> memberUrls = new ArrayList<String>();
+		// 검색된 이름을 가진 회원과의 최근대화+프로필사진 셋팅  
+		for(MemberVO member : memberList) {
+			String url = walkMapper.getWalkPic(member.getMember_number());
+			memberUrls.add(url);
+			Msg list = msgMapper.getRecentMsgByNumber(member_number, member.getMember_number());
+			msgList.add(list);
+		}
+		map.put("memberList",memberList);
+		map.put("msgList",msgList);
+		map.put("memberUrls",memberUrls);
+		log.info(memberList+","+msgList+","+memberUrls);
+		return map;
+	}
+
+	@Override
+	public String getSenderPic(long member_number) {
+		String senderPic = walkMapper.getWalkPic(member_number);
+		return senderPic;
 	}
 
 }

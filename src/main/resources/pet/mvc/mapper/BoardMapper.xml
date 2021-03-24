@@ -7,8 +7,11 @@
 	    <![CDATA[ 
 	     select B.* from (select rownum as rnum, A.* from (select * from board order by post_no desc, post_order asc) A
 	  where board_idx=#{board_idx} and rownum<=#{endRow}) B where B.rnum>#{startRow}]]>
-  
+	  
+	  
 	</select>
+	
+	
 		
 	<select id="selectByCatgo" resultType="Board" parameterType="BoardVo" >
 	<![CDATA[ 
@@ -19,17 +22,18 @@
 	</select>
 	
 	
+	
 	<select id="selectPerMember" resultType="Board" parameterType="BoardVo">
 	    <![CDATA[ 
 	     select B.* from (select rownum as rnum, A.* from (select * from board order by post_no desc, post_order asc) A
-	  where member_number=#{member_number} and board_idx=#{board_idx} and rownum<=#{endRow}) B where B.rnum>#{startRow}]]>
+	  where member_number=#{member_number} and rownum<=#{endRow}) B where B.rnum>#{startRow}]]>
   
 	</select>
+		
 	
 	
 	
 	
-
 	<select id="selectBySeq" parameterType="long" resultType="Board">
 	    select * from board where post_idx=#{post_idx}
 	</select>   
@@ -49,6 +53,11 @@
 	<select id="selectCount" resultType="long" parameterType="long">
 		select count(POST_IDX) from BOARD where board_idx=#{board_idx}
 	</select>
+	
+	<select id="selectMemberCount" resultType="long" parameterType="int">
+		select count(post_idx) from board where member_number=#{member_number}
+	</select>
+	
 	
 	<select id="selectCountByCatgo" resultType="int" parameterType="BoardVo">
 		select count(POST_IDX) from BOARD where ${catgo} like '%'||#{keyword}||'%'
@@ -156,11 +165,21 @@
 	
 	</insert>
 	
-		<select id ="getRecent" resultType="Board">
-	<![CDATA[select post_subject, post_idx, content, post_writer from ( select * from board order by post_date desc) where board_idx=3 and rownum<5]]>
+	<select id ="getRecent" resultType="Board">
+		<![CDATA[select post_subject, post_idx, content, post_writer from ( select * from board order by post_date desc) where board_idx=3 and rownum<5]]>
 	</select>
 	
+	<insert id="enterTag" parameterType="BoardTag">
+		<selectKey keyProperty="post_idx" keyColumn="post_idx" order="BEFORE" resultType="long">
+    		select board_seq.nextval from dual
+    	</selectKey>
+    	
+		insert into tag(post_idx, post_tag) values(#{post_idx}, #{post_tag})
+	</insert>
 	
+	<select id ="getTag" resultType="BoardTag" parameterType="long">
+		select * from tag where post_idx=#{post_idx}
+	</select>
 	
 	
 	

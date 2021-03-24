@@ -500,7 +500,7 @@ body {
     left: 49%;
     z-index: 1001;
 }
-¿ä¼Ò {
+ï¿½ï¿½ï¿½ {
     font-family: 'Spoqa Han Sans Neo';
 }
 .navbar-expand-lg .navbar-nav .dropdown-menu {
@@ -651,7 +651,18 @@ a.dropdown-item {
 }
 
 
-
+.bttn {
+    position: absolute;
+    margin-top: 20px;
+    border: 1px solid rgb(227, 227, 227);
+    background: #fff;
+    color: rgb(93, 93, 93);
+    font-size: 13px;
+    margin-left: 24.6%;
+    padding: 8px 25px;
+    border-radius: 5px;
+    font-weight: 500;
+}
 
 
 

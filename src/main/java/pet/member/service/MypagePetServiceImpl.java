@@ -19,7 +19,7 @@ public class MypagePetServiceImpl implements MypagePetService {
 
 
 	@Override
-	public void petUpdateDo(MypagePetVO vo) throws Exception {
+	public void petUpdateDo(MypagePetVO vo){
 		mapper.petUpdateDo(vo);
 	}
 	

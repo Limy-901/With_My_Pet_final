@@ -9,6 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!-- include libraries(jQuery, bootstrap) -->
+<link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/write.css"> 
 
@@ -19,6 +21,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 <!-- include summernote-ko-KR -->
 <script src="../assets/js/summernote-ko-KR.js"></script>
+
 <title>글쓰기</title>
 <Style>
 .go{ width: 90%;margin-left: 5%;margin-top: 5%;}
@@ -128,7 +131,7 @@ function goWrite2(f) {
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <a href="#"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt=""></a>
+          <a href="../../"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt=""></a>
          
           <!-- if logo is image enable this   
       <a class="navbar-brand" href="#index.html">
@@ -151,8 +154,8 @@ function goWrite2(f) {
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';border-radius:10px;	margin-top:20px;">
-                      	<a class="dropdown-item" href="../walk/list.do?cp=1">산책모집 </a>
-                          <a class="dropdown-item" href="../walk/board.do">산책후기 </a>
+                      	<a class="dropdown-item" href="../../walk/list.do?cp=1">산책모집 </a>
+                          <a class="dropdown-item" href="../../walk/board.do">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -160,9 +163,9 @@ function goWrite2(f) {
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';border-radius:10px;margin-top:20px;">
-                      	<a class="dropdown-item" href="../product?catgo_code=9">쇼핑하기</a>
-                          <a class="dropdown-item" href="../cart">장바구니</a>
-                          <a class="dropdown-item" href="../order">결제</a>
+                      	<a class="dropdown-item" href="../../product?catgo_code=9">쇼핑하기</a>
+                          <a class="dropdown-item" href="../../cart">장바구니</a>
+                          <a class="dropdown-item" href="../../order">결제</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -170,16 +173,34 @@ function goWrite2(f) {
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';border-radius:10px;margin-top:20px;">
-                          <a class="dropdown-item" href="../board/list.do?board_idx=1">공지사항</a>
-                          <a class="dropdown-item" href="../board/list.do?board_idx=2">일상이야기</a>
-                          <a class="dropdown-item" href="../board/list.do?board_idx=3">산책후기</a>
-                          <a class="dropdown-item" href="../board/list.do?board_idx=4">쇼핑후기</a>
+                          <a class="dropdown-item" href="../../board/list.do?board_idx=1">공지사항</a>
+                          <a class="dropdown-item" href="../../board/list.do?board_idx=2">일상이야기</a>
+                          <a class="dropdown-item" href="../../board/list.do?board_idx=3">산책후기</a>
+                          <a class="dropdown-item" href="../../board/list.do?board_idx=4">쇼핑후기</a>
+                          <a class="dropdown-item" href="../../board/list.do?board_idx=5">문의사항</a>
                       </div>
                   </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="gallery.html" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
-                  </li>
-                 
+                  <c:choose>
+                  	  <c:when test="${empty login.member_name}">
+		                  <li class="nav-item">
+		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
+		                  </li>
+	                  </c:when>
+	                  <c:otherwise>
+	                  	  <li class="nav-item">
+		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
+		                  </li>
+		                  <li class="nav-item">
+		                      <a class="nav-link" href="/member/mypage.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
+		                  </li>
+	                  </c:otherwise>
+                  </c:choose>
+                  <!-- 관리자일때만 관리자페이지 입장 -->
+                  <c:if test="${login.member_name eq 'admin'}"> 
+	                  <li class="nav-item">
+	                      <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
+	                  </li>
+                  </c:if>
                  
               </ul>
           </div>
@@ -196,6 +217,11 @@ function goWrite2(f) {
 <!-- //header -->
 <br><br><br>
 
+
+
+  		
+  		
+  		
 <div style="width: 60%; margin: auto;">
 	<form name="f" method="post" action="modify.do" class="go" enctype="multipart/form-data" onsubmit='return '>	
 	
@@ -215,6 +241,8 @@ function goWrite2(f) {
 					산책후기 </option>
 			 	<option value="4" >
 					쇼핑후기 </option>
+				<option value="5" >
+					문의사항 </option>
 		
     </select>
 	</c:when>
@@ -232,9 +260,12 @@ function goWrite2(f) {
 			<c:when test="${board.board_idx eq '3'}">
 	         <option value="3" >
 					산책후기</option></c:when>
-			<c:otherwise>
+			<c:when test="${board.board_idx eq '4'}">
 	         <option value="4" >
-					쇼핑후기</option></c:otherwise>	
+					쇼핑후기</option></c:when>
+			<c:otherwise>
+	         <option value="5" >
+					문의사항</option></c:otherwise>	
 			</c:choose>
 	</select>
 	</c:otherwise>
@@ -249,6 +280,14 @@ function goWrite2(f) {
 		
 		
 		<!-- <input type="text" name="tagString" placeholder="입력후 스페이스바를 눌러보세요"><br> -->
+	
+  		<input id="tag" type="text" name="post_tag" class="form-control" onkeyup="if(window.event.keyCode==13){(enterValue())}"/>
+  		<br>
+  		
+
+  		
+		
+    
 		<br> 
 		<textarea id="summernote" name="content" >${board.content}</textarea>
 		${board.board_name}
@@ -256,10 +295,10 @@ function goWrite2(f) {
 		
 		<c:choose>
 		<c:when test="${!empty board.post_subject}">
-		<input id="subBtn" type="button" value="수정" style="float: right;" onclick="goWrite(this.form)"/>
+		<input class="bttn" id="subBtn" type="button" value="수정"  onclick="goWrite(this.form)"/>
 		</c:when>
 		<c:otherwise>
-		<input id="subBtn" type="button" value="등록" style="font-size:12px; float: right; padding: 4px 10px;" onclick="goWrite2(this.form)">
+		<input class="bttn" id="subBtn" type="button" value="등록"  onclick="goWrite2(this.form)">
 		</c:otherwise>
 		</c:choose>
 		
@@ -271,8 +310,16 @@ function goWrite2(f) {
 	
 	</form>
 </div>
+<!-- 배열에 담아서 데이터 넘기기 -->
 
+<script>
+  		function enterValue(){
+  			var content =  $('#tag').val();
+  			var htmls = "";
+  			alert(content);
+  			
 
-
+  		}
+</script>		
 </body>
 </html>

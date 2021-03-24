@@ -1,5 +1,6 @@
 package pet.message.controller;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,6 +38,7 @@ public class MsgController {
 		MsgListResult msgLists = msgService.getAllMsgList(vo.getMember_number());
 		map.put("msgLists",msgLists);
 		ModelAndView mv = new ModelAndView("message/chat","map",map);
+		log.info("chat"+map);
 		return mv;
 	}
 	
@@ -45,22 +47,32 @@ public class MsgController {
 	public @ResponseBody Hashtable<String, Object> selectChat(HttpSession session, long sender_number) {
 		Hashtable<String, Object> map = new Hashtable<String, Object>();
 		MemberVO vo = (MemberVO) session.getAttribute("login");
+		String type = null;
 		// 대화 상대, 내역 불러오기, 안읽은 메시지
 		MsgListResult msgLists = msgService.getAllMsgList(vo.getMember_number());
 		MsgListResult detailLists = msgService.getMsgList(vo.getMember_number(), sender_number);
 		long unread = msgService.msgRead(vo.getMember_number(), sender_number);
-   	    // 후기 미작성 산책 검색
-   	    MemberReview walk = msgService.selectRecentWalk(vo.getMember_number(), sender_number);
-   	    String name = msgService.getSenderName(sender_number);
-   	    if(walk != null) map.put("walk",walk);
-	    map.put("senderName",msgService.getSenderName(sender_number));
-    	map.put("senderNumber",sender_number); 
 		map.put("msgLists",msgLists); 
 		map.put("detailLists",detailLists);
-		map.put("senderNumber",sender_number); 
 		map.put("unread",unread);
+		log.info("msgLists :: "+msgLists);
+		log.info("detailLists :: "+detailLists);
+		log.info("unread :: "+unread);
+		// 해당 상대와의 대화 타입 구분
+		if(msgLists == null) type = "no";
+		else if(msgLists != null && detailLists.getChatList().size() == 0) type = "yet";
+		else if(msgLists != null && detailLists.getChatList().size() != 0) type = "Chat";
+		map.put("type",type);
+   	    // 해당 상대와의 미작성 후기 검색
+   	    MemberReview walk = msgService.selectRecentWalk(vo.getMember_number(), sender_number);
+   	    if(walk != null) map.put("walk",walk);
+	    map.put("senderName",msgService.getSenderName(sender_number));
+		map.put("senderNumber",sender_number);
 		map.put("myName",vo.getMember_name());
-		session.setAttribute("unread", unread);
+		String senderPic = msgService.getSenderPic(sender_number);
+		log.info("senderPic"+senderPic);
+		map.put("senderPic",senderPic);
+		log.info("######################type::"+type);
 		return map;
    	    
 	}
@@ -70,18 +82,37 @@ public class MsgController {
 	public @ResponseBody Hashtable<String, Object> sendChat(HttpSession session, long sender_number, String msg_content) {
 		Hashtable<String, Object> map = new Hashtable<String, Object>();
 		MemberVO vo = (MemberVO) session.getAttribute("login");
+		String type = null;
 		// 메시지 insert
 		if(msg_content != null && msg_content.length()>0) {
 			Msg msg = new Msg(vo.getMember_number(), sender_number, msg_content);
 			msgService.insertMsg(msg);
 		}
 		// 대화상대목록, 안읽은 메시지, 대화내역
+		MsgListResult msgLists = msgService.getAllMsgList(vo.getMember_number());
 		MsgListResult detailLists = msgService.getMsgList(vo.getMember_number(), sender_number);
 		long unread = msgService.msgRead(vo.getMember_number(), sender_number);
+		map.put("msgLists",msgLists); 
 		map.put("detailLists",detailLists);
-		map.put("senderNumber",sender_number);
 		map.put("unread",unread);
-		session.setAttribute("unread", unread);
+		log.info("msgLists :: "+msgLists);
+		log.info("detailLists :: "+detailLists);
+		log.info("unread :: "+unread);
+		// 해당 상대와의 대화 타입 구분
+		if(msgLists == null) type = "no";
+		else if(msgLists != null && detailLists.getChatList().size() == 0) type = "yet";
+		else if(msgLists != null && detailLists.getChatList().size() != 0) type = "Chat";
+		map.put("type",type);
+   	    // 해당 상대와의 미작성 후기 검색
+   	    MemberReview walk = msgService.selectRecentWalk(vo.getMember_number(), sender_number);
+   	    if(walk != null) map.put("walk",walk);
+	    map.put("senderName",msgService.getSenderName(sender_number));
+		map.put("senderNumber",sender_number);
+		map.put("myName",vo.getMember_name());
+		String senderPic = msgService.getSenderPic(sender_number);
+		log.info("senderPic"+senderPic);
+		map.put("senderPic",senderPic);
+		log.info("######################type::"+type);
 		return map;
 	}
 	
@@ -99,6 +130,8 @@ public class MsgController {
 		map.put("detailLists",detailLists);
 		map.put("senderNumber",sender_number);
 		map.put("unread",count);
+		log.info("refreshChat"+map);
+
 		return map;
 	}
 	
@@ -111,11 +144,21 @@ public class MsgController {
 		msgService.writeReview(memberReview, vo.getMember_number());
 	}
 	
+	// 안 읽은 메시지 개수 체크
 	@GetMapping(value="unreadCheck.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public @ResponseBody void unreadCheck(HttpSession session) {
 		MemberVO vo = (MemberVO) session.getAttribute("login");
 		long unread = msgService.getUnreadMsg(vo.getMember_number());
 		session.setAttribute("unread", unread);
+	}
+	
+	// 회원 검색
+	@GetMapping(value="searchMember.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public @ResponseBody Hashtable<String, Object> searchMember(HttpSession session, String member_name) {
+		MemberVO vo = (MemberVO) session.getAttribute("login");
+		Hashtable<String, Object> map = msgService.getMemberByName(vo.getMember_number(), member_name);
+		log.info("map.memberList"+map);
+		return map;
 	}
 	
 }

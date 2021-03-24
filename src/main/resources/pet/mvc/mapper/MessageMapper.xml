@@ -13,11 +13,13 @@
 		       , MAX(SENDDATE) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS SENDDATE
 		       , MAX(OPENDATE) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS OPENDATE
 		FROM MESSAGE
-<![CDATA[WHERE MEMBER_NUMBER = #{member_number} OR SENDER_NUMBER = #{member_number}
+		<![CDATA[WHERE MEMBER_NUMBER = #{member_number} OR SENDER_NUMBER = #{member_number}
 		GROUP BY GREATEST(MEMBER_NUMBER, SENDER_NUMBER) || LEAST(MEMBER_NUMBER, SENDER_NUMBER))a,
 		(select member_number, member_name from member) b,
 		(select member_number, member_name from member) c
-		where a.SENDER_NUMBER = b.member_number and a.MEMBER_NUMBER = c.member_number]]>
+		where a.SENDER_NUMBER = b.member_number and a.MEMBER_NUMBER = c.member_number
+		order by MSG_IDX desc
+		]]>
 	</select>
 	
 	<select id="getMsgList" resultType="msg" parameterType="map">
@@ -76,6 +78,29 @@
 	
 	<select id="getSenderName" parameterType="long" resultType="String">
 		select MEMBER_NAME from MEMBER where MEMBER_NUMBER = #{member_number}
+	</select>
+	
+	<select id="getMemberByName" parameterType="String" resultType="member">
+		select * from MEMBER where MEMBER_NAME = #{member_name}
+	</select>
+	
+	<select id="getRecentMsgByNumber" parameterType="map" resultType="msg">
+		select a.*, b.member_name sender_name, c.member_name member_name from
+		(SELECT MAX(MSG_IDX) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS MSG_IDX
+		       , MAX(MEMBER_NUMBER) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS MEMBER_NUMBER
+		       , MAX(SENDER_NUMBER) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS SENDER_NUMBER
+		       , MAX(MSG_CONTENT) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS MSG_CONTENT
+		       , MAX(SENDDATE) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS SENDDATE
+		       , MAX(OPENDATE) KEEP ( DENSE_RANK FIRST ORDER BY MSG_IDX DESC) AS OPENDATE
+            FROM MESSAGE
+            WHERE MEMBER_NUMBER = #{member_number} OR SENDER_NUMBER = #{member_number}
+            GROUP BY GREATEST(MEMBER_NUMBER, SENDER_NUMBER) || LEAST(MEMBER_NUMBER, SENDER_NUMBER)
+        )a,
+		(select member_number, member_name from member) b,
+		(select member_number, member_name from member) c
+		where a.SENDER_NUMBER = b.member_number and a.MEMBER_NUMBER = c.member_number
+        and ((a.member_number = #{member_number} and a.sender_number = #{sender_number}) 
+        or (a.member_number = #{sender_number} and a.sender_number = #{member_number}))
 	</select>
 
 </mapper>

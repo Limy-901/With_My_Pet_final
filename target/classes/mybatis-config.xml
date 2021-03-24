@@ -31,6 +31,7 @@
 		<typeAlias type="pet.mvc.board.BoardListResult" alias="BoardListResult"/>
 		<typeAlias type="pet.mvc.board.BoardCmt" alias="BoardCmt"/>
 		<typeAlias type="pet.mvc.board.BoardLike" alias="BoardLike"/>
+		<typeAlias type="pet.mvc.board.BoardTag" alias="BoardTag"/>
 		<!-- 멤버 -->
 		<typeAlias alias="member" type="pet.member.vo.MemberVO"/>
 		<typeAlias alias="pet_mypage" type="pet.member.vo.MypagePetVO"/>

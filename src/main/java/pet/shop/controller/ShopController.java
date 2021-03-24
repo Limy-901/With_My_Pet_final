@@ -23,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import lombok.extern.log4j.Log4j;
 import pet.shop.fileSetting.path;
-import pet.member.vo.MemberVO;
 import pet.member.vo.MypagePetVO;
 import pet.shop.domain.Category;
 import pet.shop.domain.Option;
@@ -216,7 +215,7 @@ public class ShopController {
 	    if(saveFile.length() !=0) {
 	    	String url = fileService.saveStore(file, product);//service로 이동..파일 저장함
 	    }
-	    return "redirect:shop/category?catgo_code=8";
+	    return "redirect:category?catgo_code=8";
 		}
 	
 	
