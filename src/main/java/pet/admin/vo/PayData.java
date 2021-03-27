@@ -18,4 +18,5 @@ public class PayData {
 	private String pay_method;
 	private Date login_date;
 	private String login;
+	private String ordersu_name;
 }

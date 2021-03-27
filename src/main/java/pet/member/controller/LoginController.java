@@ -43,61 +43,61 @@ public class LoginController {
    @Inject
    private BCryptPasswordEncoder pwencoder;
    
-   //·Î±×ÀÎ
+   //ï¿½Î±ï¿½ï¿½ï¿½
    @RequestMapping(value = "/login.do", method = RequestMethod.GET)
    public String getLogin() throws Exception {
-      logger.info("login.do È£Ãâ¼º°ø");
+      logger.info("login.do È£ï¿½â¼ºï¿½ï¿½");
       return "member/login";
    }
    
-   // ·Î±×ÀÎ Ã³¸®
+   // ï¿½Î±ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
       @RequestMapping(value = "/login.do", method = RequestMethod.POST)
-      public ModelAndView postLogin(@ModelAttribute("MemberVO") MemberVO lvo, HttpSession session, HttpServletRequest request) {
-         logger.info("·Î±×ÀÎ Ã³¸® ¼º°ø");
+      public String postLogin(@ModelAttribute("MemberVO") MemberVO lvo, HttpSession session, HttpServletRequest request) {
+         logger.info("ï¿½Î±ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
          
          ModelAndView mav = new ModelAndView();
          
          MemberVO vo = service.login(lvo);
          
          if(vo == null) {
-            mav.addObject("msg", "¾ÆÀÌµð¸¦ Á¤È®È÷ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+            mav.addObject("msg", "ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½È®ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.");
             //mav.setViewName("member/signup");
-            return mav;
+            return "redirect:/";
          }
          
          boolean passMatch = pwencoder.matches(lvo.getMember_password(), vo.getMember_password());
-         logger.info("ºñ¹Ð¹øÈ£ ¹Þ¾Æ?"+lvo.getMember_password()+ "ºñ¹Ð¹øÈ£ ¹Þ¾Æ?222"+vo.getMember_password());
+         logger.info("ï¿½ï¿½Ð¹ï¿½È£ ï¿½Þ¾ï¿½?"+lvo.getMember_password()+ "ï¿½ï¿½Ð¹ï¿½È£ ï¿½Þ¾ï¿½?222"+vo.getMember_password());
          logger.info("passMatch" + passMatch);
          
          
-         //·Î±×ÀÎ ¼º°ø
+         //ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
          if (passMatch) {
         	 session.setAttribute("login", vo);
-        	 mav.setViewName("member/mypage");
+        	 mav.setViewName("/index");
         	 int member_number = vo.getMember_number();
         	 long count = msgService.getUnreadMsg(member_number);
         	 session.setAttribute("unread", count);
         	 MypagePetVO mpvo = petservice.petMypage(member_number);
-  		   	 logger.info("ÀÌ°ÅµÇ´Ï?"+mpvo);
+  		   	 logger.info("ï¿½Ì°ÅµÇ´ï¿½?"+mpvo);
   		   	 mav.addObject("mpvo", mpvo);
   		   	 session.setAttribute("petMypage", mpvo);
-  		   	 //·Î±×ÀÎ ±â·Ï ³²±â±â
+  		   	 //ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
   		     service.loginLog(member_number);
         	 
-        	 return mav;
+        	 return "redirect:/";
  	 
          }else {
-            mav.addObject("msg", "ÆÐ½º¿öµå¸¦ Á¤È®È÷ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+            mav.addObject("msg", "ï¿½Ð½ï¿½ï¿½ï¿½ï¿½å¸¦ ï¿½ï¿½È®ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
            // mav.setViewName("member/agree");
-            return mav;
+            return "redirect:/";
          }
 
       }
       
-   //·Î±×¾Æ¿ô Ã³¸®
+   //ï¿½Î±×¾Æ¿ï¿½ Ã³ï¿½ï¿½
    @RequestMapping(value = "/logout.do")
    public String logout(HttpSession session, HttpServletRequest request) {
-      logger.info("logout Ã³¸® ¼º°ø");
+      logger.info("logout Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
       
       request.getSession().removeAttribute("login");
       session.removeAttribute("login");
@@ -106,21 +106,21 @@ public class LoginController {
       return "redirect:/";
    }
    
-   //¾ÆÀÌµð Ã£±â Ã¢
+   //ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½ Ã¢
    @RequestMapping(value = "/emailFind.do", method = RequestMethod.GET)
    public String getIdFind() throws Exception {
-      logger.info("emailFind.do È£Ãâ ¼º°ø");
+      logger.info("emailFind.do È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
       return "member/emailFind";
    }
    
-   //ÆÐ½º¿öµå Ã£±â Ã¢
+   //ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ Ã¢
    @RequestMapping(value = "/pwFind.do", method = RequestMethod.GET)
    public String getPwFind() throws Exception {
       logger.info("get pwFind");
       return "member/pwFind";
    }
    
-      //¾ÆÀÌµð Ã£±â
+      //ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
       @ResponseBody
       @GetMapping(value="emailSearch.do",  produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
    	public MemberVO emailFind(String address, String name) throws Exception {
@@ -128,35 +128,35 @@ public class LoginController {
    		return vo;
       }
       
-      //ºñ¹Ð¹øÈ£ Ã£±â 
+      //ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½ï¿½ 
       @ResponseBody
       @PostMapping(value = "pwSearch.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
       public MemberVO pwFind(String email) throws Exception{
-   		logger.info("ÀÌ°Å µÅ³Ä??"+email);  
+   		logger.info("ï¿½Ì°ï¿½ ï¿½Å³ï¿½??"+email);  
    		MemberVO vo = new MemberVO();
    		 String pw = service.getpwSearch(email);
    		 	vo.setMember_password(pw);
-   		    logger.info("ÀÌ°Å µÅ?"+pw);
+   		    logger.info("ï¿½Ì°ï¿½ ï¿½ï¿½?"+pw);
    	    return vo;
       }
       
-	  //ÆÐ½º¿öµå ¼öÁ¤
+	  //ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	  @RequestMapping(value = "/pwModify.do", method = RequestMethod.GET)
 	  public String getPwModify() throws Exception {
 	     logger.info("get pwModify");
 	     return "member/pwModify";
 	  }
-	  //È¸¿ø ÆÐ½º¿öµå ¼öÁ¤
+	  //È¸ï¿½ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	   @RequestMapping(value = "/memberPwdModify.do", method = RequestMethod.GET)
 	   public String getMemberPwModify() throws Exception {
 	     logger.info("get getMemberPwModify");
 	     return "member/memberPwdModify";
 	  }
 	         
-   //ÆÐ½º¿öµå ¼öÁ¤
+   //ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
       @RequestMapping(value = "/pwModify.do", method = RequestMethod.POST)
       public String memberUpdate(@ModelAttribute MemberVO vo, HttpSession session) throws Exception {
-         logger.info("ÆÐ½º¿öµå º¯°æ ¼º°ø");
+         logger.info("ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
          
          String secPwd = pwencoder.encode(vo.getMember_password());
          

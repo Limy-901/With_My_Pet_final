@@ -22,10 +22,10 @@ public class IndexServiceImpl implements IndexService {
 	public ArrayList<Walk> getWalkList() {
 		ArrayList<Walk> items = indexMapper.getWalkList();
 		for(Walk item : items) {
-			// ½Ã°£µ¥ÀÌÅÍ °¡°ø
+			// ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			Date origin = item.getWalk_date();
-			DateFormat dayForm = new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ");
-			DateFormat timeForm = new SimpleDateFormat("a hh½Ã mmºĞ");
+			DateFormat dayForm = new SimpleDateFormat("yyyyë…„ MMì›” ddì¼");
+			DateFormat timeForm = new SimpleDateFormat("a hhì‹œ mmë¶„");
 			String day = dayForm.format(origin);
 			String time = timeForm.format(origin);
 			item.setDay(day);

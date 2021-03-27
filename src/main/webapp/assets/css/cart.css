@@ -14577,7 +14577,7 @@ a.dropdown-item:hover:before {
   text-transform: capitalize;
   transition: all 0.5s ease;
   padding: 14px 0;
-  font-size: 1.2em;
+  font-size: 19px;
   font-weight: 400;
   position: relative;
   color: var(--heading-color);

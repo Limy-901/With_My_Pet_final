@@ -215,16 +215,13 @@
 		<div class="col-lg-12">
 		    <div class="card" style="min-height:655px; width:75%;margin-left:20%;">
 		        <div class="card-body">
-		            <h4 style="font-family: 'Spoqa Han Sans Neo';" class="card-title">지난 답변 내용</h4><br/>
+		            <h4 style="margin-top:2%;  font-family: 'Spoqa Han Sans Neo';" class="card-title">지난 답변 내용</h4><br/>
 		            
-		            <c:if test="${empty lists}">
+		            <c:if test="${empty map.lists}">
 		            	<div class="bootstrap-media">
 		                <div class="media">
 		                    <div class="media-body">
 		                        <div class="media mt-3">
-		                            <a class="pr-3" href="#">
-		                                <img src="../assets/images/admin/avatar/1.jpg" alt="Generic placeholder image">
-		                            </a>
 		                            <div style="font-family: 'Spoqa Han Sans Neo';" class="media-body">
 		                                	아직 답변한 문의가 없습니다.
 		                            </div>
@@ -235,10 +232,10 @@
 		            </c:if>
 		            
 		            <!-- 반복 -->
-		            <c:forEach items="${lists}" var="list">
+		            <c:forEach items="${map.lists}" var="list">
 		            <div class="bootstrap-media">
 		                <div class="media">
-		                    <img class="mr-3" src="../assets/images/admin/avatar/1.jpg" alt="Generic placeholder image">
+		                    <img class="mr-3" src="<c:url value="/img/${map.urls[status.index]}"/>" alt="Generic placeholder image">
 		                    <div class="media-body">
 		                        <h5 class="mt-0" style="font-family: 'Spoqa Han Sans Neo';">${list.post_writer} / ${list.post_day}, ${list.post_time}</h5>${list.content}
 		                        <div class="media mt-3">

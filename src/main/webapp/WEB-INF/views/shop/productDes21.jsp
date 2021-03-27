@@ -9,17 +9,26 @@
       <title>With My Pet | 쇼핑 상세페이지 </title>
       <!-- google fonts -->  
       <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+      <!-- Template CSS -->
       <link rel="stylesheet" href="../assets/css/productDes.css">
       <link rel="stylesheet" href="../assets/css/semantic.min.css">
       <link rel="stylesheet" href="../assets/css/semantic2.css">
-      <!-- google fonts --> 
-      
+      <script src="../assets/js/jquery-3.3.1.min.js"></script>
+      <!--  <script src="../assets/js/theme-change.js"></script> -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+      <!-- Template CSS -->
+      <!-- sweetAlert -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
+      <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+      <!-- sweetAlert -->
    </head>
    <body>
       <!--header-->
       <header id="site-header" class="fixed-top">
          <div class="container">
-            <nav class="navbar navbar-expand-lg stroke">
+            <nav class="navbar navbar-expand-lg stroke" style="margin-top: 1.3%;">
                <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
                </a>
                </h1>
@@ -65,12 +74,27 @@
                            <a class="dropdown-item" href="blog-single.html">일상이야기</a>
                         </div>
                      </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="gallery.html">로그인 </a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact </a>
-                     </li>
+                     <c:choose>
+                        <c:when test="${empty login.member_name}">
+                           <li class="nav-item">
+                              <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
+                           </li>
+                        </c:when>
+                        <c:otherwise>
+                           <li class="nav-item">
+                              <a class="nav-link" href="/member/logout.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
+                           </li>
+                        </c:otherwise>
+                     </c:choose>
+                     <!-- 관리자일때만 관리자페이지 입장 -->
+                     <c:if test="${login.member_name eq 'admin'}">
+                        <li class="nav-item">
+                           <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
+                        </li>
+                     </c:if>
                   </ul>
                </div>
                <!-- toggle switch for light and dark theme -->
@@ -177,11 +201,57 @@
                            </tr></br></br>
                            <td colspan="4">
                               &nbsp;
-                              <input type="submit" style="text-align:left;" value="장바구니에 담기">
+                              <button type="button" id="loginCheck" style="text-align:left;" class="btn btn-style btn-primary" >장바구니에 담기
+                           </button>
                               <!--input type="submit" value="리뷰 올리기" class="btn btn-style btn-primary"-->
                               </br>
+                           <script>
+                              $("#loginCheck").click(function () {
+                              var login = '${login.member_name}';
+                              var product_name = '${productDes21.product_name}';
+                              var product_code = '${productDes21.product_code}';
+                              var product_price = '${productDes21.product_price}';
+                              var product_content = '${productDes21.product_content}';
+                              var product_image = 'assets/images/${productDes21.product_image}';
+                              var product_amount = $("#product_amount").val();
+                              var product_size = $("#product_size").val();
                               
-                              </br><a href="product?catgo_code=9">상품목록</a>
+                              if(login != ''){//로그인 체크후 장바구니이동.
+                              $.ajax({
+                              	url: "cart",
+                              	type: 'POST',
+                              	data:{
+                              		login2 : '${login.member_name}',
+                              		product_name2 : '${login.member_name}',
+                              		product_code2 : '${productDes21.product_code}',
+                              		product_price2 : '${productDes21.product_price}',
+                              		product_content2 : '${productDes21.product_content}',
+                              		product_image2 : 'assets/images/${productDes21.product_image}',
+                              		product_amount2 : $("#product_amount").val(),
+                              		product_size2 : $("#product_size").val()
+                              	},
+                              	success: function(result){
+                              		if(confirm("장바구니에 담겼습니다.이동하시겠습니까?")){
+                              			location.href="cart?catgo_code=9";
+                              		}else{
+                              			location.href="productDes21?catgo_code=${productDes21.catgo_code}&review_number=${productDes21.review_number}&product_code=${productDes21.product_code}";
+                              		}
+                              	}
+                              });
+                              } else {
+                              var msg = '장바구니에 담지 못하였습니다.ㅠㅠ';
+	                              Swal.fire({
+	                              icon: 'error',
+	                              title: '로그인이 필요합니다!',
+	                              text: '장바구니는 회원 서비스 입니다. 로그인을 먼저 해주세요.',
+	                              footer: '<a href="/member/login.do">로그인</a> &nbsp;&nbsp;<b>/</b>&nbsp;&nbsp; <a href="/member/agree.do">회원가입</a>'
+	                              })
+	                              }
+	                              }); 
+                           </script>
+                           </br>
+                              <a href="product?catgo_code=9" class="btn btn-style btn-primary">상품목록</a>
+                              
                            </td>
                         </table>
                         </form>
@@ -434,6 +504,7 @@
                      </form>
                      <div id="inputData"></div>
                   </div>
+
                </div>
             </div>
          </div>
@@ -560,8 +631,7 @@
       </script>
       <!-- disable body scroll which navbar is in active -->
       <!-- Template JavaScript -->
-      <script src="assets/js/jquery-3.3.1.min.js"></script>
-      <script src="assets/js/theme-change.js"></script>
+   
       <!-- js for portfolio lightbox -->
       <!--/MENU-JS-->
       <script>
@@ -590,7 +660,8 @@
            });
          });
       </script>
+     
       <!--//MENU-JS-->
-      <script src="assets/js/bootstrap.min.js"></script>
+      <script src="../assets/js/bootstrap.min.js"></script>
    </body>
 </html>

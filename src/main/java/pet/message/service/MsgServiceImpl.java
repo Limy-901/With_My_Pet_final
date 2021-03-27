@@ -66,7 +66,6 @@ public class MsgServiceImpl implements MsgService {
 	// 메시지 insert (= 보내기)
 	@Override
 	public void insertMsg(Msg msg) {
-		log.info("## msg insert"+msg);
 		msgMapper.insertMsg(msg);
 	}
 	
@@ -120,7 +119,6 @@ public class MsgServiceImpl implements MsgService {
 	// 읽음 처리 후, 읽지 않은 메시지 카운트
 	@Override
 	public long msgRead(long member_number, long sender_number) {
-		log.info("###읽었어!"+member_number+", "+sender_number);
 		msgMapper.msgRead(member_number, sender_number);
 		long unread = getUnreadMsg(member_number);
 		return unread;
@@ -147,7 +145,6 @@ public class MsgServiceImpl implements MsgService {
 			}
 			long seconds = (curDate.getTime() - walkDate.getTime());
 			long days = TimeUnit.MILLISECONDS.toDays(seconds);
-			
 			if(days > 7) return null;
 			else {
 				DateFormat dayForm = new SimpleDateFormat("yyyy년 MM월 dd일");
@@ -162,13 +159,10 @@ public class MsgServiceImpl implements MsgService {
 	@Override
 	public void writeReview(MemberReview memberReview, long member_number) {
 		// 주최/참가에 따라서, insert시 member_number를 변경해줌 (myBatis에서 분기하지 않으려고)
-		log.info("####이거가 memberReview"+memberReview);
 		if(memberReview.getWalk_number() == member_number) {// 내가 참가자일때
 			long origin = memberReview.getMember_number();
 			memberReview.setMember_number(member_number);
-			log.info("####바꿔줌"+origin+"을 "+memberReview.getMember_number());
 		}
-		log.info("####Here"+memberReview.getWalk_idx()+"번 글,"+member_number);
 		msgMapper.updateJoin(memberReview.getWalk_idx(),member_number);
 		msgMapper.writeReview(memberReview);
 	}
@@ -197,7 +191,7 @@ public class MsgServiceImpl implements MsgService {
 		map.put("memberList",memberList);
 		map.put("msgList",msgList);
 		map.put("memberUrls",memberUrls);
-		log.info(memberList+","+msgList+","+memberUrls);
+		map.put("memberName",member_name);
 		return map;
 	}
 

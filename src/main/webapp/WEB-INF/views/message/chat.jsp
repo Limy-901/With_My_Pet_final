@@ -24,7 +24,7 @@
 <header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke">
-          <a href="#"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
+          <a href="../"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
           <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
               data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
               aria-label="Toggle navigation">
@@ -97,17 +97,22 @@
           </div>
           <div>
           <!-- 읽지 않은 메시지 확인 -->
+          <div id="msgZone">
           	 <c:choose>
 	          	<c:when test="${unread eq 0}">
+	          		<i class="mdi mdi-bell-outline"></i>
+                    <span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%; padding-left:1.6%;
+                     margin-right:2%; color:#ffb446;"></span>
 	          		<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>
 	          	</c:when>
 	          	<c:otherwise>
 	          		<i class="mdi mdi-bell-outline"></i>
                     <span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%; padding-left:1.6%;
                      margin-right:2%; color:#ffb446;">${unread}</span>
-	          		<div id="msgZone"><a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a></div>
+	          		<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>
 	          	</c:otherwise>
 	          </c:choose>
+	          </div>
           </div>
       </nav>
   </div>
@@ -151,8 +156,9 @@ function memberSearch(){
 				}else{
 					$('#chatList').empty();
 					var html='';
-					for(var i=0; i<map.memberList[0].length; i++){
-						alert("이거");
+					var name=map.memberName;
+					alert(map.memberList.length+name);
+					for(var i=0; i<map.memberList.length; i++){
 						html += '<li><a onclick="msgClick('+map.memberList[i].member_number+')" class="clearfix">';
 			            if(map.url != ''){
 			        	  html += '<img src="<c:url value="/img/'+map.memberUrls[i]+'"/>" alt="" class="img-circle">';
@@ -160,14 +166,19 @@ function memberSearch(){
 			        	  html += '<img src="" alt="" class="img-circle">';
 			            }
 			            html += '<div class="friend-name">';	
-			            html += '<strong style="font-family: "Spoqa Han Sans Neo";">'+map.memberList[i].member_name+'</strong></div>';
-			            html += '<div class="last-message text-muted" style="font-family: "Spoqa Han Sans Neo";">'+map.msgList[i].msg_content+'</div>';
-			            html += '<small class="time text-muted" style="font-family: "Spoqa Han Sans Neo";">'+map.msgList[i].time+'</small>';
-				        if(map.msgList[i].sender_number == myNo && map.msgLists.chatList[i].opendate == null) {
-				        	html += '<small class="chat-alert label label-danger" style="font-family: "Spoqa Han Sans Neo";">1</small>';
-				        } else{
-				        	html += '<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>';
-				        }
+			            html += '<strong style="font-family: "Spoqa Han Sans Neo";">'+name+'</strong></div>';
+			            if(map.msgList[i] != null){
+			            	html += '<div class="last-message text-muted" style="font-family: "Spoqa Han Sans Neo";">'+map.msgList[i].msg_content+'</div>';
+			            	html += '<small class="time text-muted" style="font-family: "Spoqa Han Sans Neo";">'+map.msgList[i].time+'</small>';
+			            	if(map.msgList[i].sender_number == myNo && map.msgLists.chatList[i].opendate == null) {
+					        	html += '<small class="chat-alert label label-danger" style="font-family: "Spoqa Han Sans Neo";">1</small>';
+					        } else{
+					        	html += '<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>';
+					        }
+			            }else{
+			            	html += '<div class="last-message text-muted" style="font-family: "Spoqa Han Sans Neo";"></div>';
+			            	html += '<small class="time text-muted" style="font-family: "Spoqa Han Sans Neo";"></small>';
+			            }
 				        html += '</a>';
 			            html += '</li>';
 					}
@@ -242,7 +253,6 @@ function msgClick(idx){
 	var sender = $('#senNo').val();
 	$('#senNo').val(idx);
 	var notMe;
-	alert(idx+"번");
 	$.ajax({
 		url: "selectChat.do",
 	    type: 'GET',
@@ -251,9 +261,9 @@ function msgClick(idx){
 		    sender_number: idx
 		},
 	  success : function(map) {
+		  console.log(map);
 		 // Type 1. 아직 이 상대와 대화 나눈 적 없음
 		 if (map.type == "yet"){
-			alert("아직 이 상대와 대화 나눈 적 없음");
 			$('#chatList').empty();
 			var html1='';
 		  	var html2='';
@@ -306,7 +316,6 @@ function msgClick(idx){
 	        window.location.href="#sendBtn";
 	    // Type 2. 대화 나눈 적 있음
 	  	}else if(map.type == "Chat") {
-	  		alert("대화 나눈 적 있음");
 			$('#chatList').empty();
 			var html1='';
 			var html2='';
@@ -412,14 +421,20 @@ function msgClick(idx){
 			  $('#chatDetail').html(html2);
 			  $('#chatList').html(html1);
 			  var unreadCount = map.unread.value;
-			  $('#unreadCount').empty();
-  			  if(unreadCount == 0){
-  				  $('#msgZone').empty();
-  				  html3 += '<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>';
-  				  $('#msgZone').html(html3);
-  			  }else{
-  				 $('#unreadCount').html(unreadCount);
-  			  }
+			  $('#msgZone').empty();
+				html = '';
+				if(count == 0){
+				    html += '<i class="mdi mdi-bell-outline"></i>';
+					html += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+					html += 'adding-left:1.6%;margin-right:2%; color:#ffb446;"></span>';
+        			html += '<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>';
+				}else{
+					html += '<i class="mdi mdi-bell-outline"></i>';
+					html += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+					html += 'adding-left:1.6%;margin-right:2%; color:#ffb446;">'+count+'</span>';
+       			html += '<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>';
+				}
+				$('#msgZone').html(html);
   			  $('#searchTarget').val('');
   			  window.location.href="#sendBtn";
 			}
@@ -688,14 +703,20 @@ function writeReview(){
     				  $('#chatDetail').html(html2);
     				  $('#chatList').html(html1);
     				  var unreadCount = map.unread.value;
-    				  $('#unreadCount').empty();
-    	  			  if(unreadCount == 0){
-    	  				  $('#msgZone').empty();
-    	  				  html3 += '<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>';
-    	  				  $('#msgZone').html(html3);
-    	  			  }else{
-    	  				 $('#unreadCount').html(unreadCount);
-    	  			  }
+    				  $('#msgZone').empty();
+    	 				html = '';
+    	 				if(count == 0){
+    	 				    html += '<i class="mdi mdi-bell-outline"></i>';
+    	 					html += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+    	 					html += 'adding-left:1.6%;margin-right:2%; color:#ffb446;"></span>';
+    	          			html += '<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>';
+    	 				}else{
+    	 					html += '<i class="mdi mdi-bell-outline"></i>';
+    	 					html += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+    						html += 'adding-left:1.6%;margin-right:2%; color:#ffb446;">'+count+'</span>';
+    	         			html += '<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>';
+    	 				}
+    	 				$('#msgZone').html(html);
     	  			  window.location.href="#sendBtn";
     				  
     			} else if (map.detailLists != 0) { // 대화 한 적 있으면
@@ -800,14 +821,20 @@ function writeReview(){
     				  $('#chatDetail').html(html2);
     				  $('#chatList').html(html1);
     				  var unreadCount = map.unread.value;
-    				  $('#unreadCount').empty();
-    	  			  if(unreadCount == 0){
-    	  				  $('#msgZone').empty();
-    	  				  html3 += '<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>';
-    	  				  $('#msgZone').html(html3);
-    	  			  }else{
-    	  				 $('#unreadCount').html(unreadCount);
-    	  			  }
+    				  $('#msgZone').empty();
+    	 				html = '';
+    	 				if(count == 0){
+    	 				    html += '<i class="mdi mdi-bell-outline"></i>';
+    	 					html += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+    	 					html += 'adding-left:1.6%;margin-right:2%; color:#ffb446;"></span>';
+    	          			html += '<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>';
+    	 				}else{
+    	 					html += '<i class="mdi mdi-bell-outline"></i>';
+    	 					html += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+    						html += 'adding-left:1.6%;margin-right:2%; color:#ffb446;">'+count+'</span>';
+    	         			html += '<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>';
+    	 				}
+    	 				$('#msgZone').html(html);
     	  			  window.location.href="#sendBtn";
     			}
     		  }
@@ -875,6 +902,7 @@ function writeReview(){
 	  var msg = $('#msgInput').val();
 	  var sender = $('#senNo').val();
 	  var notMe;
+	  $('#msgInput').val('');
 	  $.ajax({
 		  url: "sendChat.do",
 		    type: 'GET',
@@ -884,16 +912,26 @@ function writeReview(){
 			    msg_content: msg
 			},
 			success : function(map) {
- 				 // Type 1. 아직 이 상대와 대화 나눈 적 없음
- 				 if (map.type == "yet"){
- 					alert("아직 이 상대와 대화 나눈 적 없음");
+				var myName = '${login.member_name}';
+				notMe = map.senderName;
+				console.log("reply.js:socket>>");
+				if(socket) {
+					var socketMsg = "msg,"+myName+","+notMe;
+					if(map.detailLists.chatList[0].member_name != myName){
+					    notMe = map.detailLists.chatList[0].member_name;
+				  	}else{
+					  	notMe = map.detailLists.chatList[0].sender_name;
+				  	}
+					console.log("send msg >> : "+socketMsg);
+					socket.send(socketMsg);
+				}
+ 				// Type 1. 아직 이 상대와 대화 나눈 적 없음
+ 				if (map.type == "yet"){
  					$('#chatList').empty();
  					var html1='';
  				  	var html2='';
- 				  	var myName = '${login.member_name}';
  				  	var myNo = '${login.member_number}';
  				  	var myPic = '${petMypage.pet_fname}';
- 				  	notMe = map.senderName;
  				  	$('#senName').text(notMe);
  					html1 += '<li class="active bounceInDown">';
  			        html1 += '<a class="clearfix">';
@@ -939,7 +977,6 @@ function writeReview(){
  			        window.location.href="#sendBtn";
  			    // Type 2. 대화 나눈 적 있음
  			  	}else if(map.type == "Chat") {
- 			  		alert("대화 나눈 적 있음");
  					$('#chatList').empty();
  					var html1='';
  					var html2='';
@@ -1046,13 +1083,20 @@ function writeReview(){
  					  $('#chatList').html(html1);
  					  var unreadCount = map.unread.value;
  					  $('#unreadCount').empty();
- 		  			  if(unreadCount == 0){
- 		  				  $('#msgZone').empty();
- 		  				  html3 += '<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>';
- 		  				  $('#msgZone').html(html3);
- 		  			  }else{
- 		  				 $('#unreadCount').html(unreadCount);
- 		  			  }
+ 					 $('#msgZone').empty();
+ 	 				html = '';
+ 	 				if(count == 0){
+ 	 				    html += '<i class="mdi mdi-bell-outline"></i>';
+ 	 					html += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+ 	 					html += 'adding-left:1.6%;margin-right:2%; color:#ffb446;"></span>';
+ 	          			html += '<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>';
+ 	 				}else{
+ 	 					html += '<i class="mdi mdi-bell-outline"></i>';
+ 	 					html += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+ 						html += 'adding-left:1.6%;margin-right:2%; color:#ffb446;">'+count+'</span>';
+ 	         			html += '<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>';
+ 	 				}
+ 	 				$('#msgZone').html(html);
  		  			  $('#searchTarget').val('');
  		  			  window.location.href="#sendBtn";
  				  }
@@ -1092,6 +1136,7 @@ function writeReview(){
 });
   function connectWS(){
   	var url = "ws://localhost:8080/replyEcho";
+  	var myNo = '${login.member_number}';
   	var ws = new WebSocket(url);
   	socket = ws;
   	// 커넥션 연결
@@ -1099,14 +1144,42 @@ function writeReview(){
   		console.log('info : connection opened'+event);
   	 // 메세지 왔을때 (알림 + 목록갱신)
   	 ws.onmessage = function (event){
-  		toastr.options = {
-                closeButton: true,
-                progressBar: true,
-                showMethod: 'slideDown',
-                timeOut: 4000
-         };
-         toastr.success('메시지 알림', event.data+' 님이 메시지를 보냈습니다!');
-         refresh(event);
+  		 var myNo = '${login.member_number}';
+		 $.ajax({
+	  		url: "/msg/receiveMsg.do",
+  		    type: 'GET',
+  		    async: false,
+  		    data: {
+  			    member_number: myNo
+  			},
+  			success : function(count) {
+  			// 안읽은 메시지 개수 변경 
+ 				$('#msgZone').empty();
+ 				html = '';
+ 				if(count == 0){
+ 				    html += '<i class="mdi mdi-bell-outline"></i>';
+ 					html += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+ 					html += 'adding-left:1.6%;margin-right:2%; color:#ffb446;"></span>';
+          			html += '<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>';
+ 				}else{
+ 					html += '<i class="mdi mdi-bell-outline"></i>';
+ 					html += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+					html += 'adding-left:1.6%;margin-right:2%; color:#ffb446;">'+count+'</span>';
+         			html += '<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>';
+ 				}
+ 				$('#msgZone').html(html);
+ 				toastr.options = {
+ 		                closeButton: true,
+ 		                progressBar: true,
+ 		                showMethod: 'slideDown',
+ 		                timeOut: 4000
+ 		         };
+ 				toastr.success('메시지 알림', event.data+' 님이 메시지를 보냈습니다!');
+ 		        refresh(event);
+  			}	
+	  	});
+  		
+         
   	 };
   	};
   	ws.onclose = function(event) { 
@@ -1133,7 +1206,6 @@ function writeReview(){
 	  			success : function(map) {
 	  				 // Type 1. 아직 이 상대와 대화 나눈 적 없음
 	  				 if (map.type == "yet"){
-	  					alert("아직 이 상대와 대화 나눈 적 없음");
 	  					$('#chatList').empty();
 	  					var html1='';
 	  				  	var html2='';
@@ -1186,7 +1258,6 @@ function writeReview(){
 	  			        window.location.href="#sendBtn";
 	  			    // Type 2. 대화 나눈 적 있음
 	  			  	}else if(map.type == "Chat") {
-	  			  		alert("대화 나눈 적 있음");
 	  					$('#chatList').empty();
 	  					var html1='';
 	  					var html2='';
@@ -1292,14 +1363,22 @@ function writeReview(){
 	  					  $('#chatDetail').html(html2);
 	  					  $('#chatList').html(html1);
 	  					  var unreadCount = map.unread.value;
-	  					  $('#unreadCount').empty();
-	  		  			  if(unreadCount == 0){
-	  		  				  $('#msgZone').empty();
-	  		  				  html3 += '<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>';
-	  		  				  $('#msgZone').html(html3);
-	  		  			  }else{
-	  		  				 $('#unreadCount').html(unreadCount);
-	  		  			  }
+	  					  
+	  					  $('#msgZone').empty();
+	  	 				  htmlmsg = '';
+	  	 				  if(unreadCount == 0){
+	  	 					htmlmsg += '<i class="mdi mdi-bell-outline"></i>';
+	  	 					htmlmsg += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+	  	 					htmlmsg += 'adding-left:1.6%;margin-right:2%; color:#ffb446;"></span>';
+	  	 					htmlmsg += '<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>';
+	  	 				  }else{
+	  	 					htmlmsg += '<i class="mdi mdi-bell-outline"></i>';
+	  	 					htmlmsg += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+	  	 					htmlmsg += 'adding-left:1.6%;margin-right:2%; color:#ffb446;">'+unreadCount+'</span>';
+	  	 					htmlmsg += '<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>';
+	  	 				  }
+	  	 				  $('#msgZone').html(htmlmsg);
+	  	 				
 	  		  			  $('#searchTarget').val('');
 	  		  			  window.location.href="#sendBtn";
 	  				  }

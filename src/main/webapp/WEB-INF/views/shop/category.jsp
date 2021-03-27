@@ -20,7 +20,7 @@
   <!--header-->
 <header id="site-header" class="fixed-top">
   <div class="container">
-      <nav class="navbar navbar-expand-lg stroke">
+      <nav class="navbar navbar-expand-lg stroke" style="margin-top: 1.%; margin-right: 1.5%;">
          <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>         
           <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
               data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -30,7 +30,7 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-              <ul class="navbar-nav ml-auto">
+              <ul class="navbar-nav ml-auto" style="margin-right: 0.5%;">
                   <li class="nav-item">
                       <a class="nav-link" href="../">Home <span class="sr-only">(current)</span></a>
                   </li>
@@ -51,9 +51,6 @@
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                       	<a class="dropdown-item" href="product">쇼핑하기</a>
-                          <a class="dropdown-item" href="cart">장바구니</a>
-                          <a class="dropdown-item" href="order">결제</a>
-                          <a class="dropdown-item" href="register?catgo_code=8">상품등록하기</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -62,17 +59,33 @@
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                          <a class="dropdown-item" href="blog.html">공지사항</a>
-                          <a class="dropdown-item" href="blog-single.html">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=1" style="font-family: 'Spoqa Han Sans Neo';">공지사항</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=2" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=3" style="font-family: 'Spoqa Han Sans Neo';">산책후기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=4" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
                       </div>
                   </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="gallery.html">로그인 </a>
-                  </li>
-                 
-                  <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact </a>
-                  </li>
+                  <c:choose>
+                        <c:when test="${empty login.member_name}">
+                           <li class="nav-item">
+                              <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
+                           </li>
+                        </c:when>
+                        <c:otherwise>
+                           <li class="nav-item">
+                              <a class="nav-link" href="/member/logout.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
+                           </li>
+                        </c:otherwise>
+                     </c:choose>
+                     <!-- 관리자일때만 관리자페이지 입장 -->
+                     <c:if test="${login.member_name eq 'admin'}">
+                        <li class="nav-item">
+                           <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
+                        </li>
+                     </c:if>
               </ul>
           </div>
           <!-- toggle switch for light and dark theme -->
@@ -135,7 +148,7 @@
       <div class="heading text-center mx-auto">
           <span class="sub-title text-center mb-2"></span>
           <h3 class="hny-title mb-5">
-            상세 카테고리</h3>
+           쇼핑 상세 카테고리</h3>
       </div>
       <div class="row">
       <c:forEach items="${category}" var="productDes" varStatus="status">
@@ -155,10 +168,10 @@
                       </div>
                       <ul class="blog-meta">
                           <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-comment"></span> 30 comments</span>
+                              <span class="meta-value"> <span class="fa fa-comment"></span> 20 comments</span>
                           </li>
                           <li class="meta-item blog-students">
-                              <span class="meta-value"> <span class="fa fa-eye"></span> 30 Views</span>
+                              <span class="meta-value"> <span class="fa fa-eye"></span> 10 Views</span>
                           </li>
                       </ul>
                   </div>
@@ -167,8 +180,9 @@
          </c:forEach>
          
       </div>
+      <br>
       <!-- pagination -->
-       <div class="pagination-wrapper mt-5">
+       <div class="pagination-wrapper mt-5" style="margin-top: 50%;">
           <ul class="page-pagination">
       <c:forEach begin="1" end="${listResult.totalPageCount}" var="i"  >
         <a href="category?cp=${i}" >

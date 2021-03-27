@@ -14,8 +14,10 @@
       <link rel="stylesheet" href="../assets/css/productDes.css">
       <link rel="stylesheet" href="../assets/css/semantic.min.css">
       <link rel="stylesheet" href="../assets/css/semantic2.css">
-      <script src="assets/js/jquery-3.3.1.min.js"></script>
-  	  <script src="assets/js/theme-change.js"></script>
+      <script src="../assets/js/jquery-3.3.1.min.js"></script>
+      <!--  <script src="../assets/js/theme-change.js"></script> -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
       <!-- Template CSS -->
       <!-- sweetAlert -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
@@ -23,19 +25,36 @@
       <!-- sweetAlert -->
    </head>
    <body>
+    <style>
+		.btn-like {
+		  color: transparent;
+		  text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 #000;
+		}
+		.btn-like:hover {
+		  text-shadow: 0 0 0 #ea0;
+		}
+		.btn-like.done {
+		  color: inherit;
+		  text-shadow: 0;
+		}
+		.btn-like.done:hover {
+		  color: transparent;
+		  text-shadow: 0 0 0 #777;
+		}
+		      </style>
       <!--header-->
       <header id="site-header" class="fixed-top">
          <div class="container">
-            <nav class="navbar navbar-expand-lg stroke">
+            <nav class="navbar navbar-expand-lg stroke" style="margin-top: 1.3%;">
                <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
-              <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+               <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
                   data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                   aria-label="Toggle navigation">
                <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
                <span class="navbar-toggler-icon fa icon-close fa-times"></span>
                </button>
-               <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                  <ul class="navbar-nav ml-auto">
+               <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="margin-right: 6.7%; font-size: 16px;">
+                  <ul class="navbar-nav ml-auto" style="margin-right: 0.5%;">
                      <li class="nav-item">
                         <a class="nav-link" href="../">Home <span class="sr-only">(current)</span></a>
                      </li>
@@ -46,7 +65,6 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                            <a class="dropdown-item" href="walklist.do">산책모집 </a>
-                           <a class="dropdown-item" href="walkboard.do">산책후기 </a>
                         </div>
                      </li>
                      <li class="nav-item dropdown">
@@ -55,9 +73,7 @@
                         쇼 핑 <span class="fa fa-angle-down"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                           <a class="dropdown-item" href="product">쇼핑하기</a>
-                           <a class="dropdown-item" href="cart">장바구니</a>
-                           <a class="dropdown-item" href="order">결제</a>
+                           <a class="dropdown-item" href="product?catgo_code=9">쇼핑하기</a>
                         </div>
                      </li>
                      <li class="nav-item dropdown">
@@ -66,31 +82,34 @@
                         커뮤니티 <span class="fa fa-angle-down"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                           <a class="dropdown-item" href="blog.html">공지사항</a>
-                           <a class="dropdown-item" href="blog-single.html">일상이야기</a>
+                           <a class="dropdown-item" href="board/list.do?board_idx=1">공지사항</a>
+                           <a class="dropdown-item" href="board/list.do?board_idx=2">일상이야기</a>
+                           <a class="dropdown-item" href="board/list.do?board_idx=3">산책후기</a>
+                           <a class="dropdown-item" href="board/list.do?board_idx=4">일상이야기</a>
                         </div>
                      </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="gallery.html">로그인 </a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact </a>
-                     </li>
+                     <c:choose>
+                        <c:when test="${empty login.member_name}">
+                           <li class="nav-item">
+                              <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
+                           </li>
+                        </c:when>
+                        <c:otherwise>
+                           <li class="nav-item">
+                              <a class="nav-link" href="/member/logout.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
+                           </li>
+                        </c:otherwise>
+                     </c:choose>
+                     <!-- 관리자일때만 관리자페이지 입장 -->
+                     <c:if test="${login.member_name eq 'admin'}">
+                        <li class="nav-item">
+                           <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
+                        </li>
+                     </c:if>
                   </ul>
-               </div>
-               <!-- toggle switch for light and dark theme -->
-               <div class="mobile-position">
-                  <nav class="navigation">
-                     <div class="theme-switch-wrapper">
-                        <label class="theme-switch" for="checkbox">
-                           <input type="checkbox" id="checkbox">
-                           <div class="mode-container">
-                              <i class="gg-sun"></i>
-                              <i class="gg-moon"></i>
-                           </div>
-                        </label>
-                     </div>
-                  </nav>
                </div>
                <!-- //toggle switch for light and dark theme -->
             </nav>
@@ -133,7 +152,6 @@
                            </div>
                         </div>
                </table>
-               <!--img src="assets/images/g10-1.jpg" width="350" height="450"-->
                <td align="center">
                   <form name="addProductsInCart" id="addProductsInCart" method="post" action="cart?catgo_code=9">
                      <input name="product_name" type="hidden" value="${productDes.product_name}">
@@ -153,7 +171,7 @@
                         <td>수량 선택 &nbsp;</br></td>
                         <td>
                            <input type="number" id="product_amount" name="product_amount"
-                           class="ui selection dropdown"
+                              class="ui selection dropdown"
                               value="${productDes.product_amount}" step="1" min="1" max="10">
                            &nbsp;</br>
                         </td>
@@ -161,8 +179,7 @@
                            <td>&nbsp;Size 선택 &nbsp;</br></td>
                            <td>
                               &nbsp;
-                              
-                              <select name="product_size" align="center" class="ui selection dropdown" >
+                              <select name="product_size" id="product_size" align="center" class="ui selection dropdown" >
                                  ==$0
                                  <option class="item" value="선택해주세요" selected="selected">Size를 선택해주세요</option>
                                  <option class="item" value="S 핑크">S 핑크</option>
@@ -181,15 +198,67 @@
                         </br></br>
                         <td colspan="4">
                            &nbsp;
-                           <input type="submit" style="text-align:left;" value="장바구니에 담기" onclick="Confirm();" class="btn btn-style btn-primary">
+                           <button type="button" id="loginCheck" style="text-align:left;" class="btn btn-style btn-primary" >장바구니에 담기
+                           </button>
+                            <a href="product?catgo_code=9" class="btn btn-style btn-primary">상품목록</a>
                            </br>
                            <script>
-                              function Confirm(){
-                              Swal.fire('장바구니에 담겼습니다.')
-                              }
+                              $("#loginCheck").click(function () {
+                              var login = '${login.member_name}';
+                              var product_name = '${productDes.product_name}';
+                              var product_code = '${productDes.product_code}';
+                              var product_price = '${productDes.product_price}';
+                              var product_content = '${productDes.product_content}';
+                              var product_image = 'assets/images/${productDes.product_image}';
+                              var product_amount = $("#product_amount").val();
+                              var product_size = $("#product_size").val();
+                              
+                              if(login != ''){//로그인 체크후 장바구니이동.
+                              $.ajax({
+                              	url: "cart",
+                              	type: 'POST',
+                              	data:{
+                              		login2 : '${login.member_name}',
+                              		product_name2 : '${login.member_name}',
+                              		product_code2 : '${productDes.product_code}',
+                              		product_price2 : '${productDes.product_price}',
+                              		product_content2 : '${productDes.product_content}',
+                              		product_image2 : 'assets/images/${productDes.product_image}',
+                              		product_amount2 : $("#product_amount").val(),
+                              		product_size2 : $("#product_size").val()
+                              	},
+                              	success: function(result){
+                              		if(confirm("장바구니에 담겼습니다.이동하시겠습니까?")){
+                              			location.href="cart?catgo_code=9";
+                              		}else{
+                              			location.href="productDes?catgo_code=${productDes.catgo_code}&review_number=${productDes.review_number}&product_code=${productDes.product_code}";
+                              		}
+                              	}
+                              });
+                              } else {
+                              var msg = '장바구니에 담지 못하였습니다.ㅠㅠ';
+	                              Swal.fire({
+	                              icon: 'error',
+	                              title: '로그인이 필요합니다!',
+	                              text: '장바구니는 회원 서비스 입니다. 로그인을 먼저 해주세요.',
+	                              footer: '<a href="/member/login.do">로그인</a> &nbsp;&nbsp;<b>/</b>&nbsp;&nbsp; <a href="/member/agree.do">회원가입</a>'
+	                              })
+	                              }
+	                              }); 
                            </script>
                            </br>
-                           <a href="product?catgo_code=9" class="btn btn-style btn-primary">상품목록</a>
+                                                   
+							<input type="checkbox" name="" id="btn" />
+							<label class="container" for="btn"></label>
+							<td>
+								<button class="btn-like" type="button" onclick="alert('상품을 찜했습니다.')">💛</button>
+	                            <form action="/insertLikeList.do" method="post">
+						 <div>
+						 <br></div></br>
+						 <input type="hidden" name="insertlikelist" value="${productDes.product_code}">				     
+					        <input type="submit" value="찜한 상품 전송"/>
+					        </form>
+                          	</div>
                         </td>
                      </table>
                   </form>
@@ -197,7 +266,6 @@
             </div>
          </div>
          <div class="text-bg-image">
-            <!--img src="assets/images/g10-1.jpg" alt="애견패딩" width="340" height="300" class="img-fluid radius-image"-->
          </div>
          <div class="text-content-text">
          <div class="d-grid-2">
@@ -275,7 +343,6 @@
             </div>
          </div>
       </section>
-     
       <!-- text -->
       <section class="w3l-blog-single3">
       <div class="text-element-9">
@@ -325,23 +392,24 @@
       <!-- review part -->
       <section class="w3l-blog-single4">
          <div class="text-styles-30_sur py-5" style=" text-align: left">
-            <div class="container py-lg-3">
-               <div class="text-styles-top-30">
-                  <h3 class="title-blog mb-4">최근 상품 리뷰 </h3>
-                  <div>
-                   <div class="media-body">
-                        <c:forEach items="${reviewCon}" var="reviewCon" varStatus="status">
+         <div class="container py-lg-3">
+            <div class="text-styles-top-30">
+               <h3 class="title-blog mb-4">최근 상품 리뷰 </h3>
+               <div>
+                  <div class="media-body">
+                     <c:forEach items="${reviewCon}" var="reviewCon" varStatus="status">
                         <div class="img-circle">
-                        <img src=${mvo.member_number}  alt="리뷰 상품 사진" id="col"></div>
-                           <input type="hidden" name="member_number" value="member_number">
-                           <h5 class="mt-0">${reviewCon.review_subject}</h5>
-                           <span class="time">${reviewCon.review_message}</span>
-                           <p>${reviewCon.review_email}</p>
-                           <input type="hidden" name="review_number" value="review_number">
-                           <input type="hidden" name="catgo_code" value="catgo_code">
-                           <a href="#reply-form" class="reply">Reply</a></br>
-                           <!-- status.index: ${status.index}  -->
-                        </c:forEach>
+                           <img src="${mpvo.pet_ofname}" alt="리뷰 상품 사진" id="col">
+                        </div>
+                        <input type="hidden" name="member_number" value="member_number">
+                        <h5 class="mt-0">${reviewCon.review_subject}</h5>
+                        <span class="time">${reviewCon.review_message}</span>
+                        <p>${reviewCon.review_email}</p>
+                        <input type="hidden" name="review_number" value="review_number">
+                        <input type="hidden" name="catgo_code" value="catgo_code">
+                        <a href="#reply-form" class="reply">Reply</a></br>
+                        <!-- status.index: ${status.index}  -->
+                     </c:forEach>
                   </div>
                </div>
             </div>
@@ -410,7 +478,6 @@
             </div>
          </div>
       </section>
-      
       <!-- form 29 block -->
       <section class="w3l-blog-single6" id="reply-form">
          <div class="form-29 py-5">
@@ -550,15 +617,12 @@
       <!-- disable body scroll which navbar is in active -->
       <script>
          $(function () {
-           $('.navbar-toggler').click(function () {
+           $('navbar-toggler').click(function () {
              $('body').toggleClass('noscroll');
            })
          });
       </script>
       <!-- disable body scroll which navbar is in active -->
-      <!-- Template JavaScript -->
-      <script src="assets/js/jquery-3.3.1.min.js"></script>
-      <script src="assets/js/theme-change.js"></script>
       <!--/MENU-JS-->
       <script language="javascript">
          $(window).on("scroll", function () {
@@ -586,11 +650,6 @@
            });
          });
          
-       
-         document.getElementById("reviewform").submit();
-         }
-         document.getElementById("productOrderList").submit();
-           } 
            
           function getItem(){
             $("#selectBox option:seleted").text();
@@ -600,6 +659,5 @@
          
       </script>
       <!--//MENU-JS-->
-      <script src="assets/js/bootstrap.min.js"></script>
    </body>
 </html>

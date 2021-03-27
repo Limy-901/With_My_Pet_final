@@ -6,11 +6,22 @@
       <meta charset="UTF-8">
       <title>:: 관리자 :: With My Pet</title>
       <link href="../assets/css/admin/style2.css" rel="stylesheet">
-     
+      <style>
+         .imgsrc {
+         position: static;
+         width: 401%;
+         border-radius: 76px;
+         margin-left: 38%;
+         margin-top: 26%;
+         bottom: 5%;
+         max-width: 405%;
+         box-shadow: 1px 1px 3px black;
+         }
+      </style>
    </head>
    <body>
       <!-- 기본 틀 -->
-      <div id="main-wrapper" style="height:100%; display:relative; opacity:100;">
+     
       <!--**********************************
          Nav header start
          ***********************************-->
@@ -241,9 +252,9 @@
       <!-- //about register parts -->
       <section>
          </br></br></br></br></br>
-         <h3 class="hny-title" style="margin-left: 32%;"><b>상품등록 화면</b></h3 >
-         </br>   
-         <div class="container py-lg-5" style="margin-left: 20%; margin-bottom: 5%;">
+         <div class="container py-lg-5 card" style="margin-left: 20%; margin-bottom: 5%;">
+            <h3 class="hny-title " style="margin-left: 15%;"><b>상품등록 화면</b></h3 >
+            </br>   
             <div class="content-info-in row">
                <div class="content-gd col-lg-5 pl-lg-4">
                   <div class="pricing-sec-7">
@@ -255,30 +266,53 @@
                                  <div class="title-content text-left mb-2">
                                     <div class="inputArea" >
                                        <label for="product_name" ><b>상품명</b></label>
-                                       <input type="text" id="product_name" name="product_name" required class="form-control" align="center"/>
+                                       <input type="text" id="product_name" name="product_name" required class="form-control bg-transparent" align="center"/>
                                     </div>
                                     <div class="inputArea">
                                        <label for="product_price"><b>상품가격</b></label>
-                                       <input type="text" id="product_price" name="product_price"class="form-control" placeholder="숫자만 입력해주세요" required/>
+                                       <input type="text" id="product_price" name="product_price"class="form-control bg-transparent" placeholder="숫자만 입력해주세요" required/>
                                     </div>
                                     <div class="inputArea">
                                        <label for="product_tag"><b>상품태그</b></label>
-                                       <textarea rows="1" cols="50" id="product_tag" name="product_tag" class="form-control" required></textarea>
+                                       <textarea rows="1" cols="50" id="product_tag" name="product_tag" class="form-control bg-transparent" required></textarea>
                                     </div>
-                                    <div class="inputArea">
+                                    <div class="inputArea ">
                                        <label for="product_content"><b>상품소개</b></label>
-                                       <textarea rows="5" cols="50" id="product_content" name="product_content" class="form-control" required></textarea>
+                                       <textarea rows="5" cols="50" id="product_content" name="product_content" class="form-control bg-transparent" required></textarea>
                                     </div>
-                                    <div class="inputArea">
-                                       <label for="product_image" ><b>상품 이미지</b></label>
-                                       <input type="file" name="uploadfile" id="uploadfile" class="form-control" required/></div>
-                                       <img id="uploadfile" src="C:/Users/bit/Desktop/WithMyPet/src/main/webapp/assets/images/" alt="uploadfile">
+                                    <div class="inputArea ">
+                                       <label for="product_image" >
+                                          <p><b>상품 이미지</b></p>
+                                       </label>
+                                       <input type="file" name="uploadfile" id="uploadfile" class="form-control bg-transparent" onchange="previewImage(this)" required/>
+                                       <div id="preview" class="preview" ></div>
+                                       <script type="text/javascript">
+                                          function previewImage(f){
+                                          	var file = f.files;
+                                          	// 확장자 체크
+                                          	if(!/\.(gif|jpg|jpeg|png)$/i.test(file[0].name)){
+                                          		alert('gif, jpg, png 파일만 선택해 주세요.\n\n현재 파일 : ' + file[0].name);
+                                          		// 선택한 파일 초기화
+                                          		f.outerHTML = f.outerHTML;
+                                          		document.getElementById('preview').innerHTML = '';
+                                          	}
+                                          	else {
+                                          		// FileReader 객체 사용
+                                          		var reader = new FileReader();
+                                          		// 파일 읽기가 완료되었을때 실행
+                                          		reader.onload = function(rst){
+                                          			document.getElementById('preview').innerHTML = '<img class="imgsrc" src="' + rst.target.result + '">';
+                                          		}
+                                          		// 파일을 읽는다
+                                          		reader.readAsDataURL(file[0]);
+                                          	}
+                                          }
+                                       </script>
                                     </div>
-                                    <!--%=request.getRealPath("/") %-->	
                                  </div>
                               </div>
-                              <div class="text-left2">
-                                 <input type="submit" value="업로드" onclick="Confirm();" class="popup btn btn-style btn-primary">
+                              <div class="text-left2" style="margin-top: 25%;">
+                                 <input type="submit" value="업로드" onclick="Confirm();" style="margin-top: 3%;" class="popup btn btn-style btn-primary">
                               </div>
                            </form>
                         </div>
@@ -287,11 +321,6 @@
                </div>
             </div>
          </div>
-         <script>
-            function Confirm(){
-            Swal.fire('상품등록이 완료되었습니다.')
-            }
-         </script>
       </section>
       <!-- //about register parts -->
       <!-- footer-28 block -->

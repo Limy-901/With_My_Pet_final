@@ -41,10 +41,10 @@ public class CartController {
 	private ProductService service2;
 
 	
-	//리스트 불러오기
+	//占쏙옙占쏙옙트 占쌀뤄옙占쏙옙占쏙옙
 	@GetMapping("/del")
 	public String cart(Cart cart,HttpSession session,int idx) throws Exception {
-		log.info("##여기"+idx);
+		log.info("##占쏙옙占쏙옙"+idx);
 		ArrayList<Cart> cartSession = (ArrayList<Cart>)session.getAttribute("cartLists");
 		cartSession.remove(idx);
 		session.setAttribute("cartLists", cartSession);
@@ -52,53 +52,54 @@ public class CartController {
 		return "/shop/cart";
 	}
 	
-	@PostMapping("/cart")//전송된 상품 번호를 받는다.
-	public ModelAndView addProductsInCart(HttpServletRequest request, Cart cart,
-	HttpServletResponse response) throws Exception{
-		log.info("##가져온 카트값"+cart);
-		HttpSession session =request.getSession();
-		ArrayList<Cart> cartLists = new ArrayList<Cart>();
-		//리스트 선언
-		if(cart == null) return new ModelAndView("../","viewlists",null);
-		//만약에 cart에 값이 널이면 그냥 인덱스로 돌아가라!
-		else {
-			ArrayList<Cart> cartSession = (ArrayList)session.getAttribute("cartLists");
-			//ArrayList타입의 cartSession에 cartLists를 불러오기.
-			if(cartSession != null) {
-				//만약 cartSession에 값이 있으면
-				cartSession.add(cart);
-				//세션에 cart라는 ArrayList<Cart>형태의 내용값을 add해줘라.
-				log.info("세션카트안에있음"+cartSession);
-				session.setAttribute("cartLists", cartSession);
-				//그리고 세션에 저장될 수 있도록 cartSession을 setAttribute해줘라.
-			}else {
-				cartLists.add(cart);
-				log.info("세션 새로 만듦"+cartSession);
-				session.setAttribute("cartLists", cartLists);
-			}
-			//list에  product내용을 담아내는 곳
-			ArrayList<Product> viewlists = new ArrayList<Product>();
-			//그후에 product타입의 Arraylist를 선언해준다음
-			for(Cart list : cartLists) {
-				//위에서 만든 cartLists의 내용물이 든  cartLists를 for문에 돌려준다.
-				long cart_product_code = list.getProduct_code();
-				//그 만든 list에 product_code가 long 타입의 cart_product_code와 같다면
-				Product product = service2.listS(cart_product_code);
-				//위에서 선언한 service2의 listS메소드에 product_code를 넣어 product의 전체 내용물을 불러올 수 있도록 한다.
-				viewlists.add(product);
-				//그후에 그 내용이 있는 product를 viewlists에 추가해준다.(넣어준다)
-			}
-			session.setAttribute("viewlists", viewlists);
-			//추가된 viewlists를 이제 session에 넣어준다.
-			log.info("$$viewlists:"+viewlists);
-			ModelAndView mvvv = new ModelAndView("/shop/cart","viewlists",viewlists);
-			return mvvv;
-		}
+	@GetMapping("/cart")
+	public String cart() {
+		return "/shop/cart";
 	}
+	
+	@PostMapping("/cart")
+	public ModelAndView addProductsInCart(HttpServletRequest request, 
+			String login,String product_name2,long product_code2,String product_price2,
+			String product_content2,String product_image2, long product_amount2, 
+			String product_size2,HttpServletResponse response) throws Exception{
+			HttpSession session =request.getSession();
+			Cart cart = new Cart();
+			cart.setProduct_name(product_name2);
+			cart.setProduct_code(product_code2);
+			cart.setProduct_price(product_price2);
+			cart.setProduct_content(product_content2);
+			cart.setProduct_image(product_image2);
+			cart.setProduct_amount(product_amount2);
+			cart.setProduct_size(product_size2);
+			log.info("cart: "+cart);
+			ArrayList<Cart> cartLists = new ArrayList<Cart>();
+			if(cart == null) return new ModelAndView("../","viewlists",null);
+			else {
+				ArrayList<Cart> cartSession = (ArrayList)session.getAttribute("cartLists");
+				if(cartSession != null) {
+					cartSession.add(cart);
+					session.setAttribute("cartLists", cartSession);
+				}else {
+					cartLists.add(cart);
+					session.setAttribute("cartLists", cartLists);
+				}
+				ArrayList<Product> viewlists = new ArrayList<Product>();
+				for(Cart list : cartLists) {
+					long cart_product_code = list.getProduct_code();
+					Product product = service2.listS(cart_product_code);
+					viewlists.add(product);
+				}
+				session.setAttribute("viewlists", viewlists);
+				log.info("$$viewlists:"+viewlists);
+				ModelAndView mvvv = new ModelAndView("/shop/cart","viewlists",viewlists);
+				return mvvv;
+			}
+		}
+	
 	
 	@GetMapping("/order")
 	public String order(@RequestParam int member_number) throws Exception {
-		log.info("##오더 get()으로 호출");
+		log.info("##占쏙옙占쏙옙 get()占쏙옙占쏙옙 호占쏙옙");
 		ArrayList<Pay> pay = service.selectPay(member_number);
 		return "/shop/order";
 	}
@@ -109,16 +110,16 @@ public class CartController {
 			String buyer_addr, String buyer_email, long amout
 			) throws Exception{
 			log.info("buyer_name: "+buyer_name+"name: "+name);
-			//가져온 값을 orderSu에 넣어주기.
 			OrderSu ordersu = new OrderSu();
 			ordersu.setProduct_code(buyer_code);
 			ordersu.setOrdersu_name(buyer_name);
 			ordersu.setOrdersu_addr(buyer_addr);
 			ordersu.setOrdersu_email(buyer_email);
-			//넣어진 값의 ordersu를 DB에 insert해주기.
+			ordersu.setProduct_price(amout);
+			ordersu.setOrder_code(buyer_code);
 			service.insertOrderSu(ordersu);
 			session.setAttribute("ordersu", ordersu);
-			log.info("ordersu:"+ordersu);
+			log.info("cartController ordersu:"+ordersu);
 			ModelAndView mv = new ModelAndView("/shop/order","ordersu",ordersu);
 			return mv;
 			}
@@ -127,7 +128,7 @@ public class CartController {
 	public ModelAndView orderSu(HttpSession session, int member_number) throws Exception{
 		ArrayList<Pay> payUpdate = service.selectPay(member_number);
 		session.setAttribute("pay", payUpdate);
-		log.info("오더(결제)post() pay: "+payUpdate);
+		log.info("post() pay: "+payUpdate);
 		ModelAndView mv = new ModelAndView("/shop/orderSu","pay",payUpdate);
 		return mv;		
 		}

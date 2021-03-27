@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +30,7 @@ import pet.shop.domain.Product;
 import pet.shop.domain.ProductListResult;
 import pet.shop.domain.Review;
 import pet.shop.service.FileUploadService;
+import pet.shop.service.LikeListService;
 import pet.shop.service.ProductService;
 
 @Log4j
@@ -40,6 +41,9 @@ public class ShopController {
 	private ProductService service;
 	@Resource(name="FileUploadServiceImpl")
 	private FileUploadService fileService;
+	
+	@Autowired
+	private LikeListService likeListService;
 	
 	//상품 소분류 카테고리
 	@GetMapping("/category")
@@ -218,7 +222,18 @@ public class ShopController {
 	    return "redirect:category?catgo_code=8";
 		}
 	
-	
+	//상품찜하기 수정 중
+	@RequestMapping(value="/insertLikeList.do")
+	public ModelAndView formTag(HttpServletRequest request, HttpSession session,long product_code){
+		log.info(product_code);
+        ModelAndView mv = new ModelAndView("insertLikeList");
+        request.getParameter("${Likelist.product_code}");    
+        
+        log.info("##################### + product_code");
+        
+        return mv;
+        //return "redirect:likelist";
+    	}
 	
 	}
 

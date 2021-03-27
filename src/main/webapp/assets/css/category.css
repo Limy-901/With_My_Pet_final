@@ -8597,7 +8597,7 @@ button.bg-dark:focus {
 
 .mt-5,
 .my-5 {
-  margin-top: 3rem !important;
+  margin-top: margin-top: 50%;
 }
 
 .mr-5,
@@ -14078,7 +14078,7 @@ button,
 .btn {
   cursor: pointer !important;
   font-family: 'Spoqa Han Sans Neo';
-  font-size: x-large;
+  font-size: 17px;
 }
 
 .clear {

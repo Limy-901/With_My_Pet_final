@@ -328,7 +328,8 @@ new Chart(document.getElementById("doughnutChart"), {
                                         <table class="table table-xs mb-0">
                                             <thead>
                                                 <tr style="font-family: 'Spoqa Han Sans Neo';">
-                                                    <th>구매자</th>
+                                                    <th>구매인</th>
+                                                    <th>수취인</th>
                                                     <th>상 품</th>
                                                     <th>주소지</th>
                                                     <th>상 태</th>
@@ -341,13 +342,13 @@ new Chart(document.getElementById("doughnutChart"), {
                                             	<c:forEach items="${indexData.payData}" var="pay" varStatus="status">
                                                 <tr style="font-family: 'Spoqa Han Sans Neo';">
                                                     <td><img src="<c:url value="/img/${indexData.payPicList[status.index]}"/>" class=" rounded-circle mr-3" alt="">${pay.member_name}</td>
+                                                    <td>${pay.ordersu_name}</td>
                                                     <td>${pay.product_name}</td>
                                                     <td>
                                                         <span>${pay.member_address}</span>
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            
                                                             	<c:choose>
                                                             		<c:when test="${!empty pay.pcount}">
                                                             			<span>결제대기</span>

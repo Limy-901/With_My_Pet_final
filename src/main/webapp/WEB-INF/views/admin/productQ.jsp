@@ -219,12 +219,12 @@
 	    <div class="col-lg-12">
 	        <div class="card"style="min-height:655px; width:75%; margin-left:17%;">
 	            <div class="card-body" style="width:100%;">
-	                <div id="listsSize"><h4 class="card-title">답변을 기다리는 글 : ${fn:length(lists)}</h4></div><br/>
+	                <div id="listsSize"><h4 class="card-title">답변을 기다리는 글 : ${fn:length(map.lists)}</h4></div><br/>
 	                <div id="listsPanel" class="bootstrap-media">
 	                    <ul class="list-unstyled">
 	                    
 	                    	<!-- 리스팅 -->
-	                    	<c:if test="${empty lists}">
+	                    	<c:if test="${empty map.lists}">
 	                    		<li class="media">
 		                            <div class="media-body">
 		                                <h5 class="mt-0 mb-1" style="width:60%;">모든 문의 글에 답변을 완료했습니다.</h5>
@@ -232,9 +232,9 @@
 		                        </li>
 	                    	</c:if>
 	                    	
-	                    	<c:forEach items="${lists}" var="list">
+	                    	<c:forEach items="${map.lists}" var="list" varStatus="status">
 		                        <li class="media">
-		                            <img class="mr-3" src="../assets/images/admin/avatar/1.jpg" alt="Generic placeholder image">
+		                            <img style="max-width:40px; max-height:40px"class="mr-3" src="<c:url value="/img/${map.urls[status.index]}"/>" alt="Generic placeholder image">
 		                            <div class="media-body">
 		                                <h5 class="mt-0 mb-1" style="width:60%;">작성자 : ${list.post_writer} / 제목 : ${list.post_subject}</h5>
 		                                ${list.content}

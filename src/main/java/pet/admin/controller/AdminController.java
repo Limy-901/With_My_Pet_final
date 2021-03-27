@@ -24,10 +24,13 @@ import pet.admin.vo.MemberWalkChart;
 import pet.admin.vo.OrderStatus;
 import pet.admin.vo.Qna;
 import pet.member.vo.MemberVO;
+import pet.member.vo.MypagePetVO;
 import pet.mvc.board.Board;
+import pet.shop.domain.OrderSu;
 import pet.shop.domain.Product;
 import pet.shop.fileSetting.path;
 import pet.shop.service.FileUploadService;
+import pet.walk.service.WalkService;
 import pet.walk.vo.Walk;
 import static pet.admin.vo.Options.*;
 
@@ -37,12 +40,16 @@ import static pet.admin.vo.Options.*;
 public class AdminController {
 	@Autowired
 	AdminService adminService;
+	@Autowired
+	WalkService walkService;
 	@Resource(name="FileUploadServiceImpl")
 	private FileUploadService fileService;
 
 	@RequestMapping("index.do")
-	private ModelAndView index() {
+	private ModelAndView index(HttpSession session) {
 		Hashtable<String, Object> map = adminService.getIndexData();
+		OrderSu ordersu = (OrderSu) session.getAttribute("ordersu");
+		log.info("adminController ordersu: "+ ordersu);
 		ModelAndView mv = new ModelAndView("admin/adminIndex","indexData",map);
 		return mv;
 	}
@@ -84,8 +91,14 @@ public class AdminController {
 		Hashtable<String, Object> map = new Hashtable<String, Object>();
 		ArrayList<Walk> lists = adminService.getWalks(NEXT_WALKS);
 		ArrayList<String> times = adminService.getWalkTimes(lists,NEXT_WALKS);
+		ArrayList<String> urls = new ArrayList<String>();
+		for(Walk list : lists) {
+			String url = walkService.getWalkPic(list.getMember_number());
+			urls.add(url);
+		}
 		map.put("lists",lists);
 		map.put("times",times);
+		map.put("urls",urls);
 		ModelAndView mv = new ModelAndView("admin/nextWalk","map",map);
 		return mv;
 	}
@@ -95,8 +108,14 @@ public class AdminController {
 		Hashtable<String, Object> map = new Hashtable<String, Object>();
 		ArrayList<Walk> lists = adminService.getWalks(PREVIOUS_WALKS);
 		ArrayList<String> times = adminService.getWalkTimes(lists,PREVIOUS_WALKS);
+		ArrayList<String> urls = new ArrayList<String>();
+		for(Walk list : lists) {
+			String url = walkService.getWalkPic(list.getMember_number());
+			urls.add(url);
+		}
 		map.put("lists",lists);
 		map.put("times",times);
+		map.put("urls",urls);
 		ModelAndView mv = new ModelAndView("admin/previousWalk","map",map);
 		return mv;
 	}
@@ -136,8 +155,16 @@ public class AdminController {
 	
 	@RequestMapping("productQ.do")
 	private ModelAndView productQ() {
+		Hashtable<String, Object> map = new Hashtable<String, Object>();
 		ArrayList<Board> lists = adminService.getNotAnsweredQ();
-		ModelAndView mv = new ModelAndView("admin/productQ","lists",lists);
+		ArrayList<String> urls = new ArrayList<String>();
+		for(Board list : lists) {
+			String url = walkService.getWalkPic(list.getMember_number());
+			urls.add(url);
+		}
+		map.put("lists", lists);
+		map.put("urls", urls);
+		ModelAndView mv = new ModelAndView("admin/productQ","map",map);
 		return mv;
 	}
 	
@@ -150,9 +177,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping("productA.do")
-	private ModelAndView productA(HttpSession session,
-			@RequestParam (defaultValue="0",required=false)int qnaCp,
+	private ModelAndView productA(HttpSession session, @RequestParam (defaultValue="0",required=false)int qnaCp,
 			@RequestParam (required=false)String qnaKeyword) {
+		Hashtable<String, Object> map = new Hashtable<String, Object>();
 		if(qnaCp == 0) {
 			Object cpObj = session.getAttribute("memCp");
 			if(cpObj != null) qnaCp=(Integer)cpObj;
@@ -166,7 +193,14 @@ public class AdminController {
 		}
 		session.setAttribute("memKeyword", qnaKeyword);
 		ArrayList<Qna> lists = adminService.getAnsweredQ(qnaCp, qnaKeyword);
-		ModelAndView mv = new ModelAndView("admin/productA","lists",lists);
+		ArrayList<String> urls = new ArrayList<String>();
+		for(Qna list : lists) {
+			String url = walkService.getWalkPic(list.getMember_number());
+			urls.add(url);
+		}
+		map.put("lists", lists);
+		map.put("urls", urls);
+		ModelAndView mv = new ModelAndView("admin/productA","map",map);
 		return mv;
 	}
 	
@@ -195,11 +229,6 @@ public class AdminController {
 		map.put("locLists",lists2);
 		ModelAndView mv = new ModelAndView("admin/walkStatistic", "map", map);
 		return mv;
-	}
-	
-	@RequestMapping("salesStatistic.do")
-	private String salesStatistic() {
-		return "admin/salesStatistic";
 	}
 	
 	

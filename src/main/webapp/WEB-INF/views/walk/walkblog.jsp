@@ -130,19 +130,22 @@
           
           <!-- 회원 접속 시, 메시지 띄움 -->
           <c:if test="${!empty login}">
-	          <div>
-	          <c:choose>
-	          	<c:when test="${unread == 0}">
-	          		<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>
-	          	</c:when>
-	          	<c:otherwise>
-	          		<i class="mdi mdi-bell-outline"></i>
-                    <span class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%; padding-left:1.6%;
-                     margin-right:2%; color:#ffb446;">${unread}</span>
-	          		<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>
-	          	</c:otherwise>
-	          </c:choose>
-	          </div>
+	          <div id="msgZone">
+	          	 <c:choose>
+		          	<c:when test="${unread eq 0}">
+		          		<i class="mdi mdi-bell-outline"></i>
+	                    <span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%; padding-left:1.6%;
+	                     margin-right:2%; color:#ffb446;"></span>
+		          		<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>
+		          	</c:when>
+		          	<c:otherwise>
+		          		<i class="mdi mdi-bell-outline"></i>
+	                    <span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%; padding-left:1.6%;
+	                     margin-right:2%; color:#ffb446;">${unread}</span>
+		          		<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>
+		          	</c:otherwise>
+		          </c:choose>
+		      </div>
           </c:if>
       </nav>
   </div>
@@ -937,6 +940,18 @@ function walkJoinOk(){
 	   		console.log('info : connection opened'+event);
 	   	 // 메세지 왔을때 (알림 + 목록갱신)
 	   	 ws.onmessage = function (event){
+	   		var myNo = '${login.member_number}';
+   		 	$.ajax({
+  	  		  url: "receiveMsg.do",
+  	  		    type: 'GET',
+  	  		    async: false,
+  	  		    data: {
+  	  			    member_number: myNo
+  	  			},
+  	  			success : function(map) {
+  	  				
+  	  			}
+  	  		});
 	   		toastr.options = {
 	                 closeButton: true,
 	                 progressBar: true,

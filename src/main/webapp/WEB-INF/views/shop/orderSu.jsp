@@ -20,7 +20,7 @@
   <!--header-->
  <header id="site-header" class="fixed-top">
          <div class="container">
-            <nav class="navbar navbar-expand-lg stroke">
+            <nav class="navbar navbar-expand-lg stroke" style="margin-top: 1.3%;">
                <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
                </a>
                <!-- if logo is image enable this   
@@ -34,7 +34,7 @@
                <span class="navbar-toggler-icon fa icon-close fa-times"></span>
                </span>
                </button>
-               <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+               <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="margin-right: 5.2%; font-size: 16px;">
                   <ul class="navbar-nav ml-auto">
                      <li class="nav-item">
                         <a class="nav-link" href="../">Home <span class="sr-only">(current)</span></a>
@@ -46,7 +46,6 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                            <a class="dropdown-item" href="walklist.do">산책모집 </a>
-                           <a class="dropdown-item" href="walkboard.do">산책후기 </a>
                         </div>
                      </li>
                      <li class="nav-item dropdown">
@@ -56,8 +55,6 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                            <a class="dropdown-item" href="product">쇼핑하기</a>
-                           <a class="dropdown-item" href="cart">장바구니</a>
-                           <a class="dropdown-item" href="order">결제</a>
                         </div>
                      </li>
                      <li class="nav-item dropdown">
@@ -66,37 +63,40 @@
                         커뮤니티 <span class="fa fa-angle-down"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                           <a class="dropdown-item" href="blog.html">공지사항</a>
-                           <a class="dropdown-item" href="blog-single.html">일상이야기</a>
+                            <a class="dropdown-item" href="board/list.do?board_idx=1">공지사항</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=2">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=3">산책후기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=4">일상이야기</a>
                         </div>
                      </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="gallery.html">로그인 </a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact </a>
-                     </li>
-                  </ul>
-               </div>
-               <!-- toggle switch for light and dark theme -->
-               <div class="mobile-position">
-                  <nav class="navigation">
-                     <div class="theme-switch-wrapper">
-                        <label class="theme-switch" for="checkbox">
-                           <input type="checkbox" id="checkbox">
-                           <div class="mode-container">
-                              <i class="gg-sun"></i>
-                              <i class="gg-moon"></i>
-                           </div>
-                        </label>
-                     </div>
-                  </nav>
-               </div>
+                    <c:choose>
+                  	  <c:when test="${empty login.member_name}">
+		                  <li class="nav-item">
+		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
+		                  </li>
+	                  </c:when>
+	                  <c:otherwise>
+	                  	  <li class="nav-item">
+		                      <a class="nav-link" href="/member/logout.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
+		                  </li>
+		                  <li class="nav-item">
+		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
+		                  </li>
+	                  </c:otherwise>
+                  </c:choose>
+                  <!-- 관리자일때만 관리자페이지 입장 -->
+                  <c:if test="${login.member_name eq 'admin'}"> 
+	                  <li class="nav-item">
+	                      <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
+	                  </li>
+                  </c:if>
+              </ul>
+          </div>
                <!-- //toggle switch for light and dark theme -->
             </nav>
          </div>
       </header>
-<!-- //header -->
+      <!-- //header -->
 <section >
          <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
             <div >

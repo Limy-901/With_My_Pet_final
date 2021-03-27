@@ -51,6 +51,7 @@ public class MsgEchoHandler extends TextWebSocketHandler {
 		String msg = message.getPayload(); //내가 받은 msg의 내용.
 		if (!msg.isEmpty()) {
 			String[] strs = message.getPayload().split(",");
+			log.info("###여기욥 : "+strs);
 			if(strs != null && strs.length == 3) {
 				String cmd = strs[0];
 				String sender = strs[1];

@@ -125,7 +125,8 @@
 	</select>
 	
 	<insert id="writeAnswer" parameterType="map">
-		insert into BOARD_CMT values(BOARD_CMT_SEQ.nextval,#{idx},5,1,#{content},'관리자',SYSDATE)
+		insert into BOARD_CMT values(BOARD_CMT_SEQ.nextval, #{idx}, 5, #{member_number},
+		#{content},'관리자', SYSDATE, 0, 0)
 	</insert>
 	
 	<select id="getAnsweredQ" resultType="Qna" parameterType="map">
@@ -177,14 +178,14 @@
 	</select>
 	
 	<select id="getPayData" resultType="PayData">
-		select ROWNUM, a.member_number, a.member_name, b.product_name, a.member_address, c.pcount, c.pay_method, d.login_date
-		from 
-		(select * from orderlist natural join member) a,
-		(select product_code,product_name from product) b,
-		(select ROWNUM pcount, order_code, pay_method from pay) c,
-        (select member_number, login_date from login_log) d
-		where a.product_code = b.product_code and a.order_code = c.order_code(+) and a.member_number = d.member_number and
-		<![CDATA[ROWNUM >= 0 and ROWNUM <= 5]]>
+		select ROWNUM, a.member_number, a.member_name, b.product_name, a.member_address, 
+		c.pcount, c.pay_method, d.login_date ,a.ordersu_name from 
+		(select * from orderlist natural join (select * from member natural join ordersu)) a, 
+		(select product_code,product_name from product) b, 
+		(select ROWNUM pcount, order_code, pay_method from pay) c, 
+		(select member_number, login_date from login_log) d 
+		where a.product_code = b.product_code and a.order_code = c.order_code(+) and
+		a.member_number = d.member_number and <![CDATA[ROWNUM >= 0 and ROWNUM <= 5]]>
 	</select>
 	
 	<delete id="deleteMember" parameterType="long">

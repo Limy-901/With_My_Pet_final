@@ -83,9 +83,8 @@
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
-                      	<a class="dropdown-item" href="walk/list.do?cp=1" >산책모집 </a>
-                          <a class="dropdown-item" href="walk/board.do">산책후기 </a>
+                      <div class="dropdown-menu " aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
+                      	<a class="dropdown-item" href="../walk/list.do?cp=1" >산책모집 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -93,10 +92,8 @@
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu " aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                      	<a class="dropdown-item" href="product?catgo_code=9">쇼핑하기</a>
-                          <a class="dropdown-item" href="cart">장바구니</a>
-                          <a class="dropdown-item" href="order">결제</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                      	<a class="dropdown-item" href="../product?catgo_code=9">쇼핑하기</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -104,9 +101,11 @@
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Spoqa Han Sans Neo';">
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
-                      <div class="dropdown-menu " aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                          <a class="dropdown-item" href="board/list.do">공지사항</a>
-                          <a class="dropdown-item" href="board/list.do">일상이야기</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
+                          <a class="dropdown-item" href="../board/list.do?board_idx=1" style="font-family: 'Spoqa Han Sans Neo';">공지사항</a>
+                          <a class="dropdown-item" href="../board/list.do?board_idx=2" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
+                          <a class="dropdown-item" href="../board/list.do?board_idx=3" style="font-family: 'Spoqa Han Sans Neo';">산책후기</a>
+                          <a class="dropdown-item" href="../board/list.do?board_idx=4" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
                       </div>
                   </li>
                   <li class="nav-item">
@@ -114,7 +113,7 @@
                   </li>                     
                   <li class="nav-item">
                       <a class="nav-link" href="/" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
-                  </li>                   
+                  </li>                    
               </ul>
           </div>
           <!-- toggle switch for light and dark theme -->

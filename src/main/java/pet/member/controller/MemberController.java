@@ -63,7 +63,6 @@ public class MemberController {
                vo.setMember_password(secPwd);
                //  DB에 회원가입 처리 성공
                service.join(vo);
-               service.makeLoginLog(vo.getMember_number(), vo.getMember_name());
             }
             //입력된 아이디가 존재한다면 다시 회원가입 페이지로 돌아간다
          } catch(Exception e) {

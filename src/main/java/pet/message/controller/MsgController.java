@@ -38,7 +38,6 @@ public class MsgController {
 		MsgListResult msgLists = msgService.getAllMsgList(vo.getMember_number());
 		map.put("msgLists",msgLists);
 		ModelAndView mv = new ModelAndView("message/chat","map",map);
-		log.info("chat"+map);
 		return mv;
 	}
 	
@@ -55,9 +54,6 @@ public class MsgController {
 		map.put("msgLists",msgLists); 
 		map.put("detailLists",detailLists);
 		map.put("unread",unread);
-		log.info("msgLists :: "+msgLists);
-		log.info("detailLists :: "+detailLists);
-		log.info("unread :: "+unread);
 		// 해당 상대와의 대화 타입 구분
 		if(msgLists == null) type = "no";
 		else if(msgLists != null && detailLists.getChatList().size() == 0) type = "yet";
@@ -70,9 +66,7 @@ public class MsgController {
 		map.put("senderNumber",sender_number);
 		map.put("myName",vo.getMember_name());
 		String senderPic = msgService.getSenderPic(sender_number);
-		log.info("senderPic"+senderPic);
 		map.put("senderPic",senderPic);
-		log.info("######################type::"+type);
 		return map;
    	    
 	}
@@ -95,9 +89,6 @@ public class MsgController {
 		map.put("msgLists",msgLists); 
 		map.put("detailLists",detailLists);
 		map.put("unread",unread);
-		log.info("msgLists :: "+msgLists);
-		log.info("detailLists :: "+detailLists);
-		log.info("unread :: "+unread);
 		// 해당 상대와의 대화 타입 구분
 		if(msgLists == null) type = "no";
 		else if(msgLists != null && detailLists.getChatList().size() == 0) type = "yet";
@@ -110,9 +101,7 @@ public class MsgController {
 		map.put("senderNumber",sender_number);
 		map.put("myName",vo.getMember_name());
 		String senderPic = msgService.getSenderPic(sender_number);
-		log.info("senderPic"+senderPic);
 		map.put("senderPic",senderPic);
-		log.info("######################type::"+type);
 		return map;
 	}
 	
@@ -124,14 +113,11 @@ public class MsgController {
 		// 안읽은 메시지 갱신
 		long count = msgService.msgRead(vo.getMember_number(), sender_number);
 		session.setAttribute("unread", count);
-		log.info("##unread 갱신했어요"+count);
 		// 대화내역 갱신
 		MsgListResult detailLists = msgService.getMsgList(vo.getMember_number(), sender_number);
 		map.put("detailLists",detailLists);
 		map.put("senderNumber",sender_number);
 		map.put("unread",count);
-		log.info("refreshChat"+map);
-
 		return map;
 	}
 	
@@ -157,8 +143,16 @@ public class MsgController {
 	public @ResponseBody Hashtable<String, Object> searchMember(HttpSession session, String member_name) {
 		MemberVO vo = (MemberVO) session.getAttribute("login");
 		Hashtable<String, Object> map = msgService.getMemberByName(vo.getMember_number(), member_name);
-		log.info("map.memberList"+map);
 		return map;
+	}
+	
+	// (메시지 수신 시) 안읽은 메시지 카운트 +1
+	@GetMapping(value="receiveMsg.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public @ResponseBody long receiveMsg(HttpSession session, long member_number) {
+		long count = msgService.getUnreadMsg(member_number);
+		session.setAttribute("unread",count);
+		log.info("################안읽은거 : "+count);
+		return count;
 	}
 	
 }

@@ -131,19 +131,22 @@
           
           <!-- 회원 접속 시, 메시지 띄움 -->
           <c:if test="${!empty login}">
-	          <div>
-	          <c:choose>
-	          	<c:when test="${unread == 0}">
-	          		<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>
-	          	</c:when>
-	          	<c:otherwise>
-	          		<i class="mdi mdi-bell-outline"></i>
-                    <span class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%; padding-left:1.6%;
-                     margin-right:2%; color:#ffb446;">${unread}</span>
-	          		<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>
-	          	</c:otherwise>
-	          </c:choose>
-	          </div>
+	          <div id="msgZone">
+	          	 <c:choose>
+		          	<c:when test="${unread eq 0}">
+		          		<i class="mdi mdi-bell-outline"></i>
+	                    <span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%; padding-left:1.6%;
+	                     margin-right:2%; color:#ffb446;"></span>
+		          		<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>
+		          	</c:when>
+		          	<c:otherwise>
+		          		<i class="mdi mdi-bell-outline"></i>
+	                    <span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%; padding-left:1.6%;
+	                     margin-right:2%; color:#ffb446;">${unread}</span>
+		          		<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>
+		          	</c:otherwise>
+		          </c:choose>
+		      </div>
           </c:if>
       </nav>
   </div>
@@ -167,7 +170,7 @@
 <c:choose>
 	<c:when test="${! empty login}">
 		<c:choose>
-			<c:when test="${!empty petMypage}">
+			<c:when test="${petMypage.pet_name eq '정보없음'}">
 				<div style="margin:auto; display:flex; ">
 				 <a class="button" href="../walk/post.do"style="font-size:30px;margin:auto; padding:1.5%;display:flex; position:relative;"><b>&nbsp;&nbsp;&nbsp;&nbsp;직접 만들기 🐕&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
 				</div><br><br><br>
@@ -432,8 +435,10 @@ function sendLink() {
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
-    
-    var login = $('#loginCheck').val();
+</script>
+<script>
+ 	// 메시지 통신
+    var login = '${login.member_name}';
     var sender = $('#senNo').val();
     var socket = null;
     if(login != '') connectWS();
@@ -446,13 +451,42 @@ function sendLink() {
     		console.log('info : connection opened'+event);
     	 // 메세지 왔을때 (알림 + 목록갱신)
     	 ws.onmessage = function (event){
-    		toastr.options = {
-                  closeButton: true,
-                  progressBar: true,
-                  showMethod: 'slideDown',
-                  timeOut: 8000
-           };
-           toastr.success('메시지 알림', event.data+' 님이 메시지를 보냈습니다!');
+    		 var myNo = '${login.member_number}';
+    		 $.ajax({
+   	  		  url: "/msg/receiveMsg.do",
+   	  		    type: 'GET',
+   	  		    async: false,
+   	  		    data: {
+   	  			    member_number: myNo
+   	  			},
+   	  			success : function(count) {
+   	  				// 안읽은 메시지 개수 변경 
+   	  				$('#msgZone').empty();
+   	  				html = '';
+   	  				if(count == 0){
+   	  				    html += '<i class="mdi mdi-bell-outline"></i>';
+   	  					html += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+   	  					html += 'adding-left:1.6%;margin-right:2%; color:#ffb446;"></span>';
+   		          		html += '<a href="/msg/chat.do"><img src="../assets/images/icon/message.png"></a>';
+   	  				}else{
+   	  					html += '<i class="mdi mdi-bell-outline"></i>';
+   	  					html += '<span id="unreadCount" class="badge badge-pill gradient-2" style="position:absolute; margin-top:-1.3%;';
+	  					html += 'adding-left:1.6%;margin-right:2%; color:#ffb446;">'+count+'</span>';
+		          		html += '<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>';
+   	  				}
+   	  				$('#msgZone').html(html);
+   	  				// 알림 메시지
+	   	  			toastr.options = {
+	   	                  closeButton: true,
+	   	                  progressBar: true,
+	   	                  showMethod: 'slideDown',
+	   	                  timeOut: 8000
+	   	           	};
+	   	  			toastr.success('메시지 알림', event.data+' 님이 메시지를 보냈습니다!');
+   	  			}
+   	  		});
+    		
+           
     	 };
     	};
     	ws.onclose = function(event) { 
@@ -461,9 +495,11 @@ function sendLink() {
     			connectWS();
     		}, 1000);
     	};
-    	ws.onerror = function(event) { console.log('error : '+event); };
+    	ws.onerror = function(event) { 
+    		console.log('error : '+event); 
+    	};
     };
-  </script>
+</script>
   <!-- /move top -->
 </section>
 </body>

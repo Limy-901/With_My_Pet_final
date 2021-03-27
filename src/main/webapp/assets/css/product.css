@@ -14326,13 +14326,8 @@ a.link-style:hover:before {
 }
 
 .sub-title {
-  font-size: 40px;
-  font-weight: 400;
-  font-family: 'Spoqa Han Sans Neo';
-  text-transform: uppercase;
-  line-height: 2em;
-  letter-spacing: 1px;
-  color: var(--heading-color);
+ font-size: 35px !important;
+    line-height: 40px;
 }
 
 .sub-title2 {
