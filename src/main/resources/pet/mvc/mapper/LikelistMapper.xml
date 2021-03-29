@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pet.mvc.mapper.LikelistMapper">
+
+	<select id="getLikeList" parameterType="long" resultType="long">
+		select PRODUCT_CODE from LIKELIST where MEMBER_NUMBER = #{member_number}
+	</select>
+	<insert id="insertLikeList" parameterType="map">
+		insert into LIKELIST values( #{member_number}, #{product_code} )
+	</insert>
+	<select id="getProduct" parameterType="long" resultType="Product">
+		select * from PRODUCT where PRODUCT_CODE = #{product_code}
+	</select>
+	<select id="getCommendList" resultType="Product">
+		select ROWNUM, a.* 
+		from (select * from PRODUCT) a 
+		<![CDATA[where ROWNUM>=0 and ROWNUM<4 ]]>
+		order by a.PRODUCT_CODE desc
+	</select>
+
+</mapper>

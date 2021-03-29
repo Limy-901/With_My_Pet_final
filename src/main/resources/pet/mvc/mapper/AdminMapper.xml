@@ -74,7 +74,6 @@
 		(select member_number, login_date from login_log) b
 		where a.member_number = b.member_number(+)
 		) 
-		<![CDATA[where rnum>#{startRow} and rnum<=#{endRow}]]>
 	</select>
 	
 	<select id="memberTotalCount" resultType="long" parameterType="String">

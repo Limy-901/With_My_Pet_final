@@ -31,7 +31,7 @@
 		<typeAlias type="pet.mvc.board.BoardListResult" alias="BoardListResult"/>
 		<typeAlias type="pet.mvc.board.BoardCmt" alias="BoardCmt"/>
 		<typeAlias type="pet.mvc.board.BoardLike" alias="BoardLike"/>
-		<typeAlias type="pet.mvc.board.BoardTag" alias="BoardTag"/>
+		<typeAlias type="pet.mvc.board.Tag" alias="Tag"/>
 		<!-- 멤버 -->
 		<typeAlias alias="member" type="pet.member.vo.MemberVO"/>
 		<typeAlias alias="pet_mypage" type="pet.member.vo.MypagePetVO"/>
@@ -52,12 +52,12 @@
    </typeAliases>
    
    <mappers>
+      	<mapper resource="pet/mvc/mapper/LikelistMapper.xml"/>
    		<mapper resource="pet/mvc/mapper/MessageMapper.xml"/>
    		<mapper resource="pet/mvc/mapper/IndexMapper.xml"/>
    		<mapper resource="pet/mvc/mapper/WalkMapper.xml"/>
    		<mapper resource="pet/mvc/mapper/AdminMapper.xml"/>
    		<mapper resource="pet/shop/mapper/ProductMapper.xml"/>
 		<mapper resource="pet/shop/mapper/CartMapper.xml"/>
-   		
    </mappers>
 </configuration>

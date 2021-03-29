@@ -44,4 +44,25 @@ public class IndexServiceImpl implements IndexService {
 		return walkData;
 	}
 
+	@Override
+	public Walk getRecentWalk(long member_number) {
+		Walk walk = indexMapper.getRecentWalk(member_number);
+		if(walk != null) return walk;
+		else return null;
+	}
+
+	@Override
+	public long getJoinMemberNumber(long walk_idx, long member_number) {
+		long sender_number = 0L;
+		ArrayList<Long> lists = indexMapper.getJoinMemberNumber(walk_idx);
+		log.info("#######이 사람들이 함께했음"+lists);
+		for(long list : lists) {
+			if(member_number != list) {
+				sender_number = list;
+				log.info("이게 sender_number임");
+			}
+		}
+		return sender_number;
+	}
+
 }

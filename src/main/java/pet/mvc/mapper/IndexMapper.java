@@ -7,4 +7,6 @@ import pet.walk.vo.Walk;
 public interface IndexMapper {
 	ArrayList<Walk> getWalkList();
 	IndexData getWalkData();
+	Walk getRecentWalk(long member_number);
+	ArrayList<Long> getJoinMemberNumber(long walk_idx);
 }

@@ -1,44 +1,25 @@
 package pet.member.controller;
-
 import org.apache.commons.mail.HtmlEmail;
-
 import lombok.extern.log4j.Log4j;
 import pet.member.vo.MemberVO;
-
 @Log4j
 public class MailUtil {
-	 //ºñ¹Ğ¹øÈ£ Ã£±â ÀÌ¸ŞÀÏ¹ß¼Û
 	   public void sendEmail(MemberVO vo) throws Exception {
-	   	// Mail Server ¼³Á¤
 	   	String charSet = "utf-8";
-	   	String hostSMTP = "smtp.naver.com"; //³×ÀÌ¹ö ÀÌ¿ë½Ã smtp.naver.com
+	   	String hostSMTP = "smtp.naver.com";
 	   	String hostSMTPid = "lsj432988@naver.com";
-	   	String hostSMTPpwd = "dltnwls1219";
-
-	   	// º¸³»´Â »ç¶÷ EMail, Á¦¸ñ, ³»¿ë
+	   	String hostSMTPpwd = "dltnwls1219@";
 	   	String fromEmail = "lsj432988@naver.com";
-	   	String fromName = "¾¥Áø";
-	   	String subject = "¼öÁøÀÌ°¡ º¸³»ÁÖ´Â ÀÓ½Ãºñ¹ø";
+	   	String fromName = "ê´€ë¦¬ì";
+	   	String subject = "With My Petì—ì„œ ë³´ë‚´ì£¼ëŠ” ì„ì‹œ ë¹„ë°€ë²ˆí˜¸";
 	   	String msg = "";
-
-	   	subject = "With My pet ÀÓ½Ã ºñ¹Ğ¹øÈ£ ÀÔ´Ï´Ù.";
+	   	subject = "With My pet ì…ì‹œ ë¹„ë°€ë²ˆí˜¸";
    		msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
    		msg += "<h3 style='color: blue;'>";
-   		msg += "È¸¿ø´ÔÀÇ ÀÓ½Ã ºñ¹Ğ¹øÈ£ ÀÔ´Ï´Ù. ºñ¹Ğ¹øÈ£¸¦ º¯°æÇÏ¿© »ç¿ëÇÏ¼¼¿ä.</h3>";
-   		msg += "<p>ÀÓ½Ã ºñ¹Ğ¹øÈ£ : ";
+   		msg += "íšŒì›ë‹˜ì˜ ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ ì…ë‹ˆë‹¤.</h3>";
+   		msg += "<p>ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ëŠ”  : ";
    		msg +=  vo.getMember_password() + "</p></div>";
 	   	
-	   	
-	   /*	if(div.equals("getpwSearch")) {
-	   		subject = "With My pet ÀÓ½Ã ºñ¹Ğ¹øÈ£ ÀÔ´Ï´Ù.";
-	   		msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
-	   		msg += "<h3 style='color: blue;'>";
-	   		msg += vo.getMember_name()+"´ÔÀÇ ÀÓ½Ã ºñ¹Ğ¹øÈ£ ÀÔ´Ï´Ù. ºñ¹Ğ¹øÈ£¸¦ º¯°æÇÏ¿© »ç¿ëÇÏ¼¼¿ä.</h3>";
-	   		msg += "<p>ÀÓ½Ã ºñ¹Ğ¹øÈ£ : ";
-	   		msg +=  vo.getMember_password() + "</p></div>";
-	   	}*/
-
-	   	// ¹Ş´Â »ç¶÷ E-Mail ÁÖ¼Ò
 	   	String mail = vo.getMember_email();
 	   	
 	   	try {
@@ -47,8 +28,7 @@ public class MailUtil {
 	   		email.setCharset(charSet);
 	   		email.setTLS(true);
 	   		email.setHostName(hostSMTP);
-	   		email.setSmtpPort(587); //³×ÀÌ¹ö ÀÌ¿ë½Ã 587
-
+	   		email.setSmtpPort(587);
 	   		email.setAuthentication(hostSMTPid, hostSMTPpwd);
 	   		email.setTLS(true);
 	   		email.addTo(mail, charSet);
@@ -57,7 +37,7 @@ public class MailUtil {
 	   		email.setHtmlMsg(msg);
 	   		email.send();
 	   	} catch (Exception e) {
-	   		log.info("¸ŞÀÏ¹ß¼Û ½ÇÆĞ : " + e);
+	   		log.info("ì´ë©”ì¼ ì „ì†¡ ì‹¤íŒ¨: " + e);
 	   	}
 	   }
 }

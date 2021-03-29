@@ -20,6 +20,7 @@
 
   <!-- Template CSS -->
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+  
 
  
 </head>
@@ -154,10 +155,24 @@
 			<c:forEach begin="1" end="${board.post_depth}"><span style='padding-left:10px'></span></c:forEach>
 			<span style='font-size:12px;'>[답변]</span>
 	      <a href="content.do?post_idx=${board.post_idx}&post_order=${board.post_order}">${board.post_subject}</a>
+	      
 		 </c:when>
 		 
 		 <c:otherwise>
+
 		 	 <a href="content.do?post_idx=${board.post_idx}">${board.post_subject}</a>
+		 	 <c:forEach items="${listResult.tagsList}" var="tl">
+		 	  <c:if test="${tl.post_idx eq board.post_idx}"> 
+					<c:forEach items="${tl.post_tag}" var="tag">
+						<div class="listTag">${tag}</div>
+					
+					</c:forEach>
+			  </c:if>
+			</c:forEach>
+
+
+		 	
+		 	 
 		 </c:otherwise>
 		</c:choose>
 		</TD>
@@ -240,6 +255,7 @@
         <option value="post_subject">제목</option>
         <option value="post_writer">글쓴이</option>
         <option value="post_content">내용</option>
+        <option value="post_tag">태그</option>
       </select>
       <input type="text" name="keyword" size="17" required="required" style="border-color:white;"/> <button class="btn">검색</button>
     </form>  
@@ -304,7 +320,7 @@
  
 </div>
  
- 
+
  
 <!-- 페이징 -->
 <br>
@@ -314,6 +330,7 @@
 <c:choose>
       <c:when test="${empty login}">
      <a type="button" class="btn" onclick="writeButton()" style="margin-left:-2.5%;">새 글쓰기</a></button>
+      
      </c:when>
      <c:otherwise>
      <a href="write.do" type="button" class="btn" style="margin-left:-2.5%;">새 글쓰기</a></button>
@@ -380,6 +397,8 @@ function writeButton(){
 
   <script src="../assets/js/bootstrap.min.js"></script>
 <!-- footer-28 block -->
+
+
 <section class="w3l-footer">
   <footer class="footer-28">
     <div class="footer-bg-layer">

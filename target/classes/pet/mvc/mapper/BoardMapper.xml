@@ -22,6 +22,15 @@
 	</select>
 	
 	
+	<select id="selectByTag" resultType="Board" parameterType="BoardVo">
+	<![CDATA[ 
+		select * from (select rownum rnum, aa.* 
+	from (select * from board join tag on board.post_idx=tag.post_idx where ${catgo} like '%'||#{keyword}||'%' order by ${catgo}) aa) 
+	  where rnum>#{startRow} and rnum<=#{endRow}
+	 ]]>
+	</select>
+	
+	
 	
 	<select id="selectPerMember" resultType="Board" parameterType="BoardVo">
 	    <![CDATA[ 
@@ -59,8 +68,12 @@
 	</select>
 	
 	
-	<select id="selectCountByCatgo" resultType="int" parameterType="BoardVo">
-		select count(POST_IDX) from BOARD where ${catgo} like '%'||#{keyword}||'%'
+		<select id="selectCountByCatgo" resultType="int" parameterType="BoardVo">
+			select count(*) from board, tag where ${catgo} like '%'||#{keyword}||'%'
+		<if test="keyword!=null and catgo.equals('post_tag')">
+			and board.post_idx=tag.post_idx
+		</if>
+
 	</select>	
 		
 		
@@ -169,19 +182,29 @@
 		<![CDATA[select post_subject, post_idx, content, post_writer from ( select * from board order by post_date desc) where board_idx=3 and rownum<5]]>
 	</select>
 	
-	<insert id="enterTag" parameterType="BoardTag">
+	<insert id="enterTag" parameterType="Tag">
 		<selectKey keyProperty="post_idx" keyColumn="post_idx" order="BEFORE" resultType="long">
-    		select board_seq.nextval from dual
+    		select max(post_idx) from board
     	</selectKey>
     	
-		insert into tag(post_idx, post_tag) values(#{post_idx}, #{post_tag})
+		insert into tag(post_idx,  post_tag) values(#{post_idx}, #{post_tag, jdbcType=VARCHAR})
 	</insert>
 	
-	<select id ="getTag" resultType="BoardTag" parameterType="long">
+	<select id ="getTag" resultType="Tag" parameterType="long">
 		select * from tag where post_idx=#{post_idx}
 	</select>
 	
 	
-	
+	<delete id="delTag" parameterType="long">
+		delete from tag where post_idx=#{post_idx}
+	</delete>
+
+	<insert id="editTag" parameterType="Tag">
+		insert into tag(post_idx, post_tag) values(#{post_idx}, #{post_tag})
+	</insert>
+
+	<select id="getTagAll" resultType="Tag">
+		select * from tag
+	</select>
 
 	</mapper>

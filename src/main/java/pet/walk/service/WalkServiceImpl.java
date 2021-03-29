@@ -42,6 +42,10 @@ public class WalkServiceImpl implements WalkService {
 			log.info("#insertWalk Exception : "+e);
 		}
 		walkMapper.insertWalk(dto);
+		//
+		joinVo vo = new joinVo(dto.getWalk_idx(),dto.getMember_number());
+		walkMapper.insertWalkJoin(vo);
+		walkMapper.updateWalkCmt(dto.getWalk_idx());
 	}
 	
 	// 산책 게시글 수정
@@ -165,7 +169,7 @@ public class WalkServiceImpl implements WalkService {
 		return dto;
 	}
 	
-//  참여 댓글 수락하기 (1) 회원번호 가져오기
+	// 참여 댓글 수락하기 (1) 회원번호 가져오기
 	@Override
 	public long selectByCmtIdx(long cmtIdx) {
 		Long memNo = walkMapper.selectByCmtIdx(cmtIdx);
@@ -173,7 +177,6 @@ public class WalkServiceImpl implements WalkService {
 	}
 	
 	// 참여 댓글 수락하기 (2) 수락하기
-	
 	@Override
 	public boolean insertWalkJoin(joinVo vo, long walk_idx) {
 		int flag = walkMapper.checkJoin(vo);
@@ -188,14 +191,14 @@ public class WalkServiceImpl implements WalkService {
 	
 	// 좋아요 버튼
 	@Override
-	public void addHeart(joinVo vo) {
-		walkMapper.addHeart(vo);
+	public void addHeart(long walk_idx,long member_number) {
+		walkMapper.addHeart(walk_idx, member_number);
 	}
 
 	// 좋아요 취소
 	@Override
-	public void deleteHeart(joinVo vo) {
-		walkMapper.deleteHeart(vo);
+	public void deleteHeart(long walk_idx,long member_number) {
+		walkMapper.deleteHeart(walk_idx, member_number);
 	}
 	
 	// 좋아요 개수 카운트

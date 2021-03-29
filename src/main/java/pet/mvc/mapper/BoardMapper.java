@@ -7,13 +7,15 @@ import java.util.List;
 import pet.mvc.board.Board;
 import pet.mvc.board.BoardCmt;
 import pet.mvc.board.BoardLike;
-import pet.mvc.board.BoardTag;
+import pet.mvc.board.Tag;
 import pet.mvc.board.BoardVo;
 
 public interface BoardMapper {
 	List<Board> selectPerPage(BoardVo boardVo);
 	List<Board> selectByCatgo(BoardVo boardVo);
 	List<Board> selectPerMember(BoardVo boardVo);
+	List<Board> selectByTag(BoardVo boardVo);
+	
 	Board selectBySeq(long post_idx);
 	long selectCount(long board_iㅡㅛㅔdx);
 	long selectMemberCount(int member_number);
@@ -50,8 +52,13 @@ public interface BoardMapper {
 
 	List<Board> getRecent();
 	int rewriteCmt(BoardCmt boardCmt);
-	BoardTag enterTag(BoardTag boardTag);
-	List<BoardTag> getTag(long post_idx);
 	
+	ArrayList<Tag> getTag(long post_idx);
+	
+	void enterTag(Tag tag);
+
+	void delTag(long post_idx);
+	void editTag(Tag tag);
+	List<List<Tag>> getTagAll();
 }
 	

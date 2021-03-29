@@ -81,7 +81,7 @@
                       <a class="nav-link" href="/member/mypage.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
                   </li>                     
                   <li class="nav-item">
-                      <a class="nav-link" href="/" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
+                      <a class="nav-link" href="/member/logout.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
                   </li>                    
               </ul>
           </div>

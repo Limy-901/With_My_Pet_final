@@ -15,5 +15,15 @@
 		(select count(*) notJoin from walk left join walk_join on walk.walk_idx = walk_join.walk_idx) c,
 		(select count(*) todayPuppy from walk where walk_date=SYSDATE)d
 	</select>
+	<select id="getRecentWalk" resultType="Walk" parameterType="long">
+		select ROWNUM, a.*, b.walk_date from
+			(select * from walk_join where member_number = #{member_number} and member_review is null)a,
+			<![CDATA[(select * from walk where walk_date<SYSDATE)b
+		where a.walk_idx = b.walk_idx and ROWNUM=1
+		order by walk_date desc]]>
+	</select>
+	<select id="getJoinMemberNumber" parameterType="long" resultType="long">
+		select member_number from walk_join where walk_idx = #{walk_idx}
+	</select>
 
 </mapper>

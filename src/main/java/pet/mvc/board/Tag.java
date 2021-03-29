@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BoardTag {
+public class Tag {
 	private long post_idx;
 	private int board_idx;
 	private String post_tag;

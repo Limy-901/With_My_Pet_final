@@ -1,10 +1,9 @@
 package pet.shop.controller;
 
-
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,11 +17,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.web.servlet.ModelAndView;
 import lombok.extern.log4j.Log4j;
 import pet.shop.fileSetting.path;
+import pet.member.vo.MemberVO;
 import pet.member.vo.MypagePetVO;
 import pet.shop.domain.Category;
 import pet.shop.domain.Option;
@@ -168,7 +169,7 @@ public class ShopController {
  		log.info("#왔니? review: "+ review);
  		service.insertReview(review);
  		log.info("###productDes"+review);
-		return "redirect:productDes";
+		return "redirect:productDes?catgo_code=9&review_number=1&product_code=9";
  	}
  	
  	//상품 상세페이지2
@@ -221,19 +222,25 @@ public class ShopController {
 	    }
 	    return "redirect:category?catgo_code=8";
 		}
-	
-	//상품찜하기 수정 중
-	@RequestMapping(value="/insertLikeList.do")
-	public ModelAndView formTag(HttpServletRequest request, HttpSession session,long product_code){
-		log.info(product_code);
-        ModelAndView mv = new ModelAndView("insertLikeList");
-        request.getParameter("${Likelist.product_code}");    
-        
-        log.info("##################### + product_code");
-        
-        return mv;
-        //return "redirect:likelist";
-    	}
-	
-	}
 
+	@ResponseBody
+	@RequestMapping(value="/insertLikeList.do")
+	public Long insertLikeList(HttpSession session, long product_code){
+		MemberVO vo = (MemberVO) session.getAttribute("login");
+		likeListService.insertLikeList(vo.getMember_number(), product_code);
+		return product_code;
+	}
+	
+	//찜한 목록 리스트
+	@RequestMapping(value="/likeList.do")
+	public ModelAndView likeList(HttpSession session){
+		Hashtable<String, Object> map = new Hashtable<String, Object>();
+		MemberVO vo = (MemberVO) session.getAttribute("login");
+		ArrayList<Product> LikeList = likeListService.getLikeList(vo.getMember_number());
+		ArrayList<Product> CommendList = likeListService.getCommendList();
+		map.put("LikeList",LikeList);
+		map.put("CommendList",CommendList);
+		ModelAndView mv = new ModelAndView("shop/likelist","map",map);
+		return mv;
+	}
+}

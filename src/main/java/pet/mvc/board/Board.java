@@ -35,7 +35,7 @@ public class Board {
 	private String board_name;
 	private ArrayList<BoardCmt> comment;
 	private int like;
-	//private ArrayList<BoardPic> pic;
+	private ArrayList<Tag> tag;
 
 
 }

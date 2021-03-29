@@ -37,7 +37,7 @@ import pet.mvc.board.Board;
 import pet.mvc.board.BoardCmt;
 import pet.mvc.board.BoardLike;
 import pet.mvc.board.BoardListResult;
-import pet.mvc.board.BoardTag;
+import pet.mvc.board.Tag;
 import pet.mvc.service.BoardService;
 import sun.print.resources.serviceui;
 import pet.member.vo.MemberVO;
@@ -210,7 +210,7 @@ public class BoardController {
 			return mv;
 		}else {
 			listResult = service.getBoardListResult(cp, ps, board_idx, countPage, startPage, endPage);	
-			listResult.setTotalCount(100);
+			//listResult.setTotalCount(100);
 			mv = new ModelAndView("board/list", "listResult", listResult);
 			if(listResult.getList().size() == 0) {
 				if(cp>1)
@@ -238,9 +238,11 @@ public class BoardController {
 	}
 	
 	@PostMapping("write.do")
-	public String upload(Board board) {
+	public String upload(Tag post_tag, Board board) {//라우팅에러는 보드엔티티의 태그가 놀고있기때문인듯
+
 		service.write(board);
-		
+		service.writeTag(post_tag);
+
 		return "redirect:list.do";
 	}
 
@@ -307,7 +309,7 @@ public class BoardController {
 			
 		}
 		else {
-			mv.setViewName("error/reviewError");//에러페이지 만들어줘야함- 시러
+			//mv.setViewName("error/reviewError");//에러페이지 만들어줘야함- 시러
 			return mv;
 		}
 	}
@@ -357,8 +359,10 @@ public class BoardController {
 	}
 	
 	@PostMapping("modify.do")
-	public String edit(Board board) {		
+	public String edit(Board board, Tag post_tag) {	
+		log.info("@@edit@"+post_tag);
 		service.edit(board);
+		service.editTag(post_tag);
 		
 		return "redirect:list.do";
 	}
@@ -450,20 +454,19 @@ public class BoardController {
 		return "redirect:content.do?post_idx="+boardCmt.getPost_idx();
 	}
 	
-	@ResponseBody
-	@GetMapping("enterTag.do")
-	public List<BoardTag> enterTag(BoardTag boardTag) {
-		BoardTag tag = service.enterTag(boardTag);
-		long post_idx= tag.getPost_idx();
-		List<BoardTag> tagResult= service.getTag(post_idx);
-		return tagResult;
-	}
-
+	/*
+	 * @ResponseBody
+	 * 
+	 * @GetMapping("enterTag.do") public List<BoardTag> enterTag(BoardTag boardTag)
+	 * { BoardTag tag = service.enterTag(boardTag); long post_idx=
+	 * tag.getPost_idx(); List<BoardTag> tagResult= service.getTag(post_idx); return
+	 * tagResult; }
+	 */
 	
 //	@getMapping("viewPost.do")
 //	public ModelAndView viewPost(Board board) {
-//		service.getBoardListResultPerMember(cp, ps, board_idx, countPage, startPage, endPage, member_number);
-//		
+
+	//		
 //	}
 
 	

@@ -67,7 +67,6 @@ public class AdminServiceImpl implements AdminService {
 		Hashtable<String, Object> allList = getWeeklyData();
 		// 신규 가입 멤버
 		ArrayList<MemberVO> newMemList = mapper.getNewMemList();
-		ArrayList<String> PicList = new ArrayList<String>();
 		ArrayList<String> payPicList = new ArrayList<String>();
 		// 베스트 셀러
 		ArrayList<BestSeller> bestSeller = mapper.getBestSeller();
@@ -106,6 +105,7 @@ public class AdminServiceImpl implements AdminService {
 		Double joinD = Double.parseDouble(allJoinStr);
 		Double.parseDouble(allJoinStr);
 		double per = joinD / walkD * 100.0;
+		per = Math.round((per * 10) / 10.0);
 		String percent = per+"%";
 		return percent;
 	}

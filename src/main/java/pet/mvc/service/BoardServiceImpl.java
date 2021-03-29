@@ -28,15 +28,18 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void write(Board board) {
+		
 		boardMapper.insert(board);
-
 	}
 
 	@Override
 	public void edit(Board board) {
+		long post_idx = board.getPost_idx();
 		boardMapper.update(board);
-
+		boardMapper.delTag(post_idx);
 	}
+	
+
 
 	@Override
 	public void remove(long post_idx) {
@@ -46,6 +49,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardListResult getBoardListResult(int cp, int ps, int board_idx, int countPage, int startPage, int endPage) {
+		
+		
 		long totalCount = boardMapper.selectCount(board_idx);
 		log.info("totalCount@@@@@@"+totalCount);
 		
@@ -55,22 +60,76 @@ public class BoardServiceImpl implements BoardService {
 		if(totalCount%ps != 0) countPage++;
 		log.info("countpage2@@@@@"+countPage);
 		List<Board> list = boardMapper.selectPerPage(boardVo);
-		BoardListResult rl = new BoardListResult(cp, totalCount, ps, list, countPage, startPage, endPage, board_idx);
-		log.info("rl@@@@@@@@@"+rl);
-
 		
+		BoardListResult rl = new BoardListResult(cp, totalCount, ps, list, countPage, startPage, endPage, board_idx, null);
+		
+		List<List<Tag>> tagsList = new ArrayList<List<Tag>>();
+		ArrayList<Tag> tag = null;
+
+		for(Board board : list) {
+			//long post_idx = board.getPost_idx();
+			tagsList = boardMapper.getTagAll();
+			//log.info("@@tag"+tag);
+			//tagsList.add(list);
+			log.info("@@tglist"+tagsList);
+			
+		}
+		rl.setTagsList(tagsList);		
+		log.info("rl@@@@@@@@@"+rl);
+	
 		return rl;
 	}
 	
 	@Override
-	public BoardListResult getBoardListResult(String catgo, String keyword, int cp, int ps, int board_idx, int countPage, int startPage, int endPage) {
+	public BoardListResult getBoardListResult(String catgo, String keyword, int cp, int ps, int board_idx, int countPage, int startPage, int endPage) {		
+		if(catgo.equals("post_tag")) {
+			log.info("태그검색");
+			BoardVo boardVo = new BoardVo(catgo, keyword, cp, ps, board_idx, -1);
+			long totalCount = boardMapper.selectCountByCatgo(boardVo);
+			
+			List<Board> list = boardMapper.selectByTag(boardVo);
+			BoardListResult rl = new BoardListResult(cp, totalCount, ps, list, countPage, startPage, endPage, board_idx, null);
+			
+			List<List<Tag>> tagsList = new ArrayList<List<Tag>>();
+			ArrayList<Tag> tag = null;
+
+			for(Board board : list) {
+				//long post_idx = board.getPost_idx();
+				tagsList = boardMapper.getTagAll();
+				log.info(tag+"@Dtag");
+				//tagsList.add(tag);
+				log.info("@@@tl"+tagsList);
+				
+			}
+			rl.setTagsList(tagsList);		
+			log.info("rl@@@@@@@@@"+rl);
 		
-		BoardVo boardVo = new BoardVo(catgo, keyword, cp, ps, board_idx, -1);
-		long totalCount = boardMapper.selectCountByCatgo(boardVo);
-		List<Board> list = boardMapper.selectByCatgo(boardVo);
+			return rl;
+		}
+		else {
+			
+			BoardVo boardVo = new BoardVo(catgo, keyword, cp, ps, board_idx, -1);
+			long totalCount = boardMapper.selectCountByCatgo(boardVo);
+			List<Board> list = boardMapper.selectByCatgo(boardVo);
+			log.info("기타검색");
+			BoardListResult rl = new BoardListResult(cp, totalCount, ps, list, countPage, startPage, endPage, board_idx, null);
+			
+			List<List<Tag>> tagsList = new ArrayList<List<Tag>>();
+			ArrayList<Tag> tag = null;
+
+			for(Board board : list) {
+				tagsList = boardMapper.getTagAll();
+				
+			}
+			rl.setTagsList(tagsList);		
+			log.info("rl@@@@@@@@@"+rl);
 		
-		return new BoardListResult(cp, totalCount, ps, list, board_idx, countPage, startPage, endPage);
+			return rl;
+		}
+		
+		
 	}
+	
 	
 	@Override
 	public BoardListResult getBoardListResultPerMember(int cp, int ps, int board_idx, int countPage, int startPage, int endPage, int member_number) {
@@ -87,10 +146,22 @@ public class BoardServiceImpl implements BoardService {
 		if(totalCount%ps != 0) countPage++;
 		log.info("countpage2@@@@@"+countPage);
 		List<Board> list = boardMapper.selectPerMember(boardVo);
-		BoardListResult rl = new BoardListResult(cp, totalCount, ps, list, countPage, startPage, endPage, board_idx);
-		log.info("rlmember@@@@@@@@@"+rl);
-
+		BoardListResult rl = new BoardListResult(cp, totalCount, ps, list, countPage, startPage, endPage, board_idx, null);
 		
+		List<List<Tag>> tagsList = new ArrayList<List<Tag>>();
+		ArrayList<Tag> tag = null;
+
+		for(Board board : list) {
+			long post_idx = board.getPost_idx();
+			tag = boardMapper.getTag(post_idx-1);
+			log.info("@@@@tag"+tag);
+			tagsList.add(tag);
+			log.info("@@@@tl"+tagsList);
+			
+		}
+		rl.setTagsList(tagsList);		
+		log.info("rl@@@@@@@@@"+rl);
+	
 		return rl;
 	
 	}
@@ -102,6 +173,8 @@ public class BoardServiceImpl implements BoardService {
 		Board dto = boardMapper.selectBySeq(post_idx);
 		int like = boardMapper.getLikeCount(post_idx);
 		ArrayList<BoardCmt> comment = boardMapper.selectCmtBySeq(post_idx);
+		ArrayList<Tag> tag = boardMapper.getTag(post_idx);
+		dto.setTag(tag);
 		dto.setComment(comment);	
 		dto.setLike(like);
 		log.info("@@@@@@@@@@@@@@@@@2dto"+dto);
@@ -200,16 +273,47 @@ public class BoardServiceImpl implements BoardService {
 				
 	}
 
+
+
 	@Override
-	public BoardTag enterTag(BoardTag boardTag) {
-		BoardTag tag = boardMapper.enterTag(boardTag);
-		return tag;
+	public List<Tag> getTag(long post_idx) {
+		return boardMapper.getTag(post_idx);
 	}
 
 	@Override
-	public List<BoardTag> getTag(long post_idx) {
-		return boardMapper.getTag(post_idx);
+	public void writeTag(Tag post_tag) {
+
+		String tagStr = post_tag.getPost_tag();	
+		List<String> list = new ArrayList<String>();
+		String[] splitStr = tagStr.split(",");	
+
+		for(int i=0; i<splitStr.length; i++) {
+			list.add(splitStr[i]);
+			log.info("setPost_tag"+list.get(i));
+			post_tag.setPost_tag(list.get(i));
+			boardMapper.enterTag(post_tag);
+		}	
+
 	}
+
+	@Override
+	public void editTag(Tag post_tag) {
+		
+		
+		String tagStr = post_tag.getPost_tag();	
+		log.info("tagStr$$$$"+tagStr);
+		List<String> list = new ArrayList<String>();
+		String[] splitStr = tagStr.split(",");	
+
+		for(int i=0; i<splitStr.length; i++) {
+			list.add(splitStr[i]);
+			log.info("setPost_tag"+list.get(i));
+			post_tag.setPost_tag(list.get(i));
+			boardMapper.editTag(post_tag);
+		}
+	}
+
+
 
 
 

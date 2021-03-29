@@ -40,9 +40,12 @@
 		WALK where WALK_DATE > SYSDATE
 	</select>
 	
-	<insert id="insertWalk" parameterType="Walk" >
+	<insert id="insertWalk" parameterType="Walk">
+		<selectKey resultType="long" keyProperty="walk_idx" order="BEFORE">
+			select walk_SEQ.nextval from dual
+		</selectKey>
     	insert into WALK values(
-	    walk_SEQ.nextval,#{member_number},#{walk_writer},#{walk_type},#{walk_subject}, 
+	    #{walk_idx},#{member_number},#{walk_writer},#{walk_type},#{walk_subject}, 
 	    #{walk_content},SYSDATE,#{walk_count},#{walk_location},#{walk_date})
     </insert>
     
@@ -87,18 +90,18 @@
     </update>
     
     <select id="getJoinCmt" parameterType="long" resultType="WalkComment">
-    	select * from WALK_CMT where WALK_IDX=#{idx} and JOIN_STATUS='y'
+    	select * from WALK_CMT where WALK_IDX =#{idx} and JOIN_STATUS='y'
     </select>
     
     <select id="getWalkLike" parameterType="long" resultType="int">
     	select count(*) from walk_like where WALK_IDX=#{idx}
     </select>
     
-    <insert id="addHeart" parameterType="joinVo">
+    <insert id="addHeart" parameterType="map">
     	insert into WALK_LIKE values( #{walk_idx}, #{member_number} )
     </insert>
     
-    <delete id="deleteHeart" parameterType="joinVo">
+    <delete id="deleteHeart" parameterType="map">
     	delete from WALK_LIKE where walk_idx = #{walk_idx} and member_number = #{member_number}
     </delete>
     

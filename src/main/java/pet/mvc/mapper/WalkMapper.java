@@ -25,8 +25,8 @@ public interface WalkMapper {
 	void insertWalkJoin(joinVo vo);
 	long selectByCmtIdx(long cmtIdx);
 	void updateWalkCmt(long cmtIdx);
-	void addHeart(joinVo vo);
-	void deleteHeart(joinVo vo);
+	void addHeart(@Param("walk_idx")long walk_idx, @Param("member_number")long member_number);
+	void deleteHeart(@Param("walk_idx")long walk_idx, @Param("member_number")long member_number);
 	int getWalkLike(long idx);
 	int checkJoin(joinVo vo);
 	int checkCmt(joinVo vo);

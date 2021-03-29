@@ -126,8 +126,13 @@
 		<div class="col-md-4 bg-white " style="width:110%;">
            
             <ul class="friend-list"><br><br>
+            <div class="img-circle img-circle-sm" style="margin-bottom:5%;margin-top: -20px;">
+	          <img style="margin-right: 0 !important; margin-left: 15px; max-width:20px;" src="../assets/images/foot(35x35).jpg" class="mr-3" alt="...">
+	          <label style="color:#ffb446; font-size:1.2rem; font-family: 'Spoqa Han Sans Neo';">&nbsp; <b>대화 상대 목록</b></label>
+	       </div>
+            
             	 <!-- 검색창  -->
-            	  <div class="input-group" style="margin-left:2%;margin-bottom:5%;">
+            	  <div class="input-group" style="margin-left:2%; margin-bottom:5%;">
 				    <input id="searchTarget" type="text" class="form-control" style="font-family: 'Spoqa Han Sans Neo';" placeholder="검색할 회원명을 입력하세요.">
 				    <div class="input-group-append">
 				      <button onclick="memberSearch()" class="btn btn-secondary" type="button" style="background-color:#ffb446;border:none;">
@@ -157,7 +162,6 @@ function memberSearch(){
 					$('#chatList').empty();
 					var html='';
 					var name=map.memberName;
-					alert(map.memberList.length+name);
 					for(var i=0; i<map.memberList.length; i++){
 						html += '<li><a onclick="msgClick('+map.memberList[i].member_number+')" class="clearfix">';
 			            if(map.url != ''){
@@ -169,7 +173,7 @@ function memberSearch(){
 			            html += '<strong style="font-family: "Spoqa Han Sans Neo";">'+name+'</strong></div>';
 			            if(map.msgList[i] != null){
 			            	html += '<div class="last-message text-muted" style="font-family: "Spoqa Han Sans Neo";">'+map.msgList[i].msg_content+'</div>';
-			            	html += '<small class="time text-muted" style="font-family: "Spoqa Han Sans Neo";">'+map.msgList[i].time+'</small>';
+			            	html += '<small class="time text-muted" style="font-family: "Spoqa Han Sans Neo";"></small>';
 			            	if(map.msgList[i].sender_number == myNo && map.msgLists.chatList[i].opendate == null) {
 					        	html += '<small class="chat-alert label label-danger" style="font-family: "Spoqa Han Sans Neo";">1</small>';
 					        } else{
@@ -189,61 +193,61 @@ function memberSearch(){
 	}
 }
 </script>
-  
+ 				
             	<div id="chatList">
-            	<c:if test="${empty map.msgLists}">
-            		<li class="active bounceInDown">
-	                	<a href="#" class="clearfix">
-	                		<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-	                		<div>	
-	                			<strong>현재 도착한 메시지가 없습니다.</strong>
-	                		</div>
-	                	</a>
-	                </li>
-            	</c:if>
-            	
-            	<!-- 메세지 리스트 -->
-            	<c:forEach items="${map.msgLists.chatList}" var="list" varStatus="status">
-	                <li>
-	                	<c:choose>
-                		<c:when test="${list.sender_number eq login.member_number}">
-               				<a onclick="msgClick(${list.member_number})" class="clearfix">
-                		</c:when>
-                		<c:otherwise>
-               				<a onclick="msgClick(${list.sender_number})" class="clearfix">
-                		</c:otherwise>
-	                	</c:choose>
-	                		<img src="<c:url value="/img/${map.msgLists.chatPics[status.index]}"/>" alt="" class="img-circle">
-	                		<div class="friend-name">	
-		                		<c:choose>
-		                			<c:when test="${list.sender_name eq login.member_name}">
-		                				<strong>${list.member_name}</strong>
-		                			</c:when>
-		                			<c:otherwise>
-		                				<strong>${list.sender_name}</strong>
-		                			</c:otherwise>
-		                		</c:choose>
-	                		</div>
-	                		<div class="last-message text-muted">${list.msg_content}</div>
-	                		<small class="time text-muted">${list.time}</small>
-	                		<c:choose>
-	                			<c:when test="${list.sender_number eq login.member_number}">
-		                			<c:choose>
-				                		<c:when test="${empty list.opendate}">
-				                			<small class="chat-alert label label-danger">1</small>
-				                		</c:when>
-				                		<c:when test="${!empty list.opendate}">
-				                			<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>
-				                		</c:when>
+	            	<c:if test="${empty map.msgLists}">
+	            		<li class="active bounceInDown">
+		                	<a href="#" class="clearfix">
+		                		<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+		                		<div>	
+		                			<strong>현재 도착한 메시지가 없습니다.</strong>
+		                		</div>
+		                	</a>
+		                </li>
+	            	</c:if>
+	            	
+	            	<!-- 메세지 리스트 -->
+	            	<c:forEach items="${map.msgLists.chatList}" var="list" varStatus="status">
+		                <li>
+		                	<c:choose>
+	                		<c:when test="${list.sender_number eq login.member_number}">
+	               				<a onclick="msgClick(${list.member_number})" class="clearfix">
+	                		</c:when>
+	                		<c:otherwise>
+	               				<a onclick="msgClick(${list.sender_number})" class="clearfix">
+	                		</c:otherwise>
+		                	</c:choose>
+		                		<img src="<c:url value="/img/${map.msgLists.chatPics[status.index]}"/>" alt="" class="img-circle">
+		                		<div class="friend-name">	
+			                		<c:choose>
+			                			<c:when test="${list.sender_name eq login.member_name}">
+			                				<strong>${list.member_name}</strong>
+			                			</c:when>
+			                			<c:otherwise>
+			                				<strong>${list.sender_name}</strong>
+			                			</c:otherwise>
 			                		</c:choose>
-		                		</c:when>
-		                		<c:otherwise>
-		                			<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>
-		                		</c:otherwise>
-	                		</c:choose>
-	                	</a>
-	                </li>
-                </c:forEach>
+		                		</div>
+		                		<div class="last-message text-muted">${list.msg_content}</div>
+		                		<small class="time text-muted">${list.time}</small>
+		                		<c:choose>
+		                			<c:when test="${list.sender_number eq login.member_number}">
+			                			<c:choose>
+					                		<c:when test="${empty list.opendate}">
+					                			<small class="chat-alert label label-danger">1</small>
+					                		</c:when>
+					                		<c:when test="${!empty list.opendate}">
+					                			<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>
+					                		</c:when>
+				                		</c:choose>
+			                		</c:when>
+			                		<c:otherwise>
+			                			<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>
+			                		</c:otherwise>
+		                		</c:choose>
+		                	</a>
+		                </li>
+	                </c:forEach>
                 </div>
             </ul>
 		</div>
@@ -543,7 +547,7 @@ function writeReview(){
 	</div>
 </div>
   
-<section class="w3l-footer">
+<section class="w3l-footer" style="margin-top:3%;">
   <footer class="footer-28">
     <div class="footer-bg-layer">
       <div class="container py-lg-3">

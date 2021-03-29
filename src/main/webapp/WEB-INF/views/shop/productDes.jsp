@@ -251,15 +251,30 @@
 							<input type="checkbox" name="" id="btn" />
 							<label class="container" for="btn"></label>
 							<td>
-								<button class="btn-like" type="button" onclick="alert('상품을 찜했습니다.')">💛</button>
-	                            <form action="/insertLikeList.do" method="post">
-						 <div>
-						 <br></div></br>
-						 <input type="hidden" name="insertlikelist" value="${productDes.product_code}">				     
-					        <input type="submit" value="찜한 상품 전송"/>
-					        </form>
+								<c:if test="${!empty login}">
+									<button style="margin-top:20%; border:none; background-color:white;" class="btn-like" type="button" onclick="addLike(${productDes.product_code})">💛</button>
+                          		</c:if>
                           	</div>
-                        </td>
+                        	</td>
+                        	
+                        	<script>
+                        	function addLike(product_code){
+                        		alert("들어옴"+product_code);
+                        		$.ajax({
+                        			  url: "insertLikeList.do",
+                        			  type: 'GET',
+                        			  data: { product_code: product_code },
+                        			  success : function(product_code){
+                        				    Swal.fire({
+        	                      			  icon: 'success',
+        	                      			  title: '찜한 상품 등록',
+        	                      			  text: '해당 상품에 좋아요를 눌렀습니다!',
+        	                      			  footer: '<a href="/likeList.do">찜한 상품 목록 확인하기</a>'
+                              				})
+                        			  }
+                        		});
+                        	}
+                        	</script>
                      </table>
                   </form>
                </td>
@@ -398,9 +413,6 @@
                <div>
                   <div class="media-body">
                      <c:forEach items="${reviewCon}" var="reviewCon" varStatus="status">
-                        <div class="img-circle">
-                           <img src="${mpvo.pet_ofname}" alt="리뷰 상품 사진" id="col">
-                        </div>
                         <input type="hidden" name="member_number" value="member_number">
                         <h5 class="mt-0">${reviewCon.review_subject}</h5>
                         <span class="time">${reviewCon.review_message}</span>

@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+
 <!doctype html>
 <html lang="en">
    <head>
@@ -11,7 +14,7 @@
       <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
       <!-- google fonts --> 
       <!-- Template CSS -->
-      <link rel="stylesheet" href="assets/css/order.css">
+      <link rel="stylesheet" href="assets/css/style-liberty.css">
       <!-- Template CSS -->
    </head>
    <body>
@@ -125,100 +128,71 @@
          </div>
       </section>
       <!-- //about breadcrumb -->
-      <div class="container py-lg-5" >
-      <div class="content-info-in row">
-      <div class="content-gd col-lg-5 pl-lg-4">
-      <div class="title-content text-left mb-2">
-      <div class="title-content text-left mb-2">
-         <h3 class="hny-title">주문 상세내용</h3 >
-      </div>
-      </br>
+      <div class="container py-lg-5" style="min-height:900px;">
+	      
+		      <div class="content-gd col-lg-12 pl-lg-4">
+				      <div class="title-content text-left mb-2">
+				         <h3 style="margin-bottom:5%; text-align:center;" class="hny-title">${login.member_name}님이 찜한 상품 리스트</h3>
+				      </div>
+				      
+				      <table class="table" style="margin-bottom:10%;">
+				         <tr>
+				            <th>번호</th>
+				            <th>상품명</th>
+				            <th>가격</th>
+				            <th></th>
+				         </tr>
+				         <c:if test="${empty LikeList}">
+				         	<td colspan="5">아직 찜한 상품이 없습니다!</td>
+				         </c:if>
+				         <c:forEach items="${LikeList}" var="list" varStatus="status">
+				         	<tr>
+					            <td>${status.index}</td>
+					            <td>${list.product_name}</td>
+					            <td>${list.product_price}</td>
+					            <td>
+					            	<button onclick="buy(${list.product_code})" style="background-color:#FFB446; border:none;">&nbsp; 구매  &nbsp;</button>
+					            </td>
+					         </tr>
+				         </c:forEach>
+<script>
+function buy(product_code){
+	alert(product_code);
+	location.href="viewlikelist.do";
+	/*$.ajax({
+		  url: "insertLikeList.do",
+		  type: 'GET',
+		  data: { product_code: product_code },
+		  success : function(product_code){
+			  
+		  }
+	});*/
+}
+</script>
+				         <tr>
+				            <td>01</td>
+				            <td>이건 꼭 사야해</td>
+				            <td>12000</td>
+				            <td>1</td>
+				            <td>12000</td>
+				         </tr>
+				         <tr>
+				            <td>02</td>
+				            <td>나도 오리 목뼈..</td>
+				            <td>22000</td>
+				            <td>3</td>
+				            <td>66000</td>
+				         </tr>
+				      </table>
+				      
+				     
+			      </div>
+	      </div>
       
-      <table class="table" >
-         <tr>
-            <th>상품코드</th>
-            <th>상품정보</th>
-            <th>판매가격</th>
-            <th>수량</th>
-            <th>주문금액</th>
-         </tr>
-         <tr>
-            <td>01</td>
-            <td>이건 꼭 사야해</td>
-            <td>12000</td>
-            <td>1</td>
-            <td>12000</td>
-         </tr>
-         <tr>
-            <td>02</td>
-            <td>나도 오리 목뼈..</td>
-            <td>22000</td>
-            <td>3</td>
-            <td>66000</td>
-         </tr>
-          <tr>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-            <th>주문 총 금액 </br>
-            <input type="text" name="orderRec" id="orderRec" required="required" /></th>
-         </tr>
-      </table>
-      <table class="table" >
-         <colgroup>
-            <col style="width:50%">
-         </colgroup>
-         <tr>
-            <td>회원 명</td>
-            <td><input type="text" name="orderRec" id="orderRec" required="required" /></td>
-         </tr>
-         <tr>
-                           <td>
-                           <form name="form1" method="post" action="경로">
-                           &nbsp;결제 방법 &nbsp;</br> 
-                           </td>
-                           <td>
-                           <input type="hidden" name="productAmount" value="${vo.productAmount}">
-                           &nbsp;<select name="name" align="center" >==$0
-                           <option value="1">계좌 이체</option>
-                           <option value="2">카드 결제</option>
-                           </select>
-                           </td>
-                           </tr>
-         
-        <tr>
-         <td>
-         <form name="form1" method="post" action="경로">회원 주소 &nbsp;</br></td>
-         <td>
-         <input type="hidden" name="productAmount" value="${vo.productAmount}">
-         &nbsp;<input type="text" name="orderRec" id="orderRec" required="required" />
-         </br>
-         </td>
-         </tr>
-         <tr>
-         <td>
-         <form name="form1" method="post" action="경로">
-         	회원 이메일 &nbsp;</br> 
-         </td>
-         <td>
-         <input type="hidden" name="productAmount" value="${vo.productAmount}">
-         <input type="text" name="orderRec" id="orderRec" required="required" />
-         </td> &nbsp;
-         </tr>
-         </form>
-         </td>
-         </tr>
-      </table>
-      </table>      
-      <div class="inputArea">
-         
-         <button type="button" class="cancel_btn"  style="float: right;" >취소</button>
-         <button type="submit" class="order_btn"  style="float: right;" >주문</button>
-         
-          
-      </div>
       <!-- //about breadcrumb -->
       <script src="assets/js/bootstrap.min.js"></script>
+      
+      
+      
    </body>
 </html>

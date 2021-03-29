@@ -12,46 +12,42 @@
   <title>:: With My Pet :: 산책모집 </title>
    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-   <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/3.1.1/jquery-ui.js"></script>
-    <link href="../assets/css/datepicker/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
-    <script src="../assets/js/datepicker/datepicker.js"></script>
-    <script src="../assets/js/datepicker/datepicker.ko.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="../assets/js/popper.js"></script>
+	<script src="../assets/js/popper.js.map"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   <link rel="stylesheet" href="../assets/css/walk.css">
   <link rel="stylesheet" href="../assets/css/walkform.css">
   <link rel="stylesheet" href="../assets/css/walkform.min.css">
-  <link rel="stylesheet" href="../assets/css/walkcard.css">
-  <link rel="stylesheet" href="../assets/css/walkcard.min.css">
+  <link rel="stylesheet" href="../assets/css/postCard.css">
   <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
-	<script src="../assets/js/popper.js"></script>
-	<script src="../assets/js/popper.js.map"></script>
+
 	<script src="../assets/js/walkform.js"></script>
 	<script src="../assets/js/walkform.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="../assets/js/jquery-3.3.1.min.js"></script>
-<script src="../assets/js/bootstrap.min.js"></script>
+	  <link href="../assets/css/datepicker/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+  <script src="../assets/js/datepicker/datepicker.js"></script>
+  <script src="../assets/js/datepicker/datepicker.ko.js"></script>
+	
 
 </head>
 
 <body>
 	<!--header-->
 	<header id="site-header" class="fixed-top">
-	  <div class="container">
-	      <nav class="navbar navbar-expand-lg stroke">
-	          <a href="../"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
-	     
-	          <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
-	              data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-	              aria-label="Toggle navigation">
-	              <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
-	              <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-	          </button>
-	
-	          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+  <div class="container">
+      <nav class="navbar navbar-expand-lg stroke">
+          <a href="../"><img src="../assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
+
+          <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+              data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+              <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul class="navbar-nav ml-auto">
                   <li class="nav-item active">
                       <a class="nav-link" href="../" style="font-family: 'Spoqa Han Sans Neo';">Home <span class="sr-only">(current)</span></a>
@@ -63,7 +59,7 @@
                          	산 책 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
-                      	<a class="dropdown-item" href="list.do?cp=1" >산책모집 </a>
+                      	<a class="dropdown-item" href="list.do?cp=1" style="font-family: 'Spoqa Han Sans Neo';">산책모집 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -72,9 +68,9 @@
                          	쇼 핑 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                      	<a class="dropdown-item" href="product?catgo_code=9">쇼핑하기</a>
-                          <a class="dropdown-item" href="cart">장바구니</a>
-                          <a class="dropdown-item" href="/shop/order">결제</a>
+                      	<a class="dropdown-item" href="product?catgo_code=9" style="font-family: 'Spoqa Han Sans Neo';">쇼핑하기</a>
+                          <a class="dropdown-item" href="cart" style="font-family: 'Spoqa Han Sans Neo';">장바구니</a>
+                          <a class="dropdown-item" href="/shop/order" style="font-family: 'Spoqa Han Sans Neo';">결제</a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -83,10 +79,10 @@
                          	 커뮤니티 <span class="fa fa-angle-down"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';">
-                          <a class="dropdown-item" href="board/list.do?board_idx=1">공지사항</a>
-                          <a class="dropdown-item" href="board/list.do?board_idx=2">일상이야기</a>
-                          <a class="dropdown-item" href="board/list.do?board_idx=3">산책후기</a>
-                          <a class="dropdown-item" href="board/list.do?board_idx=4">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=1" style="font-family: 'Spoqa Han Sans Neo';">공지사항</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=2" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=3" style="font-family: 'Spoqa Han Sans Neo';">산책후기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=4" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
                       </div>
                   </li>
                   <c:choose>
@@ -113,7 +109,8 @@
               </ul>
           </div>
           
-	          <!-- toggle switch for light and dark theme -->
+          
+          <!-- toggle switch for light and dark theme -->
           <div class="mobile-position">
               <nav class="navigation">
                   <div class="theme-switch-wrapper">
@@ -147,9 +144,9 @@
 		          </c:choose>
 		      </div>
           </c:if>
-	      </nav>
-	  </div>
-	</header>
+      </nav>
+  </div>
+</header>
 
 	<!-- 바디헤더 -->
 	<section class="w3l-about-breadcrumb text-center">
@@ -177,11 +174,11 @@
         <div class="points center">
         
         <c:choose>
-        	<c:when test="${empty map.pet.pet_walkpoint}">
+        	<c:when test="${empty content.pet.pet_walkpoint}">
         		0 포인트
         	</c:when>
         	<c:otherwise>
-        		${map.pet.pet_walkpoint} 포인트
+        		${content.pet.pet_walkpoint} 포인트
         	</c:otherwise>
         </c:choose>
           
@@ -191,24 +188,24 @@
         
       </div>
       <div class="more-info">
-        <h1>${map.memberData.member.member_name}</h1>
+        <h1>${content.memberData.member.member_name}</h1>
         <div class="coords">
         
         <c:choose>
-        	<c:when test="${empty map.memberData.detail.walk_day}">
+        	<c:when test="${empty content.memberData.detail.walk_day}">
         	</c:when>
         	<c:otherwise>
-        		<span><b>최근 산책일</b> : ${map.memberData.detail.walk_day}</span><br>
+        		<span><b>최근 산책일</b> : ${content.memberData.detail.walk_day}</span><br>
         	</c:otherwise>
         </c:choose>
         
         
         <c:choose>
-        	<c:when test="${empty map.memberData.detail.review}">
+        	<c:when test="${empty content.memberData.detail.review}">
         		<span><b>아직 산책한 기록이 없습니다.</b></span>
         	</c:when>
         	<c:otherwise>
-        		<span><b>받은 산책평</b> : "${map.memberData.detail.review}"</span>
+        		<span><b>받은 산책평</b> : "${content.memberData.detail.review}"</span>
         	</c:otherwise>
         </c:choose>
         
@@ -219,11 +216,11 @@
             <i class="fa fa-trophy"></i>
             
             <c:choose>
-	        	<c:when test="${empty map.memberData.detail.walk_count}">
+	        	<c:when test="${empty content.memberData.detail.walk_count}">
 	        		<div class="value">0</div>
 	        	</c:when>
 	        	<c:otherwise>
-	        		<div class="value">${map.memberData.detail.walk_count}</div>
+	        		<div class="value">${content.memberData.detail.walk_count}</div>
 	        	</c:otherwise>
 	        </c:choose>
 	        
@@ -233,11 +230,11 @@
             <i class="fa fa-group"></i>
             
             <c:choose>
-	        	<c:when test="${empty map.memberData.detail.following}">
+	        	<c:when test="${empty content.memberData.detail.following}">
 	        		<div class="value">0</div>
 	        	</c:when>
 	        	<c:otherwise>
-	        		<div class="value">${map.memberData.detail.following}</div>
+	        		<div class="value">${content.memberData.detail.following}</div>
 	        	</c:otherwise>
 	        </c:choose>
             
@@ -248,11 +245,11 @@
             <i class="fa fa-group"></i>
             
             <c:choose>
-	        	<c:when test="${empty map.memberData.detail.follower}">
+	        	<c:when test="${empty content.memberData.detail.follower}">
 	        		<div class="value">0</div>
 	        	</c:when>
 	        	<c:otherwise>
-	        		<div class="value">${map.memberData.detail.follower}</div>
+	        		<div class="value">${content.memberData.detail.follower}</div>
 	        	</c:otherwise>
 	        </c:choose>
             
@@ -261,11 +258,11 @@
       </div>
     </div>
     <div class="general">
-      <h1 style="color:#FFB446; margin-top:3%;">${map.memberData.member.member_name}</h1><br>
-      <p style="text-align:center;font-family: 'Spoqa Han Sans Neo';"><b>반려 동물</b> : ${map.pet.pet_name}</p>
-      <p style="text-align:center;font-family: 'Spoqa Han Sans Neo';"><b>성별</b> : ${map.pet.pet_sex}</p>
-      <p style="text-align:center;font-family: 'Spoqa Han Sans Neo';"><b>나이</b> : ${map.pet.pet_age}</p>
-      <p style="text-align:center;font-family: 'Spoqa Han Sans Neo';"><b>주요 지역</b> : ${map.pet.pet_walkarea}</p>
+      <h1 style="color:#FFB446; margin-top:3%;">${content.memberData.member.member_name}</h1><br>
+      <p style="text-align:center;font-family: 'Spoqa Han Sans Neo';"><b>반려 동물</b> : ${content.pet.pet_name}</p>
+      <p style="text-align:center;font-family: 'Spoqa Han Sans Neo';"><b>성별</b> : ${content.pet.pet_sex}</p>
+      <p style="text-align:center;font-family: 'Spoqa Han Sans Neo';"><b>나이</b> : ${content.pet.pet_age}</p>
+      <p style="text-align:center;font-family: 'Spoqa Han Sans Neo';"><b>주요 지역</b> : ${content.pet.pet_walkarea}</p>
       <span class="more" style="font-size:1.0rem;">Mouse over</span>
     </div>
   </div>
@@ -277,7 +274,7 @@
 	<form class="ui form" onsubmit="searchPlaces(); return false;" style="text-align:center; margin:auto;">
 		<div class="field" style="width:30%; margin:auto;">
 	      <label style="font-family: 'Spoqa Han Sans Neo';">장소</label>
-	      <input autocomplete="off" name="locName" id="location" value="${map.content.walk_location}" placeholder="산책할 장소 입력해주세요." style="text-align:center; margin:auto;" /><br/>
+	      <input autocomplete="off" name="locName" id="location" value="${content.dto.walk_location}" placeholder="산책할 장소 입력해주세요." style="text-align:center; margin:auto;" /><br/>
 	      <input id="locForm" placeholder="선택한 장소입니다." style="background-color:#f7fdd5; text-align:center; margin:auto;" readonly/>
 	      <button class="ui button"type="submit" style="display:none;opacity:0;font-family: 'Spoqa Han Sans Neo';color:white;">검색하기</button>
 	    </div>
@@ -310,14 +307,14 @@
 		    <div class="two fields">
 		      <div class="field">
 		      <label style="font-family: 'Spoqa Han Sans Neo';">작성자</label>
-		        <input type="text" name="walk_writer" placeholder="작성자" value="${map.content.walk_writer}" readonly/>
+		        <input type="text" name="walk_writer" placeholder="작성자" value="${content.dto.walk_location}" readonly/>
 		      </div>
 		      
 		      <div class="field">
 			      <label style="font-family: 'Spoqa Han Sans Neo';">산책타입 (선택)</label>
 			      <select class="ui fluid dropdown" name="walk_type">
 			      <c:choose>
-			      	<c:when test="${map.content.walk_type} eq '1:1">
+			      	<c:when test="${content.dto.walk_type} eq '1:1">
 				      	<option value="1:1"style="font-family: 'Spoqa Han Sans Neo';"selected >1 : 1</option>
 				        <option value="여러명 모임" style="font-family: 'Spoqa Han Sans Neo';">모임</option>
 			      	</c:when>
@@ -335,8 +332,8 @@
 		  <div class="two fields">
 		  	<div class="field">
 		      <label style="font-family: 'Spoqa Han Sans Neo';">장소</label>
-		      	<input type="hidden" name="walk_idx" value="${map.content.walk_idx}">
-		        <input type="text" onClick="offsetMove()" name="walk_location" value="${map.content.walk_location}" id="hdnLocation" placeholder="장소를 먼저 선택하고 오세요!" readonly/>
+		      	<input type="hidden" value="${content.dto.walk_idx}" name="walk_idx" >
+		        <input type="text" onClick="offsetMove()" name="walk_location" value="${content.dto.walk_location}" id="hdnLocation" placeholder="장소를 먼저 선택하고 오세요!" readonly/>
 		        <script>
 		        function offsetMove(){
 		        	document.getElementById('location').focus();
@@ -345,7 +342,7 @@
 		      </div>
 			  <div class="field">
 			      <label style="font-family: 'Spoqa Han Sans Neo';">일시</label>
-			      <input type="text" name="time" autocomplete="off" value="${map.content.walk_date}" id="dp-7" placeholder="산책할 시간을 선택해주세요."/><br/>
+			      <input type="text" name="time" autocomplete="off" value="${content.dto.walk_date}" id="dp-7" placeholder="산책할 시간을 선택해주세요."/><br/>
 			        <script>
 			        //날짜,시간 선택 (DatePicker)
 			        $(document).ready(function(){
@@ -368,12 +365,12 @@
 		  <div class="field">
 		    <label style="font-family: 'Spoqa Han Sans Neo';">제목</label>
 		    <div class="field">
-		        <input autocomplete="off" type="text" name="walk_subject" placeholder="제목" value="${map.content.walk_subject}">
+		        <input autocomplete="off" type="text" name="walk_subject" placeholder="제목" value="${content.dto.walk_subject}">
 		    </div>
 		  </div>
 		  <div class="field">
 		    <label style="font-family: 'Spoqa Han Sans Neo';">내용</label>
-		    <textarea name="walk_content">${map.content.walk_content}</textarea>
+		    <textarea name="walk_content">${content.dto.walk_content}</textarea>
 		  </div><br/><br/>
 		  <center><button id="btn_submit" type="submit" class="button-set" style="font-family: 'Spoqa Han Sans Neo';">수정하기</button>
 		  </center>

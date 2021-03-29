@@ -61,7 +61,10 @@ public class MsgController {
 		map.put("type",type);
    	    // 해당 상대와의 미작성 후기 검색
    	    MemberReview walk = msgService.selectRecentWalk(vo.getMember_number(), sender_number);
-   	    if(walk != null) map.put("walk",walk);
+   	    if(walk != null) {
+   	    	map.put("walk",walk);
+   	    	log.info("######작성안한산책있음 :"+walk);
+   	    }
 	    map.put("senderName",msgService.getSenderName(sender_number));
 		map.put("senderNumber",sender_number);
 		map.put("myName",vo.getMember_name());
@@ -142,6 +145,7 @@ public class MsgController {
 	@GetMapping(value="searchMember.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public @ResponseBody Hashtable<String, Object> searchMember(HttpSession session, String member_name) {
 		MemberVO vo = (MemberVO) session.getAttribute("login");
+		member_name = member_name.trim();
 		Hashtable<String, Object> map = msgService.getMemberByName(vo.getMember_number(), member_name);
 		return map;
 	}

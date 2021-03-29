@@ -155,7 +155,7 @@ public class MsgServiceImpl implements MsgService {
 		}else return null;
 	}
 	
-	// 산책 한줄평 작성, 트랜잭션
+	// 산책 한줄평 작성
 	@Override
 	public void writeReview(MemberReview memberReview, long member_number) {
 		// 주최/참가에 따라서, insert시 member_number를 변경해줌 (myBatis에서 분기하지 않으려고)

@@ -297,6 +297,85 @@ function goWrite(f) {
 </div>
 
 
+<!-- footer-28 block -->
+<section class="w3l-footer">
+  <footer class="footer-28">
+    <div class="footer-bg-layer">
+      <div class="container py-lg-3">
+        <div class="row footer-top-28">
+          <div class="col-lg-6 col-md-5 footer-list-28 mt-5">
+            <h6 class="footer-title-28">Contact information</h6>
+            <ul>
+              <li>
+                <p><strong>Address</strong> : Seoul Mapo Baekbumro, South Korea</p>
+              </li>
+              <li>
+                <p><strong>Contact</strong> : <a href="tel:+(12)234-11-24">Click Here</a></p>
+              </li>
+            </ul>
 
+            <div class="main-social-footer-28 mt-3">
+              <ul class="social-icons">
+                <li class="facebook">
+                  <a href="#link" title="Facebook">
+                    <span class="fa fa-facebook" aria-hidden="true"></span>
+                  </a>
+                </li>
+                <li class="twitter">
+                  <a href="#link" title="Twitter">
+                    <span class="fa fa-twitter" aria-hidden="true"></span>
+                  </a>
+                </li>
+                <li class="dribbble">
+                  <a href="#link" title="Dribbble">
+                    <span class="fa fa-dribbble" aria-hidden="true"></span>
+                  </a>
+                </li>
+                <li class="google">
+                  <a href="#link" title="Google">
+                    <span class="fa fa-google" aria-hidden="true"></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-7">
+            <div class="row">
+              <div class="col-sm-4 col-6 footer-list-28 mt-5">
+                <h6 class="footer-title-28">Walk Service</h6>
+                <ul>
+                  <li><a href="about.html">Cha Ji Hyun</a></li>
+                  <li><a href="blog.html">Lim Yeon Ji</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-4 col-6 footer-list-28 mt-5">
+                <h6 class="footer-title-28">Shopping Service</h6>
+                <ul>
+                  <li><a href="contact.html">Lee Ok Seok</a></li>
+                  <li><a href="#signup">Sung Jin Hee</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-4 footer-list-28 mt-5">
+                <h6 class="footer-title-28">Member Service</h6>
+                <ul>
+                  <li><a href="#URL">Choi Woo Jae</a></li>
+                  <li><a href="#URL">Lee Su Jin</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="midd-footer-28 align-center py-lg-4 py-3 mt-5">
+        <div class="container">
+          <p class="copy-footer-28 text-center"> © 2021 With My Pet. All Rights Reserved.
+           </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </section>
 </body>
 </html>

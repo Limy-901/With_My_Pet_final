@@ -1875,7 +1875,7 @@ pre code {
 .table th,
 .table td {
   padding: 0.75rem;
-  vertical-align: top;
+  vertical-align: middle;
   border-top: 1px solid #dee2e6;
 }
 
@@ -18712,7 +18712,7 @@ li.design1 {
 }
 body, input, textarea, select, button, table {
     font-family:'Spoqa Han Sans Neo';
-    font-size: 12px;
+    font-size: 17px;
 }
 body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select {
     -webkit-text-size-adjust: none;

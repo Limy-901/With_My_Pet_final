@@ -18,4 +18,5 @@ public interface memberMapper {
 	void memberModify(MemberVO member);
 	void loginLog(long member_number);
 	void makeLoginLog(@Param("member_number")long member_number, @Param("member_name")String member_name);
+	long checkLoginLog(long member_number);
 }

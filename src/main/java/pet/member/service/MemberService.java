@@ -5,43 +5,45 @@ import pet.member.vo.MemberVO;
 
 public interface MemberService {
 
-   //È¸¿ø °¡ÀÔ
+   //È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
    public void join(MemberVO vo) throws Exception;
    
-   //ÀÌ¸ÞÀÏ Áßº¹Ã¼Å©
+   //ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ßºï¿½Ã¼Å©
    public int mailChk(String email) throws Exception;
    
-   //·Î±×ÀÎ
+   //ï¿½Î±ï¿½ï¿½ï¿½
    public MemberVO login(MemberVO lvo);
    
-   //¸¶ÀÌÆäÀÌÁö º»ÀÎÁ¤º¸ È®ÀÎ
+   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
    public MemberVO mypage(MemberVO lvo);
    
-   //ÆÈ·Î¿ì ¸¶ÀÌÆäÀÌÁö º»ÀÎÈ®ÀÎ Á¤º¸
+   //ï¿½È·Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
    public MemberVO followmypage(int lvo);
    
-   //È¸¿øÁ¤º¸ ¼öÁ¤(¾Æ´Ô)
+   //È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½Æ´ï¿½)
    public void memberUpdateDo(MemberVO vo) throws Exception;
    
-   //ÀÌ¸ÞÀÏ Ã£±â
+   //ï¿½Ì¸ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½
    public MemberVO getEmailSearch(String address, String name) throws Exception;
    
-   //ÀÌ¸ÞÀÏ¹ß¼Û
+   //ï¿½Ì¸ï¿½ï¿½Ï¹ß¼ï¿½
    public void sendEmail(MemberVO vo) throws Exception;
 
-   //ºñ¹Ð¹øÈ£Ã£±â
+   //ï¿½ï¿½Ð¹ï¿½È£Ã£ï¿½ï¿½
    public String getpwSearch(String email) throws Exception;
    
-   //ÆÐ½º¿öµå ¼öÁ¤
+   //ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
    public void pwModify(MemberVO vo) throws Exception;
    
-   // È¸¿øÁ¤º¸ ÀüÃ¼ ¼öÁ¤
+   // È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
    public void memberModify(MemberVO vo) throws Exception;
    
-   // ·Î±×ÀÎ ±â·Ï ³²±â±â 
+   // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ 
    public void loginLog(long member_number);
    
-   // ·Î±×ÀÎ ·Î±× »ý¼º
+   // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ ï¿½ï¿½ï¿½ï¿½
    public void makeLoginLog(long member_number, String member_name);
+   
+   public long checkLoginLog(long member_number);
    
 }

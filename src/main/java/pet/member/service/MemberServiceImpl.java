@@ -130,6 +130,12 @@ public class MemberServiceImpl implements MemberService {
 	public void makeLoginLog(long member_number, String member_name) {
 		mapper.makeLoginLog(member_number, member_name);
 	}
+
+	@Override
+	public long checkLoginLog(long member_number) {
+		long check = mapper.checkLoginLog(member_number);
+		return check;
+	}
    
 
 }

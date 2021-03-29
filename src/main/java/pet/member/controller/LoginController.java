@@ -82,8 +82,13 @@ public class LoginController {
   		   	 mav.addObject("mpvo", mpvo);
   		   	 session.setAttribute("petMypage", mpvo);
   		   	 //�α��� ��� �����
+  		     long check = service.checkLoginLog(vo.getMember_number());
+  		     if(check == 0) {
+  		    	 service.makeLoginLog(vo.getMember_number(), vo.getMember_name());
+  		     }
   		     service.loginLog(member_number);
         	 
+  		     
         	 return "redirect:/";
  	 
          }else {

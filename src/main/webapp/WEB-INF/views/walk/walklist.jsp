@@ -166,48 +166,58 @@
   </div>
 </section><br><br>
 
+<div>
+	<img style="display:flex; margin:auto; margin-bottom:2%; max-width:250px; max-height:300px;" src="../assets/images/withme.png">
+</div>
+
 <!-- 산책개설버튼, 로그인 시에만 개설 가능 -->
-<c:choose>
-	<c:when test="${! empty login}">
 		<c:choose>
-			<c:when test="${petMypage.pet_name eq '정보없음'}">
+		
+			<c:when test="${empty login}">
 				<div style="margin:auto; display:flex; ">
-				 <a class="button" href="../walk/post.do"style="font-size:30px;margin:auto; padding:1.5%;display:flex; position:relative;"><b>&nbsp;&nbsp;&nbsp;&nbsp;직접 만들기 🐕&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+				 <a href="#"style="font-size:23px;margin:auto; padding:1.5%;display:flex; position:relative;"><b>&nbsp;&nbsp;&nbsp;&nbsp;아직 로그인 하지 않았어요!&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
 				</div><br><br><br>
 			</c:when>
+			<c:when test="${petMypage.pet_name ne '정보없음'}">
+				<div style="margin:auto; display:flex; ">
+				 <a class="button" href="../walk/post.do"style="font-size:30px;margin:auto; padding:1.5%;display:flex; position:relative;"><b>&nbsp;&nbsp;&nbsp;&nbsp;직접 산책모임 만들기 🐕&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+				</div><br><br><br>
+				<!-- 검색창 -->
+				<center>
+				    <div class="ui action input" style="width:40%; margin-bottom:5%; ">
+					  <input style="font-family: 'Spoqa Han Sans Neo';" type="text" id="searchKeyword" placeholder="검색어를 입력하세요.">
+					  <select id="searchType" class="ui compact selection dropdown">
+					    <option selected="" value="all">전체</option>
+					    <option value="location">지역</option>
+					    <option value="subject">제목</option>
+					    <option value="content">내용</option>
+					  </select>
+					  <div class="ui teal button" onclick="search()">검색</div>
+					</div>
+				</center>
+			</c:when>
+			
 			<c:otherwise>
 				<div style="margin:auto; display:flex; ">
-				 <a href="#"style="font-size:30px;margin:auto; padding:1.5%;display:flex; position:relative;"><b>&nbsp;&nbsp;&nbsp;&nbsp;아직 반려동물 정보가 없어요!🐕&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+				 <a href="#"style="font-size:23px;margin:auto; padding:1.5%;display:flex; position:relative;"><b>&nbsp;&nbsp;&nbsp;&nbsp;아직 반려동물 정보가 없어요!&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
 				</div><br><br><br>
 			</c:otherwise>
 		</c:choose>
-	</c:when>
-	<c:otherwise>
-		<br><br><br><center><p>회원만 이용 가능한 서비스입니다!</p></center><br><br><br>
-	</c:otherwise>
-</c:choose>
 
-
-<!-- 검색창 -->
-<center>
-    <div class="ui action input" style="width:40%;">
-	  <input type="text" id="searchKeyword" placeholder="검색어를 입력하세요.">
-	  <select id="searchType" class="ui compact selection dropdown">
-	    <option selected="" value="all">전체</option>
-	    <option value="location">지역</option>
-	    <option value="subject">제목</option>
-	    <option value="content">내용</option>
-	  </select>
-	  <div class="ui teal button" onclick="search()">검색</div>
-	</div>
-</center><br><br><br>
 
 <script>
 // 산책글 검색 Ajax
 function search(){
 	var keyword = $("#searchKeyword").val();
 	var selected = $("#searchType").val();
-	alert(keyword+selected);
+	// 검색결과 한글버전
+	var koSelected = '';
+	switch(selected){
+		case 'all': koSelected = '전체'; break;
+		case 'location': koSelected = '지역'; break;
+		case 'subject': koSelected = '제목'; break;
+		case 'content': koSelected = '내용'; break;
+	}
 	$.ajax({
 		   url: "search.do", 
 		   type: "GET",
@@ -215,27 +225,32 @@ function search(){
 			   keyword:keyword,
 			   searchType:selected
 		   },
-		   success: function(responseData){
-			   alert(responseData.list);
-			   if(!responseData) return false;
+		   success: function(list){
 			   var html = '';
-			   $('#searchReset').empty();
-			   alert(responseData.list.length);
-			   for(var i=0; i<responseData.list.length;i++){
-		    	   html += "<div class='col-lg-4 col-sm-6 grids-feature'style='margin-left:-5%; display:relative;'>";
-		    	   html += "<center><div class='area-box'><div class='col-md-4'>";
-	    		   html += "<img style='margin:auto;'src='../assets/images/g1.jpg' class='img-fluid radius-image mt-1' alt='blog-post-image'>";
-	    		   html += "</div>";
-    			   html += "<div class='col-md-8 align-self'>";
-    			   html += "<P style='font-size:1rem;'>${item.day}, ${item.time}</P>";
-    			   html += "<b><p>"+responseData.list[i].walk_location+"</p></b>";
-   				   html += "<h4><a href='#feature' class='title-head'>"+responseData.list[i].walk_subject+"</a></h4>";
-   				   html += "<p style='font-size:16px;'>"+responseData.list[i].walk_writer+"</p>";
-   				   html += "<p>"+responseData.list[i].walk_content+"</p>";
-				   html += "<a href='../walk/blog.do?idx="+responseData.list[i].walk_idx+"' class='read'>자세히 보기>></a>";
-				   html += "</div></div></center></div>";
+			   html += '<div style="text-align:center; margin-top:2%; margin-bottom:2%;"><b>'+koSelected+'</b> 타입으로 <b>'+keyword+'</b> 키워드를 검색한 결과 : '+list.list.length+' 건</div>';
+			   for(var i=0; i<list.list.length;i++){
+				   html += '<div class="acard-media"><div class="acard-media-object-container">';
+				   html += '<div class="acard-media-object" style="width:50%%; height:100%; overflow:hidden">';
+				   html += '<img src="<c:url value="/img/'+list.picLists[i]+'"/>" style="width:100%; height:auto;" class="img-fluid img-thumbnail"/></div></div>';
+				   if(list.cmtList == null){
+					   html += '<span class="acard-media-object-tag subtle">첫 번째 참가자를 기다리고 있어요!</span>';
+				   }
+				   html += '<div class="acard-media-body" id="acard'+list.list[i].walk_idx+'${item.walk_idx}"><div class="acard-media-body-top">';
+				   html += '<span class="asubtle">'+list.list[i].day+','+list.list[i].time+' &nbsp;&nbsp;/&nbsp;&nbsp; '+list.list[i].walk_writer+'</span>';
+				   html += '<div class="acard-media-body-top-icons au-float-right">';
+				   html += '<a href="javascript:sendLink()"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>&nbsp;&nbsp;';
+				   html += '&nbsp;<button onclick="location.href="blog.do?idx='+list.list[i].walk_idx+'"" class="massive yellow ui button"style';
+				   html += '="position:relative;margin-top:38%;font-size:0.95rem;font-family: "Spoqa Han Sans Neo";">더 알아보기</button></div></div>';
+				   html += '<span class="acard-media-body-heading" style="font-size:1.3rem; color:#FFB446;"><b>'+list.list[i].walk_subject+'</b></span>';
+				   html += '<p style="margin-top:3%;">'+list.list[i].walk_content+'</p><div class="acard-media-body-supporting-bottom">';
+				   html += '<span class="acard-media-body-supporting-bottom-text asubtle au-float-right"></span><div>';
+				   html += '<span class="acard-media-body-supporting-bottom-text asubtle" style="margin-bottom:16px;">';
+				   html += '<a style="font-weight:400;" class="ui teal label"># '+list.list[i].walk_location+'</a><a style="font-weight:400;" class="ui yellow label"># '+list.list[i].walk_writer+'</a></span></div></div>';
+				   html += '</div></div>';
 			   }
+			   $('#searchReset').empty();
 			   $('#searchReset').html(html);
+			   $('#page').empty();
 		   }
 	});
 }
@@ -245,6 +260,7 @@ function search(){
 </c:if>
 	
 <div id="searchReset" style="align:center;">
+
 	<c:forEach items="${list.list}" var="item" varStatus="status">
 	<div class="acard-media">
 	<!-- 마우스 오버시 등장하는 댓글회원 -->
@@ -255,26 +271,18 @@ function search(){
 	      <c:if test="${empty list.cmtList[status.index]}"> 
 	      	<span class="acard-media-object-tag subtle">첫 번째 참가자를 기다리고 있어요!</span>
 	      </c:if>
-	      <ul class="acard-media-object-social-list">
-	      
-	        
-	        
-	      </ul>
 	    </div>
 	    <!-- 산책 정보 -->
 	    <div class="acard-media-body" id="acard${item.walk_idx}">
 	      <div class="acard-media-body-top">
-	        <span class="asubtle">${item.day}, ${item.time} &nbsp;&nbsp;/&nbsp;&nbsp; ${item.walk_writer}</span>
+	        <span class="asubtle">${item.day}, ${item.time}</span>
 	        
-	        <!-- 로그인 시에만 더보기 가능 -->
-	        <c:if test="${!empty login}">
 		        <div class="acard-media-body-top-icons au-float-right">
 		          <a href="javascript:sendLink()"><img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/></a>
 		          &nbsp;&nbsp;&nbsp;
 		          <button onclick="location.href='blog.do?idx=${item.walk_idx}'" class="massive yellow ui button" 
 			      style="position:relative;margin-top:38%;font-size:0.95rem;font-family: 'Spoqa Han Sans Neo';">더 알아보기</button>
 		        </div>
-	        </c:if>
 	        
 	      </div>
 	      <span class="acard-media-body-heading" style="font-size:1.3rem; color:#FFB446;" >${item.walk_subject}</span>
@@ -283,8 +291,8 @@ function search(){
 	        <span class="acard-media-body-supporting-bottom-text asubtle au-float-right"></span>
 	        <div>
 		        <span class="acard-media-body-supporting-bottom-text asubtle" style="margin-bottom:16px;">
-			        <a class="ui teal label"># ${item.walk_location}</a>
-			        <a class="ui yellow label"># ${item.walk_type}</a>
+			        <a style="font-weight:400;" class="ui teal label"># ${item.walk_location}</a>
+			        <a style="font-weight:400;" class="ui yellow label"># ${item.walk_writer}</a>
 		        </span>
 	      	</div>
 	      </div>
@@ -314,7 +322,7 @@ function sendLink() {
 </div>
   
  <!-- 페이지네이션 -->
- <div style="text-align:center;"><br/><br/><br/>
+ <div id="page" style="text-align:center;"><br/><br/><br/>
    <c:forEach begin="1" end="${list.totalPageCount}" var="i">
 	<a href="list.do?cp=${i}">
 		<c:choose>
@@ -332,7 +340,7 @@ function sendLink() {
     
 
 <!-- 최하단 footer -->
-<section class="w3l-footer">
+<section class="w3l-footer" style="margin-bottom:8%;">
   <footer class="footer-28">
     <div class="footer-bg-layer">
       <div class="container py-lg-3">

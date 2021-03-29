@@ -16,10 +16,13 @@
    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" href="assets/plugins/toastr/css/toastr.min.css">
    <link rel="stylesheet" href="assets/css/main.css">
+   <link rel="stylesheet" href="assets/css/message.css">
+   <link rel="stylesheet" href="assets/css/message.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
+	<script src="assets/js/package.js"></script>
 </head>
 
 <body>
@@ -49,7 +52,7 @@
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown1" style="font-family: 'Spoqa Han Sans Neo';" >
                       	<a class="dropdown-item" href="walk/list.do?cp=1" style="font-family: 'Spoqa Han Sans Neo';">산책모집 </a>
-                          <a class="dropdown-item" href="walk/board.do" style="font-family: 'Spoqa Han Sans Neo';">산책후기 </a>
+                          <a class="dropdown-item" href="/board/list.do?board_idx=3" style="font-family: 'Spoqa Han Sans Neo';">산책후기 </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -70,7 +73,7 @@
                           <a class="dropdown-item" href="board/list.do?board_idx=1" style="font-family: 'Spoqa Han Sans Neo';">공지사항</a>
                           <a class="dropdown-item" href="board/list.do?board_idx=2" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
                           <a class="dropdown-item" href="board/list.do?board_idx=3" style="font-family: 'Spoqa Han Sans Neo';">산책후기</a>
-                          <a class="dropdown-item" href="board/list.do?board_idx=4" style="font-family: 'Spoqa Han Sans Neo';">일상이야기</a>
+                          <a class="dropdown-item" href="board/list.do?board_idx=4" style="font-family: 'Spoqa Han Sans Neo';">문의사항</a>
                       </div>
                   </li>
                   <c:choose>
@@ -81,7 +84,7 @@
 	                  </c:when>
 	                  <c:otherwise>
 	                  	  <li class="nav-item">
-		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
+		                      <a class="nav-link" href="/member/logout.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
 		                  </li>
 		                  <li class="nav-item">
 		                      <a class="nav-link" href="/member/mypage.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
@@ -131,16 +134,112 @@
 		          		<a href="/msg/chat.do"><img src="../assets/images/icon/colorMessage.png"></a>
 		          	</c:otherwise>
 		          </c:choose>
-		      </div>
-	          </div>
-          </c:if>
-          
-      </nav>
-  </div>
+		    </div>
+		  </c:if>
+	    </nav>
+	 </div>
+         
 </header>
-  <section class="w3l-main-slider" id="home">
+
+<section class="w3l-main-slider" id="home">
+
+	<c:if test="${!empty recentWalk}">
+		<div style="margin-top:5%; text-align:center;" class="ui info message">
+		  <div style="font-weight:700; font-family: 'Spoqa Han Sans Neo'; font-size:1.2rem;" class="header">
+		    	 지난 산책 이력이 있어요! 후기를 작성해주세요!
+		  </div>
+		  <ul class="list" style="font-weight:300; font-family: 'Spoqa Han Sans Neo'; text-align:center;">
+		    <li>
+		    	<b style="font-size:1rem;font-weight:300; font-family: 'Spoqa Han Sans Neo'; text-align:center;">${recentWalk.walk_date}, ${recentWalk.walk_location}</b>
+		    	<a style="font-weight:300; font-family: 'Spoqa Han Sans Neo'; text-align:center;" onclick="writeReview()"><b>산책이 잘 이루어졌나요?</b></a>
+		    </li>
+		  </ul>
+		</div>
+	</c:if>
+
+<script>
+function writeReview(){
+	var sender_number = '${sender_number}';
+	var walk_idx = '${recentWalk.walk_idx}';
+	Swal.fire({
+	  title: '산책을 함께 하셨나요?',
+	  text: "최근 일주일 내의 산책만 후기 작성이 가능하며, 사진후기를 남겨주시면 산책포인트가 지급됩니다.",
+	  icon: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: '네! 산책했어요!',
+	  cancelButtonText: '아뇨, 못했어요.'
+	}).then((result) => {
+	  if (result.isConfirmed) {
+		  Swal.fire({
+			  title: '한 줄 산책평',
+			  text: "상대방의 산책평 목록에 저장됩니다!",
+			  input: 'text',
+			  inputAttributes: {
+			    autocapitalize: 'off'
+			  },
+			  showCancelButton: true,
+			  confirmButtonText: '작성하기',
+			  cancelButtonText: '취소하기',
+			  showLoaderOnConfirm: true,
+			  preConfirm: (comment) => {
+				  $('#walkEventMsg').empty();
+				  $.ajax({
+						url: "writeReview.do",
+					    type: 'GET',
+					    async: false,
+					    data: {
+					    	walk_idx: walk_idx,
+						    sender_number: sender_number,
+						    content: comment
+						},
+					  success : function(map) {
+						  Swal.fire({
+							  title: '산책 후기 작성하기',
+							  text: "산책 후기 게시판으로 이동합니다.",
+							  icon: 'success',
+							  showCancelButton: true,
+							  confirmButtonColor: '#3085d6',
+							  cancelButtonColor: '#d33',
+							  confirmButtonText: '후기 작성',
+							  cancelButtonText: '작성 취소'
+							}).then((result) => {
+								location.href="/board/list.do?board_idx=3";
+							})
+					  }
+				  });
+			  }
+		  })
+	  }else{
+		  Swal.fire({
+			  title: '산책 매칭 실패',
+			  text: '산책이 이루어지지 않은 이유를 알려주세요!',
+			  input: 'text',
+			  inputAttributes: {
+			    autocapitalize: 'off'
+			  },
+			  showCancelButton: true,
+			  confirmButtonText: '작성하기',
+			  cancelButtonText: '취소하기',
+			  showLoaderOnConfirm: true,
+			  preConfirm: (comment) => {
+				  Swal.fire({
+					  icon: 'success',
+					  title: '작성해주셔서 감사합니다!',
+					  text: '더 좋은 서비스를 위해 노력하겠습니다.'
+				})
+			  }
+		  })
+	  }
+	})
+}
+</script>	
+
+
     <div class="companies20-content">
       <div class="owl-one owl-carousel owl-theme">
+	  		
         <div class="item">
           <li>
             <div class="slider-info banner-view bg bg2">
@@ -405,8 +504,8 @@ function loginCheck(idx){
   <div class="cusrtomer-layout py-5">
       <div class="container py-lg-4 py-md-3 pb-lg-0">
           <div class="heading text-center mx-auto">
-              <h6 class="sub-title text-center">산책 후기</h6>
-              <h3 class="hny-title mb-md-5 mb-4">산책 후기를 들려주세요!</h3>
+              <h6 class="sub-title text-center">가장 최근에 작성된 게시글입니다!</h6>
+              <h3 class="hny-title mb-md-5 mb-4">최근 게시글</h3>
           </div>
           <!-- /grids -->
           <div class="testimonial-width">

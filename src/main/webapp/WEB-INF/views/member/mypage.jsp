@@ -80,7 +80,7 @@
                       <a class="nav-link" href="/member/mypage.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
                   </li>                     
                   <li class="nav-item">
-                      <a class="nav-link" href="/" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
+                      <a class="nav-link" href="/member/logout.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
                   </li>                    
               </ul>
           </div>
@@ -146,7 +146,7 @@
               <p>
 				<button onclick="location.href='mypageupdate.do'"class="btn btn-primary mt-4">수정</button >
 				<button onclick="location.href='../msg/chat.do?member_number=${login.member_number}'"class="btn btn-primary mt-4">메세지</button >
-				
+				<button onclick="location.href='../likeList.do'"class="btn btn-primary mt-4">찜한목록</button >
 			 </p>
 			
 			 <br>

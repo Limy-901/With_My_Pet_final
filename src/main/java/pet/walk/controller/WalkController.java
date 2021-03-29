@@ -122,20 +122,7 @@ public class WalkController {
 		}
 	}
 	
-	// 산책 게시글 수정 (페이지 이동)
-	@GetMapping("update.do")
-	public ModelAndView update(HttpSession session, long idx) {
-		Walk dto = walkService.getWalk(idx);
-		Hashtable<String,Object> map = new Hashtable<String,Object>();
-		MemberVO vo = (MemberVO) session.getAttribute("login");
-		Hashtable<String, Object> memberData = walkService.getMemData(vo.getMember_number());
-		MypagePetVO pet = walkService.getCmtPetData(vo.getMember_number());
-		map.put("content",map);
-		map.put("memberData",memberData);
-		map.put("pet",pet);
-		ModelAndView mv = new ModelAndView("walk/walkpost","map",map);
-		return mv;
-	}
+
 	
 	// 산책 게시글 수정 (내용 수정)
 	@PostMapping("update.do")
@@ -162,6 +149,30 @@ public class WalkController {
 		return map;
 	}
 	
+	// 산책 게시글 수정 (페이지 이동)
+	@GetMapping("update.do")
+	public ModelAndView update(HttpSession session, long idx) {
+		Hashtable<String,Object> map = new Hashtable<String,Object>();
+		MemberVO vo = (MemberVO) session.getAttribute("login");
+		Walk dto = walkService.getWalk(idx);
+		// 날짜 + 시간 가공
+		Date origin = dto.getWalk_date();
+		DateFormat dayForm = new SimpleDateFormat("yyyy년 MM월 dd일");
+		DateFormat timeForm = new SimpleDateFormat("a hh시 mm분");
+		String day = dayForm.format(origin);
+		String time = timeForm.format(origin);
+		Hashtable<String, Object> memberData = walkService.getMemData(vo.getMember_number());
+		MypagePetVO pet = walkService.getCmtPetData(vo.getMember_number());
+		map.put("day",day);
+		map.put("time",time);
+		map.put("dto",dto);
+		map.put("memberData",memberData);
+		map.put("pet",pet);
+		log.info("##################뽑힘"+map.get("dto"));
+		ModelAndView mv = new ModelAndView("walk/walkUpdate","content",map);
+		return mv;
+	}
+	
 	// 산책 게시글 구체적으로 보기
 	@RequestMapping("blog.do")
 	public ModelAndView walkblog(HttpSession session, HttpServletRequest request, long idx) {
@@ -177,15 +188,17 @@ public class WalkController {
 		// 멤버 + 반려동물 정보
 		Hashtable<String, Object> memberData = walkService.getMemData(dto.getMember_number());
 		MypagePetVO pet = walkService.getCmtPetData(dto.getMember_number());
-		long likeToggle = walkService.checkLikeToggle(idx, vo.getMember_number());
+		if(vo != null) {
+			long likeToggle = walkService.checkLikeToggle(idx, vo.getMember_number());
+			if (likeToggle != 0) {
+				map.put("likeToggle",likeToggle);
+			}
+		}
 		map.put("day",day);
 		map.put("time",time);
 		map.put("dto",dto);
 		map.put("memberData",memberData);
 		map.put("pet",pet);
-		if (likeToggle != 0) {
-			map.put("likeToggle",likeToggle);
-		}
 		ModelAndView mv = new ModelAndView("walk/walkblog","content",map);
 		return mv;
 	}
@@ -194,8 +207,7 @@ public class WalkController {
 	@GetMapping(value="like.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public @ResponseBody int like(Long walk_idx, HttpSession session) {
 		MemberVO memVo = (MemberVO)session.getAttribute("login");
-		joinVo vo = new joinVo(walk_idx,memVo.getMember_number());
-		walkService.addHeart(vo);
+		walkService.addHeart(walk_idx,memVo.getMember_number());
 		int likeCount = walkService.getWalkLike(walk_idx);
 		return likeCount;
 	}
@@ -204,8 +216,7 @@ public class WalkController {
 	@GetMapping(value="deleteLike.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public @ResponseBody int deleteLike(Long walk_idx, HttpSession session) {
 		MemberVO memVo = (MemberVO)session.getAttribute("login");
-		joinVo vo = new joinVo(walk_idx,memVo.getMember_number());
-		walkService.deleteHeart(vo);
+		walkService.deleteHeart(walk_idx,memVo.getMember_number());
 		int likeCount = walkService.getWalkLike(walk_idx);
 		return likeCount;
 	}
@@ -213,16 +224,19 @@ public class WalkController {
 	// 산책 참여 수락
 	@GetMapping(value="join.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public @ResponseBody CmtVo join(Long joinIdx, Long joinWalkIdx, HttpServletResponse response) {
+		// 인덱스 번호로 회원번호 찾기
 		long memberNo = walkService.selectByCmtIdx(joinIdx);
 		joinVo vo = new joinVo(joinWalkIdx,memberNo);
+		// 해당 정보로 참가 insert (성공 여부 확인함)
 		boolean flag = walkService.insertWalkJoin(vo,joinIdx);
 		if(flag) {
+			// 새로운 참여정보를 추가하여 리스트 갱신 후 다시 View로 데이터 전송 (Ajax 연동)
 			CmtVo allCmts = walkService.getWalkCmt(joinWalkIdx);
 			return allCmts; 
 		}else return null;
 	}
 
-	// 산책 정보 검색
+	// 검색타입 + 키워드로 산책 정보 검색
 	@GetMapping(value="search.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public @ResponseBody WalkListResult search(String keyword, String searchType) {
 		WalkListResult list = walkService.getListS(1,10,searchType,keyword);
