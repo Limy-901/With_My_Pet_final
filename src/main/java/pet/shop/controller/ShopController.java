@@ -146,9 +146,9 @@ public class ShopController {
 	//상품 상세페이지1
  	@GetMapping("/productDes")
 	public ModelAndView productDes(HttpSession session, @RequestParam long catgo_code,
-			@RequestParam long review_number, Option option, long product_code) {
+			@RequestParam long review_number, Option option, long product_code, Product product) {
 		log.info("##"+review_number+catgo_code+product_code);
-		Product list = service.listS(catgo_code);
+		Product list = service.listS(product);
 		MypagePetVO mpvo = (MypagePetVO) session.getAttribute("petMypage");
 		log.info("mpvo 들어옴: "+mpvo);
 		ArrayList<Review> reviewCon = service.listReviewS(review_number);
@@ -174,10 +174,10 @@ public class ShopController {
  	
  	//상품 상세페이지2
 	@RequestMapping("/productDes21")
-	public ModelAndView productDes21(HttpSession session, @RequestParam long catgo_code,@RequestParam long review_number
+	public ModelAndView productDes21(HttpSession session, Product product, @RequestParam long catgo_code,@RequestParam long review_number
 			, Option option, long product_code) {
 		log.info("@@"+review_number+catgo_code+product_code);
-		Product list = service.listS(catgo_code);
+		Product list = service.listS(product);
 		List<Review> reviewCon = service.listReviewS(review_number);
 		ArrayList<Option> optionlist= service.listOption(product_code);
 		session.setAttribute("list", list);

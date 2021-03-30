@@ -28,11 +28,12 @@
    <!-- 마이페이지 본인정보 확인 -->
    <select id="mypage" resultType="pet.member.vo.MemberVO" parameterType="member">
       SELECT 
+      member_number,
 	  member_email,
 	  member_name,
 	  member_address
       FROM MEMBER
-      WHERE member_email = #{member_email}
+      WHERE member_number = #{member_number}
    </select>
    
    <!-- follow 마이페이지 정보 확인 -->

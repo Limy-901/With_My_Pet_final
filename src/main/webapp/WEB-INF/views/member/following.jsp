@@ -147,7 +147,7 @@
           <h4>내 프로필</h4>
         </div>
         <div class="col-lg-3 col-6 stats_info counter_grid1" button type="button"  onclick="location.href =  '/member/mypost.do';">
-          <p class="counter">80</p>
+          <p class="counter">POST</p>
           <h4>게시물</h4>
         </div>
         <div class="col-lg-3 col-6 stats_info counter_grid mt-lg-0 mt-5" button type="button" onclick="location.href =  '/member/follower.do';">

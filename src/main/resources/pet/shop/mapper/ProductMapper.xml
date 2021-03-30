@@ -28,9 +28,12 @@
 		insert into PRODUCT values(PRODUCT_SEQ.nextval, #{catgo_code}, #{product_name}, 
 		#{product_price}, #{product_content}, #{product_tag}, SYSDATE, #{product_like}, #{product_image}, #{review_number})
 	</insert>
-	<select id="listProduct" resultType="Product" parameterType="long">
+	<select id="listProduct" resultType="Product" parameterType="Product">
 	   <!--  select * from PRODUCT where CATGO_CODE= #{catgo_code}-->
 	   select * from product where catgo_code=#{catgo_code} and product_code=#{product_code}
+	</select>
+	<select id="listProduct3" resultType="Product" parameterType="long">
+		select * from product where catgo_code=#{catgo_code} 
 	</select>
 	<select id="listCatgo" resultType="Category" parameterType="long">
 		select * from CATGO where CATGO_CODE= #{catgo_code} 
@@ -55,7 +58,7 @@
 		)
 	</insert>
 	<select id="listOption" parameterType="long" resultType="Option">
-		select * from product_option natural join product where product_code=#{product_code}
+		select * from product where product_code=#{product_code}
 	</select>
 	<insert id="insertOption" parameterType="Option">
 		insert into product_option values(

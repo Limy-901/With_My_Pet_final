@@ -15,7 +15,7 @@ public interface MemberService {
    public MemberVO login(MemberVO lvo);
    
    //���������� �������� Ȯ��
-   public MemberVO mypage(MemberVO lvo);
+   public MemberVO mypage(int vo);
    
    //�ȷο� ���������� ����Ȯ�� ����
    public MemberVO followmypage(int lvo);

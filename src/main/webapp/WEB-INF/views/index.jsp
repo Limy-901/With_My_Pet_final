@@ -248,8 +248,8 @@ function writeReview(){
                   <div class="banner-info-bg text-left">
                     <h5>산 책</h5 style="font-family: 'Spoqa Han Sans Neo'; color:white;"><br/>
                     <p>함께하는 산책문화를 만들어요.</p>
-                    <a class="btn btn-style btn-white mt-sm-5 mt-4 mr-2" href="walklist.do">산책모집</a>
-                    <a class="btn btn-style border-btn mt-sm-5 mt-4" href="walkboard.do" style="color:#ffb446;">산책후기</a>
+                    <a class="btn btn-style btn-white mt-sm-5 mt-4 mr-2" href="walk/list.do?cp=1">산책모집</a>
+                    <a class="btn btn-style border-btn mt-sm-5 mt-4" href="/board/list.do?board_idx=3" style="color:#ffb446;">산책후기</a>
                   </div>
                 </div>
               </div>
@@ -400,7 +400,7 @@ function loginCheck(idx){
                       <div class="w3l-pricing-7-top">
                       	<img src="assets/images/g11.jpg"
                       	onmouseover="this.src='assets/images/g11.jpg'"
-                      	onmouseout="this.src='assets/images/g11-1.jpg'"
+                      	onmouseout="this.src='assets/images/g11-1.jpg'" style="max-width: 60%;"
                       	><br/><br/>
                           <h6 class="one-light">네오프렌 한복</h6>
                          
@@ -422,7 +422,7 @@ function loginCheck(idx){
                               </ul>
                           </div>
                           <div class="buy-button">
-                              <a class="popup btn btn-style btn-primary" href="#buy">쇼핑하러 Go!</a>
+                              <a class="popup btn btn-style btn-primary" href="productDes?catgo_code=5&review_number=0&product_code=4">쇼핑하러 Go!</a>
                           </div>
                       </div>
                   </div>
@@ -433,7 +433,7 @@ function loginCheck(idx){
                       <div class="w3l-pricing-7-top">
                       <img src="assets/images/g11.jpg"
                       	onmouseover="this.src='assets/images/g16.jpg'"
-                      	onmouseout="this.src='assets/images/g16-1.jpg'"
+                      	onmouseout="this.src='assets/images/g16-1.jpg'" style="max-width: 60%;"
                       	><br/><br/>
                           <h5>조회수 1위</h5>
                           <h6>멜빵치마</h6>
@@ -465,8 +465,8 @@ function loginCheck(idx){
                   <div class="w3l-pricing-7">
                       <div class="w3l-pricing-7-top">
                       	<img src="assets/images/g11.jpg"
-                      	onmouseover="this.src='assets/images/g14-1.jpg'"
-                      	onmouseout="this.src='assets/images/g14.jpg'"
+                      	onmouseover="this.src='assets/images/g14-1.jpg'" 
+                      	onmouseout="this.src='assets/images/g14.jpg'" style="max-width: 60%;"
                       	><br/><br/>
                           <h6 class="one-light">와플 실내티</h6>
                          

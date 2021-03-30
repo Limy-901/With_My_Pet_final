@@ -107,14 +107,9 @@
                         
                         <c:forEach items="${result.list}" var="list" varStatus="status">
 	                        <div class="media border-bottom-1 p-t-15" style="text-align:center;">
-	                        <c:choose>
-	                        <c:when test="${!empty result.memberPic[status.index]}">
+	                        
 	                            <img class="mr-3 rounded-circle" style="width:50px" src="<c:url value="/img/${result.memberPic[status.index]}"/>" alt="">
-	                        </c:when>
-	                        <c:otherwise>
-	                        	<img class="mr-3 rounded-circle" style="width:50px" src="" alt="">
-	                        </c:otherwise>
-	                        </c:choose>
+	                        
 	                            <div class="media-body">
 	                                <div class="row">
 	                                    <div class="col-lg-2">
@@ -171,11 +166,9 @@ function point(member_number){
 					  point: comment
 				  },
 				  success : function(list){
-					  alert(list.list.length);
 					  $('#memList').empty();                             
 					  var html = '';
 					  for(var i=0; i<list.list.length; i++){
-						  alert(list.list);
 						  html += '<div class="media border-bottom-1 p-t-15" style="text-align:center;">';
 						  html += '<img class="mr-3 rounded-circle" style="width:50px" src="<c:url value="/img/'+list.memberPic[i]+'"/>" alt="">';
 						  html += '<div class="media-body"><div class="row"><div class="col-lg-2">';
@@ -209,26 +202,8 @@ function point(member_number){
 		  }
 	});
 }
-</script>
-	                                
+</script>      
             <br/>
-            
-            <!-- 페이지네이션 -->
-            <!-- 
-			<nav style="margin:auto; display:flex;">
-			    <ul class="pagination"  align="center" style="margin:auto; display:flex;">
-			        <li class="page-item disabled"><a class="page-link" href="#">Previous</a>
-			        </li>
-			        <li class="page-item"><a class="page-link" href="#">1</a>
-			        </li>
-			        <li class="page-item active"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-			        </li>
-			        <li class="page-item"><a class="page-link" href="#">3</a>
-			        </li>
-			        <li class="page-item"><a class="page-link" href="#">Next</a>
-			        </li>
-			    </ul>
-			</nav><br/><br/> -->
         </div>
     </div>
 </div>
@@ -327,7 +302,7 @@ function point(member_number){
 				  for(var i=0; i<list.list.length; i++){
 					  alert("안녕"+list.list[i].member_name);
 					  html += "<div class='media border-bottom-1 p-t-15' style='text-align:center;'>";
-					  html += "<img class='mr-3 rounded-circle' src='"+list.memberPic[i]+"' alt=''>";
+					  html += '<img class="mr-3 rounded-circle" style="width:50px" src="<c:url value="/img/'+list.memberPic[i]+'"/>" alt="">';
 					  html += "<div class='media-body'><div class='row'><div class='col-lg-2'>";
 					  html += "<h5 style='margin-top:2%; margin-bottom:2%;margin:auto;'>"+list.list[i].member_name+"</h5>";
 					  html += "<p style='margin-bottom:2%;margin:auto;'>"+list.list[i].member_email+"</p></div>";

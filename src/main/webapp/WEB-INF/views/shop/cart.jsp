@@ -10,6 +10,13 @@
       <!-- google fonts -->  
       <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
       <!-- google fonts --> 
+       <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+   
+    <script src="../assets/js/jquery-3.3.1.min.js"></script>
+      <!-- sweetAlert -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+      
+      <!-- sweetAlert -->
       <!-- Template CSS -->
       <link rel="stylesheet" href="../assets/css/cart.css">
       <!-- Template CSS -->
@@ -18,7 +25,7 @@
       <!--header-->
       <header id="site-header" class="fixed-top">
          <div class="container">
-            <nav class="navbar navbar-expand-lg stroke">
+            <nav class="navbar navbar-expand-lg stroke" >
                <a href="../"><img src="assets/images/logos/logo-yellow.png" class="img-curve img-fluid" alt="" /></a>
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
                   data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -26,8 +33,8 @@
                <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
                <span class="navbar-toggler-icon fa icon-close fa-times"></span>
                </button>
-               <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                  <ul class="navbar-nav ml-auto" style="margin-right: 0.5%;">
+               <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="margin-right: 7%;">
+                  <ul class="navbar-nav ml-auto">
                      <li class="nav-item">
                         <a class="nav-link" href="../">Home <span class="sr-only">(current)</span></a>
                      </li>
@@ -38,6 +45,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                            <a class="dropdown-item" href="walklist.do">산책모집 </a>
+                           <a class="dropdown-item" href="walkboard.do">산책후기 </a>
                         </div>
                      </li>
                      <li class="nav-item dropdown">
@@ -55,49 +63,35 @@
                         커뮤니티 <span class="fa fa-angle-down"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                           <a class="dropdown-item" href="board/list.do?board_idx=1">공지사항</a>
+                             <a class="dropdown-item" href="board/list.do?board_idx=1">공지사항</a>
                           <a class="dropdown-item" href="board/list.do?board_idx=2">일상이야기</a>
                           <a class="dropdown-item" href="board/list.do?board_idx=3">산책후기</a>
                           <a class="dropdown-item" href="board/list.do?board_idx=4">일상이야기</a>
                         </div>
                      </li>
                       <c:choose>
-                        <c:when test="${empty login.member_name}">
-                           <li class="nav-item">
-                              <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
-                           </li>
-                        </c:when>
-                        <c:otherwise>
-                           <li class="nav-item">
-                              <a class="nav-link" href="/member/logout.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
-                           </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
-                           </li>
-                        </c:otherwise>
-                     </c:choose>
-                     <!-- 관리자일때만 관리자페이지 입장 -->
-                     <c:if test="${login.member_name eq 'admin'}">
-                        <li class="nav-item">
-                           <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
-                        </li>
-                     </c:if>
-                  </ul>
-               </div>
-               <!-- toggle switch for light and dark theme -->
-               <div class="mobile-position">
-                  <nav class="navigation">
-                     <div class="theme-switch-wrapper">
-                        <label class="theme-switch" for="checkbox">
-                           <input type="checkbox" id="checkbox">
-                           <div class="mode-container">
-                              <i class="gg-sun"></i>
-                              <i class="gg-moon"></i>
-                           </div>
-                        </label>
-                     </div>
-                  </nav>
-               </div>
+                  	  <c:when test="${empty login.member_name}">
+		                  <li class="nav-item">
+		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">로그인 </a>
+		                  </li>
+	                  </c:when>
+	                  <c:otherwise>
+	                  	  <li class="nav-item">
+		                      <a class="nav-link" href="/member/logout.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
+		                  </li>
+		                  <li class="nav-item">
+		                      <a class="nav-link" href="/member/login.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
+		                  </li>
+	                  </c:otherwise>
+                  </c:choose>
+                  <!-- 관리자일때만 관리자페이지 입장 -->
+                  <c:if test="${login.member_name eq 'admin'}"> 
+	                  <li class="nav-item">
+	                      <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
+	                  </li>
+                  </c:if>
+              </ul>
+          </div>
                <!-- //toggle switch for light and dark theme -->
             </nav>
          </div>
@@ -169,23 +163,31 @@
                   <thead>
                      <tr>
                         <th class="th--1G-vGQPU9O" scope="col" >번호</th>
-                        <th class="th--1G-vGQPU9O" scope="col" width="32%">상품정보</th>
-                        <th class="th--1G-vGQPU9O" scope="col" >상품사진</th>
-                        <th class="th--1G-vGQPU9O" scope="col" width="10%">수량선택</th>
+                        <th class="th--1G-vGQPU9O" scope="col" >상품정보</th>
+                        <th class="th--1G-vGQPU9O" scope="col" width="10%">상품사진</th>
+                        <th class="th--1G-vGQPU9O" scope="col" width="12%">수량선택</th>
                         <th class="th--1G-vGQPU9O" scope="col" width="15%">size선택</th>
-                        <th class="th--1G-vGQPU9O" scope="col" width="16%">주문금액</th>
-                      	<th class="th--1G-vGQPU9O" scope="col" ></th>
+                        <th class="th--1G-vGQPU9O" scope="col" width="15%">주문금액</th>
+                      	<th class="th--1G-vGQPU9O" scope="col" width="15%"></th>
                      </tr>
                   </thead>
                   <tbody>
                      <c:set var="sum" value="0" />
+                     <c:set var="sum" value="0" />
+                     <tr><c:if test="${empty cartLists}">
+                     <td colspan="6" align="center">장바구니에 상품이 없습니다.<td>
+               </c:if></tr>
                      <c:forEach items="${cartLists}" var="cartList" varStatus="status">
+                     
                     <tr class="table_row--2U-tpJvyb0">
+                    
                        <td name="product_code" id="product_code" type="hidden" value="${cartList.product_code}" class="table_cell--275JhdiLLN" >${status.index}</td>
                        <td name="product_content" id="product_content" type="text" value="${cartList.product_content}" class="table_cell--275JhdiLLN" >${cartList.product_content}</td>
                        <td class="table_cell--275JhdiLLN" ><img src="${cartList.product_image}" width=70 height=70 align="center"/></td>
-                       <td name="product_amount" id="product_amount" type="text" value="${cartList.product_amount}" style="
-    						text-align: center;" class="table_cell--275JhdiLLN" >${cartList.product_amount}</td>
+                       <td>
+                       <input id="product_amount<c:out value="${status.index}"/>" value="${cartList.product_amount}" type="number" class="ui selection dropdown" name="product_amount" min="1" max="10"></br>
+                       <a class="button" onclick="a(<c:out value="${status.index}"/>);" style="padding:5px;margin-top:20px;">변경</a>
+                       </td>
                        <td name="product_size" id="product_size" type="text" value="${cartList.product_size}" class="table_cell--275JhdiLLN" >${cartList.product_size}</td>
                        <td name="product_price" id="product_price" type="text" value="${cartList.product_price}" class="table_cell--275JhdiLLN" >${cartList.product_price}</td>
                        <td class="table_cell--275JhdiLLN" type="text" align='center' value="${status.index}"><a href="del?idx=${status.index}"><b>X</b></a></td>
@@ -198,6 +200,35 @@
                         <tr>
                            <th class="table_cell--275JhdiLLN" colspan="7" value="${sum}"></br>주문 총 금액: ${sum}원  </br></th>
                         </tr>
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+                        <script type="text/javascript">
+                        const swalWithBootstrapButtons = Swal.mixin({
+                      	  customClass: {
+                      	    confirmButton: 'btn btn-primary',
+                      	    cancelButton: 'btn btn-default',
+                      	  },
+                      	  buttonsStyling: false
+                     	})
+                        function a(x){
+                        	var product_amount=document.getElementById("product_amount"+x).value;
+                        	swalWithBootstrapButtons.fire({
+                        		showCancelButton: true,
+                        		text :'수량을 변경하시겠습니까?',
+                        		icon :'question',
+                        		focusConfirm: false,
+                        		confirmButtonText :'네',
+                        		cancelButtonText :'아니오',
+                        	}).then((result) => {
+                        		if(result.isConfirmed){
+                        			location.href = "changeQty?index="+x+"&product_amount="+product_amount;
+                        		}else{
+                        			return false;
+                        		}
+                        	})
+                        }
+                        
+                        
+                        </script>
                      </div>
                   </div>
                </table>
@@ -231,8 +262,7 @@
               </div>
             </div>
            </br>
-            <button type="reset" class="popup btn btn-style btn-primary"  style="float: center;" >
-            리스트비우기&nbsp;</button>&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;
             &nbsp;<a href="order?member_number=4"><button type="button" class="popup btn btn-style btn-primary"  style="float: right;" >
             결제하기&nbsp;</button>&nbsp;</a>
             &nbsp;<button type="button" class="popup btn btn-style btn-primary" style="float: left;" onClick="location.href='product?catgo_code=9'">
@@ -266,27 +296,6 @@
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
-  //Main navigation Active Class Add Remove
-    $(".navbar-toggler").on("click", function () {
-      $("header").toggleClass("active");
-    });
-    $(document).on("ready", function () {
-      if ($(window).width() > 991) {
-        $("header").removeClass("active");
-      }
-      $(window).on("resize", function () {
-        if ($(window).width() > 991) {
-          $("header").removeClass("active");
-        }
-      });
-    });
-
-     function getItem(){
-       $("#selectBox option:seleted").text();
-      }
-    	
-    
-    
   </script>
   <!-- /move top -->
 </body>

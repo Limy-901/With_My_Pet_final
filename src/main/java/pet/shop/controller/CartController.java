@@ -44,11 +44,9 @@ public class CartController {
 	//����Ʈ �ҷ�����
 	@GetMapping("/del")
 	public String cart(Cart cart,HttpSession session,int idx) throws Exception {
-		log.info("##����"+idx);
 		ArrayList<Cart> cartSession = (ArrayList<Cart>)session.getAttribute("cartLists");
 		cartSession.remove(idx);
 		session.setAttribute("cartLists", cartSession);
-		//service.deleteCartS(product_code);
 		return "/shop/cart";
 	}
 	
@@ -86,7 +84,7 @@ public class CartController {
 				ArrayList<Product> viewlists = new ArrayList<Product>();
 				for(Cart list : cartLists) {
 					long cart_product_code = list.getProduct_code();
-					Product product = service2.listS(cart_product_code);
+					Product product = service2.listS2(cart_product_code);
 					viewlists.add(product);
 				}
 				session.setAttribute("viewlists", viewlists);
@@ -96,10 +94,33 @@ public class CartController {
 			}
 		}
 	
+	@RequestMapping("/changeQty")
+	public String changeQty(int index,  HttpSession session, long product_amount) {
+		ArrayList<Cart> cart = (ArrayList<Cart>) session.getAttribute("cartLists");
+		for(Cart one: cart) {
+			one = cart.get(index);
+			log.info("여기까지 오네1");
+			if(one !=null ) {
+				long product_code = one.getProduct_code();
+				one.setProduct_amount(product_amount);
+				one.setProduct_code(product_code);
+				log.info("product_amount 오네>>>>>>> " + product_amount + product_code);
+				session.setAttribute("cart", one);
+			}else {
+				long product_code = one.getProduct_code();
+				one.setProduct_amount(product_amount);
+				one.setProduct_code(product_code);
+				session.setAttribute("cart", one);
+				log.info("여기까지 오네3");
+			}
+		}
+		
+		return "redirect:cart";
+	}
 	
 	@GetMapping("/order")
 	public String order(@RequestParam int member_number) throws Exception {
-		log.info("##���� get()���� ȣ��");
+		log.info("##order get()");
 		ArrayList<Pay> pay = service.selectPay(member_number);
 		return "/shop/order";
 	}
@@ -109,17 +130,14 @@ public class CartController {
 	public ModelAndView order(HttpSession session, String buyer_name, long buyer_code, String name, 
 			String buyer_addr, String buyer_email, long amout
 			) throws Exception{
-			log.info("buyer_name: "+buyer_name+"name: "+name);
 			OrderSu ordersu = new OrderSu();
 			ordersu.setProduct_code(buyer_code);
 			ordersu.setOrdersu_name(buyer_name);
 			ordersu.setOrdersu_addr(buyer_addr);
 			ordersu.setOrdersu_email(buyer_email);
-			ordersu.setProduct_price(amout);
-			ordersu.setOrder_code(buyer_code);
 			service.insertOrderSu(ordersu);
 			session.setAttribute("ordersu", ordersu);
-			log.info("cartController ordersu:"+ordersu);
+			log.info("ordersu:"+ordersu);
 			ModelAndView mv = new ModelAndView("/shop/order","ordersu",ordersu);
 			return mv;
 			}
@@ -128,7 +146,6 @@ public class CartController {
 	public ModelAndView orderSu(HttpSession session, int member_number) throws Exception{
 		ArrayList<Pay> payUpdate = service.selectPay(member_number);
 		session.setAttribute("pay", payUpdate);
-		log.info("post() pay: "+payUpdate);
 		ModelAndView mv = new ModelAndView("/shop/orderSu","pay",payUpdate);
 		return mv;		
 		}

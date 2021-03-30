@@ -156,7 +156,21 @@
 			<span style='font-size:12px;'>[답변]</span>
 	      <a href="content.do?post_idx=${board.post_idx}&post_order=${board.post_order}">${board.post_subject}</a>
 	      
+	      
+	       <c:forEach items="${listResult.tagsList}" var="tl">
+		 	  <c:if test="${tl.post_idx eq board.post_idx}"> 
+					<c:forEach items="${tl.post_tag}" var="tag">
+						<div class="listTag">${tag}</div>
+					
+					</c:forEach>
+			  </c:if>
+			</c:forEach>
+	      
+	      
 		 </c:when>
+		 
+		 
+		 
 		 
 		 <c:otherwise>
 
@@ -193,7 +207,7 @@
 
 <!-- 메뉴바 시작-->
 <div class="menubar">
-
+<img src="../assets/images/logos/doggy.png" class="corg" alt="" />
 <br>
 <br>
 <div class="boardtitle">

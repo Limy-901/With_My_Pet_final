@@ -172,14 +172,7 @@
 	   <div class="img-circle img-circle-sm">
           <img style="min-width:25px;" src="../assets/images/foot(35x35).jpg" class="mr-3" alt="...">
        </div>
-       <p style="font-family: 'Spoqa Han Sans Neo';" class="name"><a href="../msg/chat.do?member_number=${content.dto.member_number}" 
-       style="font-family: 'Spoqa Han Sans Neo';">
-       <b style="font-family: 'Spoqa Han Sans Neo';">${content.dto.walk_writer}</b>
-       
-       
-       </a>님이 
-       <b style="font-family: 'Spoqa Han Sans Neo';">${content.dto.walk_location}
-       </b> 에서 산책할 친구를 기다리고 있어요!</p>
+       <p class="name"><a href="../member/viewmypage.do?member_number=${content.dto.member_number}" style="font-family: 'Spoqa Han Sans Neo';"><b>${content.dto.walk_writer}</b></a>님이 <b>${content.dto.walk_location}</b> 에서 산책할 친구를 기다리고 있어요!</p>
     </div>
     <div class="blog-title">
       <h1 style="color:#FFB446;font-family: 'Spoqa Han Sans Neo';"><a href="#" style="font-family: 'Spoqa Han Sans Neo';" >${content.dto.walk_subject}</a></h1>
@@ -607,8 +600,7 @@ function insertCheck(walk_idx){
 		    walk_idx: walk_idx
 		},
 	  success : function(data){
-		if(data == ''){
-			alert("이미 신청했습니다!");
+		if(data.length() == 0){
 			window.location.href = "#applyCount";
 		}else{
 			  $('#joinList').empty();

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <!doctype html>
 <html lang="en">
@@ -81,7 +81,7 @@
                       <a class="nav-link" href="/member/mypage.do" style="font-family: 'Spoqa Han Sans Neo';">마이페이지 </a>
                   </li>                     
                   <li class="nav-item">
-                      <a class="nav-link" href="/member/logout.do" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
+                      <a class="nav-link" href="/" style="font-family: 'Spoqa Han Sans Neo';">로그아웃 </a>
                   </li>                    
               </ul>
           </div>
@@ -118,35 +118,56 @@
           </div>
           <h4>내 프로필</h4>
         </div>
-        <div class="col-lg-3 col-6 stats_info counter_grid1" button type="button"  onclick="location.href =  '/member/mypost.do';">
-          <p class="counter">80</p>
+        <div class="col-lg-3 col-6 stats_info counter_grid1" button type="button"  onclick="location.href =  '/member/mypost.do?member_number=';">
+          <p class="counter">POST</p>
           <h4>게시물</h4>
         </div>
         <div class="col-lg-3 col-6 stats_info counter_grid mt-lg-0 mt-5" button type="button" onclick="location.href =  '/member/follower.do';">
-          <p class="counter">812</p>
+          <p class="counter">${fn:length(followerMembervo1) }</p>
           <h4>팔로워</h4>
         </div>
         <div class="col-lg-3 col-6 stats_info counter_grid mt-lg-0 mt-5" button type="button" onclick="location.href =  '/member/following.do';">
-          <p class="counter">90</p>
+          <p class="counter">${fn:length(followingMembervo1) }</p>
           <h4>팔로잉</h4>
+          
         </div>
       </div>
     </div>
   </section>
 <br><br>
+
+
+
+<script>
+	function addFollow(){
+		$.ajax({
+			  url: "addfollow.do",
+			  type: 'POST',
+			  data: { 
+				  member_number : '${login.member_number}',
+				  target_member_number :'${viewMypage.member_number}'
+				  
+				  },
+			  success : function(map){
+				  
+				 alert ("팔로우 완료!");
+			  }
+		});
+	}
+	</script>
+	
 <section class="w3l-team-main">
  <center>
 	<div style="float:left; margin-left:360px;">
 		<div class="column position-relative">
+		<input id="memno" type="hidden" value="${viewMypage.member_number}">
 			 <img src="<c:url value="/img/${mpvo.pet_fname}"/>" class="img-fluid img-thumbnail"/></a>
             </div>
             <div class="column">
               <br>
-              <h3 class="name-pos"><a href="#url">${login.member_name}</a></h3>
+              <h3 class="name-pos"><a href="#url">${mypage.member_name}</a></h3>
               <p>
-				<a href="mypageupdate.do" class="btn btn-primary mt-4">수정</a>
-				&nbsp;&nbsp;
-				<button onclick="location.href='messge.jsp'"class="btn btn-primary mt-4">메세지</button >
+				<button onclick="addFollow()" class="btn btn-primary mt-4">팔로우</button >
 				
 			 </p>
 			
@@ -168,11 +189,11 @@
          <h1>회원정보</h1>
          <br>
           <br><br>
-          ${login.member_email}
+          ${viewMypage.member_email}
           <br><br>
-          ${login.member_name}
+          ${viewMypage.member_name}
           <br><br>
-          ${login.member_address}
+          ${viewMypage.member_address}
           <br><br>
   	 </center>
  </div>

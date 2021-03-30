@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.log4j.Log4j;
+import oracle.net.aso.t;
 import pet.shop.mapper.ProductMapper;
 import pet.shop.domain.Cart;
 import pet.shop.domain.Category;
@@ -42,10 +43,12 @@ public class ProductServiceImpl implements ProductService {
 		return new ProductListResult(cp, totalCount, ps, list);
 	}
 	@Override
-	public Product listS(long catgo_code) {
-		Product p = productMapper.listProduct(catgo_code);
-		if(p !=null) log.info("널아님 catgo_code: "+catgo_code);
-		return productMapper.listProduct(catgo_code);
+	public Product listS(Product product) {
+		Product p = productMapper.listProduct(product);
+		long catgo_code = p.getCatgo_code();
+		long product_code = p.getProduct_code();
+		if(p !=null) log.info("널아님 catgo_code: "+catgo_code+product_code);
+		return p;
 	}
 
 	@Override
@@ -89,7 +92,7 @@ public class ProductServiceImpl implements ProductService {
 		log.info("option으로 들어옴: "+product_code);
 		ArrayList<Option> op = productMapper.listOption(product_code);
 		log.info("option : "+ op);
-		return productMapper.listOption(product_code);
+		return op;
 	}
 
 	@Override
@@ -113,6 +116,15 @@ public class ProductServiceImpl implements ProductService {
 		Product product = productMapper.contentProduct(catgo_code);
 		log.info("product 들어왔다: " +product);
 		return productMapper.contentProduct(catgo_code);
+	}
+
+	@Override
+	public Product listS2(long cart_product_code) {
+		Product p = productMapper.listProduct3(cart_product_code);
+		long catgo_code = p.getCatgo_code();
+		long product_code = p.getProduct_code();
+		if(p !=null) log.info("널아님 catgo_code: "+catgo_code+product_code);
+		return p;
 	}
 
 	

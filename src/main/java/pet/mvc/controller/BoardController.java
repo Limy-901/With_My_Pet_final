@@ -239,13 +239,18 @@ public class BoardController {
 	
 	@PostMapping("write.do")
 	public String upload(Tag post_tag, Board board) {//라우팅에러는 보드엔티티의 태그가 놀고있기때문인듯
-
-		service.write(board);
-		service.writeTag(post_tag);
-
-		return "redirect:list.do";
+		try{
+			service.write(board);
+			if(post_tag!=null) {
+				service.writeTag(post_tag);
+			}
+		}catch(NullPointerException e) {
+			log.info("익셉션");
+		}
+			return "redirect:list.do";
+		
+	
 	}
-
 
 
 	

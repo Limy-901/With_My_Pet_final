@@ -15,7 +15,8 @@ import pet.shop.domain.Review;
 public interface ProductService {
 	ProductListResult getProductListResult(int cp, int ps);
 	ProductListResult getProductListResult(String catgo, String keyword, int cp, int ps);
-	Product listS(long catgo_code);
+	Product listS(Product cart_product_code);
+	Product listS2(long cart_product_code);
 	void insertS(Product product);
 	List<Category> listCatgoS(long catgo_code);
 	Review contentReviewS(long review_number);

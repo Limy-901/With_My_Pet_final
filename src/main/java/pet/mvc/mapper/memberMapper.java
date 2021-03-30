@@ -8,7 +8,7 @@ public interface memberMapper {
 	void join(MemberVO member);
 	int mailChk(String email);
 	MemberVO login(MemberVO member);
-	MemberVO mypage(MemberVO member);
+	MemberVO mypage(int vo);
 	MemberVO followmypage(int member);
 	void memberUpdateDo(MemberVO member);
 	MemberVO emailFind(@Param("member_address")String member_address, @Param("member_name")String member_name);

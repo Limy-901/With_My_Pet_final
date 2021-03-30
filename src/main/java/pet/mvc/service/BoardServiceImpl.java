@@ -299,12 +299,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void editTag(Tag post_tag) {
 		
-		
 		String tagStr = post_tag.getPost_tag();	
 		log.info("tagStr$$$$"+tagStr);
 		List<String> list = new ArrayList<String>();
 		String[] splitStr = tagStr.split(",");	
-
 		for(int i=0; i<splitStr.length; i++) {
 			list.add(splitStr[i]);
 			log.info("setPost_tag"+list.get(i));

@@ -123,13 +123,13 @@
          <div class="d-grid-1">
             <div class="text">
                <c:if test="${empty productDes}">
-                  있음
+                  없음
                </c:if>
                <ul class="tag">
                   <li class="design">${productDes.product_tag}</li>
                </ul>
-               <h3 class="hny-title mt-3">겨울 포근 조끼  </h3>
-               <h4>&nbsp;</h4>
+               <h3 class="hny-title mt-3">${productDes.product_name}  </h3> 
+               
                <table>
                   <tr>
                      <td>
@@ -141,14 +141,9 @@
                            </ol>
                            <div class="carousel-inner" >
                               <div class="carousel-item active" >
-                                 <img class="d-block w-100" src="assets/images/g10-6.jpg" height="400px" alt="First slide">
+                                 <img class="d-block w-100" src="../assets/images/${productDes.product_image}" height="400px" alt="First slide">
                               </div>
-                              <div class="carousel-item" >
-                                 <img class="d-block w-100" src="assets/images/g10-15.jpg" height="400px" alt="Second slide">
-                              </div>
-                              <div class="carousel-item" >
-                                 <img class="d-block w-100" src="assets/images/g10-1.jpg" height="400px" alt="Third slide">
-                              </div>
+                              
                            </div>
                         </div>
                </table>
@@ -160,10 +155,7 @@
                      <input name="product_content" type="hidden" value="${productDes.product_content}">
                      <input name="product_image" type="hidden" value="assets/images/${productDes.product_image}">
                      <table class="table" >
-                        <tr>
-                           <td>상품명</td>
-                           <td>${productDes.product_name}</td>
-                        </tr>
+                        
                         <tr>
                            <td>가격</td>
                            <td>${productDes.product_price}</td>

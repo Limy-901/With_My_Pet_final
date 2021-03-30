@@ -135,7 +135,7 @@
   </section>
 <br><br>
 <section class="w3l-team-main">
- <center>
+ <center style="font-family: 'Spoqa Han Sans Neo';">
 	<div style="float:left; margin-left:360px;">
 		<div class="column position-relative">
 			 <img src="<c:url value="/img/${mpvo.pet_fname}"/>" class="img-fluid img-thumbnail"/></a>
@@ -163,7 +163,7 @@
 </section>
          <br><br><br>
      <div style="width:400px; float:right; margin-right:440px; margin-top:-40px">
-		<center>
+		<center style="font-family: 'Spoqa Han Sans Neo';">
          <h1>회원정보</h1>
          <br>
           <br><br>
@@ -177,7 +177,7 @@
  </div>
  <br><br><br><br><br><br><br><br><br><br><br><br><br>
  <div style="width:400px; hight:400px; margin-right:440px; float:right;">
- 	<center>
+ 	<center style="font-family: 'Spoqa Han Sans Neo';">
          <h1>강아지정보</h1>
 		<br>	 	
          <form action="mypet.do" method="post" enctype="multipart/form-data">

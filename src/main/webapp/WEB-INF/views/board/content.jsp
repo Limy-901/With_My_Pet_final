@@ -97,7 +97,7 @@
 		                  </li>
 	                  </c:otherwise>
                   </c:choose>
-                  <!-- 관리자일때만 관리자페이지 입장 -->
+                  <!-- 일때만 페이지 입장 -->
                   <c:if test="${login.member_name eq 'admin'}"> 
 	                  <li class="nav-item">
 	                      <a class="nav-link" href="/admin/index.do" style="font-family: 'Spoqa Han Sans Neo';">관 리 </a>
@@ -177,9 +177,6 @@
 </div>
 
 <div class="cont">
-
-<div class="content">${board.content}</div>  
-
 <div class="drop">
 	<div class="hambergurMenu">
 		<div class="hamburger"></div>
@@ -191,11 +188,14 @@
   <a href="javascript:sendLink()">공유하기  <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" style="width: 20px;padding-bottom:5px;">
   </a>
   <c:if test="${not empty login}"><a href='rewrite.do?post_idx=${board.post_idx}&post_order=${board.post_order}' style="color: black;">답글작성</a></c:if>
-  <c:if test="${login.member_number eq board.member_number or login.member_name eq '관리자'}">
+  <c:if test="${login.member_number eq board.member_number or login.member_name eq 'admin'}">
 <a href='modify.do?post_idx=${board.post_idx}'>수정</a>
 <a href='delete.do?post_idx=${board.post_idx}'>삭제</a></c:if>
   </div>
 </div>
+<div class="content">${board.content}</div>  
+
+
     
 <script>
 function clickLike(member_name){
@@ -385,7 +385,7 @@ tryReply.submit();
 	<div class="replysecondsec" id="contentId">${cmt.cmt_content}</div>
 	<c:if test="${not empty login}"><div class="writecomment" onclick="writeReplyButton(${cmt.comment_idx}, '${cmt.cmt_writer}', 
 	${status.index}, '${login.member_name}',${login.member_number},${board.post_idx}, ${board.board_idx})">댓글쓰기</div></c:if>
-	<c:if test="${login.member_number eq cmt.member_number or login.member_name eq '관리자'}">
+	<c:if test="${login.member_number eq cmt.member_number or login.member_name eq 'admin'}">
 	<div class="modify"><a onclick="replyButton(${cmt.comment_idx},'${cmt.cmt_writer}',${status.index},'${cmt.cmt_date}')">수정</a></div>
 	<div class="delete"><a onclick="replyDelete(${cmt.comment_idx}, ${status.index})">삭제</a></div>
 	</c:if>

@@ -27,9 +27,5 @@ public class Product {
 	private long product_amount;
 	private long product_size;
 	private String product_image;
-	private long product_idx;
-	private String product_pic_fname;
-	private String product_pic_ofname;
-	private long product_pic_fsize;
 	
 }

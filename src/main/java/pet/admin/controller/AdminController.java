@@ -230,6 +230,12 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView("admin/walkStatistic", "map", map);
 		return mv;
 	}
+	@GetMapping(value="point.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public @ResponseBody MemListResult point(long member_number, long point) {
+		adminService.givePoint(member_number, point);
+		MemListResult list = adminService.getTotalMemberList(1, null);
+		return list;
+	}
 	
 	
 }

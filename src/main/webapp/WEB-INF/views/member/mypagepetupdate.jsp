@@ -119,8 +119,8 @@
           </div>
           <h4>내 프로필</h4>
         </div>
-        <div class="col-lg-3 col-6 stats_info counter_grid1" button type="button"  onclick="location.href =  '/member/mypost.do';">
-          <p class="counter">80</p>
+        <div class="col-lg-3 col-6 stats_info counter_grid1" button type="button"  onclick="location.href =  '/member/mypost.do?member_number=';">
+          <p class="counter">POST</p>
           <h4>게시물</h4>
         </div>
         <div class="col-lg-3 col-6 stats_info counter_grid mt-lg-0 mt-5" button type="button" onclick="location.href =  '/member/follower.do';">
@@ -136,7 +136,7 @@
   </section>
 <br><br>
 <section class="w3l-team-main">
- <center>
+ <center style="font-family: 'Spoqa Han Sans Neo';">
 	<div style="float:left; margin-left:360px;">
 		<div class="column position-relative">
 			 <img src="<c:url value="/img/${mpvo.pet_fname}"/>" class="img-fluid img-thumbnail"/></a>
@@ -164,7 +164,7 @@
 </section>
          <br><br><br>
  <div style="width:400px; hight:400px; margin-right:440px; float:right;">
- 	<center>
+ 	<center style="font-family: 'Spoqa Han Sans Neo';">
          <h1>강아지정보 입력</h1>
 			<br>
                  <form action="mypagepetupdate.do" method="post" enctype="multipart/form-data">

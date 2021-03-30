@@ -165,7 +165,8 @@ function pwFind(){
 		 		if(data == ''){
 		 			alert("이름과 주소에 관련된 아이디가 없습니다.");
 				} else {
-					alert("비밀번호는 : "+data.member_password);
+					alert("메일로 임시 비밀번호가 전송되었습니다.");
+					//alert("비밀번호는 : "+data.member_password);
 		 		}
 	     }
 	});
